@@ -1,4 +1,4 @@
-import { makeId } from "./util.service.js"
+import { makeId } from './util.service.js'
 
 export const storageService = {
     query,

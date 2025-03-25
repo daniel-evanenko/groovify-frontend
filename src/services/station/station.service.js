@@ -1,6 +1,6 @@
 import { storageService } from '../async-storage.service.js'
 
-const STORAGE_KEY = "STATION"
+const STORAGE_KEY = 'STATION'
 
 export const stationService = {
     query,
