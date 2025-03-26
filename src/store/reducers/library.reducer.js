@@ -1,4 +1,4 @@
-export const ADD_STATION = 'ADD_STATION'
+export const ADD_STATION_ACTIVATE = 'ADD_STATION'
 export const REMOVE_STATION = 'REMOVE_STATION'
 export const SET_ACTIVE_STATION_ID = 'SET_ACTIVE_STATION_ID'
 
@@ -9,8 +9,12 @@ const initialState = {
 
 export function libraryReducer(state = initialState, action) {
     switch (action.type) {
-        case ADD_STATION:
-            return { ...state, stations: [...state.stations, action.station] }
+        case ADD_STATION_ACTIVATE:
+            return {
+                ...state,
+                stations: [...state.stations, action.station],
+                activeStationId: action.station._id
+            }
 
         case REMOVE_STATION:
             const { stations } = state

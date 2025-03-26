@@ -7,6 +7,8 @@ export const stationService = {
     getById,
     save,
     remove,
+    addTrackToStation,
+    removeTrackToStation
 }
 
 window.cs = stationService
@@ -28,6 +30,19 @@ async function remove(stationId) {
 async function save(station) {
     const methodType = station._id ? 'put' : 'post';
     return await _saveRequest(station, methodType);
+}
+
+async function addTrackToStation(track, stationId) {
+    const station = await getById(stationId);
+    station.tracks.push(track)
+    return await save(station)
+}
+
+async function removeTrackToStation(trackId, stationId) {
+    const station = await getById(stationId);
+    const filteredTracks = station.tracks.filter(track => track._id !== trackId)
+    station.tracks = filteredTracks;
+    return await save(station)
 }
 
 

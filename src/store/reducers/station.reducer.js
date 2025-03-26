@@ -1,8 +1,7 @@
-export const REMOVE_TRACK = 'REMOVE_TRACK'
-export const ADD_TRACK = 'ADD_TRACK'
+export const ADD_TRACK_TO_STATION = 'ADD_TRACK_TO_STATION'
+export const REMOVE_TRACK_FROM_STATION = 'REMOVE_TRACK_FROM_STATION'
 export const PLAY_TRACK = 'PLAY_TRACK'
 export const UPDATE_STATION = 'UPDATE_STATION'
-export const SET_ACTIVE_STATION_ID = 'SET_ACTIVE_STATION_ID'
 
 const initialState = {
     station: {
@@ -11,28 +10,27 @@ const initialState = {
         description: '',
         imgUrl: '',
         ownerId: '',
-        trackIds: [],
+        tracks: [],
         lastUpdate: NaN,
     },
-    // minimal track data
     playingTrack: {}
 }
 
 export function stationReducer(state = initialState, action) {
     switch (action.type) {
-        case ADD_TRACK:
+        case ADD_TRACK_TO_STATION:
             return {
                 ...state,
-                station: { ...state.station, trackIds: [...trackIds, action.trackId], lastUpdate: Date.now() }
+                station: { ...state.station, tracks: [...state.tracks, action.track], lastUpdate: Date.now() }
             }
 
-        case REMOVE_TRACK:
-            const { trackIds } = state
-            const filteredTracks = trackIds.filter(trackId => trackId !== action.trackId)
+        case REMOVE_TRACK_FROM_STATION:
+            const { tracks } = state
+            const filteredTracks = tracks.filter(track => track._id !== action.trackId)
 
             return {
                 ...state,
-                station: { ...state.station, trackIds: filteredTracks, lastUpdate: Date.now() }
+                station: { ...state.station, tracks: filteredTracks, lastUpdate: Date.now() }
             }
 
         case PLAY_TRACK:

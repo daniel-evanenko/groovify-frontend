@@ -1,12 +1,12 @@
 import { stationService } from "../../services/station/station.service.js"
-import { ADD_STATION, REMOVE_STATION, SET_ACTIVE_STATION_ID } from "../reducers/library.reducer.js"
+import { ADD_STATION_ACTIVATE, REMOVE_STATION, SET_ACTIVE_STATION_ID } from "../reducers/library.reducer.js"
 import { store } from "../store.js"
 
 
 export async function addStation(station) {
     try {
         const savedStation = await stationService.save(station)
-        store.dispatch({ type: ADD_STATION, savedStation })
+        store.dispatch({ type: ADD_STATION_ACTIVATE, savedStation })
 
     } catch (err) {
         console.log('library actions -> Cannot add station', err)
