@@ -7,6 +7,7 @@
     background-color: $bg-base;
     border-radius: 6px;
     pointer-events: auto;
+    cursor: pointer;
 
     &:hover {
         background-color: $bg-hl;
