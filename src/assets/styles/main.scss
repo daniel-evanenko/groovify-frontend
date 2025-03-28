@@ -1,13 +1,13 @@
 // Setup
-@import "setup/variables";
-@import "setup/functions";
-@import "setup/mixins";
-@import "setup/typography";
+@use "setup/variables";
+@use "setup/functions";
+@use "setup/mixins";
+@use "setup/typography";
 
 // Basics
-@import "basics/helpers";
-@import "basics/layout";
-@import "basics/base";
+@use "basics/helpers";
+@use "basics/layout";
+@use "basics/base";
 
 
 // pages
