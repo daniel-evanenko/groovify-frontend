@@ -8,7 +8,6 @@ function App() {
 
   return (
     <section className="app">
-      <h1>hello</h1>
       <AppHeader />
       <LeftSideBar />
       <StationIndex />
