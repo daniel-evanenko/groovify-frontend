@@ -1,6 +1,8 @@
 export function StationIndex() {
 
     return (
-        <h1>StationIndex</h1>
+        <section className="station-index">
+            <h1>StationIndex</h1>
+        </section>
     )
 }
