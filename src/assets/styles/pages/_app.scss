@@ -1,0 +1,47 @@
+
+.app {
+    
+    display: grid;
+    grid-template-areas: 
+    "header header header"
+    "left main right"
+    "footer footer footer";
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 10px;
+    height: 100%;
+
+    & > * {
+        border: 1px solid $text-base;
+        border-radius: 20px;
+
+        &:hover {
+            background-color: $bg-hl;
+        }
+    }
+
+    header {
+        grid-area: header;
+    }
+    
+    .left-side-bar {
+        grid-area: left;
+    }
+
+    main {
+        grid-area: main;
+    }
+
+    .right-side-bar {
+        grid-area: right;
+        display: $hidden;
+    }
+
+    footer {
+        grid-area: footer;
+    }
+
+    h1 {
+        margin: 0;
+    }
+}

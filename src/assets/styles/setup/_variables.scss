@@ -1,18 +1,33 @@
 // Colors
-$clr1: #ce2e6c;
-$clr2: #4f3a65;
-$clr3: #574f7d;
-$clr4: #95adbe;
-$clr5: #dff0ea;
-$clr6: #fff;
-$clr7: #222;
+$bg-base: #121212;
+$bg-hl: #1f1f1f;
+$bg-press: #000;
+$bg-elevated-base: #1f1f1f;
+$bg-elevated-hl: #2a2a2a;
+$bg-elevated-press: #191919;
+$bg-tinted-base: hsla(0,0%,100%,.1);
+$bg-tinted-hl: hsla(0,0%,100%,.14);
+$bg-tinted-press: hsla(0,0%,100%,.21);
+$text-base: #fff;
+$text-subdued: #b3b3b3;
 
-$gray1: #ddd;
-$gray2: #aaa;
-$gray3: #777;
-$gray4: #333;
+// $bg-base: #fff;
+// $bg-hl: #f0f0f0;
+// $bg-press: #c7c7c7;
+// $bg-elevated-base: #f0f0f0;
+// $bg-elevated-hl: #f0f0f0;
+// $bg-elevated-press: #c7c7c7;
+// $bg-tinted-base: #fff;
+// $bg-tinted-hl: #fff;
+// $bg-tinted-press: #fff;
+// $text-base: #000;
+// $text-subdued: #5a5a5a;
 
 // Breakpoints
 $mobile-breakpoint: 460px;
 $narrow-breakpoint: 720px;
 $normal-breakpoint: 960px;
+
+//display
+$hidden: none;
+$shown: block;
