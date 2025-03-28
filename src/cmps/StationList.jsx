@@ -1,8 +1,18 @@
+import { StationPreview } from "./StationPreview"
+
 export function StationList() {
 
     return (
         <article className="station-list">
-            <h1>StationList</h1>
+            <a>StationList Title</a>
+            <div className="station-previews">
+                <StationPreview></StationPreview>
+                <StationPreview></StationPreview>
+                <StationPreview></StationPreview>
+                <StationPreview></StationPreview>
+                <StationPreview></StationPreview>
+                <StationPreview></StationPreview>
+            </div>
         </article>
     )
 }
