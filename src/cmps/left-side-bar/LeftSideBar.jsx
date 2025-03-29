@@ -1,9 +1,10 @@
+import { MainControlls } from "./MainControlls.jsx"
 
 export function LeftSideBar() {
 
     return (
         <aside className="left-side-bar">
-            <h1>left-side-bar</h1>
+            <MainControlls/>
         </aside>
     )
 }
