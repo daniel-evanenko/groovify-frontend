@@ -1,6 +1,5 @@
 
 .app {
-    
     display: grid;
     grid-template-areas: 
     "header header header"
@@ -16,7 +15,7 @@
         border-radius: 20px;
 
         &:hover {
-            background-color: $bg-hl;
+            border-width: 2px;
         }
     }
 

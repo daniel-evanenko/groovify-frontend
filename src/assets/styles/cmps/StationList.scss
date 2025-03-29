@@ -1,8 +1,10 @@
 .station-list {
     &>a {
         color: $text-base;
+        font-size: 24px;
         font-weight: bold;
         cursor: pointer;
+        margin-inline-start: 12px;
 
         &:hover {
             text-decoration: underline;
