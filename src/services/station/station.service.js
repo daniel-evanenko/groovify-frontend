@@ -45,6 +45,20 @@ async function removeTrackToStation(trackId, stationId) {
     return await save(station)
 }
 
+export async function getStationLists() {
+    try {
+        const response = await fetch("/tmp-assets/stations-home-page.json")
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`)
+        }
+        const homePageStations = await response.json()
+        return homePageStations
+    } catch (error) {
+        console.error("Error fetching JSON:", error)
+    }
+}
+
+
 
 async function _saveRequest(station, methodType) {
     const stationToSave = {
