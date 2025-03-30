@@ -1,14 +1,15 @@
 import { storageService } from '../async-storage.service.js'
-
-const STORAGE_KEY = 'STATION'
-
+import { loadFromStorage, saveToStorage } from '../util.service.js';
+export const STORAGE_KEY = "stationsDB";
+_createStations()
 export const stationService = {
     query,
     getById,
     save,
     remove,
     addTrackToStation,
-    removeTrackToStation
+    removeTrackToStation,
+    getStationBySpotifyId
 }
 
 window.cs = stationService
@@ -67,3 +68,32 @@ async function _saveRequest(station, methodType) {
     return await storageService[methodType](STORAGE_KEY, stationToSave)
 }
 
+async function getStationBySpotifyId(entityId) {
+    try {
+        const stations = await query()
+        const stationsWithSpotifyId = stations.filter(station => typeof station.spotifyId === 'string' && station.spotifyId.trim() !== '');
+        const station = await stationsWithSpotifyId.find(entity => entity.spotifyId === entityId)
+        return station
+    } catch (error) {
+        console.error("Error getting station:", error)
+    }
+}
+
+async function _createStations() {
+    let stations = loadFromStorage(STORAGE_KEY)
+    try {
+        if (!stations || !stations.length) {
+            const response = await fetch("/tmp-assets/station.json")
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`)
+            }
+            stations = await response.json()
+        }
+
+    } catch (error) {
+        console.error("Error fetching JSON:", error)
+
+    }
+    saveToStorage(STORAGE_KEY, stations)
+
+}
