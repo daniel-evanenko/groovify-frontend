@@ -1,11 +1,13 @@
 .action-bar {
     padding-inline: $content-padding;
-
+    display: flex;
+    align-items: center;
 
     .play-btn {
         width: em(70px);
         height: em(70px);
         background-color: $spotify-green;
+        margin-right: $content-marging;
         border: none;
         border-radius: 50%;
         display: flex;
