@@ -9,7 +9,7 @@ export function StationList({ stations }) {
         <article className="station-list">
             <a>{listTitle}</a>
             <div className="station-previews">
-                {stations.map(station =>
+                {stations.slice(0, 9).map(station =>
                     <StationPreview key={station.spotifyId+`${a++}`} station={station}></StationPreview>
                 )}
             </div>
