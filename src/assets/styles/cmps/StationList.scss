@@ -6,13 +6,15 @@
         cursor: pointer;
         margin-inline-start: 12px;
         margin-block-end: 8px;
-        white-space: nowrap;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 
     >.station-previews {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax($station-width, 1fr));
-        grid-auto-flow: column;
-        
+        display: flex;
+        flex-wrap: nowrap;
+        width: 100%;
     }
 }
