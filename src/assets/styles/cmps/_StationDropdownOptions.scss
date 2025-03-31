@@ -1,55 +1,61 @@
 .dropdown-container {
     position: relative;
     display: inline-block;
-}
 
-.dropdown-btn {
-    background-color: transparent;
-    fill: #fff;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    .dropdown-icon {
-        width: 30px;
-        height: 30px;
-
-    }
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 30px;
-    right: 0;
-    background-color: #333;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    list-style-type: none;
-    padding: 10px 0;
-    margin: 0;
-    width: 150px;
-
-    .dropdown-item {
-        padding: 10px;
-        color: #fff;
-        font-size: 14px;
+    .dropdown-btn {
+        background-color: transparent;
+        fill: $text-subdued;
+        border: none;
         cursor: pointer;
+        padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         transition: background-color 0.2s ease;
 
         &:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            fill: #fff;
         }
 
-        &:not(:last-child) {
-            border-bottom: 1px solid #444;
+        .dropdown-icon {
+            width: 30px;
+            height: 30px;
+        }
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        background-color: #333;
+        border-radius: em(8px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        list-style-type: none;
+        padding: em(10px) 0;
+        margin: 0;
+        width: em(200px);
+
+        .dropdown-item {
+            display: flex;
+            padding: em(10px);
+            color: addTransparency(#ffffff, 90%);
+            font-size: em(14px);
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            text-decoration: none;
+
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            &:not(:last-child) {
+                border-bottom: 1px solid #444;
+            }
+
+            svg {
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+                fill: $text-subdued
+            }
         }
     }
 }

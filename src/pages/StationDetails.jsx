@@ -76,7 +76,8 @@ export function StationDetails() {
                         </div>
                     </div>
                 </div>
-                <ActionBar></ActionBar>
+                <ActionBar station={station}></ActionBar>
+
             </div>
         </section>
     )
