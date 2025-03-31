@@ -77,8 +77,16 @@
     &:hover {
         background-color: $bg-elevated-hl;
 
-        >svg{
+        >svg {
             color: $text-base;
+        }
+    }
+
+    &:active {
+        background-color: $bg-elevated-press;
+
+        >svg {
+            color: $text-subdued;
         }
     }
 
@@ -87,10 +95,15 @@
         height: 25px;
         aspect-ratio: 1/1;
         margin: auto;
-        transition: color 0.3s;
+        transition: color 0.1s, transform 0.1s;
 
         &.icon-full {
             color: $text-base;
+        }
+
+        &:active {
+            color: $text-subdued;
+            transform: scale(0.98);
         }
     }
 }

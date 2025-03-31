@@ -27,10 +27,15 @@
         width: 100%;
 
         .home-btn {
-            transition: transform 0.1s;
-            
+            transition: transform 0.1s ease-in-out;
+            will-change: transform;
+
             &:hover {
                 transform: scale(1.05);
+            }
+
+            &:active {
+                transform: scale(1);
             }
         }
 
@@ -43,16 +48,17 @@
             background-color: $bg-elevated-base;
             border-radius: 500px;
 
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, box-shadow 0.3s;
 
             &:hover {
                 background-color: $bg-elevated-hl;
+                box-shadow: inset 0 0 0 1px hsla(0, 0%, 100%, .1);
 
                 & .nav-btn {
                     background-color: $bg-elevated-hl;
                 }
             }
-            
+
             //psuedo-element for animation when .focused is removed from .search-options
             &::after {
                 content: '';
