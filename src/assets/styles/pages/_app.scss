@@ -7,12 +7,12 @@
     "footer footer footer";
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr auto;
-    gap: 10px;
+    gap: 8px;
     height: 100%;
 
     & > * {
         border: 1px solid $text-base;
-        border-radius: 20px;
+        border-radius: 8px;
 
         &:hover {
             border-width: 2px;
