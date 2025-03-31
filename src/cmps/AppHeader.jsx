@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import icon from "/icons/favicon.ico"
 import { useRef, useState } from "react"
 
@@ -7,6 +8,7 @@ export function AppHeader() {
     const elSearchOptions = useRef()
     const elSearchButton = useRef()
     const elSearchInput = useRef()
+    const navigate = useNavigate()
 
     function onInputFocus() {
         elSearchOptions.current.classList.add("focused")
@@ -20,6 +22,7 @@ export function AppHeader() {
     function onHomeClicked() {
         setFillHome(true)
         setFillBrowse(false)
+        navigate("/")
     }
 
     function onSearchClicked() {
@@ -56,7 +59,7 @@ export function AppHeader() {
 
     return (
         <header className="app-header">
-            <img className="icon" src={icon} alt="icon"></img>
+            <img className="icon" src={icon} alt="icon" onClick={onHomeClicked} style={{cursor: "pointer"}}></img>
 
             <div className="nav-options">
                 <button className="home-btn nav-btn" onClick={onHomeClicked}>
