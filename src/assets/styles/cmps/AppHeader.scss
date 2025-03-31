@@ -2,7 +2,7 @@
     position: sticky;
     top: 0;
     display: grid;
-    grid-template-columns: 1fr 8fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     align-items: center;
 
 
@@ -44,7 +44,9 @@
             position: relative;
             align-items: center;
             max-width: 475px;
-            width: 100%;
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 475px;
             background-color: $bg-elevated-base;
             border-radius: 500px;
 
@@ -83,21 +85,23 @@
             }
 
             .search-input {
-                background-color: transparent;
-                border: 0;
-                color: $text-base;
-                font-size: 16px;
-                flex-grow: 1;
+                min-width: 0;
+                width: 0;
                 height: 100%;
+                flex-grow: 1;
+                background-color: transparent;
+                color: $text-base;
+                border: 0;
+                font-size: 16px;
+                text-overflow: ellipsis;
 
                 &:focus-visible {
                     outline: none;
-                    border: 0;
-
                 }
             }
 
             .browse-btn {
+                flex-shrink: 0;
                 margin-inline-end: 12px;
                 padding-inline: 0;
 
