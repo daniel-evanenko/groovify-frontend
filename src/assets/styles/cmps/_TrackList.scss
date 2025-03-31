@@ -1,0 +1,82 @@
+.track-list {
+    list-style-type: none;
+    padding: em(55px);
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+    color: $text-subdued;
+
+    .track-header {
+        border-bottom: 1px solid $bg-tinted-hl;
+    }
+
+    .track-header,
+    .track-container {
+        display: grid;
+        grid-template-columns: 1fr 40% 8fr 8fr 8fr;
+        gap: 10px;
+        align-items: center;
+        padding: em(10px);
+
+        svg {
+            width: 20px;
+            height: 20px;
+            fill: $text-subdued;
+        }
+    }
+
+    .track-order {
+        font-size: 16px;
+        font-family: 'CircularSpotifyTextBold';
+    }
+
+    .track-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        img {
+            border-radius: 4px;
+            width: 40px;
+            height: 40px;
+        }
+
+        .track-info {
+            display: flex;
+            flex-direction: column;
+
+            span {
+                font-size: 16px;
+            }
+
+            a {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .track-album {}
+
+    .track-date-added {}
+
+    .track-duration {
+        text-align: right;
+        padding-right: 10px;
+
+        svg {
+            width: 16px;
+            height: 16px;
+            fill: #888;
+        }
+    }
+
+    .track-title,
+    .track-album,
+    .track-date-added,
+    .track-duration {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}

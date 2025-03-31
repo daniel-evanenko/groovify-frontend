@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { randomColor } from '../services/util.service.js';
 import { Loader } from '../cmps/Loader.jsx';
 import { ActionBar } from '../cmps/ActionBar.jsx';
+import { TrackList } from '../cmps/TrackList.jsx';
 export function StationDetails() {
     const [station, setStation] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -77,7 +78,7 @@ export function StationDetails() {
                     </div>
                 </div>
                 <ActionBar station={station}></ActionBar>
-
+                <TrackList station={station}></TrackList>
             </div>
         </section>
     )
