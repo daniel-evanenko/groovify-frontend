@@ -1,11 +1,31 @@
 // Font Sizes
-.fs12 { font-size: remCalc(12px); }
-.fs14 { font-size: remCalc(14px); }
-.fs18 { font-size: remCalc(18px); }
-.fs20 { font-size: remCalc(20px); }
-.fs24 { font-size: remCalc(24px); }
-.fs28 { font-size: remCalc(28px); }
-.fs30 { font-size: remCalc(30px); }
+.fs12 {
+    font-size: remCalc(12px);
+}
+
+.fs14 {
+    font-size: remCalc(14px);
+}
+
+.fs18 {
+    font-size: remCalc(18px);
+}
+
+.fs20 {
+    font-size: remCalc(20px);
+}
+
+.fs24 {
+    font-size: remCalc(24px);
+}
+
+.fs28 {
+    font-size: remCalc(28px);
+}
+
+.fs30 {
+    font-size: remCalc(30px);
+}
 
 // flex helpers
 
@@ -13,15 +33,18 @@
 
     display: flex;
 
-    > *.full {
+    >*.full {
         flex: 1;
     }
+
     &.column {
         flex-direction: column;
     }
+
     &.justify-center {
         justify-content: center;
     }
+
     &.align-center {
         align-items: center;
     }
@@ -32,9 +55,55 @@
 .square-ratio {
     @include aspect-ratio(1, 1);
 }
+
 .video-ratio {
     @include aspect-ratio(16, 9);
 }
+
 .portrait-ratio {
     @include aspect-ratio(9, 16);
+}
+
+//buttons
+.nav-btn {
+    height: 44px;
+    aspect-ratio: 1/1;
+    border: 0;
+    border-radius: 50%;
+    background-color: $bg-hl;
+    transition: background-color 0.3s;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $bg-elevated-hl;
+
+        >svg {
+            color: $text-base;
+        }
+    }
+
+    &:active {
+        background-color: $bg-elevated-press;
+
+        >svg {
+            color: $text-subdued;
+        }
+    }
+
+    >svg {
+        color: $text-subdued;
+        height: 25px;
+        aspect-ratio: 1/1;
+        margin: auto;
+        transition: color 0.1s, transform 0.1s;
+
+        &.icon-full {
+            color: $text-base;
+        }
+
+        &:active {
+            color: $text-subdued;
+            transform: scale(0.98);
+        }
+    }
 }
