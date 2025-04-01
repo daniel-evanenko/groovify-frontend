@@ -5,12 +5,13 @@ import { store } from "../store.js"
 
 export async function loadStations() {
     try {
-        const stations = await stationService.query()
+        // const stations = await stationService.query()
+        const stations = await stationService.fetchStations()
         store.dispatch({ type: SET_STATIONS, stations })
 
     } catch (error) {
         console.log('Cannot load stations:', error);
-        throw err;
+        throw error;
     }
 
 }
