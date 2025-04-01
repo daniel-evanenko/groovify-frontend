@@ -9,8 +9,10 @@ $bg-tinted-base: hsla(0,0%,100%,.1);
 $bg-tinted-hl: hsla(0,0%,100%,.14);
 $bg-tinted-press: hsla(0,0%,100%,.21);
 $text-base: #fff;
+$text-clicked-base: #000;
 $text-subdued: #b3b3b3;
 $spotify-green: #3be477;
+$text-hover: #f0f0f0;
 
 // $bg-base: #fff;
 // $bg-hl: #f0f0f0;
@@ -36,4 +38,8 @@ $shown: block;
 //sizes
 $station-width: 200px;
 $content-padding: 2em;
-$content-marging: 2em
+$content-marging: 2em;
+
+//transitions
+$button-transition-duration: 400ms;
+$plus-x-button-transition: 0.2s ease-in-out;
