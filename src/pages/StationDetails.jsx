@@ -30,7 +30,6 @@ export function StationDetails() {
     async function loadStation() {
         try {
             const station = await stationService.getStationBySpotifyId(params.stationId)
-            console.log("🚀 ~ loadStation ~ station:", station)
             setStation(station)
             setStationHeaderBg(station?.backgroundColor)
         } catch (error) {
