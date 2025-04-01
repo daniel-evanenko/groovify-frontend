@@ -30,6 +30,25 @@
         flex-direction: column;
         min-width: 264px;
         background-color: $bg-base;
+        
+        button {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 5px;
+            padding: 7px 15px;
+            margin-left: auto;
+            transition-duration: $button-transition-duration;
+
+            &:hover {
+                transition-duration: $button-transition-duration;
+            }
+        
+            &:active {
+                background-color: $bg-tinted-press;
+            }
+
+        }
 
         > * {
             display: flex;

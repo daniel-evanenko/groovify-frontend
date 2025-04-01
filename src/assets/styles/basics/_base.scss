@@ -58,26 +58,14 @@ input {
 }
 
 button {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 5px;
     border-radius: 100px;
     border: 0;
-    padding: 7px 15px;
-    background-color: $bg-tinted-base;
-    color: $text-base;
-    margin-left: auto;
-    transition-duration: $button-transition-duration;
+    background-color: $bg-elevated-base;
+    color: $text-subdued;
 
     &:hover {
-        background-color: $bg-tinted-hl;
+        background-color: $bg-elevated-hl;
         cursor: pointer;
-        transition-duration: $button-transition-duration;
-    }
-
-    &:active {
-        background-color: $bg-tinted-press;
     }
 
 }
