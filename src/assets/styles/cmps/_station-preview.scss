@@ -1,0 +1,28 @@
+.station-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    width: $station-width;
+    background-color: $bg-base;
+    border-radius: 6px;
+    pointer-events: auto;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $bg-hl;
+    }
+
+    &>img {
+        width: 175px;
+        aspect-ratio: 1/1;
+    }
+
+    &>p {
+        color: $text-subdued;
+        font-size: medium;
+        margin: 0;
+        line-height: normal;
+    }
+}
+

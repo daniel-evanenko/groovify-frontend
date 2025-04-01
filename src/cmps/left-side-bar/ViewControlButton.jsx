@@ -1,0 +1,15 @@
+import FilteringOptions from '../../../public/icons/filtering-options.svg?react';
+
+const ViewControlButton = () => {
+
+    return (
+        <section class="view-control-button-section">
+            <button className="list-button">
+                Recents
+            </button>
+            <FilteringOptions className="list-button-icon" />
+        </section>
+    )
+}
+
+export default ViewControlButton;

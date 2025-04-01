@@ -1,0 +1,51 @@
+.create-playlist-icon {
+    fill: $text-subdued;
+    width: 20px;
+    transition: $plus-x-button-transition;   
+}
+
+.button-clicked-options {
+    transform: rotate(45deg);
+    transition: $plus-x-button-transition;
+    fill: $text-base;
+}
+
+.button-clicked-active {
+    background-color: $text-base;
+    color: $text-clicked-base;
+    font-weight: normal;
+
+    &:hover {
+        background-color: $text-hover;
+    }
+}
+
+.search-button {
+    background-color: $bg-base;
+    width: fit-content;    
+    margin: 0;
+}
+
+.search-button-icon {
+    fill: $text-subdued;
+    width: 20px;
+}
+
+.list-button {
+    background-color: $bg-base;
+    color: $text-subdued;
+    width: 75px;
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+    transition-duration: 0ms;
+
+    &:hover {
+        background-color: $bg-base;
+    }
+}
+
+.list-button-icon {
+    fill: $text-subdued;
+    width: 20px;
+}

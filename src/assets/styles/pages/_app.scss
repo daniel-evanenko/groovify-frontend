@@ -11,7 +11,7 @@
     height: 100%;
 
     & > * {
-        border: 1px solid $text-base;
+        background-color: $bg-base;
         border-radius: 8px;
 
         &:hover {
@@ -26,6 +26,59 @@
     .left-side-bar {
         grid-area: left;
         width: 280px;
+        display: flex;
+        flex-direction: column;
+        min-width: 264px;
+        background-color: $bg-base;
+
+        > * {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+            margin: 5px 20px;
+        }
+
+        .main-controlls {
+            
+            .create-button {
+
+                & .minimized-bar {
+                    aspect-ratio: 1;
+                }
+            }
+        }
+
+        .tag-controlls {
+
+            button {
+                display: flex;
+                margin: 0;
+            }
+        }
+
+        .filter-controlls {
+            display: flex;
+            justify-content: space-between;
+            
+            height: 40px;
+            gap: 0;
+
+            .view-control-button-section {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: 0 !important;
+                cursor: pointer;
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+            }
+        }
     }
 
     main {

@@ -16,7 +16,8 @@ body {
     margin: 0;
     width: 100vw;
     height: 100vh;
-    background-color: $bg-base;
+    background-color: black;
+
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: remCalc(18px);
 }
@@ -54,4 +55,33 @@ ul {
 
 input {
     max-width: 100%;
+}
+
+button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    border-radius: 100px;
+    border: 0;
+    padding: 7px 15px;
+    background-color: $bg-tinted-base;
+    color: $text-base;
+    margin-left: auto;
+    transition-duration: $button-transition-duration;
+
+    &:hover {
+        background-color: $bg-tinted-hl;
+        cursor: pointer;
+        transition-duration: $button-transition-duration;
+    }
+
+    &:active {
+        background-color: $bg-tinted-press;
+    }
+
+}
+
+.primary-button {
+    font-weight: bold;
 }
