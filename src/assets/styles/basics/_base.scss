@@ -68,6 +68,9 @@ button {
         cursor: pointer;
     }
 
+    svg {
+        pointer-events: none;
+    }
 }
 
 .primary-button {

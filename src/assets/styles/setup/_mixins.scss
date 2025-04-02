@@ -56,3 +56,32 @@
         }
     }
   }
+
+  @mixin scale-on-hover($scale-factor: 1.05) {
+    transition: transform 0.1s ease-in-out;
+    will-change: transform;
+
+    &:hover {
+        transform: scale($scale-factor);
+    }
+  }
+
+  // Mixin to be given to children elements of expanding elements - which we may not want to expand
+  @mixin prevent-scale-on-hover($scale-factor: 1.05) {
+    transition: transform 0.1s ease-in-out;
+    will-change: transform;
+
+    &:hover {
+        transform: scale(1/$scale-factor);
+    }
+  }
+
+  @mixin scale-on-press($scale-factor: 1.05) {
+    transition: transform 0.1s ease-in-out;
+    will-change: transform;
+    
+    &:active {
+        transform: scale($scale-factor);
+    }
+  }
+
