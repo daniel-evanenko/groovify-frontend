@@ -1,0 +1,19 @@
+.play-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 56px;
+    aspect-ratio: 1/1;
+    margin-right: $content-marging;
+    background-color: $green-base;
+
+    &:hover {
+        background-color: $green-hl;
+    }
+
+    svg {
+        color: black;
+        width: 24px;
+        aspect-ratio: 1/1;
+    }
+}

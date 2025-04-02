@@ -1,9 +1,9 @@
-import { ReactSVG } from "react-svg";
+
+import { PlayButton } from "./PlayButton";
 import { StationDropdownOptions } from "./StationDropdownOptions";
 
 
 export function ActionBar({ station }) {
-
 
     const moreOptions = [
         { label: "delete", value: "delete", icon: 'icons/Delete.svg' },
@@ -11,17 +11,10 @@ export function ActionBar({ station }) {
         { label: "add to queue", value: "add to queue", icon: 'icons/AddToQueue.svg' },
     ];
 
-    function handlePlayClick() { }
     return (
         <section className='action-bar'>
-            <div>
-                <button className="play-btn" onClick={handlePlayClick}>
-                    <ReactSVG src='/icons/play.svg' />
-                </button>
-            </div>
-            <div>
-                <StationDropdownOptions options={moreOptions}></StationDropdownOptions>
-            </div>
+            <PlayButton />
+            <StationDropdownOptions options={moreOptions}></StationDropdownOptions>
         </section>
     )
 
