@@ -7,5 +7,5 @@
     background-color: $bg-base;
     max-width: 100%;
     min-width: $station-width * 3;
-    overflow: hidden !important;
+    overflow-x: hidden !important;
 }

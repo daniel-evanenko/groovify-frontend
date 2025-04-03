@@ -10,14 +10,33 @@
 
     &:hover {
         background-color: $bg-hl;
+
+        .play-btn {
+            bottom: 0;
+            opacity: 1;
+            box-shadow: 0 4px 8px addTransparency(black, 0.4);
+        }
     }
 
-    &>img {
+    .play-btn {
+        position: absolute;
+        bottom: remCalc(-11px);
+        right: 0;
+        margin: 0 8px 8px 0;
+        width: remCalc(44px);
+        opacity: 0;
+        transition: bottom 0.2s ease-out, opacity 0.2s ease-out;
+    }
+
+    >div {
+        position: relative;
+    }
+
+    img {
         border-radius: 6px;
-        min-width: 175px;
     }
 
-    &>.long-txt {
+    >.long-txt {
         color: $text-subdued;
         font-size: 14px;
         font-weight: 400;
@@ -27,4 +46,3 @@
         line-height: normal;
     }
 }
-
