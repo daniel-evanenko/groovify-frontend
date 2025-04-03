@@ -6,9 +6,9 @@ import { StationDropdownOptions } from "./StationDropdownOptions";
 export function ActionBar({ station }) {
 
     const moreOptions = [
-        { label: "delete", value: "delete", icon: 'icons/Delete.svg' },
-        { label: "edit", value: "edit", icon: 'icons/Pencil.svg' },
-        { label: "add to queue", value: "add to queue", icon: 'icons/AddToQueue.svg' },
+        { label: "Delete", value: "delete", icon: 'icons/Delete.svg' },
+        { label: "Edit", value: "edit", icon: 'icons/Pencil.svg' },
+        { label: "Add to queue", value: "add to queue", icon: "icons/add-to-queue.svg" },
     ];
 
     return (
