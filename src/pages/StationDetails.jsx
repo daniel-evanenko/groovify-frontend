@@ -5,6 +5,8 @@ import { randomColor } from '../services/util.service.js';
 import { Loader } from '../cmps/Loader.jsx';
 import { ActionBar } from '../cmps/ActionBar.jsx';
 import { TrackList } from '../cmps/TrackList.jsx';
+import { extractColors } from "extract-colors";
+
 export function StationDetails() {
     const [station, setStation] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -21,7 +23,7 @@ export function StationDetails() {
 
         // Wait for DOM update
         requestAnimationFrame(() => {
-            setStationHeaderBg(station.backgroundColor);
+            setStationHeaderBg();
         });
 
     }, [station]);
@@ -31,7 +33,6 @@ export function StationDetails() {
         try {
             const station = await stationService.getStationBySpotifyId(params.stationId)
             setStation(station)
-            setStationHeaderBg(station?.backgroundColor)
         } catch (error) {
             console.log(error)
             navigate('/')
@@ -41,11 +42,20 @@ export function StationDetails() {
         }
     }
 
-    function setStationHeaderBg(backgroundColor) {
-        const mainElement = document.querySelector(".station-header-bg");
-        if (!mainElement) return;
-        if (!backgroundColor) backgroundColor = randomColor();
-        mainElement.style.backgroundImage = `linear-gradient(to bottom, ${backgroundColor} 0%,rgba(18,18,18,0.1) 350px)`;
+    async function setStationHeaderBg() {
+        try {
+            const mainElement = document.querySelector(".station-header-bg");
+            if (!mainElement) return;
+
+            const colors = await extractColors(station.imgUrl);
+            if (colors.length > 0) {
+                const { red, green, blue } = colors[0];
+                const gradient = `linear-gradient(to bottom, rgb(${red}, ${green}, ${blue}), rgba(0,0,0,0))`;
+                mainElement.style.backgroundImage = gradient
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 
