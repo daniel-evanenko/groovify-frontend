@@ -1,7 +1,7 @@
 import { StationIndex } from "./pages/StationIndex"
 import { AppHeader } from "./cmps/AppHeader"
 import { AppFooter } from "./cmps/AppFooter"
-import { LeftSideBar } from "./cmps/LeftSideBar"
+import LeftSideBar from "./cmps/left-side-bar/LeftSideBar"
 import { RightSideBar } from "./cmps/RightSideBar"
 import { StationDetails } from "./pages/StationDetails"
 import { HashRouter as Router, Route, Routes } from "react-router-dom"
@@ -21,7 +21,6 @@ function App() {
                 <AppFooter />
             </section>
         </Router>
-
     )
 }
 

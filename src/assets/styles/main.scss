@@ -8,19 +8,21 @@
 @import "basics/helpers";
 @import "basics/layout";
 @import "basics/base";
+@import "basics/common";
 
 
 // pages
 @import "pages/app";
-@import "pages/StationIndex.scss";
+@import "pages/_station-index";
 
 // Components
-@import "cmps/StationList.scss";
-@import "cmps/StationPreview";
-@import "cmps/_StationDetails";
-@import "cmps/_Loader";
-@import "cmps/_ActionBar";
-@import "cmps/_StationDropdownOptions";
-@import "cmps/_TrackList";
-@import "cmps/AppHeader";
+@import "cmps/_station_list";
+@import "cmps/_station-preview";
+@import "cmps/_station-details";
+@import "cmps/_loader";
+@import "cmps/_action-bar";
+@import "cmps/_station-dropdown-options";
+@import "cmps/_track-list";
+@import "cmps/_app-header";
+@import "cmps/play-button";
 
