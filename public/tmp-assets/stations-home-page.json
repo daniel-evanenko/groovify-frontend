@@ -93,96 +93,6 @@
   ],
   [
     {
-      "spotifyId": "37i9dQZF1DWSYF6geMtQMW",
-      "name": "הלהיטים הגדולים של ישראל",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000282037a761a6c9308bb09088f",
-      "description": "הפלייליסט הכי גדול בישראל, עם השירים הכי חמים של היום ומחר. קאבר: סטטיק  ",
-      "snapshot_id": "Z0SNvwAAAABs83zmOsZv5wGGYhY8aEzS",
-      "category": "Featured Playlists",
-      "categoryId": "featured"
-    },
-    {
-      "spotifyId": "37i9dQZF1DWT9L7hoCDtjB",
-      "name": "ים תיכוני חדש",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002672b26c1076dff218b04fb4f",
-      "description": "השירים הכי חדשים בז׳אנר הכי ישראלי. קאבר: הגר יפת ",
-      "snapshot_id": "Zz+tYAAAAABYLqHnnESeW9FE3/fw4RRE",
-      "category": "Featured Playlists",
-      "categoryId": "featured"
-    },
-    {
-      "spotifyId": "37i9dQZF1DXcBWIGoYBM5M",
-      "name": "Today’s Top Hits",
-      "imgUrl": "https://i.scdn.co/image/ab67706f000000027a97edf308c4856ae5cda067",
-      "description": "The hottest 50. Cover: Lady Gaga & Bruno Mars",
-      "snapshot_id": "Z0OgcQAAAADg8PM3oC7gXzQ5ep+XjR0y",
-      "category": "Featured Playlists",
-      "categoryId": "featured"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX5mMspCVmB8S",
-      "name": "צ'יל ישראלי",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002687fb5561575792aa8681abd",
-      "description": "תורידו הילוך עם שירים ישראליים נעימים ומרגשים. קאבר: יסמין מועלם    ",
-      "snapshot_id": "ZzZy4AAAAAASmJlaVuCS5s1ofVViXpmU",
-      "category": "Featured Playlists",
-      "categoryId": "featured"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX9sLipKPkV9T",
-      "name": "פופ ישראלי חדש",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002aef9abb97af48ed0d00ab3eb",
-      "description": "כל הפופ היפה והמרגש של ישראל. קאבר: אנה זק",
-      "snapshot_id": "Zz+tYAAAAAC5EhEwGwpAa7Z6SvKTemvJ",
-      "category": "Featured Playlists",
-      "categoryId": "featured"
-    },
-    {
-      "spotifyId": "37i9dQZF1DXbjEq7Z199Si",
-      "name": "Wicked Official Playlist",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002cd16491c2dc6463a90d9e6ca",
-      "description": "Everyone deserves a chance to fly. Listen to the music from and inspired by Wicked. Co-curated by Cynthia Erivo and Ariana Grande ",
-      "snapshot_id": "Z0AP0AAAAAB32CJTyx3GvyEhFHzPeTM7",
-      "category": "Featured Playlists",
-      "categoryId": "featured"
-    },
-    {
-      "spotifyId": "37i9dQZF1DWUCy47lptxiG",
-      "name": "ים תיכוני: הלהיטים",
-      "imgUrl": "https://i.scdn.co/image/ab67706f000000028bec4490a4a5258da2d701ac",
-      "description": "הלהיטים הים-תיכוניים הגדולים של ישראל. קאבר: שירז אברהם  \n ",
-      "snapshot_id": "Zy3zfwAAAACUZ3C3j1o3hTprxIhGpI+6",
-      "category": "Featured Playlists",
-      "categoryId": "featured"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX3zGuzLhXjyK",
-      "name": "המיטב של העשור בשבילכם",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002aa512c0f102f89b654d2c03a",
-      "description": "כמה מהשירים המובילים מ-10 השנים האחרונות, בפלייליסט אחד שמכוון לטעם שלכם.",
-      "snapshot_id": "ZIsLkAAAAADI3mPyDiQKeB6eseAfF8GF",
-      "category": "Featured Playlists",
-      "categoryId": "featured"
-    },
-    {
-      "spotifyId": "37i9dQZF1DWZd79rJ6a7lp",
-      "name": "Sleep",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002cd17d41419faa97069e06c16",
-      "description": "Gentle Ambient piano to help you fall asleep. ",
-      "snapshot_id": "Zz8lnwAAAABzrnhZPbXvFAgtc3qotvaq",
-      "category": "Featured Playlists",
-      "categoryId": "featured"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX2kUCiHidQRK",
-      "name": "להיטים ויראליים",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002fe613ad6444200638c1a034e",
-      "description": "כל מה שרותח בישראל 🔥קאבר: קניה גרייס",
-      "snapshot_id": "ZR0oVAAAAABNaZlivyGan6R7p/uA1HsZ",
-      "category": "Featured Playlists",
-      "categoryId": "featured"
-    },
-    {
       "spotifyId": "37i9dQZF1DX439u9DYdMGc",
       "name": "אהבה",
       "imgUrl": "https://i.scdn.co/image/ab67706f0000000203e9ce7f1374059895a0930a",
@@ -545,15 +455,6 @@
   ],
   [
     {
-      "spotifyId": "37i9dQZF1DWZ7eJRBxKzdO",
-      "name": "Summer Dance Hits 2024",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002c7ea8e62ee86671eaa4c341c",
-      "description": "The summer needs dance hits 😎☀️",
-      "snapshot_id": "Zz+f2AAAAAAVDANDV4X41GmUjmqnQiRW",
-      "category": "Summer",
-      "categoryId": "0JQ5DAqbMKFLVaM30PMBm4"
-    },
-    {
       "spotifyId": "37i9dQZF1DX1BzILRveYHb",
       "name": "Sunny Day",
       "imgUrl": "https://i.scdn.co/image/ab67706f00000002e30f54d8b2a938d6c5fc13a0",
@@ -631,15 +532,6 @@
       "imgUrl": "https://i.scdn.co/image/ab67706f0000000203ef984c282b47ab16fa9414",
       "description": "Beach vibes and summer jams only.",
       "snapshot_id": "ZytpMgAAAAB7fx80pDlpHhdAbC5TLIgF",
-      "category": "Summer",
-      "categoryId": "0JQ5DAqbMKFLVaM30PMBm4"
-    },
-    {
-      "spotifyId": "37i9dQZF1DWZ7eJRBxKzdO",
-      "name": "Summer Dance Hits 2024",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002c7ea8e62ee86671eaa4c341c",
-      "description": "The summer needs dance hits 😎☀️",
-      "snapshot_id": "Zz+f2AAAAAAVDANDV4X41GmUjmqnQiRW",
       "category": "Summer",
       "categoryId": "0JQ5DAqbMKFLVaM30PMBm4"
     },
@@ -725,15 +617,6 @@
       "categoryId": "0JQ5DAqbMKFLVaM30PMBm4"
     },
     {
-      "spotifyId": "37i9dQZF1DXd1MXcE8WTXq",
-      "name": "Summer Throwbacks",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002dfc49fa2848e67ec194064dd",
-      "description": "Throwing it back with these summer classics ",
-      "snapshot_id": "ZpXgSwAAAACNwaRkJYM7zj/bg3XeV9d5",
-      "category": "Summer",
-      "categoryId": "0JQ5DAqbMKFLVaM30PMBm4"
-    },
-    {
       "spotifyId": "37i9dQZF1DWU3bkMPOyjie",
       "name": "Summer Rock Classics",
       "imgUrl": "https://i.scdn.co/image/ab67706f00000002f8e33fd6093eeaf962b0b8d5",
@@ -815,15 +698,6 @@
       "categoryId": "0JQ5DAqbMKFLVaM30PMBm4"
     },
     {
-      "spotifyId": "37i9dQZF1DWUE76cNNotSg",
-      "name": "golden hour",
-      "imgUrl": "https://i.scdn.co/image/ab67706f000000029a33bfb4e40ce00e148e5142",
-      "description": "Warm indie dance vibes, the music you need at golden hour 🌞",
-      "snapshot_id": "Z0AP0AAAAADGaM8TqtP5HotPBiXigumM",
-      "category": "Summer",
-      "categoryId": "0JQ5DAqbMKFLVaM30PMBm4"
-    },
-    {
       "spotifyId": "37i9dQZF1DWWIvMGe3ig7a",
       "name": "bummer summer",
       "imgUrl": "https://i.scdn.co/image/ab67706f000000023f08d1de114e77582727a46e",
@@ -878,56 +752,11 @@
       "categoryId": "0JQ5DAqbMKFLVaM30PMBm4"
     },
     {
-      "spotifyId": "37i9dQZF1DWSvfPiFfb8Mi",
-      "name": "Poolside Disco",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002db24bb186a68141e019d66f7",
-      "description": ", house, funk and soul for the good times.",
-      "snapshot_id": "Z0AP0AAAAAAgz69X8XmH7kCXz/9FPueJ",
-      "category": "Summer",
-      "categoryId": "0JQ5DAqbMKFLVaM30PMBm4"
-    },
-    {
-      "spotifyId": "37i9dQZF1DWZX4NmgTPdVb",
-      "name": "Summer Hits of the 70s",
-      "imgUrl": "https://i.scdn.co/image/ab67706f000000022b13df80e33ac8ba46a564e2",
-      "description": "The songs of the 1970s that will make you dance all summer long!",
-      "snapshot_id": "Zf2gvAAAAACkjvZa7iwvBdAsoaCapsP4",
-      "category": "Summer",
-      "categoryId": "0JQ5DAqbMKFLVaM30PMBm4"
-    },
-    {
       "spotifyId": "37i9dQZF1DX42rTd7wQPNO",
       "name": "coastal cowgirl",
       "imgUrl": "https://i.scdn.co/image/ab67706f000000022196fd9181a5492c8b702336",
       "description": "put a little yee haw in your laid back",
       "snapshot_id": "ZsgJQAAAAACUlFfmNo9mMAdvOGpnPHOa",
-      "category": "Summer",
-      "categoryId": "0JQ5DAqbMKFLVaM30PMBm4"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX9FIMhEujaK6",
-      "name": "Ibiza Sunset",
-      "imgUrl": "https://i.scdn.co/image/ab67706f000000021ad0f96144ad4d13bdbe76d9",
-      "description": "The ultimate chilled soundtrack to bring your day to a close.",
-      "snapshot_id": "ZvXncAAAAACE0CjTCIyogjcmpFd1Gxe7",
-      "category": "Summer",
-      "categoryId": "0JQ5DAqbMKFLVaM30PMBm4"
-    },
-    {
-      "spotifyId": "37i9dQZF1DWVG2wQBfGuGj",
-      "name": "Ibiza Lounge",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000206169f46b7389b9b4efa704a",
-      "description": "Surrender to the chill of the White Island with these laid-back house and nu-disco groovers. ",
-      "snapshot_id": "ZzdszQAAAACZD/4rjSg3PEVyELuAcKos",
-      "category": "Summer",
-      "categoryId": "0JQ5DAqbMKFLVaM30PMBm4"
-    },
-    {
-      "spotifyId": "37i9dQZF1DXbtuVQL4zoey",
-      "name": "Sunny Beats",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000203ef984c282b47ab16fa9414",
-      "description": "Beach vibes and summer jams only.",
-      "snapshot_id": "ZytpMgAAAAB7fx80pDlpHhdAbC5TLIgF",
       "category": "Summer",
       "categoryId": "0JQ5DAqbMKFLVaM30PMBm4"
     },
@@ -968,15 +797,6 @@
       "categoryId": "0JQ5DAqbMKFLVaM30PMBm4"
     },
     {
-      "spotifyId": "37i9dQZF1DX83I5je4W4rP",
-      "name": "Beach Vibes",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000277c570655fa7ab49f63535a3",
-      "description": "Soak up these laid-back jams. ",
-      "snapshot_id": "ZqMfQAAAAACQlYQI1ZsCCEkIV1VhoTVH",
-      "category": "Summer",
-      "categoryId": "0JQ5DAqbMKFLVaM30PMBm4"
-    },
-    {
       "spotifyId": "37i9dQZF1DX2HC3xQbIKZ8",
       "name": "Island Time",
       "imgUrl": "https://i.scdn.co/image/ab67706f000000022bc07cbdc23d794d81092ed6",
@@ -996,24 +816,6 @@
     }
   ],
   [
-    {
-      "spotifyId": "37i9dQZF1DX76Wlfdnj7AP",
-      "name": "Beast Mode",
-      "imgUrl": "https://i.scdn.co/image/ab67706f000000021c85876e7d9b8633ec32a8b9",
-      "description": "Get your beast mode on!",
-      "snapshot_id": "Z0DVHQAAAACq2B2YTzxHSnEMHC9RyYQ8",
-      "category": "Workout",
-      "categoryId": "0JQ5DAqbMKFAXlCG6QvYQ4"
-    },
-    {
-      "spotifyId": "37i9dQZF1DWTl4y3vgJOXW",
-      "name": "Locked In",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002b80a042f0ae8089158e99fc9",
-      "description": "Fourth quarter, two minutes left .. get locked in. Cover: Ashton\nJeanty",
-      "snapshot_id": "Z0LHbAAAAADvziNvjAAswi/yXCAkWSLs",
-      "category": "Workout",
-      "categoryId": "0JQ5DAqbMKFAXlCG6QvYQ4"
-    },
     {
       "spotifyId": "37i9dQZF1DX9uKNf5jGX6m",
       "name": "Yoga & Meditation",
@@ -1150,15 +952,6 @@
       "categoryId": "0JQ5DAqbMKFAXlCG6QvYQ4"
     },
     {
-      "spotifyId": "37i9dQZF1DWSJHnPb1f0X3",
-      "name": "Cardio",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002c9708f6f371832b819823be2",
-      "description": "Upbeat dance pop to keep your heart pumping.",
-      "snapshot_id": "ZzbVUAAAAAAmWm58DyC6gpupzUyeHD4d",
-      "category": "Workout",
-      "categoryId": "0JQ5DAqbMKFAXlCG6QvYQ4"
-    },
-    {
       "spotifyId": "37i9dQZF1DXa8NOEUWPn9W",
       "name": "Housewerk",
       "imgUrl": "https://i.scdn.co/image/ab67706f00000002eb7b56c231fc9bead05684f6",
@@ -1173,15 +966,6 @@
       "imgUrl": "https://i.scdn.co/image/ab67706f00000002bc6367cf9d988072310abeac",
       "description": "Dance tracks for your power moves",
       "snapshot_id": "ZzcmHAAAAAD9D2UuqFh5KriTjO7Vj9d6",
-      "category": "Workout",
-      "categoryId": "0JQ5DAqbMKFAXlCG6QvYQ4"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX4osfY3zybD2",
-      "name": "Retro Running",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000225c129675d9a39ce4313da1f",
-      "description": "Up for a nostalgic running session?",
-      "snapshot_id": "ZpFdhwAAAAA50P87U1o7yygSGwnn86FC",
       "category": "Workout",
       "categoryId": "0JQ5DAqbMKFAXlCG6QvYQ4"
     },
@@ -1267,15 +1051,6 @@
       "categoryId": "0JQ5DAqbMKFAXlCG6QvYQ4"
     },
     {
-      "spotifyId": "37i9dQZF1DX9oh43oAzkyx",
-      "name": "Beast Mode Hip-Hop",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002d2d1cbd94520146a3fecc8fd",
-      "description": "Energy tracks to get your beast mode on.",
-      "snapshot_id": "Z0EbpQAAAADwF4kWE8Vqpdx6fxmWCw4O",
-      "category": "Workout",
-      "categoryId": "0JQ5DAqbMKFAXlCG6QvYQ4"
-    },
-    {
       "spotifyId": "37i9dQZF1DX76t638V6CA8",
       "name": "Rap Workout",
       "imgUrl": "https://i.scdn.co/image/ab67706f0000000200c9055ea56a14e14975ec1d",
@@ -1303,15 +1078,6 @@
       "categoryId": "0JQ5DAqbMKFAXlCG6QvYQ4"
     },
     {
-      "spotifyId": "37i9dQZF1DWTl4y3vgJOXW",
-      "name": "Locked In",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002b80a042f0ae8089158e99fc9",
-      "description": "Fourth quarter, two minutes left .. get locked in. Cover: Ashton\nJeanty",
-      "snapshot_id": "Z0LHbAAAAADvziNvjAAswi/yXCAkWSLs",
-      "category": "Workout",
-      "categoryId": "0JQ5DAqbMKFAXlCG6QvYQ4"
-    },
-    {
       "spotifyId": "37i9dQZF1DWSRbZUjHUFIA",
       "name": "Work It: Hip Hop",
       "imgUrl": "https://i.scdn.co/image/ab67706f000000022a9998c9a6e09bb8e8e111a1",
@@ -1322,87 +1088,6 @@
     }
   ],
   [
-    {
-      "spotifyId": "37i9dQZF1DX5mMspCVmB8S",
-      "name": "צ'יל ישראלי",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002687fb5561575792aa8681abd",
-      "description": "תורידו הילוך עם שירים ישראליים נעימים ומרגשים. קאבר: יסמין מועלם    ",
-      "snapshot_id": "ZzZy4AAAAAASmJlaVuCS5s1ofVViXpmU",
-      "category": "Mood",
-      "categoryId": "0JQ5DAqbMKFzHmL4tf05da"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX439u9DYdMGc",
-      "name": "אהבה",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000203e9ce7f1374059895a0930a",
-      "description": "שירי אהבה יפים 💘\n",
-      "snapshot_id": "ZiG0PAAAAACHcgj2Yr9eUnkQqtle2TVu",
-      "category": "Mood",
-      "categoryId": "0JQ5DAqbMKFzHmL4tf05da"
-    },
-    {
-      "spotifyId": "37i9dQZF1DXbmiyBesoBFy",
-      "name": "נושמים רגע",
-      "imgUrl": "https://i.scdn.co/image/ab67706f000000028d9212333de7cb4e3c23a7b8",
-      "description": "מוזיקה רגועה להורדת הלחץ",
-      "snapshot_id": "ZRXpUAAAAACWW1+XgFFmcwEHju1+kwgO",
-      "category": "Mood",
-      "categoryId": "0JQ5DAqbMKFzHmL4tf05da"
-    },
-    {
-      "spotifyId": "37i9dQZF1DWYbUY40ZDAwb",
-      "name": "להיטים שמחים",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000241391070e485ef137bd246a7",
-      "description": "להיטים שעושים מצב רוח. באחריות!",
-      "snapshot_id": "ZN9ytgAAAADhymC9DJEGdqjaxUjALRwv",
-      "category": "Mood",
-      "categoryId": "0JQ5DAqbMKFzHmL4tf05da"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX4sWSpwq3LiO",
-      "name": "Peaceful Piano",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000283da657fca565320e9311863",
-      "description": "Peaceful piano to help you slow down, breathe, and relax. ",
-      "snapshot_id": "ZztkNgAAAACUDyAdVtnIE3OXY12UbzUJ",
-      "category": "Mood",
-      "categoryId": "0JQ5DAqbMKFzHmL4tf05da"
-    },
-    {
-      "spotifyId": "37i9dQZF1DWZ7eJRBxKzdO",
-      "name": "Summer Dance Hits 2024",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002c7ea8e62ee86671eaa4c341c",
-      "description": "The summer needs dance hits 😎☀️",
-      "snapshot_id": "Zz+f2AAAAAAVDANDV4X41GmUjmqnQiRW",
-      "category": "Mood",
-      "categoryId": "0JQ5DAqbMKFzHmL4tf05da"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX0UrRvztWcAU",
-      "name": "Wake Up Happy",
-      "imgUrl": "https://i.scdn.co/image/ab67706f000000026b30471dcc036d254dcc8041",
-      "description": "Set the mood of your day with these happy songs.",
-      "snapshot_id": "ZpDHzgAAAAAHyx+YP9reLrfJpkqsAIsv",
-      "category": "Mood",
-      "categoryId": "0JQ5DAqbMKFzHmL4tf05da"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX7KNKjOK0o75",
-      "name": "Have a Great Day!",
-      "imgUrl": "https://i.scdn.co/image/ab67706f000000021a50f52ecd03dc8bd4efb2e5",
-      "description": "Feel great with these timelessly fun songs!",
-      "snapshot_id": "Zow3XQAAAAANXL5CsaLznm60lHYzFFlF",
-      "category": "Mood",
-      "categoryId": "0JQ5DAqbMKFzHmL4tf05da"
-    },
-    {
-      "spotifyId": "37i9dQZF1DXdPec7aLTmlC",
-      "name": "Happy Hits!",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000249a1ed33d2ca64e6a5d0e550",
-      "description": "Hits to boost your mood and fill you with happiness!",
-      "snapshot_id": "Zmtr4AAAAAC/VGwcuwLxzxM1LhqICEhg",
-      "category": "Mood",
-      "categoryId": "0JQ5DAqbMKFzHmL4tf05da"
-    },
     {
       "spotifyId": "37i9dQZF1DWV7EzJMK2FUI",
       "name": "Jazz in the Background",
@@ -1517,15 +1202,6 @@
       "imgUrl": "https://i.scdn.co/image/ab67706f00000002d5d004751f0c52d27712da3d",
       "description": "Focus the mind with these calming beats.",
       "snapshot_id": "Zyt8zwAAAACm3lkI9QH8xnWgAncrQsZP",
-      "category": "Mood",
-      "categoryId": "0JQ5DAqbMKFzHmL4tf05da"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX8NMUtC3b3gL",
-      "name": "lofi summer haze",
-      "imgUrl": "https://i.scdn.co/image/ab67706f000000025e70f5d26849a51353a55a41",
-      "description": "beautiful beats for beautiful moments. ",
-      "snapshot_id": "ZvYtwAAAAADUftnZTmKmI2oUXe+6cZ+y",
       "category": "Mood",
       "categoryId": "0JQ5DAqbMKFzHmL4tf05da"
     },
@@ -1762,42 +1438,15 @@
       "snapshot_id": "Z0DVjAAAAACYlWgs8VKvD0M8+PtuJ3o6",
       "category": "Mood",
       "categoryId": "0JQ5DAqbMKFzHmL4tf05da"
-    },
-    {
-      "spotifyId": "37i9dQZF1DXdPec7aLTmlC",
-      "name": "Happy Hits!",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000249a1ed33d2ca64e6a5d0e550",
-      "description": "Hits to boost your mood and fill you with happiness!",
-      "snapshot_id": "Zmtr4AAAAAC/VGwcuwLxzxM1LhqICEhg",
-      "category": "Mood",
-      "categoryId": "0JQ5DAqbMKFzHmL4tf05da"
     }
   ],
   [
-    {
-      "spotifyId": "37i9dQZF1DX5Vy6DFOcx00",
-      "name": "big on the internet",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000258cb9399d2d48a524106c0e4",
-      "description": "iykyk",
-      "snapshot_id": "Z0Cg0AAAAAAQbnKsx7cC4imTBcecYxyz",
-      "category": "Trending",
-      "categoryId": "0JQ5DAqbMKFQIL0AXnG5AK"
-    },
     {
       "spotifyId": "37i9dQZF1DX0CpdwmkC9SB",
       "name": "Glastonbury 2024",
       "imgUrl": "https://i.scdn.co/image/ab67706f00000002568f45e786d4fe09fa3fd681",
       "description": "The biggest festival of the year. The official playlist for Glastonbury 2024.",
       "snapshot_id": "ZozuPQAAAABSVGC6098pfQNjjt2+JylO",
-      "category": "Trending",
-      "categoryId": "0JQ5DAqbMKFQIL0AXnG5AK"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX45grRWk2ghU",
-      "name": "Hot Pink",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000280b2e8fc47074528938dab9e",
-      "description": "I'll help you be popular!",
-      "snapshot_id": "Z0AP0AAAAACApFOCk/RDYgIqOArjv5MK",
       "category": "Trending",
       "categoryId": "0JQ5DAqbMKFQIL0AXnG5AK"
     },
@@ -1899,15 +1548,6 @@
       "imgUrl": "https://i.scdn.co/image/ab67706f000000026c17e752cd71e442a0cd7597",
       "description": "70s rock to fuel your ride. Cover: Aerosmith",
       "snapshot_id": "ZowlXgAAAACBx/EU3vi4ud+LnolUx6Q5",
-      "category": "Travel",
-      "categoryId": "0JQ5DAqbMKFAQy4HL4XU2D"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX2ogDiL6nZJr",
-      "name": "Van Life",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000247be7dcabc3aa9cf19a78069",
-      "description": "Home is where you park it.",
-      "snapshot_id": "ZxtyLgAAAAB30Rpt2uFSwQqIlG/phaWm",
       "category": "Travel",
       "categoryId": "0JQ5DAqbMKFAQy4HL4XU2D"
     },
@@ -2211,15 +1851,6 @@
       "categoryId": "0JQ5DAqbMKFRKBHIxJ5hMm"
     },
     {
-      "spotifyId": "0TJY4WN5dmKpbSZf77VAJe",
-      "name": "Warner Music Greatest Hits",
-      "imgUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da8432f5418b05cb43386516c8df",
-      "description": "Journey through the Warner Music archives. 100 classic songs from the iconic label's rich history!",
-      "snapshot_id": "AAABW8FLTyNSZYEB+YCMI1xjuzP0+ZM0",
-      "category": "Tastemakers",
-      "categoryId": "0JQ5DAqbMKFRKBHIxJ5hMm"
-    },
-    {
       "spotifyId": "6wsFITBT08NA12LlCG9h3Q",
       "name": "90s",
       "imgUrl": "https://image-cdn-fa.spotifycdn.com/image/ab67706c0000da8491f6812f8912d43c031a561e",
@@ -2285,33 +1916,6 @@
   ],
   [
     {
-      "spotifyId": "37i9dQZF1DXbTxeAdrVG2l",
-      "name": "All Out 90s",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002b60e6f68fd3a593011380bf8",
-      "description": "The biggest songs of the 1990s. Cover: The Cardigans",
-      "snapshot_id": "ZxZkxQAAAADwpOgI5du+LOXwFiPd/s9R",
-      "category": "Decades",
-      "categoryId": "0JQ5DAqbMKFIVNxQgRNSg0"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX0JKUIfwQSJh",
-      "name": "70s & 80s Acoustic",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002ad5378ef4192257d82676b7f",
-      "description": "Rewind and unwind with sirens of the seventies and eighties.",
-      "snapshot_id": "ZsijHwAAAACmrWVJM828CP6yIdICkP5a",
-      "category": "Decades",
-      "categoryId": "0JQ5DAqbMKFIVNxQgRNSg0"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX4UtSsGT1Sbe",
-      "name": "All Out 80s",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002d6710ea346fec48e89d77dba",
-      "description": "The biggest songs of the 1980s. Cover: Bruce Springsteen",
-      "snapshot_id": "ZxakLwAAAABJkhgU452KxVVTWajdpqwh",
-      "category": "Decades",
-      "categoryId": "0JQ5DAqbMKFIVNxQgRNSg0"
-    },
-    {
       "spotifyId": "37i9dQZF1DX4WELsJtFZjZ",
       "name": "Soft 80s",
       "imgUrl": "https://i.scdn.co/image/ab67706f000000025dfb78be17a842867ef21a9f",
@@ -2375,38 +1979,11 @@
       "categoryId": "0JQ5DAqbMKFIVNxQgRNSg0"
     },
     {
-      "spotifyId": "37i9dQZF1DX9wC1KY45plY",
-      "name": "Classic Road Trip Songs",
-      "imgUrl": "https://i.scdn.co/image/ab67706f000000029b1e2cefb589203e228bf967",
-      "description": "A soundtrack to fuel your good mood while on the road.",
-      "snapshot_id": "Zk3QMAAAAABI5/POGPrBRbHL0Q6AoQmq",
-      "category": "Decades",
-      "categoryId": "0JQ5DAqbMKFIVNxQgRNSg0"
-    },
-    {
-      "spotifyId": "37i9dQZF1DWWiDhnQ2IIru",
-      "name": "70s Road Trip",
-      "imgUrl": "https://i.scdn.co/image/ab67706f000000026a8421015c3ddf87a4484686",
-      "description": "Hit the road to the soundtrack of these seventies classics.",
-      "snapshot_id": "ZowfvwAAAABv72emnnmeSCzpuY8ICq15",
-      "category": "Decades",
-      "categoryId": "0JQ5DAqbMKFIVNxQgRNSg0"
-    },
-    {
       "spotifyId": "37i9dQZF1DX62UoGI8fCjx",
       "name": "80s Road Trip",
       "imgUrl": "https://i.scdn.co/image/ab67706f000000027d9ac9cc682ab4c513ae6319",
       "description": "80s jams for the road",
       "snapshot_id": "ZxGF3QAAAADqpeDMn1UAqDFPLxHXftpe",
-      "category": "Decades",
-      "categoryId": "0JQ5DAqbMKFIVNxQgRNSg0"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX76cnmxfAAhD",
-      "name": "90s Road Trip",
-      "imgUrl": "https://i.scdn.co/image/ab67706f000000029f2b46c9d3ff778bdb3f7b82",
-      "description": "90s jams for the road",
-      "snapshot_id": "Zowf+gAAAAD6QLKgQA+TulsQAbCzqadb",
       "category": "Decades",
       "categoryId": "0JQ5DAqbMKFIVNxQgRNSg0"
     },
@@ -2466,96 +2043,6 @@
     }
   ],
   [
-    {
-      "spotifyId": "37i9dQZF1DWSYF6geMtQMW",
-      "name": "הלהיטים הגדולים של ישראל",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000282037a761a6c9308bb09088f",
-      "description": "הפלייליסט הכי גדול בישראל, עם השירים הכי חמים של היום ומחר. קאבר: סטטיק  ",
-      "snapshot_id": "Z0SNvwAAAABs83zmOsZv5wGGYhY8aEzS",
-      "category": "Pop",
-      "categoryId": "0JQ5DAqbMKFEC4WFtoNRpw"
-    },
-    {
-      "spotifyId": "37i9dQZF1DXcBWIGoYBM5M",
-      "name": "Today’s Top Hits",
-      "imgUrl": "https://i.scdn.co/image/ab67706f000000027a97edf308c4856ae5cda067",
-      "description": "The hottest 50. Cover: Lady Gaga & Bruno Mars",
-      "snapshot_id": "Z0OgcQAAAADg8PM3oC7gXzQ5ep+XjR0y",
-      "category": "Pop",
-      "categoryId": "0JQ5DAqbMKFEC4WFtoNRpw"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX9sLipKPkV9T",
-      "name": "פופ ישראלי חדש",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002aef9abb97af48ed0d00ab3eb",
-      "description": "כל הפופ היפה והמרגש של ישראל. קאבר: אנה זק",
-      "snapshot_id": "Zz+tYAAAAAC5EhEwGwpAa7Z6SvKTemvJ",
-      "category": "Pop",
-      "categoryId": "0JQ5DAqbMKFEC4WFtoNRpw"
-    },
-    {
-      "spotifyId": "37i9dQZF1DXbjEq7Z199Si",
-      "name": "Wicked Official Playlist",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002cd16491c2dc6463a90d9e6ca",
-      "description": "Everyone deserves a chance to fly. Listen to the music from and inspired by Wicked. Co-curated by Cynthia Erivo and Ariana Grande ",
-      "snapshot_id": "Z0AP0AAAAAB32CJTyx3GvyEhFHzPeTM7",
-      "category": "Pop",
-      "categoryId": "0JQ5DAqbMKFEC4WFtoNRpw"
-    },
-    {
-      "spotifyId": "37i9dQZF1DWTwnEm1IYyoj",
-      "name": "Soft Pop Hits",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000242ede53dcaaa172b7bbca101",
-      "description": "Warm familiar pop you know and love. Cover: Adele",
-      "snapshot_id": "ZwlQQgAAAADHUG5P+E0NecJ0Iy7s8Jq8",
-      "category": "Pop",
-      "categoryId": "0JQ5DAqbMKFEC4WFtoNRpw"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX3PGzKQakrnm",
-      "name": "פופ ישראלי: הלהיטים",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002804d6ad1854701d2d10fbe20",
-      "description": "להיטי הפופ הגדולים של ישראל. קאבר: נועה קירל ",
-      "snapshot_id": "Zy30lAAAAAC8FD4C/+hTAbIs7O37In3g",
-      "category": "Pop",
-      "categoryId": "0JQ5DAqbMKFEC4WFtoNRpw"
-    },
-    {
-      "spotifyId": "37i9dQZF1DXdpy4ZQQMZKm",
-      "name": "Top Throwbacks 2023",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000266bf3d21138dc703e2d8dced",
-      "description": "The songs with the biggest throwback moments. Cover: Arctic Monkeys",
-      "snapshot_id": "ZWcrvAAAAADUN8sJ/XOHxi4UT+cgfTUQ",
-      "category": "Pop",
-      "categoryId": "0JQ5DAqbMKFEC4WFtoNRpw"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX5Vy6DFOcx00",
-      "name": "big on the internet",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000258cb9399d2d48a524106c0e4",
-      "description": "iykyk",
-      "snapshot_id": "Z0Cg0AAAAAAQbnKsx7cC4imTBcecYxyz",
-      "category": "Pop",
-      "categoryId": "0JQ5DAqbMKFEC4WFtoNRpw"
-    },
-    {
-      "spotifyId": "37i9dQZF1DXbYM3nMM0oPk",
-      "name": "Mega Hit Mix",
-      "imgUrl": "https://i.scdn.co/image/ab67706f000000023909428545db5e34677f01f0",
-      "description": "A mega mix of 75 favorites from the last few years! ",
-      "snapshot_id": "ZvR06AAAAADxtYWSwM0yC4HLRKAA9zaH",
-      "category": "Pop",
-      "categoryId": "0JQ5DAqbMKFEC4WFtoNRpw"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX0UrRvztWcAU",
-      "name": "Wake Up Happy",
-      "imgUrl": "https://i.scdn.co/image/ab67706f000000026b30471dcc036d254dcc8041",
-      "description": "Set the mood of your day with these happy songs.",
-      "snapshot_id": "ZpDHzgAAAAAHyx+YP9reLrfJpkqsAIsv",
-      "category": "Pop",
-      "categoryId": "0JQ5DAqbMKFEC4WFtoNRpw"
-    },
     {
       "spotifyId": "37i9dQZF1DWSpF87bP6JSF",
       "name": "La Lista Pop",
@@ -2739,29 +2226,11 @@
       "categoryId": "0JQ5DAqbMKFPrEiAOxgac3"
     },
     {
-      "spotifyId": "37i9dQZF1DWTi57LiHYTmH",
-      "name": "Classical in the Background",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002f14b9029c94fc3e6dc05588c",
-      "description": "A calm and cosy classical soundtrack to all activities. ",
-      "snapshot_id": "Zzyr3wAAAABiVLBXRqYsH/lFzt13TnvV",
-      "category": "Classical",
-      "categoryId": "0JQ5DAqbMKFPrEiAOxgac3"
-    },
-    {
       "spotifyId": "37i9dQZF1DWYkztttC1w38",
       "name": "Classical Reading",
       "imgUrl": "https://i.scdn.co/image/ab67706f000000024278d9f4de0db3b00ee2d7d5",
       "description": "Soothing classical music to help you relax while you read.",
       "snapshot_id": "ZuQxOQAAAABUk3u1viIzBW2/BauSrNMl",
-      "category": "Classical",
-      "categoryId": "0JQ5DAqbMKFPrEiAOxgac3"
-    },
-    {
-      "spotifyId": "37i9dQZF1DWVFeEut75IAL",
-      "name": "Calming Classical",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000211e9df13cf2d4690bf155f87",
-      "description": "The most calming classical music.",
-      "snapshot_id": "ZzyhRgAAAAAnAIjEjZMr4HohxOpPoVa6",
       "category": "Classical",
       "categoryId": "0JQ5DAqbMKFPrEiAOxgac3"
     },
@@ -2789,15 +2258,6 @@
       "imgUrl": "https://i.scdn.co/image/ab67706f000000025eb21a6009e08191ca45c1aa",
       "description": "Relax to these mellow cello melodies.",
       "snapshot_id": "ZyuxRQAAAACGaaosqAX64shgfVWkLyTF",
-      "category": "Classical",
-      "categoryId": "0JQ5DAqbMKFPrEiAOxgac3"
-    },
-    {
-      "spotifyId": "37i9dQZF1DWUqIzZNMSCv3",
-      "name": "Classical Piano",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000204dc50126bee11eda10ed46a",
-      "description": "Relaxing classical piano.",
-      "snapshot_id": "ZzyiZQAAAAA/a5G3jpiKPOZ4GMqjOQAh",
       "category": "Classical",
       "categoryId": "0JQ5DAqbMKFPrEiAOxgac3"
     },
@@ -3000,15 +2460,6 @@
       "categoryId": "0JQ5DAqbMKFPrEiAOxgac3"
     },
     {
-      "spotifyId": "37i9dQZF1DX4sWSpwq3LiO",
-      "name": "Peaceful Piano",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000283da657fca565320e9311863",
-      "description": "Peaceful piano to help you slow down, breathe, and relax. ",
-      "snapshot_id": "ZztkNgAAAACUDyAdVtnIE3OXY12UbzUJ",
-      "category": "Classical",
-      "categoryId": "0JQ5DAqbMKFPrEiAOxgac3"
-    },
-    {
       "spotifyId": "37i9dQZF1DX9sIqqvKsjG8",
       "name": "Instrumental Study",
       "imgUrl": "https://i.scdn.co/image/ab67706f00000002fee5d4ac2208b874fa2c20c9",
@@ -3092,24 +2543,6 @@
   ],
   [
     {
-      "spotifyId": "37i9dQZF1DWWY64wDtewQt",
-      "name": "phonk",
-      "imgUrl": "https://i.scdn.co/image/ab67706f000000027dc5028b26eb62f22d31bb1f",
-      "description": "the beat of your drift",
-      "snapshot_id": "Z0ChEwAAAACZdHPMP2cZNN34xOEJUgLi",
-      "category": "Gaming",
-      "categoryId": "0JQ5DAqbMKFCfObibaOZbv"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX3KVUsNUmJc2",
-      "name": "Arcane Offical Playlist",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002f2be5217998da0aa377b3657",
-      "description": "Every legend has a beginning. Listen to music from Arcane, now streaming on Netflix. ",
-      "snapshot_id": "Z0FhUAAAAACVjC1leNXmrzHAxASQnEuK",
-      "category": "Gaming",
-      "categoryId": "0JQ5DAqbMKFCfObibaOZbv"
-    },
-    {
       "spotifyId": "37i9dQZF1DWTyiBJ6yEqeu",
       "name": "Top Gaming Tracks",
       "imgUrl": "https://i.scdn.co/image/ab67706f00000002f8b3113ff97bf94e7c8f6354",
@@ -3182,15 +2615,6 @@
       "categoryId": "0JQ5DAqbMKFCfObibaOZbv"
     },
     {
-      "spotifyId": "37i9dQZF1DX3KVUsNUmJc2",
-      "name": "Arcane Offical Playlist",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002f2be5217998da0aa377b3657",
-      "description": "Every legend has a beginning. Listen to music from Arcane, now streaming on Netflix. ",
-      "snapshot_id": "Z0FhUAAAAACVjC1leNXmrzHAxASQnEuK",
-      "category": "Gaming",
-      "categoryId": "0JQ5DAqbMKFCfObibaOZbv"
-    },
-    {
       "spotifyId": "37i9dQZF1DX9EFllv4sqv0",
       "name": "Afro Gaming ",
       "imgUrl": "https://i.scdn.co/image/ab67706f000000026b7c024051bd529c4d4d5104",
@@ -3214,24 +2638,6 @@
       "imgUrl": "https://i.scdn.co/image/ab67706f00000002440aafc588bec18781ffc071",
       "description": "I'm odetari and this is my gaming playlist featuring tracks from myself, Saraunh0ly, 2hollis and more\n",
       "snapshot_id": "ZxHrUAAAAACklZ8zhxK4wBcujAXhQxzA",
-      "category": "Gaming",
-      "categoryId": "0JQ5DAqbMKFCfObibaOZbv"
-    },
-    {
-      "spotifyId": "37i9dQZF1DX3wF1YbAXxkA",
-      "name": "EA SPORTS FC 25 Official Soundtrack",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002adc7132bc5494b54f9652108",
-      "description": "The official soundtrack for EA SPORTS FC 25. ",
-      "snapshot_id": "ZxLIWQAAAACEpOu6RvgEt17lFCtytBYe",
-      "category": "Gaming",
-      "categoryId": "0JQ5DAqbMKFCfObibaOZbv"
-    },
-    {
-      "spotifyId": "37i9dQZF1DWY0ymO6q3FGL",
-      "name": "Minecraft Essentials ",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002245c435b7e8153b956264532",
-      "description": "All your favorite Minecraft tracks in one essential playlist – with music from every game, remixes, and more!",
-      "snapshot_id": "ZuRTcAAAAABbNGyhyOuwxuKakGwC5YQo",
       "category": "Gaming",
       "categoryId": "0JQ5DAqbMKFCfObibaOZbv"
     },
@@ -3272,38 +2678,11 @@
       "categoryId": "0JQ5DAqbMKFCfObibaOZbv"
     },
     {
-      "spotifyId": "37i9dQZF1DWTyiBJ6yEqeu",
-      "name": "Top Gaming Tracks",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002f8b3113ff97bf94e7c8f6354",
-      "description": "Press play, press start.",
-      "snapshot_id": "ZuMRYAAAAACquWMHtjXBiuZkG9T4IYAf",
-      "category": "Gaming",
-      "categoryId": "0JQ5DAqbMKFCfObibaOZbv"
-    },
-    {
       "spotifyId": "37i9dQZF1DX6taq20FeuKj",
       "name": "Power Gaming",
       "imgUrl": "https://i.scdn.co/image/ab67706f0000000284f70c42fc4543c913b97f67",
       "description": "Get your gaming session going with this epic rap mix.",
       "snapshot_id": "ZllZUAAAAABvtBoVDhb7/zQdLyh1tZgM",
-      "category": "Gaming",
-      "categoryId": "0JQ5DAqbMKFCfObibaOZbv"
-    },
-    {
-      "spotifyId": "37i9dQZF1DXdfOcg1fm0VG",
-      "name": "Video Game Soundtracks",
-      "imgUrl": "https://i.scdn.co/image/ab67706f00000002c94fd5639e1bd451f55b103c",
-      "description": "Double-jump into these legendary video game soundtracks, featuring old favorites and new classics.",
-      "snapshot_id": "ZzcvCQAAAADTiiCOTISMY25txL4auOy3",
-      "category": "Gaming",
-      "categoryId": "0JQ5DAqbMKFCfObibaOZbv"
-    },
-    {
-      "spotifyId": "37i9dQZF1DWYN9NBqvY7Tx",
-      "name": "Ultra Gaming",
-      "imgUrl": "https://i.scdn.co/image/ab67706f0000000232fa3f26c169600e0b88749e",
-      "description": "Dance, bass, EDM, trap, phonk: the perfect gaming mix.",
-      "snapshot_id": "Zz/JvAAAAACe2jyW7AD2uYdvQZksuWW+",
       "category": "Gaming",
       "categoryId": "0JQ5DAqbMKFCfObibaOZbv"
     },

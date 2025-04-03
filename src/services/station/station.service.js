@@ -1,8 +1,7 @@
-import { store } from '../../store/store.js';
 import { storageService } from '../async-storage.service.js'
 import { loadFromStorage, saveToStorage } from '../util.service.js';
 export const STORAGE_KEY = "stationsDB";
-// _createStations()
+_createStations()
 export const stationService = {
     query,
     getById,
@@ -11,7 +10,6 @@ export const stationService = {
     addTrackToStation,
     removeTrackToStation,
     getStationBySpotifyId,
-    fetchStations
 }
 
 window.cs = stationService
@@ -72,8 +70,7 @@ async function _saveRequest(station, methodType) {
 
 async function getStationBySpotifyId(entityId) {
     try {
-        // const stations = await query()
-        const stations = store.getState().libraryModule.stations;
+        const stations = await query()
         const stationsWithSpotifyId = stations.filter(station => typeof station.spotifyId === 'string' && station.spotifyId.trim() !== '');
         const station = await stationsWithSpotifyId.find(entity => entity.spotifyId === entityId)
         return station
@@ -86,7 +83,7 @@ async function _createStations() {
     let stations = loadFromStorage(STORAGE_KEY)
     try {
         if (!stations || !stations.length) {
-            const response = await fetch("/tmp-assets/stations.json")
+            const response = await fetch("/tmp-assets/filtered-stations.json")
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`)
             }
@@ -102,10 +99,3 @@ async function _createStations() {
 }
 
 
-async function fetchStations() {
-    const response = await fetch("/tmp-assets/stations.json")
-    if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`)
-    }
-    return await response.json()
-}

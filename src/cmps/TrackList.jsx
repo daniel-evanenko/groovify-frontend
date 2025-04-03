@@ -19,7 +19,7 @@ export function TrackList({ station }) {
         console.log(`Option ${option} clicked for track:`, track);
         if (option === 'delete') {
             setTracks(prevTracks => prevTracks.filter((_, index) => index !== tracks.indexOf(track)));
-        } else if (option === 'edit') {
+        } else if (option === 'add to playlist') {
         } else if (option === 'add to queue') {
         }
     };
