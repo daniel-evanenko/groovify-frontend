@@ -1,4 +1,4 @@
-import SearchIcon from '../../../public/icons/search.svg?react';
+import SearchIcon from '../../../../public/icons/search.svg?react';
 import ViewControlButton from './ViewControlButton';
 
 const FilterControlls = () => (

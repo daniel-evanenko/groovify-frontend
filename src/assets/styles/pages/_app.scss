@@ -25,9 +25,9 @@
     
     .left-side-bar {
         grid-area: left;
-        width: 280px;
         display: flex;
         flex-direction: column;
+        width: 280px;
         min-width: 264px;
         background-color: $bg-base;
         
@@ -53,15 +53,20 @@
         > * {
             display: flex;
             flex-direction: row;
-            justify-content: flex-start;
             align-items: center;
-            gap: 10px;
-            margin: 5px 20px;
         }
 
         .main-controlls {
+            justify-content: space-between;
+            margin: 0;
+            
+            & > * {
+                margin: 10px;
+            }
             
             .create-button {
+                color: $text-base;
+                font-weight: 700;
 
                 & .minimized-bar {
                     aspect-ratio: 1;
@@ -71,18 +76,17 @@
 
         .tag-controlls {
 
-            button {
-                display: flex;
-                margin: 0;
+            & > * {
+                margin: 10px;
             }
         }
 
         .filter-controlls {
-            display: flex;
             justify-content: space-between;
-            
-            height: 40px;
-            gap: 0;
+
+            & > * {
+                margin: 10px;
+            }
 
             .view-control-button-section {
                 display: flex;
@@ -94,6 +98,17 @@
 
                 &:hover {
                     cursor: pointer;
+                    transform: scale(1.04);
+                    transition-duration: 50ms;
+
+                    .list-button {
+                        color: $text-base;
+                        font-weight: bold;
+                    }
+
+                    .list-button-icon {
+                        color: $text-base;
+                    }
                 }
 
             }

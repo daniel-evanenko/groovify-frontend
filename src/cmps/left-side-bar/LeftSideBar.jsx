@@ -1,6 +1,6 @@
-import FilterControlls from "./FilterControlls";
-import MainControlls from "./MainControlls"
-import TagControlls from "./TagControlls"
+import FilterControlls from "./cmps/FilterControlls";
+import MainControlls from "./cmps/MainControlls"
+import TagControlls from "./cmps/TagControlls"
 
 const LeftSideBar = () => {
 
