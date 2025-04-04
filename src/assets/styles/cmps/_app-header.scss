@@ -5,7 +5,7 @@
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
 
-    padding: 8px;
+    padding: 8px 8px 0;
     max-height: 64px;
 
     border-radius: 0;
@@ -104,7 +104,7 @@
                 color: $text-base;
                 border: 0;
                 text-overflow: ellipsis;
-                
+                font-family: "spotify-regular", sans-serif;
 
                 &:focus-visible {
                     outline: none;
