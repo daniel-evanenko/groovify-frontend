@@ -1,6 +1,7 @@
-import { useNavigate } from "react-router-dom"
 import icon from "/icons/favicon.ico"
-import { useRef, useState } from "react"
+import { useNavigate, useLocation } from "react-router-dom"
+import { useEffect, useRef, useState } from "react"
+import { eventBus, INDEX_MOUNT } from "../services/event-bus.service"
 
 export function AppHeader() {
     const [fillHome, setFillHome] = useState(true)
@@ -9,6 +10,25 @@ export function AppHeader() {
     const elSearchButton = useRef()
     const elSearchInput = useRef()
     const navigate = useNavigate()
+
+    const location = useLocation()
+    const match = location.pathname.match(/^\/station\/(.+)$/);
+    const stationId = match ? match[1] : null;
+
+    useEffect(() => {
+        console.log("stationId:", stationId)
+        if (stationId !== null) {
+            setFillHome(false)
+            setFillBrowse(false)
+        }
+
+    }, [stationId])
+
+    useEffect(() => {
+        const unsubscribe = eventBus.on(INDEX_MOUNT, onIndexMount)
+
+        return unsubscribe
+    }, [])
 
     function onInputFocus() {
         elSearchOptions.current.classList.add("focused")
@@ -35,6 +55,11 @@ export function AppHeader() {
         setFillHome(false)
     }
 
+    function onIndexMount() {
+        console.log("index mounted")
+        setFillHome(true)
+        setFillBrowse(false)
+    }
 
     const homeEmpty =
         <svg xmlns="http://www.w3.org/2000/svg" data-encore-id="icon" role="img" aria-hidden="true" className="e-9640-icon" viewBox="0 0 24 24">
@@ -59,7 +84,7 @@ export function AppHeader() {
 
     return (
         <header className="app-header">
-            <img className="icon" src={icon} alt="icon" onClick={onHomeClicked} style={{cursor: "pointer"}}></img>
+            <img className="icon" src={icon} alt="icon" onClick={onHomeClicked} style={{ cursor: "pointer" }}></img>
 
             <div className="nav-options">
                 <button className="home-btn nav-btn" onClick={onHomeClicked}>

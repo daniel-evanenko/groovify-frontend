@@ -72,7 +72,7 @@
     will-change: transform;
 
     &:hover {
-        transform: scale(1/$scale-factor);
+        transform: scale(calc(1/$scale-factor));
     }
   }
 
