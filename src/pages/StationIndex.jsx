@@ -23,11 +23,9 @@ export function StationIndex() {
         }
     };
 
-    fetchData();
-
     useEffect(() => {
         eventBus.emit(INDEX_MOUNT)
-        console.log("emitted on-index-mount")
+        fetchData()
     }, [])
 
 

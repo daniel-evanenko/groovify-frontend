@@ -1,11 +1,11 @@
 .station-index {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding: 24px;
+    gap: 38px;
+    padding: 16px 12px 12px;
     border: 0;
     background-color: $bg-base;
     max-width: 100%;
-    min-width: $station-width * 3;
-    overflow-x: hidden !important;
+    min-width: $station-width * 4;
+    overflow-x: hidden;
 }
