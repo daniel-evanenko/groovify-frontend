@@ -3,9 +3,11 @@ import { StationList } from "../cmps/StationList";
 import { getStationLists } from "../services/station/station.service";
 import { loadStations } from "../store/actions/library.actions";
 import { Loader } from "../cmps/Loader";
+import { eventBus, INDEX_MOUNT } from "../services/event-bus.service";
+
+
 
 export function StationIndex() {
-
     const [allStationsLists, setAllStationsLists] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -22,6 +24,11 @@ export function StationIndex() {
     };
 
     fetchData();
+
+    useEffect(() => {
+        eventBus.emit(INDEX_MOUNT)
+        console.log("emitted on-index-mount")
+    }, [])
 
 
     if (loading) return <Loader></Loader>
