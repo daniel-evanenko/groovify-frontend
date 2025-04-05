@@ -19,6 +19,21 @@
         }
     }
 
+    * {
+
+        &::-webkit-scrollbar {
+            background-color: transparent;
+        }
+
+        &:hover::-webkit-scrollbar-thumb {
+            background-color: rgba(179, 179, 179, .3);
+
+            &:hover {
+                background-color: rgba(179, 179, 179, 1);
+            }
+        }
+    }
+
     header {
         grid-area: header;
     }
@@ -31,7 +46,10 @@
         min-width: 264px;
         background-color: $bg-base;
         overflow: scroll;
-        overflow-x: hidden;
+        
+        &::-webkit-scrollbar {
+            display: none;
+        }
         
         button {
             display: flex;
@@ -131,6 +149,8 @@
             flex-direction: column;
             gap: 2px;
             user-select: none;
+            overflow: scroll;
+            overflow-x: hidden;
 
             .station-item {
                 display: grid;
@@ -160,6 +180,9 @@
                     margin-bottom: -3px;
                     color: $text-base;
                     font-size: remCalc(16px);
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                 }
     
                 .lib-station-artist {
