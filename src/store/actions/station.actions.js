@@ -14,8 +14,6 @@ export async function addTrackToStation(track, stationId) {
     }
 }
 
-
-
 export async function removeTrackFromStation(trackId, stationId) {
     try {
         await stationService.removeTrackFromStation(trackId, stationId)
@@ -23,6 +21,14 @@ export async function removeTrackFromStation(trackId, stationId) {
 
     } catch (err) {
         console.log('Station actions -> Cannot remove track from station', err)
+        throw err
+    }
+}
+export async function removeStation(stationId) {
+    try {
+        await stationService.remove(stationId)
+    } catch (err) {
+        console.log('Station actions -> Cannot remove station', err)
         throw err
     }
 }
@@ -41,9 +47,9 @@ export async function loadStation(stationId) {
 }
 export function clearStation() {
     try {
-        store.dispatch({ type: SET_STATION, station: {} })
+        store.dispatch({ type: SET_STATION, station: null })
     } catch (error) {
-        console.log('Station actions -> Cannot set station', error)
+        console.log('Station actions -> Cannot clear station', error)
         throw err
     }
 }

@@ -35,7 +35,6 @@ export function StationDetails() {
 
     useEffect(() => {
         if (!station) return;
-
         // Wait for DOM update
         requestAnimationFrame(() => {
             setStationHeaderBg()
