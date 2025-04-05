@@ -30,10 +30,12 @@
         overflow: visible;
         z-index: 1;
         border-radius: em(4px);
-        transition: background-color 0.2s ease;
+        transition: background-color 0.2s ease, box-shadow 0.2s ease;
 
         &:hover {
             background-color: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
 
         &:hover:not(.active) .duration-btn {
@@ -67,12 +69,7 @@
         }
     }
 
-    // Optional: Disable hover effects on other rows when one is active (modern browsers only)
     &:has(.track-container.active) {
-        .track-container:not(.active):hover {
-            background-color: transparent;
-        }
-
         .track-container:not(.active) .duration-btn {
             opacity: 0 !important;
             visibility: hidden !important;
@@ -81,7 +78,7 @@
     }
 
     .track-order {
-        font-size: em(16px);
+        font-size: 1em;
         font-family: 'CircularSpotifyTextBold';
     }
 
@@ -101,7 +98,7 @@
             flex-direction: column;
 
             span {
-                font-size: em(16px);
+                font-size: 1em;
             }
 
             a {
@@ -116,7 +113,7 @@
 
     .track-duration {
         display: grid;
-        grid-template-columns: em(24px) auto em(24px);
+        grid-template-columns: 2em auto 2em;
         align-items: center;
         justify-content: flex-end;
         column-gap: em(6px);
@@ -125,8 +122,8 @@
         position: relative;
 
         .duration-btn {
-            width: em(24px);
-            height: em(24px);
+            width: 2em;
+            height: 2em;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -136,10 +133,11 @@
             transition: opacity 0.2s ease;
 
             svg {
-                width: em(16px);
-                height: em(16px);
+                width: 1em;
+                height: 1em;
                 fill: #888;
             }
+
             .dropdown-icon {
                 height: auto;
                 width: auto;
@@ -158,14 +156,11 @@
             /*Adjust this value if needed*/
 
             svg {
-                width: em(16px);
-                height: em(16px);
+                width: 1em;
+                height: 1em;
                 fill: #888;
             }
-            
         }
-
-
     }
 
     .track-title,
