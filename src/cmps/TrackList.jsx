@@ -15,14 +15,20 @@ export function TrackList({ station }) {
         { label: "Delete", value: "delete", icon: "icons/Delete.svg" },
     ];
 
-    const handleOptionClick = (option, track) => {
-        console.log(`Option ${option} clicked for track:`, track);
-        if (option === 'Delete') {
-            removeTrackFromStation(track.id, station._id)
-        } else if (option === 'Add to queue') {
-        } else if (option === 'Add to playlist') {
+    function handleOptionClick(option, track) {
+        switch (option) {
+            case 'Add to playlist':
+                break;
+            case 'Add to queue':
+                break;
+            case 'Delete':
+                removeTrackFromStation(track.id, station._id)
+                break;
+
+            default:
+                break;
         }
-    };
+    }
 
     return (
         <ul className={"track-list"}>
