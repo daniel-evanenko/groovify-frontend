@@ -6,6 +6,7 @@ import { TrackList } from '../cmps/TrackList.jsx';
 import { extractColors } from "extract-colors";
 import { useSelector } from 'react-redux';
 import { clearStation, loadStation } from '../store/actions/station.actions.js';
+import { ReactSVG } from 'react-svg';
 
 export function StationDetails() {
     const station = useSelector(storeState => storeState.stationModule.station)
@@ -71,10 +72,11 @@ export function StationDetails() {
                     <header className="top-bar"></header>
                     <div className="station-header">
                         <div className="station-image">
-                            <img
-                                src={station.imgUrl}
-                                alt="station"
-                            />
+                            <img src={station.imgUrl} alt="station" />
+                            <div className="overlay">
+                                <ReactSVG src='/icons/Pencil.svg' />
+                                <p>Choose photo</p>
+                            </div>
                         </div>
                         <div className="station-details">
                             <span className="station-type">Playlist</span>
