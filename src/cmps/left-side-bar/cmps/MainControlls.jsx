@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CreatePlaylistIcon from '../../../public/icons/create-playlist.svg?react';
+import CreatePlaylistIcon from '../../../../public/icons/create-playlist.svg?react';
 
 const CREATE_PLAYLIST_ICON = 'create-playlist-icon';
 const CLICKED = 'button-clicked-options';

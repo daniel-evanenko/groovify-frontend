@@ -16,8 +16,6 @@ const TagControlls = () => {
         
     }
 
-    console.log(buttonClassNames.join(' '))
-
     return (
         <section className="tag-controlls">
             <button className={buttonClassNames.join(' ')} onClick={toggleButtonClick}>

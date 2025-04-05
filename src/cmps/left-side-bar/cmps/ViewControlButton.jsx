@@ -1,11 +1,11 @@
-import FilteringOptions from '../../../public/icons/filtering-options.svg?react';
+import FilteringOptions from '../../../../public/icons/filtering-options.svg?react';
 
 const ViewControlButton = () => {
 
     return (
         <section class="view-control-button-section">
             <button className="list-button">
-                Recents
+                <span>Recents</span>
             </button>
             <FilteringOptions className="list-button-icon" />
         </section>
