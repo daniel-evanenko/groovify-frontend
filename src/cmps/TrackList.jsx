@@ -12,16 +12,16 @@ export function TrackList({ station }) {
     const moreOptions = [
         { label: "Add to playlist", value: "add to playlist", icon: "icons/create-playlist.svg" },
         { label: "Add to queue", value: "add to queue", icon: "icons/add-to-queue.svg" },
-        { label: "Delete", value: "delete", icon: "icons/Delete.svg" },
+        { label: "Remove from this playlist", value: "delete", icon: "icons/trash.svg" },
     ];
 
     function handleOptionClick(option, track) {
         switch (option) {
-            case 'Add to playlist':
+            case 'add to playlist':
                 break;
-            case 'Add to queue':
+            case 'add to queue':
                 break;
-            case 'Delete':
+            case 'delete':
                 removeTrackFromStation(track.id, station._id)
                 break;
 

@@ -8,14 +8,14 @@ import { StationDropdownOptions } from "./StationDropdownOptions";
 export function ActionBar({ station }) {
     const navigate = useNavigate()
     const moreOptions = [
-        { label: "Delete", value: "delete", icon: 'icons/Delete.svg' },
-        { label: "Edit", value: "edit", icon: 'icons/Pencil.svg' },
+        { label: "Edit details", value: "edit", icon: 'icons/Pencil.svg' },
         { label: "Add to queue", value: "add to queue", icon: "icons/add-to-queue.svg" },
+        { label: "Delete", value: "delete", icon: 'icons/Delete.svg' },
     ];
 
     function handleOptionClick(option) {
         switch (option) {
-            case 'Delete':
+            case 'delete':
                 _removeStation(station);
                 break;
             case 'Edit':
