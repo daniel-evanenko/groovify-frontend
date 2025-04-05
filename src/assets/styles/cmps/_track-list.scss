@@ -36,12 +36,12 @@
             background-color: rgba(255, 255, 255, 0.05);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             cursor: pointer;
-        }
 
-        &:hover:not(.active) .duration-btn {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
+            .duration-btn {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
         }
 
         &.active {
@@ -54,7 +54,6 @@
                 pointer-events: auto !important;
             }
 
-            // Make sure dropdown content stays above
             .dropdown-container {
                 z-index: 1000;
                 position: relative;
@@ -69,16 +68,10 @@
         }
     }
 
-    &:has(.track-container.active) {
-        .track-container:not(.active) .duration-btn {
-            opacity: 0 !important;
-            visibility: hidden !important;
-            pointer-events: none !important;
-        }
-    }
+    /* Removed the :has(.track-container.active) section */
 
     .track-order {
-        font-size: 1em;
+        font-size: em(16px);
         font-family: 'CircularSpotifyTextBold';
     }
 
@@ -98,7 +91,7 @@
             flex-direction: column;
 
             span {
-                font-size: 1em;
+                font-size: em(16px);
             }
 
             a {
@@ -133,8 +126,8 @@
             transition: opacity 0.2s ease;
 
             svg {
-                width: 1em;
-                height: 1em;
+                width: em(16px);
+                height: em(16px);
                 fill: #888;
             }
 
@@ -156,8 +149,8 @@
             /*Adjust this value if needed*/
 
             svg {
-                width: 1em;
-                height: 1em;
+                width: em(16px);
+                height: em(16px);
                 fill: #888;
             }
         }
