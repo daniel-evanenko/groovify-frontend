@@ -3,9 +3,9 @@ import { ReactSVG } from "react-svg";
 import { formatDate, formatTime } from "../services/util.service";
 import { StationDropdownOptions } from "./StationDropdownOptions";
 import { useClickOutside } from "../hooks/useClickOutside";
+import { removeTrackFromStation } from "../store/actions/station.actions";
 
 export function TrackList({ station }) {
-    const [tracks, setTracks] = useState(station.tracks || []);
     const [activeRowIndex, setActiveRowIndex] = useState(null);
     const activeRow = useClickOutside(() => setActiveRowIndex(null));
 
@@ -17,10 +17,10 @@ export function TrackList({ station }) {
 
     const handleOptionClick = (option, track) => {
         console.log(`Option ${option} clicked for track:`, track);
-        if (option === 'delete') {
-            setTracks(prevTracks => prevTracks.filter((_, index) => index !== tracks.indexOf(track)));
-        } else if (option === 'add to playlist') {
-        } else if (option === 'add to queue') {
+        if (option === 'Delete') {
+            removeTrackFromStation(track.id, station._id)
+        } else if (option === 'Add to queue') {
+        } else if (option === 'Add to playlist') {
         }
     };
 
@@ -39,7 +39,7 @@ export function TrackList({ station }) {
                     <div className="duration-btn right"></div>
                 </div>
             </li>
-            {tracks.map((track, index) => (
+            {station.tracks.map((track, index) => (
                 <li
                     ref={activeRow}
                     key={index}

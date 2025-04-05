@@ -8,7 +8,7 @@ export const stationService = {
     save,
     remove,
     addTrackToStation,
-    removeTrackToStation,
+    removeTrackFromStation,
     getStationBySpotifyId,
 }
 
@@ -39,9 +39,9 @@ async function addTrackToStation(track, stationId) {
     return await save(station)
 }
 
-async function removeTrackToStation(trackId, stationId) {
+async function removeTrackFromStation(trackId, stationId) {
     const station = await getById(stationId);
-    const filteredTracks = station.tracks.filter(track => track._id !== trackId)
+    const filteredTracks = station.tracks.filter(track => track.id !== trackId)
     station.tracks = filteredTracks;
     return await save(station)
 }
@@ -64,7 +64,9 @@ export async function getStationLists() {
 async function _saveRequest(station, methodType) {
     const stationToSave = {
         _id: station._id,
+        ...station
     }
+
     return await storageService[methodType](STORAGE_KEY, stationToSave)
 }
 

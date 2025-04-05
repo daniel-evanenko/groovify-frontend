@@ -23,9 +23,8 @@ export function stationReducer(state = initialState, action) {
             }
 
         case REMOVE_TRACK_FROM_STATION:
-            const { tracks } = state
-            const filteredTracks = tracks.filter(track => track._id !== action.trackId)
-
+            const { tracks } = state.station
+            const filteredTracks = tracks.filter(track => track.id !== action.trackId)
             return {
                 ...state,
                 station: { ...state.station, tracks: filteredTracks, lastUpdate: Date.now() }

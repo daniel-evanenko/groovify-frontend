@@ -140,6 +140,10 @@
                 height: em(16px);
                 fill: #888;
             }
+            .dropdown-icon {
+                height: auto;
+                width: auto;
+            }
         }
 
         .duration-text {
@@ -150,13 +154,18 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            line-height: 1.2;
+            /*Adjust this value if needed*/
 
             svg {
                 width: em(16px);
                 height: em(16px);
                 fill: #888;
             }
+            
         }
+
+
     }
 
     .track-title,

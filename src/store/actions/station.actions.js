@@ -16,10 +16,10 @@ export async function addTrackToStation(track, stationId) {
 
 
 
-export async function removeTrackToStation(trackId, stationId) {
+export async function removeTrackFromStation(trackId, stationId) {
     try {
-        const removedTrack = await stationService.removeTrackToStation(trackId, stationId)
-        store.dispatch({ type: REMOVE_TRACK_FROM_STATION, removedTrack })
+        await stationService.removeTrackFromStation(trackId, stationId)
+        store.dispatch({ type: REMOVE_TRACK_FROM_STATION, trackId })
 
     } catch (err) {
         console.log('Station actions -> Cannot remove track from station', err)
