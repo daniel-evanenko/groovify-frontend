@@ -13,22 +13,23 @@ export function StationDetails() {
     const params = useParams()
     const navigate = useNavigate()
 
-    useEffect(async () => {
+    async function fetchStation() {
         try {
             await loadStation(params.stationId)
-
         } catch (error) {
             console.log(error)
             navigate('/')
-
         } finally {
             setLoading(false)
         }
-
+    }
+    useEffect(() => {
+        fetchStation();
         return () => {
             clearStation()
-        }
-    }, [params.stationId])
+        };
+    }, [params.stationId]);
+
 
 
     useEffect(() => {
