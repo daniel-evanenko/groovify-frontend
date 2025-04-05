@@ -14,7 +14,7 @@ export function StationDropdownOptions({ options = [], onOptionClick }) {
     const handleOptionClick = (option, event) => {
         event.stopPropagation();
         if (onOptionClick) {
-            onOptionClick(option.label);
+            onOptionClick(option.value);
         }
         setIsOpen(false);
     };
