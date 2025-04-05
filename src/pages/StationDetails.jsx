@@ -1,20 +1,33 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { stationService } from '../services/station/station.service.js'
 import { useEffect, useState } from 'react'
-import { randomColor } from '../services/util.service.js';
 import { Loader } from '../cmps/Loader.jsx';
 import { ActionBar } from '../cmps/ActionBar.jsx';
 import { TrackList } from '../cmps/TrackList.jsx';
 import { extractColors } from "extract-colors";
+import { useSelector } from 'react-redux';
+import { clearStation, loadStation } from '../store/actions/station.actions.js';
 
 export function StationDetails() {
-    const [station, setStation] = useState(null);
+    const station = useSelector(storeState => storeState.stationModule.station)
     const [loading, setLoading] = useState(true);
     const params = useParams()
     const navigate = useNavigate()
 
-    useEffect(() => {
-        loadStation()
+    useEffect(async () => {
+        try {
+            await loadStation(params.stationId)
+
+        } catch (error) {
+            console.log(error)
+            navigate('/')
+
+        } finally {
+            setLoading(false)
+        }
+
+        return () => {
+            clearStation()
+        }
     }, [params.stationId])
 
 
@@ -23,45 +36,33 @@ export function StationDetails() {
 
         // Wait for DOM update
         requestAnimationFrame(() => {
-            setStationHeaderBg();
+            setStationHeaderBg()
         });
 
     }, [station]);
 
 
-    async function loadStation() {
-        try {
-            const station = await stationService.getStationBySpotifyId(params.stationId)
-            setStation(station)
-        } catch (error) {
-            console.log(error)
-            navigate('/')
-
-        } finally {
-            setLoading(false)
-        }
-    }
 
     async function setStationHeaderBg() {
         try {
-            const mainElement = document.querySelector(".station-header-bg");
+            const mainElement = document.querySelector(".station-header-bg")
             if (!mainElement) return;
 
             const colors = await extractColors(station.imgUrl);
             if (colors.length > 0) {
                 const { red, green, blue } = colors[0];
-                const gradient = `linear-gradient(to bottom, rgb(${red}, ${green}, ${blue}), rgba(0,0,0,0))`;
+                const gradient = `linear-gradient(to bottom, rgb(${red}, ${green}, ${blue}), rgba(0,0,0,0))`
                 mainElement.style.backgroundImage = gradient
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 
 
-    if (loading) return <Loader></Loader>;
+    if (loading) return <Loader></Loader>
 
-    if (!station) return <div>No playlist data available</div>;
+    if (!station) return <div>No playlist data available</div>
     return (
         <section>
             <div className="station-page">
