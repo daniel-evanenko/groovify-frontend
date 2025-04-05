@@ -1,8 +1,6 @@
 [
   {
-    "_id": {
-      "$oid": "65565c991fa9598c84d65ac3"
-    },
+    "_id": "65565c991fa9598c84d65ac3",
     "spotifyId": "37i9dQZF1DWWY64wDtewQt",
     "name": "phonk",
     "imgUrl": "https://i.scdn.co/image/ab67706f000000027dc5028b26eb62f22d31bb1f",
@@ -3580,9 +3578,7 @@
     "lastUpdate": 1734282182735
   },
   {
-    "_id": {
-      "$oid": "655661eaded6b59c04f33e59"
-    },
+    "_id": "655661eaded6b59c04f33e59",
     "spotifyId": "37i9dQZF1DX9FIMhEujaK6",
     "name": "Ibiza Sunset",
     "imgUrl": "https://i.scdn.co/image/ab67706f000000021ad0f96144ad4d13bdbe76d9",
@@ -5362,9 +5358,7 @@
     "lastUpdate": 1722311832151
   },
   {
-    "_id": {
-      "$oid": "65566330cbb9a1003a46e935"
-    },
+    "_id": "65566330cbb9a1003a46e935",
     "spotifyId": "37i9dQZF1DWUajed02NzWR",
     "name": "Classical Garden",
     "imgUrl": "https://i.scdn.co/image/ab67706f00000003409c666e7a6f7679e68f8593",
@@ -7412,9 +7406,7 @@
     "lastUpdate": 1721838886548
   },
   {
-    "_id": {
-      "$oid": "65566367cbb9a1003a46e936"
-    },
+    "_id": "65566367cbb9a1003a46e936",
     "spotifyId": "4sjY92ZWVdLJYdPmhpJQXh",
     "name": "Atlantic Records: Presents",
     "imgUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da8467e1989d2da3562d6b85cdd0",
@@ -10056,9 +10048,7 @@
     "lastUpdate": 1729519939404
   },
   {
-    "_id": {
-      "$oid": "65566383cbb9a1003a46e937"
-    },
+    "_id": "65566383cbb9a1003a46e937",
     "spotifyId": "37i9dQZF1DWWMOmoXKqHTD",
     "name": "Songs to Sing in the Car",
     "imgUrl": "https://i.scdn.co/image/ab67706f00000002e7a67be84848d33ee020b0c9",
@@ -13488,9 +13478,7 @@
     "lastUpdate": 1725554840220
   },
   {
-    "_id": {
-      "$oid": "65567170ded6b59c04f33e5a"
-    },
+    "_id": "65567170ded6b59c04f33e5a",
     "spotifyId": "37i9dQZF1DX45grRWk2ghU",
     "name": "Hot Pink",
     "imgUrl": "https://i.scdn.co/image/ab67706f00000002f8649679b03ed0ed9852ef7c",
@@ -16051,9 +16039,7 @@
     "lastUpdate": 1724346821716
   },
   {
-    "_id": {
-      "$oid": "65569c65daaa504f18a0b641"
-    },
+    "_id": "65569c65daaa504f18a0b641",
     "spotifyId": "37i9dQZF1DWT9L7hoCDtjB",
     "name": "ים תיכוני חדש",
     "imgUrl": "https://i.scdn.co/image/ab67706f00000002672b26c1076dff218b04fb4f",
@@ -18075,9 +18061,7 @@
     "lastUpdate": 1736184028340
   },
   {
-    "_id": {
-      "$oid": "6556ad9a2040b2003bb4f3d2"
-    },
+    "_id": "6556ad9a2040b2003bb4f3d2",
     "spotifyId": "37i9dQZF1DX0oFpWfPwcGv",
     "name": "Disco Decadence",
     "imgUrl": "https://i.scdn.co/image/ab67706f0000000309a1a665c885befa106b0c8b",
@@ -20605,9 +20589,7 @@
     "lastUpdate": 1721838886548
   },
   {
-    "_id": {
-      "$oid": "6556adbb2040b2003bb4f3d3"
-    },
+    "_id": "6556adbb2040b2003bb4f3d3",
     "spotifyId": "37i9dQZF1DWV0gynK7G6pD",
     "name": "Classical New Releases",
     "imgUrl": "https://i.scdn.co/image/ab67706f0000000391d5e7d962d08f036e7c5a4b",
@@ -23529,9 +23511,7 @@
     "lastUpdate": 1721838886548
   },
   {
-    "_id": {
-      "$oid": "65572ef80526ed9b70d64c89"
-    },
+    "_id": "65572ef80526ed9b70d64c89",
     "spotifyId": "5iwkYfnHAGMEFLiHFFGnP4",
     "name": "HITS 2024 - Today's Top Songs",
     "imgUrl": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da84f0adaba5c47c217ba5f7dadd",
@@ -25915,9 +25895,7 @@
     "lastUpdate": 1729990168955
   },
   {
-    "_id": {
-      "$oid": "65573dd20526ed9b70d64c8c"
-    },
+    "_id": "65573dd20526ed9b70d64c8c",
     "spotifyId": "37i9dQZF1DX5Lm1ZiObdc3",
     "name": "Feel Good Classical",
     "imgUrl": "https://i.scdn.co/image/ab67706f0000000284e8231bc64dd2a19ae047b5",
@@ -27957,9 +27935,7 @@
     "lastUpdate": 1725672470120
   },
   {
-    "_id": {
-      "$oid": "655746200526ed9b70d64c91"
-    },
+    "_id": "655746200526ed9b70d64c91",
     "spotifyId": "37i9dQZF1DXbmiyBesoBFy",
     "name": "נושמים רגע",
     "imgUrl": "https://i.scdn.co/image/ab67706f000000028d9212333de7cb4e3c23a7b8",
@@ -30528,9 +30504,7 @@
     "lastUpdate": 1723213920790
   },
   {
-    "_id": {
-      "$oid": "65579e307e7b526c7c2c8b6b"
-    },
+    "_id": "65579e307e7b526c7c2c8b6b",
     "spotifyId": "37i9dQZF1DXcBWIGoYBM5M",
     "name": "Today’s Top Hits",
     "imgUrl": "https://i.scdn.co/image/ab67706f000000022a57554f0c2a051479c4994a",
@@ -32282,9 +32256,7 @@
     "lastUpdate": 1735876806235
   },
   {
-    "_id": {
-      "$oid": "65579e3e7e7b526c7c2c8b6c"
-    },
+    "_id": "65579e3e7e7b526c7c2c8b6c",
     "spotifyId": "37i9dQZF1DX2kUCiHidQRK",
     "name": "להיטים ויראליים",
     "imgUrl": "https://i.scdn.co/image/ab67706f00000002fe613ad6444200638c1a034e",
@@ -34768,9 +34740,7 @@
     "lastUpdate": 1730117642151
   },
   {
-    "_id": {
-      "$oid": "65579e4e7e7b526c7c2c8b6e"
-    },
+    "_id": "65579e4e7e7b526c7c2c8b6e",
     "spotifyId": "37i9dQZF1DX3zGuzLhXjyK",
     "name": "המיטב של העשור בשבילכם",
     "imgUrl": "https://i.scdn.co/image/ab67706f00000002aa512c0f102f89b654d2c03a",
@@ -38228,9 +38198,7 @@
     "lastUpdate": 1730117627550
   },
   {
-    "_id": {
-      "$oid": "65579ee47e7b526c7c2c8b6f"
-    },
+    "_id": "65579ee47e7b526c7c2c8b6f",
     "spotifyId": "37i9dQZF1DX2ogDiL6nZJr",
     "name": "Van Life",
     "imgUrl": "https://i.scdn.co/image/ab67706f0000000247be7dcabc3aa9cf19a78069",
@@ -41600,9 +41568,7 @@
     "lastUpdate": 1722040287639
   },
   {
-    "_id": {
-      "$oid": "6557a8ebe648de46ec2e631e"
-    },
+    "_id": "6557a8ebe648de46ec2e631e",
     "spotifyId": "37i9dQZF1DX9sLipKPkV9T",
     "name": "פופ ישראלי חדש",
     "imgUrl": "https://i.scdn.co/image/ab67706f00000002aef9abb97af48ed0d00ab3eb",
@@ -43660,9 +43626,7 @@
     "lastUpdate": 1733329422433
   },
   {
-    "_id": {
-      "$oid": "6557c00fe648de46ec2e6320"
-    },
+    "_id": "6557c00fe648de46ec2e6320",
     "spotifyId": "37i9dQZF1DXdmWiWhAYJ4a",
     "name": "להיטי קיץ 2023",
     "imgUrl": "https://i.scdn.co/image/ab67706f000000025b2addfdbf71bdeb0ee63977",
@@ -46468,9 +46432,7 @@
     "lastUpdate": 1723571658614
   },
   {
-    "_id": {
-      "$oid": "6557c024e648de46ec2e6323"
-    },
+    "_id": "6557c024e648de46ec2e6323",
     "spotifyId": "37i9dQZF1DX0XUsuxWHRQd",
     "name": "RapCaviar",
     "imgUrl": "https://i.scdn.co/image/ab67706f00000002d7f9ab95b206afaa4574f139",
@@ -48250,9 +48212,7 @@
     "lastUpdate": 1728046474263
   },
   {
-    "_id": {
-      "$oid": "6557eb35e648de46ec2e632b"
-    },
+    "_id": "6557eb35e648de46ec2e632b",
     "spotifyId": "37i9dQZF1DX1SbnWqcjJBz",
     "name": "Deserved",
     "imgUrl": "https://i.scdn.co/image/ab67706f000000023ce090554d0581ccd556df0f",

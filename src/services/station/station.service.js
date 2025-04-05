@@ -1,7 +1,7 @@
 import { storageService } from '../async-storage.service.js'
 import { loadFromStorage, saveToStorage } from '../util.service.js';
 export const STORAGE_KEY = "stationsDB";
-_createStations()
+_createStations() // temp way to create stationsDB
 export const stationService = {
     query,
     getById,
@@ -71,8 +71,7 @@ async function _saveRequest(station, methodType) {
 async function getStationBySpotifyId(entityId) {
     try {
         const stations = await query()
-        const stationsWithSpotifyId = stations.filter(station => typeof station.spotifyId === 'string' && station.spotifyId.trim() !== '');
-        const station = await stationsWithSpotifyId.find(entity => entity.spotifyId === entityId)
+        const station = await stations.find(entity => entity.spotifyId === entityId)
         return station
     } catch (error) {
         console.error("Error getting station:", error)
