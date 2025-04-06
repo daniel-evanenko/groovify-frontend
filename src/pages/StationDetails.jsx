@@ -5,7 +5,7 @@ import { ActionBar } from '../cmps/ActionBar.jsx';
 import { TrackList } from '../cmps/TrackList.jsx';
 import { extractColors } from "extract-colors";
 import { useSelector } from 'react-redux';
-import { clearStation, loadStation } from '../store/actions/station.actions.js';
+import { clearStation, loadStation, saveStation } from '../store/actions/station.actions.js';
 import { ReactSVG } from 'react-svg';
 import { StationEditModal } from '../cmps/StationEditModal.jsx'
 export function StationDetails() {
@@ -15,9 +15,14 @@ export function StationDetails() {
     const params = useParams()
     const navigate = useNavigate()
 
-    const handleConfirm = () => {
-        console.log("Confirmed!")
-        setIsModalOpen(false)
+    async function handleConfirm(station) {
+        try {
+            saveStation(station)
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setIsModalOpen(false)
+        }
     };
     async function fetchStation() {
         try {

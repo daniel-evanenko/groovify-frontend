@@ -1,5 +1,5 @@
 import { stationService } from "../../services/station/station.service.js"
-import { ADD_TRACK_TO_STATION, REMOVE_TRACK_FROM_STATION, SET_STATION } from "../reducers/station.reducer.js"
+import { ADD_TRACK_TO_STATION, REMOVE_TRACK_FROM_STATION, SET_STATION, UPDATE_STATION } from "../reducers/station.reducer.js"
 import { store } from "../store.js"
 
 
@@ -45,6 +45,16 @@ export async function loadStation(stationId) {
         throw err
     }
 }
+export async function saveStation(station) {
+    try {
+        const savedStation = await stationService.save(station)
+        store.dispatch({ type: UPDATE_STATION, station: savedStation })
+
+    } catch (error) {
+        console.log('Station actions -> Cannot save station', error)
+        throw err
+    }
+}
 export function clearStation() {
     try {
         store.dispatch({ type: SET_STATION, station: null })
@@ -53,14 +63,5 @@ export function clearStation() {
         throw err
     }
 }
-// export async function updateStation(updatedStationInfo) {
-//     try {
-//         const removedTrack = await stationService.save(stationId)
-//         store.dispatch({ type: REMOVE_TRACK_FROM_STATION, removedTrack })
 
-//     } catch (err) {
-//         console.log('Station actions -> Cannot remove track from station', err)
-//         throw err
-//     }
-// }
 

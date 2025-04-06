@@ -29,6 +29,7 @@
             "disclaimer disclaimer";
         grid-gap: 16px;
         padding: 24px;
+        border-radius: 8px;
 
         .header {
             grid-area: header;
@@ -47,6 +48,7 @@
                 background-color: transparent;
                 width: 32px;
                 height: 32px;
+
                 svg {
                     width: 16px;
                     height: 16px;
