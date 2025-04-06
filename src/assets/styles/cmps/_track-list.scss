@@ -2,7 +2,7 @@
     list-style-type: none;
     padding: em(55px);
     margin: 0;
-    font-size: 14px;
+    font-size: em(14px);
     font-weight: 400;
     line-height: normal;
     color: $text-subdued;
@@ -14,32 +14,74 @@
     .track-header,
     .track-container {
         display: grid;
-        grid-template-columns: 1fr 40% 8fr 8fr 8fr;
-        gap: 10px;
+        grid-template-columns: 1fr 40% 8fr 8fr 5fr;
+        gap: em(10px);
         align-items: center;
         padding: em(10px);
 
         svg {
-            width: 20px;
-            height: 20px;
+            width: em(20px);
+            height: em(20px);
             fill: $text-subdued;
         }
     }
 
+    .track-container {
+        overflow: visible;
+        z-index: 1;
+        border-radius: em(4px);
+        transition: background-color 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+
+            .duration-btn {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+        }
+
+        &.active {
+            background-color: rgba(255, 255, 255, 0.08);
+            z-index: 10;
+
+            .duration-btn {
+                opacity: 1 !important;
+                visibility: visible !important;
+                pointer-events: auto !important;
+            }
+
+            .dropdown-container {
+                z-index: 1000;
+                position: relative;
+
+                .dropdown-menu {
+                    z-index: 1001;
+                    position: absolute;
+                    top: 100%;
+                    right: 0;
+                }
+            }
+        }
+    }
+
     .track-order {
-        font-size: 16px;
+        font-size: em(16px);
         font-family: 'CircularSpotifyTextBold';
     }
 
     .track-title {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: em(10px);
 
         img {
-            border-radius: 4px;
-            width: 40px;
-            height: 40px;
+            border-radius: em(4px);
+            width: em(40px);
+            height: em(40px);
         }
 
         .track-info {
@@ -47,11 +89,11 @@
             flex-direction: column;
 
             span {
-                font-size: 16px;
+                font-size: em(16px);
             }
 
             a {
-                font-size: 14px;
+                font-size: em(14px);
             }
         }
     }
@@ -61,13 +103,54 @@
     .track-date-added {}
 
     .track-duration {
-        text-align: right;
-        padding-right: 10px;
+        display: grid;
+        grid-template-columns: 2em auto 2em;
+        align-items: center;
+        justify-content: flex-end;
+        column-gap: em(6px);
+        padding-right: em(10px);
+        min-height: em(40px);
+        position: relative;
 
-        svg {
-            width: 16px;
-            height: 16px;
-            fill: #888;
+        .duration-btn {
+            width: 2em;
+            height: 2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+
+            svg {
+                width: em(16px);
+                height: em(16px);
+                fill: #888;
+            }
+
+            .dropdown-icon {
+                height: auto;
+                width: auto;
+            }
+        }
+
+        .duration-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: right;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.2;
+            /*Adjust this value if needed*/
+
+            svg {
+                width: em(16px);
+                height: em(16px);
+                fill: #888;
+            }
         }
     }
 
@@ -75,7 +158,6 @@
     .track-album,
     .track-date-added,
     .track-duration {
-        overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
     }
