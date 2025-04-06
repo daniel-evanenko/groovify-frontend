@@ -1,13 +1,14 @@
 .dropdown-container {
     position: relative;
     display: inline-block;
+    overflow: visible;
 
     .dropdown-btn {
         background-color: transparent;
         color: $text-subdued;
         border: none;
         cursor: pointer;
-        padding: 8px;
+        padding: em(8px);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -18,24 +19,29 @@
         }
 
         .dropdown-icon {
-            width: 30px;
-            height: 30px;
+            width: em(30px);
+            height: em(30px);
         }
     }
 
+
     .dropdown-menu {
         position: absolute;
+        z-index: 9999;
+        top: 100%;
+        right: 0;
         background-color: #333;
         border-radius: em(8px);
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         list-style-type: none;
-        padding: em(10px) 0;
+        padding: 4px;
         margin: 0;
-        width: em(200px);
+        width: max-content;
 
         .dropdown-item {
             display: flex;
-            padding: em(10px);
+            padding: 12px 8px 12px 12px;
+            gap: em(12px);
             color: addTransparency(#ffffff, 90%);
             font-size: em(14px);
             cursor: pointer;
@@ -51,10 +57,9 @@
             }
 
             svg {
-                width: 20px;
-                height: 20px;
-                margin-right: 10px;
-                fill: $text-subdued
+                width: em(20px);
+                height: em(20px);
+                fill: $text-subdued;
             }
         }
     }

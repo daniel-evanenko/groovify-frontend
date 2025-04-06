@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { StationList } from "../cmps/StationList";
 import { getStationLists } from "../services/station/station.service";
-import { loadStations } from "../store/actions/library.actions";
 import { Loader } from "../cmps/Loader";
 import { eventBus, INDEX_MOUNT } from "../services/event-bus.service";
+import { loadStations } from "../store/actions/library.actions";
 
 
 
@@ -16,6 +16,7 @@ export function StationIndex() {
             const stationList = await getStationLists();
             setAllStationsLists(stationList);
             await loadStations();
+
         } catch (error) {
             console.error("Error getting data", error);
         } finally {
