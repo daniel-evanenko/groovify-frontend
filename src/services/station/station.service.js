@@ -10,6 +10,7 @@ export const stationService = {
     addTrackToStation,
     removeTrackFromStation,
     getStationBySpotifyId,
+    fetchStations
 }
 
 window.cs = stationService
@@ -100,3 +101,10 @@ async function _createStations() {
 }
 
 
+async function fetchStations() {
+    const response = await fetch("/tmp-assets/stations.json")
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`)
+    }
+    return await response.json()
+}

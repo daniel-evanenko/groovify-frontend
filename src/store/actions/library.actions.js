@@ -1,7 +1,17 @@
 import { stationService } from "../../services/station/station.service.js"
 import { ADD_STATION_ACTIVATE, REMOVE_STATION, SET_ACTIVE_STATION_ID, SET_STATIONS } from "../reducers/library.reducer.js"
 import { store } from "../store.js"
+export async function loadStations() {
+    try {
+        const stations = await stationService.fetchStations()
+        store.dispatch({ type: SET_STATIONS, stations })
 
+    } catch (error) {
+        console.log('Cannot load stations:', error);
+        throw error;
+    }
+
+}
 
 export async function addStation(station) {
     try {
