@@ -2,6 +2,7 @@
     color: white;
     line-height: normal;
     user-select: none;
+    overflow-y: scroll;
 
     .station-header-bg {
         padding: $content-padding;
