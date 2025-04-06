@@ -6,9 +6,9 @@ export async function loadStations() {
         const stations = await stationService.fetchStations()
         store.dispatch({ type: SET_STATIONS, stations })
 
-    } catch (error) {
-        console.log('Cannot load stations:', error);
-        throw error;
+    } catch (err) {
+        console.error('library actions -> Cannot load stations', err)
+        throw err;
     }
 
 }

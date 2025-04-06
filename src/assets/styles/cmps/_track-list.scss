@@ -15,9 +15,10 @@
     .track-container {
         display: grid;
         grid-template-columns: 1fr 40% 8fr 8fr 5fr;
-        gap: em(10px);
+        gap: 16px;
         align-items: center;
-        padding: em(10px);
+        padding: 0 24px;
+        height: 54px;
 
         svg {
             width: em(20px);
@@ -27,7 +28,6 @@
     }
 
     .track-container {
-        overflow: visible;
         z-index: 1;
         border-radius: em(4px);
         transition: background-color 0.2s ease, box-shadow 0.2s ease;
@@ -77,30 +77,48 @@
         display: flex;
         align-items: center;
         gap: em(10px);
-
-        img {
-            border-radius: em(4px);
-            width: em(40px);
-            height: em(40px);
-        }
-
-        .track-info {
-            display: flex;
-            flex-direction: column;
-
-            span {
-                font-size: em(16px);
-            }
-
-            a {
-                font-size: em(14px);
-            }
-        }
+        min-width: 0;
+        overflow: hidden;
+        /* Ensure overflow hidden */
     }
 
-    .track-album {}
+    .track-title img {
+        border-radius: em(4px);
+        width: em(40px);
+        height: em(40px);
+    }
 
-    .track-date-added {}
+    .track-title .track-info {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        /* Ensure overflow hidden */
+        min-width: 0;
+    }
+
+    .track-title .track-info span,
+    .track-title .track-info a {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-width: 0;
+    }
+
+    .track-title .track-info span {
+        font-size: em(16px);
+    }
+
+    .track-title .track-info a {
+        font-size: em(14px);
+    }
+
+    .track-album,
+    .track-date-added {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 
     .track-duration {
         display: grid;
@@ -144,7 +162,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
             line-height: 1.2;
-            /*Adjust this value if needed*/
 
             svg {
                 width: em(16px);
@@ -154,7 +171,6 @@
         }
     }
 
-    .track-title,
     .track-album,
     .track-date-added,
     .track-duration {
