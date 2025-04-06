@@ -3,6 +3,19 @@ import { ADD_STATION_ACTIVATE, REMOVE_STATION, SET_ACTIVE_STATION_ID, SET_STATIO
 import { store } from "../store.js"
 
 
+export async function loadStations() {
+    try {
+        // const stations = await stationService.query()
+        const stations = await stationService.fetchStations()
+        store.dispatch({ type: SET_STATIONS, stations })
+
+    } catch (error) {
+        console.log('Cannot load stations:', error);
+        throw error;
+    }
+
+}
+
 export async function addStation(station) {
     try {
         const savedStation = await stationService.save(station)

@@ -31,7 +31,6 @@ function post(entityType, newEntity) {
 }
 
 function put(entityType, updatedEntity) {
-
     return query(entityType).then(entities => {
         const idx = entities.findIndex(entity => entity._id === updatedEntity._id)
         if (idx < 0) throw new Error(`Update failed, cannot find entity with id: ${updatedEntity._id} in: ${entityType}`)

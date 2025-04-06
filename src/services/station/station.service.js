@@ -1,15 +1,17 @@
+import { store } from '../../store/store.js';
 import { storageService } from '../async-storage.service.js'
 import { loadFromStorage, saveToStorage } from '../util.service.js';
 export const STORAGE_KEY = "stationsDB";
-_createStations() // temp way to create stationsDB
+// _createStations()
 export const stationService = {
     query,
     getById,
     save,
     remove,
     addTrackToStation,
-    removeTrackFromStation,
+    removeTrackToStation,
     getStationBySpotifyId,
+    fetchStations
 }
 
 window.cs = stationService
@@ -39,9 +41,9 @@ async function addTrackToStation(track, stationId) {
     return await save(station)
 }
 
-async function removeTrackFromStation(trackId, stationId) {
+async function removeTrackToStation(trackId, stationId) {
     const station = await getById(stationId);
-    const filteredTracks = station.tracks.filter(track => track.id !== trackId)
+    const filteredTracks = station.tracks.filter(track => track._id !== trackId)
     station.tracks = filteredTracks;
     return await save(station)
 }
@@ -64,16 +66,16 @@ export async function getStationLists() {
 async function _saveRequest(station, methodType) {
     const stationToSave = {
         _id: station._id,
-        ...station
     }
-
     return await storageService[methodType](STORAGE_KEY, stationToSave)
 }
 
 async function getStationBySpotifyId(entityId) {
     try {
-        const stations = await query()
-        const station = await stations.find(entity => entity.spotifyId === entityId)
+        // const stations = await query()
+        const stations = store.getState().libraryModule.stations;
+        const stationsWithSpotifyId = stations.filter(station => typeof station.spotifyId === 'string' && station.spotifyId.trim() !== '');
+        const station = await stationsWithSpotifyId.find(entity => entity.spotifyId === entityId)
         return station
     } catch (error) {
         console.error("Error getting station:", error)
@@ -84,7 +86,7 @@ async function _createStations() {
     let stations = loadFromStorage(STORAGE_KEY)
     try {
         if (!stations || !stations.length) {
-            const response = await fetch("/tmp-assets/filtered-stations.json")
+            const response = await fetch("/tmp-assets/stations.json")
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`)
             }
@@ -100,3 +102,10 @@ async function _createStations() {
 }
 
 
+async function fetchStations() {
+    const response = await fetch("/tmp-assets/stations.json")
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`)
+    }
+    return await response.json()
+}
