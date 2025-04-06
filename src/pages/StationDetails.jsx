@@ -8,10 +8,11 @@ import { useSelector } from 'react-redux';
 import { clearStation, loadStation, saveStation } from '../store/actions/station.actions.js';
 import { ReactSVG } from 'react-svg';
 import { StationEditModal } from '../cmps/StationEditModal.jsx'
+import { setIsLoading } from '../store/actions/system.actions.js';
 export function StationDetails() {
     const station = useSelector(storeState => storeState.stationModule.station)
+    const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [loading, setLoading] = useState(true);
     const params = useParams()
     const navigate = useNavigate()
 
@@ -25,13 +26,14 @@ export function StationDetails() {
         }
     };
     async function fetchStation() {
+        setIsLoading(true)
         try {
             await loadStation(params.stationId)
         } catch (error) {
             console.log(error)
             navigate('/')
         } finally {
-            setLoading(false)
+            setIsLoading(false)
         }
     }
     useEffect(() => {
@@ -71,7 +73,7 @@ export function StationDetails() {
     }
 
 
-    if (loading) return <Loader></Loader>
+    if (isLoading) return <Loader></Loader>
 
     if (!station) return <div>No playlist data available</div>
     return (
