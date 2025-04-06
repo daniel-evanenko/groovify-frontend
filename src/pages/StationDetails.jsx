@@ -101,7 +101,7 @@ export function StationDetails() {
                 </div>
                 <ActionBar station={station}></ActionBar>
                 <TrackList station={station}></TrackList>
-                {isModalOpen && <StationEditModal onClose={() => setIsModalOpen(false)} onConfirm={handleConfirm} station={station}>
+                {isModalOpen && <StationEditModal onClose={() => setIsModalOpen(false)} onConfirm={handleConfirm} station={station} openFileUpload={true}>
                 </StationEditModal>}
             </div>
         </section>

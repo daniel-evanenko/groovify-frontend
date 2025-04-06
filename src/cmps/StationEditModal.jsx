@@ -1,9 +1,31 @@
 import { ReactSVG } from "react-svg";
-import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
-import { useState } from "react";
-export function StationEditModal({ onClose, onConfirm, station }) {
+import { useEffect, useRef, useState } from "react";
+export function StationEditModal({ onClose, onConfirm, station, openFileUpload = false }) {
     const [stationToEdit, setStationToEdit] = useState(station)
+    const fileInputRef = useRef(null);
+
+    useEffect(() => {
+        if (openFileUpload) {
+            handleUploadButtonClick();
+        }
+    }, [openFileUpload]);
+
+
+    function handleUploadButtonClick() {
+        fileInputRef.current.click();
+    }
+
+    function handleFileChange(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const imageUrl = e.target.result;
+                setStationToEdit((prevStationToEdit) => ({ ...prevStationToEdit, imgUrl: imageUrl, }))
+            }
+            reader.readAsDataURL(file);
+        }
+    }
 
     function handleChange({ target }) {
         const field = target.name
@@ -26,7 +48,6 @@ export function StationEditModal({ onClose, onConfirm, station }) {
     }
 
     const { name, description, imgUrl } = stationToEdit
-
     return (
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -36,7 +57,13 @@ export function StationEditModal({ onClose, onConfirm, station }) {
                         <ReactSVG src="icons/close.svg"> </ReactSVG>
                     </button>
                 </div>
-                <img className="album-image" src={imgUrl} alt="station" />
+                <img className="album-image" src={imgUrl} onClick={handleUploadButtonClick} alt="station" />
+                <input
+                    type="file"
+                    ref={fileInputRef}
+                    style={{ display: 'none' }}
+                    onChange={handleFileChange}
+                />
                 <input
                     className="title"
                     name="name"
