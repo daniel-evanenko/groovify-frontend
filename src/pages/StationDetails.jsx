@@ -1,79 +1,67 @@
 import { useParams, useNavigate } from 'react-router-dom'
+import { stationService } from '../services/station/station.service.js'
 import { useEffect, useState } from 'react'
+import { randomColor } from '../services/util.service.js';
 import { Loader } from '../cmps/Loader.jsx';
 import { ActionBar } from '../cmps/ActionBar.jsx';
 import { TrackList } from '../cmps/TrackList.jsx';
 import { extractColors } from "extract-colors";
-import { useSelector } from 'react-redux';
-import { clearStation, loadStation, saveStation } from '../store/actions/station.actions.js';
-import { ReactSVG } from 'react-svg';
-import { StationEditModal } from '../cmps/StationEditModal.jsx'
+
 export function StationDetails() {
-    const station = useSelector(storeState => storeState.stationModule.station)
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [station, setStation] = useState(null);
     const [loading, setLoading] = useState(true);
     const params = useParams()
     const navigate = useNavigate()
 
-    async function handleConfirm(station) {
-        try {
-            saveStation(station)
-        } catch (error) {
-            console.error(error)
-        } finally {
-            setIsModalOpen(false)
-        }
-    };
-    async function fetchStation() {
-        try {
-            await loadStation(params.stationId)
-        } catch (error) {
-            console.log(error)
-            navigate('/')
-        } finally {
-            setLoading(false)
-        }
-    }
     useEffect(() => {
-        fetchStation();
-        return () => {
-            clearStation()
-        };
-    }, [params.stationId]);
-
+        loadStation()
+    }, [params.stationId])
 
 
     useEffect(() => {
         if (!station) return;
+
         // Wait for DOM update
         requestAnimationFrame(() => {
-            setStationHeaderBg()
+            setStationHeaderBg();
         });
 
     }, [station]);
 
 
+    async function loadStation() {
+        try {
+            const station = await stationService.getStationBySpotifyId(params.stationId)
+            setStation(station)
+        } catch (error) {
+            console.log(error)
+            navigate('/')
+
+        } finally {
+            setLoading(false)
+        }
+    }
 
     async function setStationHeaderBg() {
         try {
-            const mainElement = document.querySelector(".station-header-bg")
+            const mainElement = document.querySelector(".station-header-bg");
             if (!mainElement) return;
 
             const colors = await extractColors(station.imgUrl);
             if (colors.length > 0) {
                 const { red, green, blue } = colors[0];
-                const gradient = `linear-gradient(to bottom, rgb(${red}, ${green}, ${blue}), rgba(0,0,0,0))`
+                const gradient = `linear-gradient(to bottom, rgb(${red}, ${green}, ${blue}), rgba(0,0,0,0))`;
                 mainElement.style.backgroundImage = gradient
             }
         } catch (error) {
-            console.error(error)
+            console.log(error)
         }
     }
 
 
-    if (loading) return <Loader></Loader>
+    if (loading) return <Loader></Loader>;
 
-    if (!station) return <div>No playlist data available</div>
+    if (!station) return <div>No playlist data available</div>;
     return (
         <section>
             <div className="station-page">
@@ -81,11 +69,10 @@ export function StationDetails() {
                     <header className="top-bar"></header>
                     <div className="station-header">
                         <div className="station-image">
-                            <img src={station.imgUrl} alt="station" />
-                            <div className="overlay" onClick={() => setIsModalOpen(true)}>
-                                <ReactSVG src='/icons/Pencil.svg' />
-                                <p>Choose photo</p>
-                            </div>
+                            <img
+                                src={station.imgUrl}
+                                alt="station"
+                            />
                         </div>
                         <div className="station-details">
                             <span className="station-type">Playlist</span>
@@ -101,8 +88,6 @@ export function StationDetails() {
                 </div>
                 <ActionBar station={station}></ActionBar>
                 <TrackList station={station}></TrackList>
-                {isModalOpen && <StationEditModal onClose={() => setIsModalOpen(false)} onConfirm={handleConfirm} station={station} openFileUpload={true}>
-                </StationEditModal>}
             </div>
         </section>
     )
