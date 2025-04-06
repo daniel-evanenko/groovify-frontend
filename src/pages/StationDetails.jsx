@@ -7,13 +7,18 @@ import { extractColors } from "extract-colors";
 import { useSelector } from 'react-redux';
 import { clearStation, loadStation } from '../store/actions/station.actions.js';
 import { ReactSVG } from 'react-svg';
-
+import { StationEditModal } from '../cmps/StationEditModal.jsx'
 export function StationDetails() {
     const station = useSelector(storeState => storeState.stationModule.station)
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [loading, setLoading] = useState(true);
     const params = useParams()
     const navigate = useNavigate()
 
+    const handleConfirm = () => {
+        console.log("Confirmed!")
+        setIsModalOpen(false)
+    };
     async function fetchStation() {
         try {
             await loadStation(params.stationId)
@@ -72,7 +77,7 @@ export function StationDetails() {
                     <div className="station-header">
                         <div className="station-image">
                             <img src={station.imgUrl} alt="station" />
-                            <div className="overlay">
+                            <div className="overlay" onClick={() => setIsModalOpen(true)}>
                                 <ReactSVG src='/icons/Pencil.svg' />
                                 <p>Choose photo</p>
                             </div>
@@ -91,6 +96,8 @@ export function StationDetails() {
                 </div>
                 <ActionBar station={station}></ActionBar>
                 <TrackList station={station}></TrackList>
+                {isModalOpen && <StationEditModal onClose={() => setIsModalOpen(false)} onConfirm={handleConfirm} station={station}>
+                </StationEditModal>}
             </div>
         </section>
     )
