@@ -1,5 +1,8 @@
 import { ReactSVG } from "react-svg";
 import { useEffect, useRef, useState } from "react";
+import axios from "axios";
+const CLOUD_NAME = 'debxyogu4';
+const UPLOAD_PRESET = 'station_images';
 export function StationEditModal({ onClose, onConfirm, station, openFileUpload = false }) {
     const [stationToEdit, setStationToEdit] = useState(station)
     const fileInputRef = useRef(null);
@@ -15,16 +18,28 @@ export function StationEditModal({ onClose, onConfirm, station, openFileUpload =
         fileInputRef.current.click();
     }
 
-    function handleFileChange(event) {
+    async function handleFileChange(event) {
         const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const imageUrl = e.target.result;
-                setStationToEdit((prevStationToEdit) => ({ ...prevStationToEdit, imgUrl: imageUrl, }))
-            }
-            reader.readAsDataURL(file);
+        if (!file) return
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('cloud_name', CLOUD_NAME);
+        formData.append('upload_preset', UPLOAD_PRESET);
+
+        try {
+            const response = await axios.post(
+                `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+                formData
+            );
+
+            setStationToEdit((prevStationToEdit) => ({ ...prevStationToEdit, imgUrl: response.data.secure_url, }))
+        } catch (error) {
+            console.error('Upload error:', error);
+
         }
+
+
     }
 
     function handleChange({ target }) {
