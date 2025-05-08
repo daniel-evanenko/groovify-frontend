@@ -24,7 +24,7 @@ export function StationDetails() {
         } finally {
             setIsModalOpen(false)
         }
-    };
+    }
     async function fetchStation() {
         setIsLoading(true)
         try {
@@ -40,7 +40,7 @@ export function StationDetails() {
         fetchStation();
         return () => {
             clearStation()
-        };
+        }
     }, [params.stationId]);
 
 
@@ -52,7 +52,7 @@ export function StationDetails() {
             setStationHeaderBg()
         });
 
-    }, [station]);
+    }, [station])
 
 
 
