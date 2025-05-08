@@ -5,21 +5,21 @@ const CLOUD_NAME = 'debxyogu4';
 const UPLOAD_PRESET = 'station_images';
 export function StationEditModal({ onClose, onConfirm, station, openFileUpload = false }) {
     const [stationToEdit, setStationToEdit] = useState(station)
-    const fileInputRef = useRef(null);
+    const fileInputRef = useRef(null)
 
     useEffect(() => {
         if (openFileUpload) {
-            handleUploadButtonClick();
+            handleUploadButtonClick()
         }
     }, [openFileUpload]);
 
 
     function handleUploadButtonClick() {
-        fileInputRef.current.click();
+        fileInputRef.current.click()
     }
 
     async function handleFileChange(event) {
-        const file = event.target.files[0];
+        const file = event.target.files[0]
         if (!file) return
 
         const formData = new FormData();
@@ -35,11 +35,9 @@ export function StationEditModal({ onClose, onConfirm, station, openFileUpload =
 
             setStationToEdit((prevStationToEdit) => ({ ...prevStationToEdit, imgUrl: response.data.secure_url, }))
         } catch (error) {
-            console.error('Upload error:', error);
+            console.error('Upload error:', error)
 
         }
-
-
     }
 
     function handleChange({ target }) {
@@ -72,29 +70,32 @@ export function StationEditModal({ onClose, onConfirm, station, openFileUpload =
                         <ReactSVG src="icons/close.svg"> </ReactSVG>
                     </button>
                 </div>
-                <img className="album-image" src={imgUrl} onClick={handleUploadButtonClick} alt="station" />
-                <input
-                    type="file"
-                    ref={fileInputRef}
-                    style={{ display: 'none' }}
-                    onChange={handleFileChange}
-                />
-                <input
-                    className="title"
-                    name="name"
-                    label="name"
-                    value={name}
-                    onChange={handleChange}
-                    maxLength={100}
-                />
-                <textarea className="description"
-                    name="description" label="description"
-                    value={description} onChange={handleChange}
-                    placeholder="Add an optional description"
-                    maxLength={300}>
-                </textarea>
-                <button className="save-button" onClick={() => onConfirm(stationToEdit)}>Save</button>
-                <p className="disclaimer">By proceeding, you agree to give Spotify access to the image you choose to upload. Please make sure you have the right to upload the image.</p>
+                <div className='inner-modal'>
+                    <img className="album-image" src={imgUrl} onClick={handleUploadButtonClick} alt="station" />
+                    <input
+                        type="file"
+                        ref={fileInputRef}
+                        style={{ display: 'none' }}
+                        onChange={handleFileChange}
+                    />
+                    <input
+                        className="title"
+                        name="name"
+                        label="name"
+                        value={name}
+                        onChange={handleChange}
+                        maxLength={100}
+                    />
+                    <textarea className="description"
+                        name="description" label="description"
+                        value={description} onChange={handleChange}
+                        placeholder="Add an optional description"
+                        maxLength={300}>
+                    </textarea>
+                    <button className="save-button" onClick={() => onConfirm(stationToEdit)}>Save</button>
+                    <p className="disclaimer">By proceeding, you agree to give Spotify access to the image you choose to upload. Please make sure you have the right to upload the image.</p>
+
+                </div>
 
             </div>
         </div>

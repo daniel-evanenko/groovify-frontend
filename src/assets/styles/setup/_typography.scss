@@ -1,14 +1,13 @@
 @font-face {
-    font-family: 'uibold';
-    src: url('/fonts/Bold.ttf') format('truetype')
+    font-family: "CircularSpotifyText";
+    src: url("/fonts/CircularSpotifyText-Book.otf") format("opentype");
+    font-weight: 300;
+    font-style: normal;
 }
 
 @font-face {
-    font-family: 'regular';
-    src: url('fonts/Regular.ttf') format('truetype')
-}
-
-@font-face {
-    font-family: 'title';
-    src: url('fonts/Title.ttf') format('truetype')
+    font-family: "CircularSpotifyTextBold";
+    src: url("/fonts/CircularSpotifyText-Bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: bold;
 }

@@ -11,7 +11,7 @@
     z-index: 1000;
     line-height: normal;
     letter-spacing: normal;
-    font-family: SpotifyMixUITitle, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, "Helvetica Neue", helvetica, arial, "Hiragino Kaku Gothic ProN", Meiryo, "MS Gothic";
+    font-family: 'CircularSpotifyText';
 
     .modal-content {
         min-height: 384px;
@@ -19,24 +19,28 @@
         background-color: #282828;
         box-shadow: 0 4px 4px rgba(0, 0, 0, .3);
         color: #ffff;
-        display: grid;
-        grid-template: 1fr 32px 132px 32px auto / 180px 1fr;
-        grid-template-areas:
-            "header header"
-            "album-image title"
-            "album-image description"
-            ". save-button"
-            "disclaimer disclaimer";
-        grid-gap: 16px;
         padding: 24px;
-        border-radius: 8px;
+
+
+        .inner-modal {
+            display: grid;
+            grid-template: 32px 132px 32px auto / 180px 1fr;
+            grid-template-areas:
+                "album-image title"
+                "album-image description"
+                ". save-button"
+                "disclaimer disclaimer";
+            grid-gap: 16px;
+            border-radius: 8px;
+
+        }
 
         .header {
             grid-area: header;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 8px;
+            padding-bottom: 24px;
 
             h1 {
                 font-weight: 700;
@@ -46,8 +50,8 @@
 
             button {
                 background-color: transparent;
-                width: 32px;
-                height: 32px;
+                width: 22px;
+                height: 22px;
 
                 svg {
                     width: 16px;
@@ -114,6 +118,8 @@
             font-size: 12px;
             line-height: normal;
             font-weight: 700;
+            font-family: "CircularSpotifyTextBold";
+
         }
 
     }
