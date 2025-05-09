@@ -1,9 +1,26 @@
+import { ReactSVG } from "react-svg";
+import { PlayButton } from "./PlayButton";
+import { ProgressBar } from "./ProgressBar";
 
 export function AppFooter() {
 
     return (
         <footer className="app-footer">
-            <h1>footer</h1>
+            <div className="player-controls">
+                <div className="player-buttons">
+                    <button className=" player-controls-btn">
+                        <ReactSVG src="/icons/previous.svg" />
+                    </button>
+
+                    <PlayButton className="player-controls-btn" />
+                    
+                    <button className=" player-controls-btn">
+                        <ReactSVG src="/icons/next.svg" />
+                    </button>
+                </div>
+            </div>
         </footer>
     )
 }
+
+
