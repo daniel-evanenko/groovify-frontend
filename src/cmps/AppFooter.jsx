@@ -1,6 +1,5 @@
 import { ReactSVG } from "react-svg";
 import { PlayButton } from "./PlayButton";
-import { ProgressBar } from "./ProgressBar";
 
 export function AppFooter() {
 
