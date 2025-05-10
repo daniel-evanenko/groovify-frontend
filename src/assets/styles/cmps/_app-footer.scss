@@ -1,8 +1,12 @@
 .app-footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     background-color: transparent;
     padding-top: 8px;
 
     .player-controls {
+        grid-column: 2;
+
         display: grid;
         grid-template-rows: 1fr 1fr;
         justify-content: center;
@@ -38,5 +42,16 @@
                 aspect-ratio: 1/1;
             }
         }
+    }
+
+    .volume-bar {
+        grid-column: 3;
+        justify-self: end;
+        align-self: center;
+
+        align-items: center;
+        margin-inline-end: 38px;
+        margin-block-end: 7px;
+
     }
 }

@@ -1,0 +1,16 @@
+.volume-bar {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    
+    .progress-bar {
+        min-width: 0;
+        width: max(5vw, 50px);
+    }
+
+    svg {
+        width: 16px;
+        aspect-ratio: 1/1;
+    }
+    
+}
