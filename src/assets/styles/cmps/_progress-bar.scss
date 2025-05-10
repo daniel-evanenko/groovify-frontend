@@ -1,0 +1,40 @@
+.progress-bar-wrapper {
+    display: inline-block;
+    padding: 8px;
+
+    &:hover, &:active {
+        .progress-bar-top {
+            background-color: $green-base;
+        }
+    }
+
+}
+
+.progress-bar {
+    min-width: 217px;
+    max-width: 33vw;
+    width: 33vw;
+    height: 4px;
+    background-color: addTransparency($text-subdued, 0.3);
+    border-radius: 2px;
+
+    >.progress-bar-top {
+        position: relative;
+        height: inherit;
+        background-color: $text-base;
+        border-radius: inherit;
+
+        >.seeker {
+            position: absolute;
+            top: -100%;
+            left: 100%;
+            transform: translateX(-6px);
+            width: 12px;
+            aspect-ratio: 1/1;
+            background-color: $text-base;
+            border-radius: 50%;
+        }
+    }
+
+
+}

@@ -1,5 +1,7 @@
 import { ReactSVG } from "react-svg";
 import { PlayButton } from "./PlayButton";
+import { PlayerProgressBar } from "./progress-bars/PlayerProgressBar";
+
 
 export function AppFooter() {
 
@@ -17,6 +19,7 @@ export function AppFooter() {
                         <ReactSVG src="/icons/next.svg" />
                     </button>
                 </div>
+                <PlayerProgressBar max={10} />
             </div>
         </footer>
     )

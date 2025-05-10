@@ -1,5 +1,8 @@
 //events
 export const INDEX_MOUNT = "on-index-mount"
+export const PLAY_STARTED = "play-started"
+export const PLAY_PAUSED = "play-paused"
+
 
 function createEventEmitter() {
     const listenersMap = {}
