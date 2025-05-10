@@ -1,0 +1,42 @@
+.app-footer {
+    background-color: transparent;
+    padding-top: 8px;
+
+    .player-controls {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+
+        .player-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .player-controls-btn {
+            background-color: transparent;
+            padding: 0 0.5rem;
+            @include scale-on-hover();
+            @include scale-on-press(1);
+            @include color-descendant-svg-on-hover($text-base);
+            @include color-descendant-svg-on-press($text-subdued);
+            svg {
+                width: 16px;
+                aspect-ratio: 1/1;
+                color: $text-subdued;
+            }
+        }
+
+        .play-btn {
+            width: 32px;
+            background-color: $text-base;
+            @include bg-color-on-hover($text-subdued);
+
+            svg {
+                width: 20px;
+                aspect-ratio: 1/1;
+            }
+        }
+    }
+}

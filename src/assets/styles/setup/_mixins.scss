@@ -28,60 +28,89 @@
 @mixin aspect-ratio($width, $height) {
     position: relative;
     overflow: hidden;
+
     &::before {
-      display: block;
-      content: "";
-      width: 100%;
-      padding-top: calc(($height / $width) * 100%);
+        display: block;
+        content: "";
+        width: 100%;
+        padding-top: calc(($height / $width) * 100%);
     }
-    > * {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+
+    >* {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
     }
-  
-    > img {
-      height: 100%;
-      object-fit: cover;
+
+    >img {
+        height: 100%;
+        object-fit: cover;
     }
-  }
-  
-  // Mixin for removing hover efects on iphone screen
-  @mixin hover-supported {    
+}
+
+// Mixin for removing hover efects on iphone screen
+@mixin hover-supported {
     @media not all and (pointer: coarse) {
         &:hover {
             @content;
         }
     }
-  }
+}
 
-  @mixin scale-on-hover($scale-factor: 1.05) {
+@mixin scale-on-hover($scale-factor: 1.05) {
     transition: transform 0.1s ease-in-out;
     will-change: transform;
 
     &:hover {
         transform: scale($scale-factor);
     }
-  }
+}
 
-  // Mixin to be given to children elements of expanding elements - which we may not want to expand
-  @mixin prevent-scale-on-hover($scale-factor: 1.05) {
+// Mixin to be given to children elements of expanding elements - which we may not want to expand
+@mixin prevent-scale-on-hover($scale-factor: 1.05) {
     transition: transform 0.1s ease-in-out;
     will-change: transform;
 
     &:hover {
         transform: scale(calc(1/$scale-factor));
     }
-  }
+}
 
-  @mixin scale-on-press($scale-factor: 1.05) {
+@mixin scale-on-press($scale-factor: 1.05) {
     transition: transform 0.1s ease-in-out;
     will-change: transform;
-    
+
     &:active {
         transform: scale($scale-factor);
     }
-  }
+}
 
+@mixin color-on-hover($new-color) {
+    &:hover {
+        color: $new-color;
+    }
+}
+
+@mixin bg-color-on-hover($new-color) {
+    &:hover {
+        background-color: $new-color;
+    }
+}
+
+@mixin color-descendant-svg-on-hover($new-color) {
+    &:hover {
+        svg {
+            color: $new-color;
+        }
+    }
+}
+
+@mixin color-descendant-svg-on-press($new-color) {
+    &:active {
+        svg {
+            color: $new-color;
+        }
+    }
+}
