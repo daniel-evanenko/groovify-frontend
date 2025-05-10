@@ -2,6 +2,7 @@ import { ReactSVG } from "react-svg";
 import { PlayButton } from "./PlayButton";
 import { PlayerProgressBar } from "./progress-bars/PlayerProgressBar";
 
+
 export function AppFooter() {
 
     return (
