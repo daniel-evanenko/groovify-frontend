@@ -4,8 +4,13 @@
     user-select: none;
     overflow-y: scroll;
 
+
+    .content-spacing {
+        padding-inline: 3.4375em;
+    }
+
     .station-header-bg {
-        padding: $content-padding;
+        padding: $content-padding $content-padding $content-padding 3.4375em;
         border-radius: 8px;
     }
 
@@ -94,4 +99,5 @@
     .top-bar {
         height: 64px;
     }
+
 }
