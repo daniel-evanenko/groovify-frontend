@@ -5,6 +5,7 @@ import LeftSideBar from "./cmps/left-side-bar/LeftSideBar"
 import { RightSideBar } from "./cmps/RightSideBar"
 import { StationDetails } from "./pages/StationDetails"
 import { HashRouter as Router, Route, Routes } from "react-router-dom"
+import { AudioPlayer } from "./cmps/AudioPlayer"
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
                 <RightSideBar />
                 <AppFooter />
             </section>
+            <AudioPlayer />
         </Router>
     )
 }
