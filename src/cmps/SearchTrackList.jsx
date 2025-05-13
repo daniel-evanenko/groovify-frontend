@@ -31,9 +31,7 @@ export function SearchTrackList({ tracks, onAddTrack }) {
                             )}
                         </div>
                     </div>
-                    {/* <div className="search-track-album">{track.album}</div> */}
-                    <div className="search-track-album">temp album name</div>
-
+                    <div className="search-track-album">{track.album}</div>
                     <div className="add-button-container">
                         <button className="add-btn" onClick={() => onAddTrack(track)}>
                             Add

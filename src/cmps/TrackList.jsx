@@ -81,7 +81,7 @@ export function TrackList({ station }) {
 export function TitleCmp({ track }) {
     return (
         <div className="track-title">
-            <img src={track.imgUrl[2].url} alt={track.title} />
+            <img src={track.imgUrl[0].url} alt={track.title} />
             <div className="track-info">
                 <span>{track.title}</span>
                 <a>{track.artists.map((a) => a.name).join(", ")}</a>

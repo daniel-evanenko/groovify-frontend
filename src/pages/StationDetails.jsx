@@ -102,9 +102,9 @@ export function StationDetails() {
                 </div>
             </div>
             <div className="content-spacing">
-            <ActionBar station={station}></ActionBar>
-            <TrackList station={station}></TrackList>
-            <StationTrackSearch></StationTrackSearch>
+                <ActionBar station={station}></ActionBar>
+                <TrackList station={station}></TrackList>
+                <StationTrackSearch station={station}></StationTrackSearch>
             </div>
             {isModalOpen && <StationEditModal onClose={() => setIsModalOpen(false)} onConfirm={handleConfirm} station={station} openFileUpload={true}>
             </StationEditModal>}

@@ -3,8 +3,9 @@ import { ReactSVG } from 'react-svg'
 import { debounce } from '../services/util.service'
 import { stationService } from '../services/station/station.service'
 import { SearchTrackList } from './SearchTrackList'
+import { addTrackToStation } from '../store/actions/station.actions'
 
-export function StationTrackSearch() {
+export function StationTrackSearch({ station }) {
     const [filterBy, setFilterBy] = useState(stationService.getDefaultFilter())
     const debouncedLoadTracks = useRef(debounce(loadTracks, 300)).current
     const [tracks, setTracks] = useState([])
@@ -30,8 +31,7 @@ export function StationTrackSearch() {
     }
 
     async function onAddTrack(track) {
-    console.log("🚀 ~ onAddTrack ~ track:", track)
-
+        addTrackToStation(track,station._id)
     }
     const { title } = filterBy
 

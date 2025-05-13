@@ -19,7 +19,11 @@ export function stationReducer(state = initialState, action) {
         case ADD_TRACK_TO_STATION:
             return {
                 ...state,
-                station: { ...state.station, tracks: [...state.tracks, action.track], lastUpdate: Date.now() }
+                station: {
+                    ...state.station,
+                    tracks: [...(state.station.tracks || []), action.track],
+                    lastUpdate: Date.now()
+                }
             }
 
         case REMOVE_TRACK_FROM_STATION:
