@@ -10,14 +10,16 @@ export const stationService = {
     addTrackToStation,
     removeTrackFromStation,
     getStationBySpotifyId,
-    fetchStations
+    fetchStations,
+    getDefaultFilter,
+    getTracks
 }
 
 window.cs = stationService
 
-const defaultFilter = {}
 
-async function query(filter = defaultFilter) {
+
+async function query(filter = {}) {
     return await storageService.query(STORAGE_KEY)
 }
 
@@ -107,4 +109,24 @@ async function fetchStations() {
         throw new Error(`HTTP error! Status: ${response.status}`)
     }
     return await response.json()
+}
+
+function getDefaultFilter() {
+    return { title: '' }
+}
+async function getTracks(filter = {}) {
+    try {
+        if (filter.title && filter.title.trim().length > 0) {
+            const response = await fetch("/tmp-assets/track.json")
+            const regExp = new RegExp(filter.title, 'i')
+            let tracks = await response.json()
+            tracks = tracks.filter(track => regExp.test(track.title))
+            return tracks
+        } else {
+            return []
+        }
+
+    } catch (err) {
+        console.error(err)
+    }
 }
