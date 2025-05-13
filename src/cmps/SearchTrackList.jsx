@@ -26,10 +26,16 @@ export function SearchTrackList({ tracks, onAddTrack }) {
                         />
                         <div className="search-track-info">
                             <span>{track.title}</span>
-                            {track && track.artists && Array.isArray(track.artists) && (
-                                <a>{track.artists.map((a) => a.name).join(", ")}</a>
-                            )}
+                            <div className="artist-list">
+                                {track?.artists?.map((artist, idx) => (
+                                    <a key={artist.spotifyId || idx}>
+                                        {artist.name}
+                                    </a>
+                                ))}
+                            </div>
                         </div>
+
+
                     </div>
                     <div className="search-track-album">{track.album}</div>
                     <div className="add-button-container">
