@@ -115,18 +115,20 @@ function getDefaultFilter() {
     return { title: '' }
 }
 async function getTracks(filter = {}) {
-    try {
-        if (filter.title && filter.title.trim().length > 0) {
-            const response = await fetch("/tmp-assets/track.json")
-            const regExp = new RegExp(filter.title, 'i')
-            let tracks = await response.json()
-            tracks = tracks.filter(track => regExp.test(track.title))
-            return tracks
-        } else {
-            return []
-        }
+    const title = filter.title?.trim();
 
+    if (!title) return [];
+
+    try {
+        const response = await fetch('/tmp-assets/track.json');
+        if (!response.ok) throw new Error('Failed to fetch tracks');
+
+        const tracks = await response.json();
+        const regex = new RegExp(title, 'i');
+
+        return tracks.filter(track => regex.test(track.title));
     } catch (err) {
-        console.error(err)
+        console.error('Error fetching tracks:', err);
+        return [];
     }
 }

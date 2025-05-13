@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { ReactSVG } from 'react-svg'
 import { debounce } from '../services/util.service'
 import { stationService } from '../services/station/station.service'
+import { SearchTrackList } from './SearchTrackList'
 
 export function StationTrackSearch() {
     const [filterBy, setFilterBy] = useState(stationService.getDefaultFilter())
@@ -27,6 +28,11 @@ export function StationTrackSearch() {
 
         }
     }
+
+    async function onAddTrack(track) {
+    console.log("🚀 ~ onAddTrack ~ track:", track)
+
+    }
     const { title } = filterBy
 
     return (
@@ -49,11 +55,7 @@ export function StationTrackSearch() {
                     )}
                 </div>
                 {tracks.length > 0 && (
-                    <div className="search-results">
-                        {tracks.map((track) => (
-                            <div key={track.id}>{track.name || track.title}</div>
-                        ))}
-                    </div>
+                    <SearchTrackList tracks={tracks} onAddTrack={onAddTrack}></SearchTrackList>
                 )}
                 {tracks.length === 0 && title && (
                     <div className="no-results">No results found for "{title}"</div>

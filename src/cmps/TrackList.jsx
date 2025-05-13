@@ -1,32 +1,32 @@
-import { useRef, useState } from "react";
-import { ReactSVG } from "react-svg";
-import { formatDate, formatTime } from "../services/util.service";
-import { StationDropdownOptions } from "./StationDropdownOptions";
-import { useClickOutside } from "../hooks/useClickOutside";
-import { removeTrackFromStation } from "../store/actions/station.actions";
+import { useRef, useState } from "react"
+import { ReactSVG } from "react-svg"
+import { formatDate, formatTime } from "../services/util.service"
+import { StationDropdownOptions } from "./StationDropdownOptions"
+import { useClickOutside } from "../hooks/useClickOutside"
+import { removeTrackFromStation } from "../store/actions/station.actions"
 
 export function TrackList({ station }) {
-    const [activeRowIndex, setActiveRowIndex] = useState(null);
-    const activeRow = useClickOutside(() => setActiveRowIndex(null));
+    const [activeRowIndex, setActiveRowIndex] = useState(null)
+    const activeRow = useClickOutside(() => setActiveRowIndex(null))
 
     const moreOptions = [
         { label: "Add to playlist", value: "add to playlist", icon: "icons/create-playlist.svg" },
         { label: "Add to queue", value: "add to queue", icon: "icons/add-to-queue.svg" },
         { label: "Remove from this playlist", value: "delete", icon: "icons/trash.svg" },
-    ];
+    ]
 
     function handleOptionClick(option, track) {
         switch (option) {
             case 'add to playlist':
-                break;
+                break
             case 'add to queue':
-                break;
+                break
             case 'delete':
                 removeTrackFromStation(track.id, station._id)
-                break;
+                break
 
             default:
-                break;
+                break
         }
     }
 
@@ -75,7 +75,7 @@ export function TrackList({ station }) {
                 </li>
             ))}
         </ul>
-    );
+    )
 }
 
 export function TitleCmp({ track }) {
@@ -87,5 +87,5 @@ export function TitleCmp({ track }) {
                 <a>{track.artists.map((a) => a.name).join(", ")}</a>
             </div>
         </div>
-    );
+    )
 }
