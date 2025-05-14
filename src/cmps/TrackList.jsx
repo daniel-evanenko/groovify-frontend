@@ -55,7 +55,28 @@ export function TrackList({ station }) {
                     className={`track-container ${activeRowIndex === index ? "active" : ""}`}
                 >
                     <div className="track-order">{index + 1}</div>
-                    {TitleCmp({ track })}
+                    <div className="track-title">
+                        <img
+                            src={
+                                track.imgUrl && track.imgUrl.length > 0
+                                    ? track.imgUrl[0].url
+                                    : defaultImg
+                            }
+                            alt={track.title}
+                        />
+                        <div className="track-info">
+                            <span>{track.title}</span>
+                            <div className="artist-list">
+                                {track?.artists?.map((artist, idx) => (
+                                    <a key={artist.spotifyId || idx}>
+                                        {artist.name}
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+
+
+                    </div>
                     <div className="track-album">
                         <a>{track.album}</a>
                     </div>
