@@ -1,6 +1,10 @@
 import { storageService } from '../async-storage.service.js'
-import { loadFromStorage, saveToStorage } from '../util.service.js';
+import { loadFromStorage, saveToStorage, makeId } from '../util.service.js'
+
 export const STORAGE_KEY = "stationsDB";
+export const INITIAL_STATION_NAME = "My Station #"
+export const DEFAULT_STATION_IMG_LINK = ''
+
 _createStations() // temp way to create stationsDB
 export const stationService = {
     query,
@@ -10,7 +14,8 @@ export const stationService = {
     addTrackToStation,
     removeTrackFromStation,
     getStationBySpotifyId,
-    fetchStations
+    fetchStations,
+    createNewStation
 }
 
 window.cs = stationService
@@ -98,6 +103,47 @@ async function _createStations() {
     }
     saveToStorage(STORAGE_KEY, stations)
 
+}
+
+function _findNextNewStationIndex(stationsList) {
+    const stations = stationsList || loadFromStorage(STORAGE_KEY);
+
+    const stationsWithInitialName = stations.filter(station => station?.name?.startsWith(INITIAL_STATION_NAME));
+    const initialStationNameIndexes = stationsWithInitialName.map(station => {
+        const [initialName, ...restStr] = station?.name?.split(INITIAL_STATION_NAME)
+        const restNumber = Number(restStr)
+        return Number.isNaN(restNumber) && restNumber
+    })
+
+    const initialStationNameIndexesFiltered = initialStationNameIndexes.filter(index => index)
+    const [lastIndexFromSort] = initialStationNameIndexesFiltered.sort((a, b) => b - a)
+
+    const lastIndex = lastIndexFromSort || 0;
+
+    return lastIndex + 1
+}
+
+async function createNewStation({ userFullName }) {
+    const stations = loadFromStorage(STORAGE_KEY)
+    const newStationIndex = _findNextNewStationIndex(stations)
+    
+    try {
+        const newStation = {
+            _id: makeId(),
+            spotifyId: makeId(),
+            name: `${INITIAL_STATION_NAME}${newStationIndex}`,
+            imgUrl: DEFAULT_STATION_IMG_LINK,
+            desciption: '',
+            owner: {
+                fullname: userFullName
+            },
+            tracks: []
+        }
+
+        return newStation
+    } catch (error) {
+        console.error("Error while trying to create a new station")
+    }
 }
 
 
