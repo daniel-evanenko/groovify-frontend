@@ -1,0 +1,156 @@
+.left-side-bar {
+    grid-area: left;
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    min-width: 264px;
+    background-color: $bg-base;
+    overflow: scroll;
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    
+    button {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        padding: 7px 15px;
+        margin-left: auto;
+        transition-duration: $button-transition-duration;
+
+        &:hover {
+            transition-duration: $button-transition-duration;
+        }
+    
+        &:active {
+            background-color: $bg-tinted-press;
+        }
+
+    }
+
+    > * {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .main-controlls {
+        justify-content: space-between;
+        margin: 0;
+        
+        & > * {
+            margin: 10px;
+        }
+        
+        .create-button {
+            color: $text-base;
+            font-weight: 700;
+
+            & .minimized-bar {
+                aspect-ratio: 1;
+            }
+        }
+    }
+
+    .tag-controlls {
+
+        & > * {
+            margin: 10px;
+        }
+    }
+
+    .filter-controlls {
+        justify-content: space-between;
+
+        & > * {
+            margin: 10px;
+        }
+
+        .view-control-button-section {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 0 !important;
+            cursor: pointer;
+
+            &:hover {
+                cursor: pointer;
+                transform: scale(1.04);
+                transition-duration: 50ms;
+
+                .list-button {
+                    color: $text-base;
+                    font-weight: bold;
+                }
+
+                .list-button-icon {
+                    color: $text-base;
+                }
+            }
+
+        }
+    }
+
+    .no-user-stations {
+        flex-grow: 1;
+
+        h1 {
+            margin: auto;
+            padding-bottom: 100px;
+            color: $text-base;
+        }
+    }
+
+    .library-stations {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        user-select: none;
+        overflow: scroll;
+        overflow-x: hidden;
+
+        .station-item {
+            display: grid;
+            grid-template: 1fr 1fr / 1fr 3fr;
+            grid-template-areas: 
+            "pic track-name"
+            "pic track-artist";
+            gap: 5px;
+            width: calc(100% - 10px);
+            padding: 8px 10px;
+
+            &:hover {
+                background-color: $bg-hl;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .lib-station-image {
+                grid-area: pic;
+                border-radius: 5px;
+                width: 50px;
+                margin: auto;
+            }
+
+            .lib-station-name {
+                grid-area: track-name;
+                margin-bottom: -3px;
+                color: $text-base;
+                font-size: remCalc(16px);
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .lib-station-artist {
+                grid-area: track-artist;
+                margin-top: -3px;
+                color: $text-subdued;
+                font-size: remCalc(14px);
+            }
+        }
+    }
+}
