@@ -65,12 +65,44 @@
                 }
             }
         }
+
+        .now-playing {
+            color: $green-base;
+        }
     }
 
     .track-order {
-        font-size: em(16px);
+        position: relative;
+        width: em(24px);
+        height: em(24px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-family: 'CircularSpotifyTextBold';
+
+        .track-number {
+            font-size: em(16px);
+            color: $text-subdued;
+        }
+
+        .play-btn,
+        .pause-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+
+            svg {
+                color: #fff;
+                width: 16px;
+                height: 16px;
+            }
+
+        }
+
+
     }
+
 
     .track-title {
         display: flex;
@@ -217,4 +249,6 @@
             }
         }
     }
+
+
 }

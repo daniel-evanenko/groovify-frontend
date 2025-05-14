@@ -1,12 +1,15 @@
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { ReactSVG } from "react-svg"
 import { formatDate, formatTime } from "../services/util.service"
 import { StationDropdownOptions } from "./StationDropdownOptions"
 import { useClickOutside } from "../hooks/useClickOutside"
 import { removeTrackFromStation } from "../store/actions/station.actions"
+import defaultImg from "/img/default-playlist-img.png"
 
 export function TrackList({ station }) {
     const [activeRowIndex, setActiveRowIndex] = useState(null)
+    const [hoveredRow, setHoveredRow] = useState(null)
+    const [currentlyPlayingTrackId, setCurrentlyPlayingTrackId] = useState(null)
     const activeRow = useClickOutside(() => setActiveRowIndex(null))
 
     const moreOptions = [
@@ -24,14 +27,21 @@ export function TrackList({ station }) {
             case 'delete':
                 removeTrackFromStation(track.id, station._id)
                 break
-
             default:
                 break
         }
     }
 
+    function onPlay(track) {
+        setCurrentlyPlayingTrackId(track.id)
+
+    }
+
+    function onPause(track) {
+        setCurrentlyPlayingTrackId(null)
+    }
     return (
-        <ul className={"track-list"}>
+        <ul className="track-list">
             <li className="track-header">
                 <div className="track-order">#</div>
                 <div className="track-title">Title</div>
@@ -45,68 +55,93 @@ export function TrackList({ station }) {
                     <div className="duration-btn right"></div>
                 </div>
             </li>
-            {station.tracks.map((track, index) => (
-                <li
-                    ref={activeRow}
-                    key={index}
-                    onClick={() =>
-                        setActiveRowIndex(activeRowIndex == index ? null : index)
-                    }
-                    className={`track-container ${activeRowIndex === index ? "active" : ""}`}
-                >
-                    <div className="track-order">{index + 1}</div>
-                    <div className="track-title">
-                        <img
-                            src={
-                                track.imgUrl && track.imgUrl.length > 0
-                                    ? track.imgUrl[0].url
-                                    : defaultImg
-                            }
-                            alt={track.title}
-                        />
-                        <div className="track-info">
-                            <span>{track.title}</span>
-                            <div className="artist-list">
-                                {track?.artists?.map((artist, idx) => (
-                                    <a key={artist.spotifyId || idx}>
-                                        {artist.name}
-                                    </a>
-                                ))}
+
+            {station.tracks.map((track, index) => {
+                const isActive = activeRowIndex === index
+                const isHovered = hoveredRow === index
+                const isPlaying = track.id === currentlyPlayingTrackId
+
+                return (
+                    <li
+                        ref={activeRow}
+                        key={index}
+                        onClick={() => setActiveRowIndex(isActive ? null : index)}
+                        onMouseEnter={() => setHoveredRow(index)}
+                        onMouseLeave={() => setHoveredRow(null)}
+                        className={`track-container ${isActive ? "active" : ""}`}
+                    >
+                        <div className="track-order">
+                            {!isPlaying && !isHovered && (
+                                <span className="track-number">{index + 1}</span>
+                            )}
+
+                            {!isPlaying && isHovered && (
+                                <button
+                                    className="play-btn"
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        onPlay(track)
+                                    }}
+                                >
+                                    <ReactSVG src="/icons/play.svg"></ReactSVG>
+                                </button>
+                            )}
+
+                            {isPlaying && !isHovered && (
+                                <ReactSVG className="now-playing" src="/icons/pause.svg"></ReactSVG>
+
+                            )}
+
+                            {isPlaying && isHovered && (
+                                <button
+                                    className="pause-btn"
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        onPause(track)
+                                    }}
+                                >
+                                    <ReactSVG src="/icons/pause.svg"></ReactSVG>
+
+                                </button>
+                            )}
+                        </div>
+
+                        <div className={`track-title ${isPlaying ? "now-playing" : ""}`} >
+                            <img
+                                src={track.imgUrl?.[0]?.url || defaultImg}
+                                alt={track.title}
+                            />
+                            <div className="track-info">
+                                <span>{track.title}</span>
+                                <div className="artist-list">
+                                    {track.artists?.map((artist, idx) => (
+                                        <a key={artist.spotifyId || idx}>{artist.name}</a>
+                                    ))}
+                                </div>
                             </div>
                         </div>
 
+                        <div className="track-album">
+                            <a>{track.album}</a>
+                        </div>
 
-                    </div>
-                    <div className="track-album">
-                        <a>{track.album}</a>
-                    </div>
-                    <div className="track-date-added">{formatDate(track.addedAt)}</div>
-                    <div className="track-duration">
-                        <div className="duration-btn left">
-                            <ReactSVG src="/icons/like.svg" />
+                        <div className="track-date-added">{formatDate(track.addedAt)}</div>
+
+                        <div className="track-duration">
+                            <div className="duration-btn left">
+                                <ReactSVG src="/icons/like.svg" />
+                            </div>
+                            <span className="duration-text">{formatTime(track.formalDuration)}</span>
+                            <div className="duration-btn right">
+                                <StationDropdownOptions
+                                    options={moreOptions}
+                                    onOptionClick={(option) => handleOptionClick(option, track)}
+                                />
+                            </div>
                         </div>
-                        <span className="duration-text">{formatTime(track.formalDuration)}</span>
-                        <div className="duration-btn right">
-                            <StationDropdownOptions
-                                options={moreOptions}
-                                onOptionClick={(option) => handleOptionClick(option, track)}
-                            />
-                        </div>
-                    </div>
-                </li>
-            ))}
+                    </li>
+                )
+            })}
         </ul>
-    )
-}
-
-export function TitleCmp({ track }) {
-    return (
-        <div className="track-title">
-            <img src={track.imgUrl[0].url} alt={track.title} />
-            <div className="track-info">
-                <span>{track.title}</span>
-                <a>{track.artists.map((a) => a.name).join(", ")}</a>
-            </div>
-        </div>
     )
 }
