@@ -5,7 +5,12 @@ import { debounce } from "../services/util.service";
 
 export function PlayButton() {
     const [isPlaying, setIsPlaying] = useState(false)
-    const onHandlePlayClickDebounce = useRef(debounce(handlePlayClick, 100)).current
+
+    const debouncedTogglePlay = useRef(
+        debounce(() => {
+            setIsPlaying(prev => !prev)
+        }, 500)
+    ).current
 
     useEffect(() => {
         eventBus.emit(isPlaying ? PLAY_STARTED : PLAY_PAUSED)
@@ -13,11 +18,11 @@ export function PlayButton() {
 
     function handlePlayClick(ev) {
         ev.stopPropagation()
-        setIsPlaying(prevIsPlaying => !prevIsPlaying)
+        debouncedTogglePlay()
     }
 
     return (
-        <button className="play-btn" onClick={ev => onHandlePlayClickDebounce(ev)}>
+        <button className="play-btn" onClick={ev => handlePlayClick(ev)}>
             {isPlaying ? <ReactSVG src="/icons/pause.svg" /> : <ReactSVG src="/icons/play.svg" />}
         </button>
     )
