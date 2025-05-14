@@ -79,4 +79,16 @@
             }
         }
     }
+
+    .no-results {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-size: 1.5rem;
+
+        p {
+            font-size: 14px;
+        }
+    }
 }

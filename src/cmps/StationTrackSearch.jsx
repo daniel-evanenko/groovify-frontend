@@ -31,7 +31,7 @@ export function StationTrackSearch({ station }) {
     }
 
     async function onAddTrack(track) {
-        addTrackToStation(track,station._id)
+        addTrackToStation(track, station._id)
     }
     const { title } = filterBy
 
@@ -58,7 +58,15 @@ export function StationTrackSearch({ station }) {
                     <SearchTrackList tracks={tracks} onAddTrack={onAddTrack}></SearchTrackList>
                 )}
                 {tracks.length === 0 && title && (
-                    <div className="no-results">No results found for "{title}"</div>
+                    <>
+
+                        <div className="no-results">No results found for "{title}"
+                            <p>Please make sure your words are spelled correctly, or use fewer or different keywords.</p>
+                        </div>
+
+                    </>
+
+
                 )}
             </div>
         </section>
