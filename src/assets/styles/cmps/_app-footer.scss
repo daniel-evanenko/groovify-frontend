@@ -13,6 +13,17 @@
         justify-items: center;
         align-items: center;
 
+        &.inert {
+            opacity: 0.3;
+            cursor: not-allowed;
+            user-select: none;
+
+            * {
+                pointer-events: none !important;
+                user-select: none;
+            }
+        }
+
         .player-buttons {
             display: flex;
             gap: 16px;
@@ -25,6 +36,7 @@
             @include scale-on-press(1);
             @include color-descendant-svg-on-hover($text-base);
             @include color-descendant-svg-on-press($text-subdued);
+
             svg {
                 width: 16px;
                 aspect-ratio: 1/1;

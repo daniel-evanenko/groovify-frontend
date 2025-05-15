@@ -2,6 +2,8 @@
 export const INDEX_MOUNT = "on-index-mount"
 export const PLAY_STARTED = "play-started"
 export const PLAY_PAUSED = "play-paused"
+export const VOLUME_CHANGED = "volume-changed"
+export const TRACK_PLAYBACK_READY = "track-playback-ready"
 
 
 function createEventEmitter() {

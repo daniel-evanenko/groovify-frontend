@@ -9,6 +9,7 @@
 @import "basics/layout";
 @import "basics/base";
 @import "basics/common";
+@import "basics/firefox-scrollbar.css";
 
 
 // pages
@@ -31,3 +32,4 @@
 @import "cmps/_volume-bar";
 @import "cmps/station-track-search";
 @import "cmps/_search-track-list";
+@import "cmps/left-side-bar";

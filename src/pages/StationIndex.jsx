@@ -13,14 +13,14 @@ export function StationIndex() {
 
     const fetchData = async () => {
         try {
-            const stationList = await getStationLists();
-            setAllStationsLists(stationList);
-            await loadStations();
+            const stationList = await getStationLists()
+            setAllStationsLists(stationList)
+            await loadStations()
 
         } catch (error) {
-            console.error("Error getting data", error);
+            console.error("Error getting data", error)
         } finally {
-            setLoading(false);
+            setLoading(false)
         }
     };
 
