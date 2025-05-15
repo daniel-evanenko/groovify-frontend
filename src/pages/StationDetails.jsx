@@ -9,6 +9,7 @@ import { clearStation, loadStation, saveStation } from '../store/actions/station
 import { ReactSVG } from 'react-svg';
 import { StationEditModal } from '../cmps/StationEditModal.jsx'
 import { setIsLoading } from '../store/actions/system.actions.js';
+import { StationTrackSearch } from '../cmps/StationTrackSearch.jsx';
 export function StationDetails() {
     const station = useSelector(storeState => storeState.stationModule.station)
     const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
@@ -100,8 +101,11 @@ export function StationDetails() {
                     </div>
                 </div>
             </div>
-            <ActionBar station={station}></ActionBar>
-            <TrackList station={station}></TrackList>
+            <div className="content-spacing">
+                <ActionBar station={station}></ActionBar>
+                <TrackList station={station}></TrackList>
+                <StationTrackSearch station={station}></StationTrackSearch>
+            </div>
             {isModalOpen && <StationEditModal onClose={() => setIsModalOpen(false)} onConfirm={handleConfirm} station={station} openFileUpload={true}>
             </StationEditModal>}
         </section>

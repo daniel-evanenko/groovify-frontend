@@ -1,5 +1,5 @@
 import { storageService } from '../async-storage.service.js'
-import { loadFromStorage, saveToStorage } from '../util.service.js';
+import { loadFromStorage, makeId, saveToStorage } from '../util.service.js';
 export const STORAGE_KEY = "stationsDB";
 _createStations() // temp way to create stationsDB
 export const stationService = {
@@ -10,14 +10,16 @@ export const stationService = {
     addTrackToStation,
     removeTrackFromStation,
     getStationBySpotifyId,
-    fetchStations
+    fetchStations,
+    getDefaultFilter,
+    getTracks
 }
 
 window.cs = stationService
 
-const defaultFilter = {}
 
-async function query(filter = defaultFilter) {
+
+async function query(filter = {}) {
     return await storageService.query(STORAGE_KEY)
 }
 
@@ -35,9 +37,19 @@ async function save(station) {
 }
 
 async function addTrackToStation(track, stationId) {
-    const station = await getById(stationId);
-    station.tracks.push(track)
-    return await save(station)
+    try {
+        const station = await getById(stationId)
+        const trackToAdd = {
+            ...structuredClone(track),
+            id: makeId()
+        }
+        station.tracks.push(trackToAdd)
+        await save(station)
+        return trackToAdd
+
+    } catch (error) {
+        console.error('ERROR addTrackToStation', error)
+    }
 }
 
 async function removeTrackFromStation(trackId, stationId) {
@@ -107,4 +119,26 @@ async function fetchStations() {
         throw new Error(`HTTP error! Status: ${response.status}`)
     }
     return await response.json()
+}
+
+function getDefaultFilter() {
+    return { title: '' }
+}
+async function getTracks(filter = {}) {
+    const title = filter.title?.trim()
+
+    if (!title) return []
+
+    try {
+        const response = await fetch('/tmp-assets/track.json')
+        if (!response.ok) throw new Error('Failed to fetch tracks')
+
+        const tracks = await response.json()
+        const regex = new RegExp(title, 'i')
+
+        return tracks.filter(track => regex.test(track.title)).slice(1, 10)
+    } catch (err) {
+        console.error('Error fetching tracks:', err)
+        return []
+    }
 }

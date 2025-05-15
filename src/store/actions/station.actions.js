@@ -1,12 +1,14 @@
 import { stationService } from "../../services/station/station.service.js"
+import { makeId } from "../../services/util.service.js"
 import { ADD_TRACK_TO_STATION, REMOVE_TRACK_FROM_STATION, SET_STATION, UPDATE_STATION } from "../reducers/station.reducer.js"
 import { store } from "../store.js"
 
 
 export async function addTrackToStation(track, stationId) {
+
     try {
-        const savedTrack = await stationService.addTrackToStation(track, stationId)
-        store.dispatch({ type: ADD_TRACK_TO_STATION, savedTrack })
+        const trackToAdd = await stationService.addTrackToStation(track, stationId)
+        store.dispatch({ type: ADD_TRACK_TO_STATION, track: trackToAdd })
 
     } catch (err) {
         console.log('Station actions -> Cannot add track to station', err)
