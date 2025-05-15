@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 
-export function ProgressBarVisuals({ value, max, onChange, onDragStart, onDragEnd }) {
+export function ProgressBarVisuals({ value, max, onValueChange, onDragStart, onDragEnd }) {
     const barRef = useRef(null)
     const [isDragging, setIsDragging] = useState(false)
     const [seekerVisibility, setSeekerVisibility] = useState("none")
@@ -12,7 +12,7 @@ export function ProgressBarVisuals({ value, max, onChange, onDragStart, onDragEn
             const relativeX = e.clientX - rect.left
             const clampedX = Math.max(0, Math.min(rect.width, relativeX))
             const newValue = Math.round((clampedX / rect.width) * max)
-            onChange(newValue)
+            onValueChange(newValue)
         }
 
         function handleMouseUp() {
@@ -24,7 +24,7 @@ export function ProgressBarVisuals({ value, max, onChange, onDragStart, onDragEn
         }
 
         if (isDragging) {
-            document.body.style.userSelect = "none" 
+            document.body.style.userSelect = "none"
             window.addEventListener("mousemove", handleMouseMove)
             window.addEventListener("mouseup", handleMouseUp)
         }
@@ -33,7 +33,7 @@ export function ProgressBarVisuals({ value, max, onChange, onDragStart, onDragEn
             window.removeEventListener("mousemove", handleMouseMove)
             window.removeEventListener("mouseup", handleMouseUp)
         }
-    }, [isDragging, max, onChange, onDragEnd])
+    }, [isDragging, max, onValueChange, onDragEnd])
 
     function onMouseDown(e) {
         setIsDragging(true)
@@ -44,7 +44,7 @@ export function ProgressBarVisuals({ value, max, onChange, onDragStart, onDragEn
             const relativeX = e.clientX - rect.left
             const clampedX = Math.max(0, Math.min(rect.width, relativeX))
             const newValue = Math.round((clampedX / rect.width) * max)
-            onChange(newValue)
+            onValueChange(newValue)
         }
     }
 
@@ -59,6 +59,7 @@ export function ProgressBarVisuals({ value, max, onChange, onDragStart, onDragEn
 
     const fillPercentage = (value / max) * 100
 
+    console.log(value)
     return (
         <div
             className="progress-bar-wrapper"

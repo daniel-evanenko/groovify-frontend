@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ProgressBarVisuals } from "./ProgressBarVisuals";
 import { ReactSVG } from "react-svg";
-import { eventBus, VOLUME_CHANGED } from "../../services/event-bus.service";
+import { eventBus, playerEvents } from "../../services/event-bus.service";
 
 
 export function VolumeBar({ maxVolume = 100, initialVolume = 10 }) {
@@ -10,7 +10,7 @@ export function VolumeBar({ maxVolume = 100, initialVolume = 10 }) {
 
     function volumeChanged(newVal) {
         setVolume(newVal)
-        eventBus.emit(VOLUME_CHANGED, newVal)
+        eventBus.emit(playerEvents.VOLUME_CHANGED, newVal)
     }
 
     return (

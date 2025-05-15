@@ -1,24 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ReactSVG } from "react-svg";
-import { eventBus, PLAY_PAUSED, PLAY_STARTED } from "../services/event-bus.service";
-import { debounce } from "../services/util.service";
+import { eventBus, playerEvents } from "../services/event-bus.service";
 
 export function PlayButton() {
     const [isPlaying, setIsPlaying] = useState(false)
 
-    const debouncedTogglePlay = useRef(
-        debounce(() => {
-            setIsPlaying(prev => !prev)
-        }, 500)
-    ).current
-
     useEffect(() => {
-        eventBus.emit(isPlaying ? PLAY_STARTED : PLAY_PAUSED)
+        eventBus.emit(isPlaying ? playerEvents.PLAY_STARTED : playerEvents.PLAY_PAUSED)
     }, [isPlaying])
 
     function handlePlayClick(ev) {
         ev.stopPropagation()
-        debouncedTogglePlay()
+        setIsPlaying(prevIsPlaying => !prevIsPlaying)
     }
 
     return (

@@ -3,7 +3,7 @@ import { PlayButton } from "./PlayButton";
 import { PlayerProgressBar } from "./progress-bars/PlayerProgressBar";
 import { VolumeBar } from "./progress-bars/VolumeBar";
 import { useEffect, useState } from "react";
-import { eventBus, TRACK_PLAYBACK_READY } from "../services/event-bus.service";
+import { eventBus, playerEvents } from "../services/event-bus.service";
 
 
 export function AppFooter() {
@@ -11,9 +11,14 @@ export function AppFooter() {
     const [isInert, setIsInert] = useState(true)
 
     useEffect(() => {
-        eventBus.on(TRACK_PLAYBACK_READY, onTrackPlaybackReady)
+        const trackPlaybackReadyCleanup = eventBus.on(playerEvents.TRACK_PLAYBACK_READY, onTrackPlaybackReady)
+
+        return () => {
+            trackPlaybackReadyCleanup()
+        }
+
     }, [])
-    
+
     function onTrackPlaybackReady(duration) {
         setTrackDuration(duration)
         setIsInert(false)
@@ -29,12 +34,11 @@ export function AppFooter() {
 
                     <PlayButton className={`player-controls-btn`} />
 
-
                     <button className=" player-controls-btn">
                         <ReactSVG src="/icons/next.svg" />
                     </button>
                 </div>
-                <PlayerProgressBar max={trackDuration} />
+                <PlayerProgressBar trackDuration={trackDuration} />
             </div>
             <VolumeBar />
 
