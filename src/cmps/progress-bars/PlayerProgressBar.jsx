@@ -1,50 +1,40 @@
-import { useEffect, useState } from "react"
-import { useProgress } from "../../hooks/useProgress"
+import { useEffect, useRef, useState } from "react"
 import { ProgressBarVisuals } from "./ProgressBarVisuals"
-import { eventBus, PLAY_PAUSED, PLAY_STARTED } from "../../services/event-bus.service"
+import { eventBus, playerEvents } from "../../services/event-bus.service"
 
-export function PlayerProgressBar({ max }) {
-    const { isReady, isRunning, currentVal, set, start, stop, setEndingVal } = useProgress({ startVal: 0 })
-    const [wasRunningBeforeDrag, setWasRunningBeforeDrag] = useState(false)
-
-    useEffect(() => {
-        if (max > 0) setEndingVal(max)
-    }, [max])
+export function PlayerProgressBar({ trackDuration }) {
+    const [curTrackPos, setCurTrackPos] = useState(0)
+    const trackDurationRef = useRef(trackDuration)
 
     useEffect(() => {
-        if (!isReady) return 
-
-        const playStartedCleanup = eventBus.on(PLAY_STARTED, () => start())
-        const playPausedCleanup = eventBus.on(PLAY_PAUSED, () => stop())
+        const trackPorgressCleanup = eventBus.on(playerEvents.TRACK_PROGRESS, onTrackPosChange)
 
         return () => {
-            playStartedCleanup()
-            playPausedCleanup()
+            trackPorgressCleanup()
         }
-    }, [isReady])
+    }, [])
 
-    function handleDragStart() {
-        if (isRunning) {
-            setWasRunningBeforeDrag(true)
-            stop()
-        }
+    useEffect(() => {
+        trackDurationRef.current = trackDuration
+    }, [trackDuration])
+
+    function onTrackSeek(newPos) {
+        eventBus.emit(playerEvents.SEEK, newPos)
+        onTrackPosChange(newPos)
     }
 
-    function handleDragEnd() {
-        if (wasRunningBeforeDrag) {
-            setWasRunningBeforeDrag(false)
-            start()
-        }
+    function onTrackPosChange(newPos) {
+        const duration = trackDurationRef.current
+        const clampedTrackPos = Math.min(Math.max(newPos, 0), duration)
+        setCurTrackPos(clampedTrackPos)
     }
 
     return (
         <div>
             <ProgressBarVisuals
-                value={currentVal}
-                max={max || 1}
-                onChange={set}
-                onDragStart={handleDragStart}
-                onDragEnd={handleDragEnd}
+                value={curTrackPos}
+                max={trackDuration}
+                onValueChange={onTrackSeek}
             />
         </div>
     )

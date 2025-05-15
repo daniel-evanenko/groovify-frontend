@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player/youtube";
-import { eventBus, PLAY_PAUSED, PLAY_STARTED, TRACK_PLAYBACK_READY, VOLUME_CHANGED } from "../services/event-bus.service";
+import { eventBus, playerEvents } from "../services/event-bus.service";
 
 export function AudioPlayer() {
     const reactPlayer = useRef(null)
@@ -8,28 +8,37 @@ export function AudioPlayer() {
     const [volume, setVolume] = useState(0.1)
 
     useEffect(() => {
-        const playStartedCleanup = eventBus.on(PLAY_STARTED, () => {
+        const playStartedCleanup = eventBus.on(playerEvents.PLAY_STARTED, () => {
             setPlaying(true)
         })
 
-        const playPausedCleanup = eventBus.on(PLAY_PAUSED, () => {
+        const playPausedCleanup = eventBus.on(playerEvents.PLAY_PAUSED, () => {
             setPlaying(false)
         })
 
-        const volumeChangedCleanup = eventBus.on(VOLUME_CHANGED, (newVolume) => {
+        const volumeChangedCleanup = eventBus.on(playerEvents.VOLUME_CHANGED, newVolume => {
             setVolume(newVolume / 100)
+        })
+
+        const seekCleanup = eventBus.on(playerEvents.SEEK, newPos => {
+            reactPlayer.current.seekTo(newPos)
         })
 
         return () => {
             playStartedCleanup()
             playPausedCleanup()
             volumeChangedCleanup()
+            seekCleanup()
         }
     }, [])
 
     function onPlayerReady() {
         const trackDuration = reactPlayer.current.getDuration()
-        eventBus.emit(TRACK_PLAYBACK_READY, trackDuration)
+        eventBus.emit(playerEvents.TRACK_PLAYBACK_READY, trackDuration)
+    }
+
+    function onPlayerProgress(progress) {
+        eventBus.emit(playerEvents.TRACK_PROGRESS, progress.playedSeconds)
     }
 
     return (
@@ -40,6 +49,7 @@ export function AudioPlayer() {
             volume={volume}
             style={{ display: "none" }}
             onReady={onPlayerReady}
+            onProgress={onPlayerProgress}
         />
     )
 }
