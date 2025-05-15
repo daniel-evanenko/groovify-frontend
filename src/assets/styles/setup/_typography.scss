@@ -11,3 +11,17 @@
     font-weight: 700;
     font-style: bold;
 }
+
+@font-face {
+    font-family: "SpotifyMixUI";
+    src: url("/fonts/SpotifyMixUI.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SpotifyMixUI";
+    src: url("/fonts/SpotifyMixUIBold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
