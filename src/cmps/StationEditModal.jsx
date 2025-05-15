@@ -71,7 +71,14 @@ export function StationEditModal({ onClose, onConfirm, station, openFileUpload =
                     </button>
                 </div>
                 <div className='inner-modal'>
-                    <img className="album-image" src={imgUrl} onClick={handleUploadButtonClick} alt="station" />
+                    <div className="album-image" onClick={handleUploadButtonClick}>
+                        <img src={imgUrl} alt="station" />
+                        <div className="overlay">
+                            <ReactSVG src='/icons/Pencil.svg' />
+                            <p>Choose photo</p>
+                        </div>
+                    </div>
+
                     <input
                         type="file"
                         ref={fileInputRef}

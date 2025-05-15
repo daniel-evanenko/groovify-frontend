@@ -76,15 +76,11 @@ export function TrackList({ station }) {
                             )}
 
                             {!isPlaying && isHovered && (
-                                <button
-                                    className="play-btn"
-                                    onClick={(e) => {
-                                        e.stopPropagation()
-                                        onPlay(track)
-                                    }}
-                                >
-                                    <ReactSVG src="/icons/play.svg"></ReactSVG>
-                                </button>
+                                <ReactSVG onClick={(e) => {
+                                    e.stopPropagation()
+                                    onPlay(track)
+                                }}
+                                    src="/icons/play.svg"></ReactSVG>
                             )}
 
                             {isPlaying && !isHovered && (
@@ -93,16 +89,10 @@ export function TrackList({ station }) {
                             )}
 
                             {isPlaying && isHovered && (
-                                <button
-                                    className="pause-btn"
-                                    onClick={(e) => {
-                                        e.stopPropagation()
-                                        onPause(track)
-                                    }}
-                                >
-                                    <ReactSVG src="/icons/pause.svg"></ReactSVG>
-
-                                </button>
+                                <ReactSVG onClick={(e) => {
+                                    e.stopPropagation()
+                                    onPause(track)
+                                }} src="/icons/pause.svg"></ReactSVG>
                             )}
                         </div>
 
@@ -128,11 +118,11 @@ export function TrackList({ station }) {
                         <div className="track-date-added">{formatDate(track.addedAt)}</div>
 
                         <div className="track-duration">
-                            <div className="duration-btn left">
+                            <div className="duration-btn">
                                 <ReactSVG src="/icons/like.svg" />
                             </div>
                             <span className="duration-text">{formatTime(track.formalDuration)}</span>
-                            <div className="duration-btn right">
+                            <div className="duration-btn">
                                 <StationDropdownOptions
                                     options={moreOptions}
                                     onOptionClick={(option) => handleOptionClick(option, track)}
