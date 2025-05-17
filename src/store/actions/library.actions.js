@@ -1,17 +1,7 @@
 import { stationService } from "../../services/station/station.service.js"
-import { ADD_STATION_ACTIVATE, REMOVE_STATION, SET_ACTIVE_STATION_ID, SET_STATIONS } from "../reducers/library.reducer.js"
+import { ADD_STATION_ACTIVATE, REMOVE_STATION, SET_ACTIVE_STATION_ID, SET_STATIONS, SET_TRACKS } from "../reducers/library.reducer.js"
 import { store } from "../store.js"
-export async function loadStations() {
-    try {
-        const stations = await stationService.fetchStations()
-        store.dispatch({ type: SET_STATIONS, stations })
 
-    } catch (err) {
-        console.error('library actions -> Cannot load stations', err)
-        throw err;
-    }
-
-}
 
 export async function addStation(station) {
     try {
@@ -43,4 +33,33 @@ export async function setActiveStation(stationId) {
         console.log('library actions -> Cannot set active station', err)
         throw err
     }
+}
+
+
+
+export async function fetchLikedContent(user) {
+    try {
+        const [likedTracks, likedStations] = await Promise.all([
+            stationService.getTracksById(user.likedTrackIds),
+            stationService.getStationsById(user.likedStationIds)
+        ])
+        store.dispatch({ type: SET_TRACKS, likedTracks })
+        store.dispatch({ type: SET_STATIONS, stations: likedStations })
+    } catch (error) {
+        console.error('Failed to fetch liked content', err)
+
+    }
+
+}
+
+
+export async function clearLikedContent() {
+    try {
+        store.dispatch({ type: SET_TRACKS, likedTracks: [] })
+        store.dispatch({ type: SET_STATIONS, stations: [] })
+    } catch (error) {
+        console.error('Failed to clear liked content', err)
+
+    }
+
 }

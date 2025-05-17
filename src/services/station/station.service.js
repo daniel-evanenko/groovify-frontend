@@ -10,9 +10,10 @@ export const stationService = {
     addTrackToStation,
     removeTrackFromStation,
     getStationBySpotifyId,
-    fetchStations,
     getDefaultFilter,
-    getTracks
+    getTracks,
+    getTracksById,
+    getStationsById
 }
 
 window.cs = stationService
@@ -112,15 +113,6 @@ async function _createStations() {
 
 }
 
-
-async function fetchStations() {
-    const response = await fetch("/tmp-assets/stations.json")
-    if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`)
-    }
-    return await response.json()
-}
-
 function getDefaultFilter() {
     return { title: '' }
 }
@@ -140,5 +132,30 @@ async function getTracks(filter = {}) {
     } catch (err) {
         console.error('Error fetching tracks:', err)
         return []
+    }
+}
+
+async function getTracksById(likedTrackIds = []) {
+    try {
+        const response = await fetch('/tmp-assets/track.json')
+        if (!response.ok) throw new Error('Failed to fetch tracks')
+
+        const allTracks = await response.json()
+        return allTracks.filter(track => likedTrackIds.includes(track._id))
+    } catch (error) {
+        console.error('Error fetching liked tracks:', err)
+    }
+}
+
+async function getStationsById(likedPlaylistIds = []) {
+    try {
+        const response = await fetch("/tmp-assets/filtered-stations.json")
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`)
+        }
+        const allStations = await response.json()
+        return allStations.filter(station => likedPlaylistIds.includes(station._id))
+    } catch (error) {
+        console.error('Error fetching liked stations:', err)
     }
 }
