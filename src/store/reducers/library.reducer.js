@@ -21,7 +21,7 @@ export function libraryReducer(state = initialState, action) {
             return {
                     ...state,
                     stations: [action.savedStation, ...state.stations],
-                    activeStationId: action.savedStation._id
+                    activeStationId: action.savedStation.spotifyId
                 }
 
         case REMOVE_STATION:
@@ -34,8 +34,7 @@ export function libraryReducer(state = initialState, action) {
             }
 
         case SET_ACTIVE_STATION_ID:
-            return { ...state, activeStationId: action.activeStationId }
-
+            return { ...state, activeStationId: action.stationId }
 
         default:
             return state

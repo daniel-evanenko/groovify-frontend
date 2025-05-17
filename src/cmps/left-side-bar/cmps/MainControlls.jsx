@@ -2,6 +2,7 @@ import { useState } from 'react';
 import CreatePlaylistIcon from '../../../../public/icons/create-playlist.svg?react';
 import { createNewStation } from '../../../services/station/station.service'
 import { useNavigate } from 'react-router-dom';
+import { store } from '../../../store/store';
 
 const CREATE_PLAYLIST_ICON = 'create-playlist-icon';
 const CLICKED = 'button-clicked-options';
@@ -16,7 +17,7 @@ const MainControlls = () => {
 
     const handleClick = async () => {
         const newStationId = await createNewStation({userFullName: 'David Gelbard'})
-        navigate(`station/${newStationId}`)   
+        navigate(`station/${newStationId}`)
     }
 
     return (

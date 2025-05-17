@@ -15,7 +15,7 @@ const StationItem = ({ station }) => {
     }
     return (
         <div onClick={handleClick} className="station-item">
-            <img className="lib-station-image" src={imgUrl || "../../../public/no-station-image.jpg"}></img>
+            <img className="lib-station-image" src={imgUrl || "../../../public/img/default-playlist-img.png"}></img>
             <p className="lib-station-name">{name}</p>
             <p className="lib-station-artist">
                 <span>{isAlbum ? ALBUM : STATION}</span>

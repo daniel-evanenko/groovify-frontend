@@ -76,7 +76,7 @@ function findNextStationId() {
 }
 
 export async function createNewStation({ userFullName }) {
-    const imgUrl = '';
+    const imgUrl = '/public/img/default-playlist-img.png';
     const nextStationId = findNextStationId() || '1';
     const stationName = `${INITIAL_STATION_PREFIX}${nextStationId}`;
     
