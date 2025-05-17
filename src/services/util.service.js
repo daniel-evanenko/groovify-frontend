@@ -29,15 +29,6 @@ export function loadFromStorage(key) {
     return (data) ? JSON.parse(data) : undefined
 }
 
-export async function readLocalFile(filePath) {
-    const content = await fs.readFile(filePath, "utf8")
-    return content
-}
-
-export async function writeLocalFile(filePath, data) {
-    await fs.writeFile(filePath, JSON.stringify(data), "utf8")
-}
-
 export function makeLorem(size = 100) {
     var words = ['The sky', 'above', 'the port', 'was', 'the color of television', 'tuned', 'to', 'a dead channel', '.', 'All', 'this happened', 'more or less', '.', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', '.', 'It', 'was', 'a pleasure', 'to', 'burn']
     var txt = ''

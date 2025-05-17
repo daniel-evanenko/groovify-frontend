@@ -1,26 +1,19 @@
 import axios from "axios"
 import qs from "qs"
-import dotenv from "dotenv"
-import path from "path"
-import { fileURLToPath } from "url"
-import { readLocalFile, writeLocalFile } from "../util.service.js"
+import { loadFromStorage, saveToStorage } from "../util.service"
 
-dotenv.config()
 
+const STORAGE_KEY = "access-token"
 const creds = qs.stringify({
     grant_type: "client_credentials",
-    client_id: process.env.SPOTIFY_CLIENT_ID,
-    client_secret: process.env.SPOTIFY_CLIENT_SECRET
+    client_id: import.meta.env.VITE_SPOTIFY_CLIENT_ID,
+    client_secret: import.meta.env.VITE_SPOTIFY_CLIENT_SECRET
 })
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-const tokenPath = path.join(__dirname, "access-token.json")
-
 
 export async function getSpotifyToken() {
     try {
-        const content = await readLocalFile(tokenPath)
+        const content = loadFromStorage(STORAGE_KEY)
+
         const { access_token, expires_at } = JSON.parse(content)
 
         if (Date.now() < expires_at) {
@@ -34,7 +27,8 @@ export async function getSpotifyToken() {
     const access_token = tokenData.access_token
     const expires_at = Date.now() + tokenData.expires_in * 1000 - 60000
 
-    await writeLocalFile(tokenPath, { access_token, expires_at })
+    saveToStorage(STORAGE_KEY, { access_token, expires_at })
+
     return access_token
 }
 
