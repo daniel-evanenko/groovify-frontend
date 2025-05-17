@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { ALBUM, STATION, GROOVIFY } from "../../../utils/constants"
 import { setActiveStation } from "../../../store/actions/library.actions";
 import { store } from "../../../store/store";
+import { libraryReducer } from "../../../store/reducers/library.reducer";
 
 const StationItem = ({ station }) => {
     const navigate = useNavigate()
@@ -18,13 +19,13 @@ const StationItem = ({ station }) => {
 
     const setActiveStationClass = () => {
         const activeStationId = store.getState().libraryModule.activeStationId
-        // console.log('activeStationId', activeStationId)
-        // console.log('id', id)
-        return activeStationId === _id ? 'active-station' : ''
+        console.log('activeStationId', activeStationId)
+        console.log('spotifyId', spotifyId)
+        return activeStationId === spotifyId ? 'active-station' : ''
     }
 
     return (
-        <div onClick={handleClick} className="station-item">
+        <div onClick={handleClick} className={`station-item ${setActiveStationClass()}`}>
             <img className="lib-station-image" src={imgUrl || "../../../public/img/default-playlist-img.png"}></img>
             <p className="lib-station-name">{name}</p>
             <p className="lib-station-artist">
