@@ -82,8 +82,8 @@ function findNextStationId() {
     if (newStationNumber.length) return Math.max(...newStationNumber) + 1
 }
 
-export async function createNewStation() {
-    const user = store.getState()?.userModule?.user
+export async function createNewStation({ userFullName }) {
+    const imgUrl = '/public/img/default-playlist-img.png';
     const nextStationId = findNextStationId() || '1';
     const stationName = `${INITIAL_STATION_PREFIX}${nextStationId}`;
 
