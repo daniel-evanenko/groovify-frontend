@@ -1,4 +1,6 @@
 import ms from "ms"
+import fs from "fs/promises"
+
 export function makeId(length = 6) {
     var txt = ''
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -17,6 +19,7 @@ export function debounce(func, timeout = 300) {
         timer = setTimeout(() => { func.apply(this, args) }, timeout)
     }
 }
+
 export function saveToStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value))
 }
@@ -25,6 +28,16 @@ export function loadFromStorage(key) {
     const data = localStorage.getItem(key)
     return (data) ? JSON.parse(data) : undefined
 }
+
+export async function readLocalFile(filePath) {
+    const content = await fs.readFile(filePath, "utf8")
+    return content
+}
+
+export async function writeLocalFile(filePath, data) {
+    await fs.writeFile(filePath, JSON.stringify(data), "utf8")
+}
+
 export function makeLorem(size = 100) {
     var words = ['The sky', 'above', 'the port', 'was', 'the color of television', 'tuned', 'to', 'a dead channel', '.', 'All', 'this happened', 'more or less', '.', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', '.', 'It', 'was', 'a pleasure', 'to', 'burn']
     var txt = ''
@@ -40,6 +53,7 @@ export function getRandomIntInclusive(min, max) {
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min + 1)) + min //The maximum is inclusive and the minimum is inclusive 
 }
+
 export function randomColor() {
     return `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255
         })`;
@@ -66,8 +80,6 @@ export function formatDate(date) {
         return ms(Date.now() - date, { long: true }).split(" ")[0] + " days ago";
     }
 }
-
-
 
 export function formatTime(time) {
     //if bigger time/60 is bigger then 250 minutes it means that the time come in ms and not in seconds
