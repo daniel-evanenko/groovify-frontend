@@ -26,13 +26,29 @@
         width: 100%;
         height: 100%;
 
-        .home-btn {
-            height: 100%;
-            transition: transform 0.1s ease-in-out;
-            will-change: transform;
-
+        .nav-btn {
             @include scale-on-hover(1.05);
             @include scale-on-press(1);
+
+            &.pressed {
+                color: $text-base;
+            }
+
+            &:hover {
+                color: $text-base;
+            }
+
+            &:active {
+                color: $text-subdued;
+            }
+
+            svg {
+                width: 24px;
+            }
+        }
+
+        .home-btn {
+            height: 100%;
         }
 
         .search-options {
@@ -55,6 +71,7 @@
                     background-color: $bg-elevated-hl;
 
                     svg {
+                        width: 24px;
                         color: $text-base;
                     }
                 }
@@ -88,6 +105,7 @@
                 padding-block-start: 2px;
 
                 svg {
+                    width: 24px;
                     color: $text-subdued;
                     transition: color 0.3s;
                 }
@@ -110,21 +128,19 @@
                     outline: none;
                 }
             }
+            
+            .vert-bar {
+                width: 1px;
+                height: 60%;
+                background-color: $text-subdued;
+            }
 
             .browse-btn {
                 margin-inline-end: 12px;
                 margin-block-start: 2px;
                 padding-inline: 0;
-
-                &::before {
-                    content: "";
-                    display: inline-block;
-                    background-color: $text-subdued;
-                    width: 1px;
-                    height: 60%;
-                    margin-inline-end: 12px;
-                }
             }
+
         }
     }
 

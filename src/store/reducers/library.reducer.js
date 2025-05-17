@@ -19,10 +19,10 @@ export function libraryReducer(state = initialState, action) {
 
         case ADD_STATION_ACTIVATE:
             return {
-                ...state,
-                stations: [...state.stations, action.station],
-                activeStationId: action.station._id
-            }
+                    ...state,
+                    stations: [action.savedStation, ...state.stations],
+                    activeStationId: action.savedStation.spotifyId
+                }
 
         case REMOVE_STATION:
             const { stations } = state
@@ -34,8 +34,7 @@ export function libraryReducer(state = initialState, action) {
             }
 
         case SET_ACTIVE_STATION_ID:
-            return { ...state, activeStationId: action.activeStationId }
-
+            return { ...state, activeStationId: action.stationId }
 
         default:
             return state

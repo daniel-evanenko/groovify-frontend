@@ -10,26 +10,25 @@ const creds = qs.stringify({
     client_secret: import.meta.env.VITE_SPOTIFY_CLIENT_SECRET
 })
 
-
-
 export async function getSpotifyToken() {
     try {
         const content = loadFromStorage(STORAGE_KEY)
+
         const { access_token, expires_at } = JSON.parse(content)
 
         if (Date.now() < expires_at) {
             return access_token
         }
     } catch {
-        console.log("couldnt load from storage")
+
     }
 
     const tokenData = await requestAccessToken()
     const access_token = tokenData.access_token
     const expires_at = Date.now() + tokenData.expires_in * 1000 - 60000
 
-    console.log("saving to storage")
     saveToStorage(STORAGE_KEY, { access_token, expires_at })
+
     return access_token
 }
 

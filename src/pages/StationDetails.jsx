@@ -10,6 +10,7 @@ import { ReactSVG } from 'react-svg';
 import { StationEditModal } from '../cmps/StationEditModal.jsx'
 import { setIsLoading } from '../store/actions/system.actions.js';
 import { StationTrackSearch } from '../cmps/StationTrackSearch.jsx';
+
 export function StationDetails() {
     const station = useSelector(storeState => storeState.stationModule.station)
     const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
@@ -96,7 +97,7 @@ export function StationDetails() {
                         <div className="station-info">
                             <span>{station.owner.fullname}</span>
                             <span>•</span>
-                            <span>{station.tracks.length} songs</span>
+                            <span>{station.tracks?.length ? `${station.tracks?.length} songs` : "" }</span>
                         </div>
                     </div>
                 </div>
