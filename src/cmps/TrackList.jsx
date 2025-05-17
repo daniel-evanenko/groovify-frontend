@@ -56,7 +56,7 @@ export function TrackList({ station }) {
                 </div>
             </li>
 
-            {station.tracks.map((track, index) => {
+            {station.tracks?.map((track, index) => {
                 const isActive = activeRowIndex === index
                 const isHovered = hoveredRow === index
                 const isPlaying = track.id === currentlyPlayingTrackId

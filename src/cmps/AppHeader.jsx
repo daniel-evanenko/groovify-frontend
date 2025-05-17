@@ -16,7 +16,6 @@ export function AppHeader() {
     const stationId = match ? match[1] : null;
 
     useEffect(() => {
-        console.log("stationId:", stationId)
         if (stationId !== null) {
             setFillHome(false)
             setFillBrowse(false)
