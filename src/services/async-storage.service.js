@@ -22,7 +22,6 @@ function get(entityType, entityId) {
 }
 
 function post(entityType, newEntity) {
-    console.log('post')
     newEntity._id = makeId()
     newEntity.spotifyId = makeId()
     return query(entityType).then(entities => {
