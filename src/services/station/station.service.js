@@ -6,6 +6,7 @@ import { store } from '../../store/store.js';
 export const STORAGE_KEY = "stationsDB";
 export const INITIAL_STATION_PREFIX = "My Station #";
 export const INITIAL_STATION_PREFIX_REGEX = /[a-zA-Z #]/g;
+export const DEFAULT_IMAGE_URL = '/public/img/default-playlist-img.png';
 
 _createStations() // temp way to create stationsDB
 
@@ -76,7 +77,7 @@ function findNextStationId() {
 }
 
 export async function createNewStation({ userFullName }) {
-    const imgUrl = '/public/img/default-playlist-img.png';
+    const imgUrl = DEFAULT_IMAGE_URL;
     const nextStationId = findNextStationId() || '1';
     const stationName = `${INITIAL_STATION_PREFIX}${nextStationId}`;
     

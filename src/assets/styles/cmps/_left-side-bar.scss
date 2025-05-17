@@ -128,6 +128,12 @@
                 cursor: pointer;
             }
 
+            &.active-station {
+                background-color: $bg-tinted-press;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
             .lib-station-image {
                 grid-area: pic;
                 border-radius: 5px;
