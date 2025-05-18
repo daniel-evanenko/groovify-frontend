@@ -10,8 +10,8 @@ export async function getCategories() {
         if (categories && categories.length > 0) return categories
 
         const accessToken = await getSpotifyToken()
-        
-        const response = await axios.get("https://api.spotify.com/v1/browse/categories", {
+
+        const response = await axios.get("https://api.spotify.com/v1/browse/categories?limit=50&offset=0", {
             headers: {
                 Authorization: `Bearer ${accessToken}`
             }

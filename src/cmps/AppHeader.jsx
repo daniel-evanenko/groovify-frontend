@@ -26,7 +26,7 @@ export function AppHeader() {
 
     useEffect(() => {
         const indexMountCleanup = eventBus.on(INDEX_MOUNT, onIndexMount)
-        
+
         return indexMountCleanup()
     }, [])
 
@@ -53,6 +53,7 @@ export function AppHeader() {
     function onBrowseClicked() {
         setFillBrowse(true)
         setFillHome(false)
+        navigate("/search")
     }
 
     function onIndexMount() {
