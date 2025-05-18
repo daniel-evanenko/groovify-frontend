@@ -149,13 +149,23 @@ async function _createStations() {
 }
 
 
+// async function fetchStations() {
+//     const response = await fetch("/tmp-assets/stations.json")
+//     if (!response.ok) {
+//         throw new Error(`HTTP error! Status: ${response.status}`)
+//     }
+//     return await response.json()
+// }
+
 async function fetchStations() {
-    const response = await fetch("/tmp-assets/stations.json")
+    const response = await fetch("/tmp-assets/flattened-stations.json")
     if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`)
     }
+    
     return await response.json()
 }
+
 
 function getDefaultFilter() {
     return { title: '' }

@@ -7,8 +7,13 @@ import { RightSideBar } from "./cmps/RightSideBar"
 import { StationDetails } from "./pages/StationDetails"
 import { AudioPlayer } from "./cmps/AudioPlayer"
 import { CategoriesPage } from "./pages/CategoriesPage"
+import { useEffect } from "react"
+import { loadStations } from "./store/actions/library.actions"
 
 function App() {
+    useEffect(() => {
+        loadStations()
+    }, [])
 
     return (
         <Router>
@@ -29,3 +34,4 @@ function App() {
 }
 
 export default App
+
