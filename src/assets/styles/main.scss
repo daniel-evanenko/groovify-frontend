@@ -15,6 +15,7 @@
 // pages
 @import "pages/app";
 @import "pages/_station-index";
+@import "pages/_categories-page";
 
 // Components
 @import "cmps/_station_list";
@@ -34,3 +35,5 @@
 @import "cmps/_search-track-list";
 @import "cmps/left-side-bar";
 @import "cmps/_player_progress_bar";
+@import "cmps/category-list";
+@import "cmps/_category-preview";

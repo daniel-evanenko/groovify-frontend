@@ -1,0 +1,33 @@
+.category-preview {
+    position: relative;
+    background-color: darkslateblue;
+    aspect-ratio: 2/1;
+    border-radius: 8px;
+    overflow: hidden;
+
+    >span {
+        position: absolute;
+        margin: 16px 16px 0;
+
+        font-family: sans-serif;
+        font-size: 24px;
+        font-weight: bolder;
+        color: $text-base;
+
+        user-select: none;
+    }
+
+    >img {
+        width: 45%;
+        aspect-ratio: 1;
+
+        position: absolute;
+        top: 25%;
+        right: 0;
+        transform: translate(18%, 2%) rotate(25deg);
+        box-shadow: 1px 2px 2px addTransparency(black, 0.3);
+
+        border-radius: 4px;
+    }
+
+}

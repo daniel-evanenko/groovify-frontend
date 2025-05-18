@@ -56,6 +56,7 @@
             position: relative;
             align-items: center;
             max-width: 475px;
+            padding: 2px 2px 0 2px;
             flex-grow: 1;
             flex-shrink: 1;
             background-color: $bg-elevated-base;
@@ -128,7 +129,7 @@
                     outline: none;
                 }
             }
-            
+
             .vert-bar {
                 width: 1px;
                 height: 60%;
@@ -136,9 +137,8 @@
             }
 
             .browse-btn {
-                margin-inline-end: 12px;
+                margin-inline-end: 8px;
                 margin-block-start: 2px;
-                padding-inline: 0;
             }
 
         }
