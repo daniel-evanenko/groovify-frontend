@@ -1,13 +1,12 @@
 import { CategoryPreview } from "./CategoryPreview";
-import { ResizableItemsList } from "./ResizableItemsList";
 
 export function CategoryList({ categories }) {
 
     return (
-        <ResizableItemsList className="category-list" items={categories} minItemWidth={250} minItemCount={2}>
-            {(category, idx) => (
+        <section className="category-list">
+            {categories.map(category =>
                 <CategoryPreview key={category.id} category={category} />
             )}
-        </ResizableItemsList>
+        </section>
     )
 }
