@@ -1,7 +1,15 @@
 import { storageService } from '../async-storage.service.js'
 import { loadFromStorage, makeId, saveToStorage } from '../util.service.js';
+import { addStation } from '../../store/actions/library.actions.js';
+import { store } from '../../store/store.js';
+
 export const STORAGE_KEY = "stationsDB";
+export const INITIAL_STATION_PREFIX = "My Station #";
+export const INITIAL_STATION_PREFIX_REGEX = /[a-zA-Z #]/g;
+export const DEFAULT_IMAGE_URL = '/public/img/default-playlist-img.png';
+
 _createStations() // temp way to create stationsDB
+
 export const stationService = {
     query,
     getById,
@@ -12,6 +20,7 @@ export const stationService = {
     getStationBySpotifyId,
     getDefaultFilter,
     getTracks,
+    createNewStation,
     getTracksById,
     getStationsById
 }
@@ -58,6 +67,33 @@ async function removeTrackFromStation(trackId, stationId) {
     const filteredTracks = station.tracks.filter(track => track.id !== trackId)
     station.tracks = filteredTracks;
     return await save(station)
+}
+
+function findNextStationId() {
+    const allStations = store.getState()?.libraryModule?.stations
+    const allStationsNames = allStations.map(station => station.name)
+    const nonRenamedNewStations = allStationsNames.filter(stationName => stationName.startsWith(INITIAL_STATION_PREFIX));
+    const newStationNumber = nonRenamedNewStations.map(stationName => parseInt(stationName.replace(INITIAL_STATION_PREFIX_REGEX, '')))
+    if (newStationNumber.length) return Math.max(...newStationNumber) + 1
+}
+
+export async function createNewStation({ userFullName }) {
+    const imgUrl = DEFAULT_IMAGE_URL;
+    const nextStationId = findNextStationId() || '1';
+    const stationName = `${INITIAL_STATION_PREFIX}${nextStationId}`;
+
+    const newStation = {
+        name: stationName,
+        imgUrl,
+        description: "",
+        category: "",
+        categoryId: "",
+        owner: {
+            fullname: userFullName
+        }
+    }
+
+    return await addStation(newStation);
 }
 
 export async function getStationLists() {

@@ -1,0 +1,8 @@
+.category-list {
+
+    >.item-previews {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax($category-width, 1fr));
+        gap: 24px;
+    }
+}

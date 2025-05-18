@@ -1,11 +1,12 @@
+import { HashRouter as Router, Route, Routes } from "react-router-dom"
 import { StationIndex } from "./pages/StationIndex"
 import { AppHeader } from "./cmps/AppHeader"
 import { AppFooter } from "./cmps/AppFooter"
 import LeftSideBar from "./cmps/left-side-bar/LeftSideBar"
 import { RightSideBar } from "./cmps/RightSideBar"
 import { StationDetails } from "./pages/StationDetails"
-import { HashRouter as Router, Route, Routes } from "react-router-dom"
 import { AudioPlayer } from "./cmps/AudioPlayer"
+import { CategoriesPage } from "./pages/CategoriesPage"
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
                 <Routes>
                     <Route element={<StationIndex />} path="/" />
                     <Route element={<StationDetails />} path="/station/:stationId" />
+                    <Route element={<CategoriesPage />} path="/search" />
                 </Routes>
                 <RightSideBar />
                 <AppFooter />
