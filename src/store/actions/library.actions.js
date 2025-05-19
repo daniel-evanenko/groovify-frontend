@@ -1,10 +1,14 @@
+import { getStations } from "../../services/spotify/spotify-api.service.js"
 import { stationService } from "../../services/station/station.service.js"
 import { ADD_STATION_ACTIVATE, REMOVE_STATION, SET_ACTIVE_STATION_ID, SET_STATIONS } from "../reducers/library.reducer.js"
 import { store } from "../store.js"
 
 export async function loadStations() {
+    const queries = ["Top Lists", "Featured Playlists", "Summer", "Workout", "Mood", "Trending",
+        "Travel", "Tastemakers", "Decades", "Pop", "Classical", "Gaming"]
+        
     try {
-        const stations = await stationService.fetchStations()
+        const stations = await getStations(queries)
         store.dispatch({ type: SET_STATIONS, stations })
 
     } catch (err) {
