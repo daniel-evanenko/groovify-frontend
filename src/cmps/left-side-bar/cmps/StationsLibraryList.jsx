@@ -5,7 +5,6 @@ import StationItem from "./StationItem"
 const StationsLibraryList = memo(() => {
 
     const stations = useSelector(state => state.libraryModule.stations)
-
     return (
         <section class="library-stations">
             {

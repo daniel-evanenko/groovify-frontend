@@ -7,8 +7,15 @@ import { RightSideBar } from "./cmps/RightSideBar"
 import { StationDetails } from "./pages/StationDetails"
 import { AudioPlayer } from "./cmps/AudioPlayer"
 import { CategoriesPage } from "./pages/CategoriesPage"
+import { useEffect } from "react"
+import { tempLogin } from "./store/actions/user.actions"
 
 function App() {
+
+    useEffect(() => {
+        tempLogin()
+    }, [])
+
 
     return (
         <Router>

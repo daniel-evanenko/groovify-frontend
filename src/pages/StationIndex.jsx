@@ -1,12 +1,8 @@
 import { useEffect, useState } from "react";
 import { StationList } from "../cmps/StationList";
-import { getStationLists } from "../services/station/station.service";
+import { getHomePageStationLists } from "../services/station/station.service";
 import { Loader } from "../cmps/Loader";
 import { eventBus, INDEX_MOUNT } from "../services/event-bus.service";
-import { fetchLikedContent } from "../store/actions/library.actions";
-import defaultUser from "../services/user/defaultUser";
-
-
 
 export function StationIndex() {
     const [allStationsLists, setAllStationsLists] = useState([])
@@ -14,11 +10,8 @@ export function StationIndex() {
 
     const fetchData = async () => {
         try {
-            const stationList = await getStationLists()
+            const stationList = await getHomePageStationLists()
             setAllStationsLists(stationList)
-            // temp way to load user likedContent
-            await fetchLikedContent(defaultUser)
-
         } catch (error) {
             console.error("Error getting data", error)
         } finally {

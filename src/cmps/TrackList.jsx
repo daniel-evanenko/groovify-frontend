@@ -5,13 +5,22 @@ import { StationDropdownOptions } from "./StationDropdownOptions"
 import { useClickOutside } from "../hooks/useClickOutside"
 import { removeTrackFromStation } from "../store/actions/station.actions"
 import defaultImg from "/img/default-playlist-img.png"
+import { toggleLikeTrack } from "../store/actions/user.actions"
+import { TrackLikeButton } from "./TrackLikeButton"
+import { useSelector } from "react-redux"
 
 export function TrackList({ station }) {
     const [activeRowIndex, setActiveRowIndex] = useState(null)
     const [hoveredRow, setHoveredRow] = useState(null)
     const [currentlyPlayingTrackId, setCurrentlyPlayingTrackId] = useState(null)
     const activeRow = useClickOutside(() => setActiveRowIndex(null))
+    const likedTracksStationId = useSelector(state => state.userModule.user?.likedTracksStationId)
+    const stations = useSelector(state => state.libraryModule.stations)
+    const likedStation = stations.find(station => station._id === likedTracksStationId)
 
+    function isTrackLiked(track) {
+        return likedStation?.tracks?.some(t => (t._id || t.id) === (track._id || track.id))
+    }
     const moreOptions = [
         { label: "Add to playlist", value: "add to playlist", icon: "icons/create-playlist.svg" },
         { label: "Add to queue", value: "add to queue", icon: "icons/add-to-queue.svg" },
@@ -40,6 +49,7 @@ export function TrackList({ station }) {
     function onPause(track) {
         setCurrentlyPlayingTrackId(null)
     }
+
     return (
         <ul className="track-list">
             <li className="track-header">
@@ -119,7 +129,15 @@ export function TrackList({ station }) {
 
                         <div className="track-duration">
                             <div className="duration-btn">
-                                <ReactSVG src="/icons/like.svg" />
+                                <TrackLikeButton track={track}
+                                    isLiked={isTrackLiked(track)}
+                                    onToggle={(t) => toggleLikeTrack(t)}
+
+                                />
+                                {/* <ReactSVG onClick={(e) => {
+                                    e.stopPropagation()
+                                    onLikeTrack(track)
+                                }} src="/icons/like.svg" /> */}
                             </div>
                             <span className="duration-text">{formatTime(track.formalDuration)}</span>
                             <div className="duration-btn">

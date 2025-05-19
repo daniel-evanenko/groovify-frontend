@@ -5,11 +5,9 @@ import { store } from "../store.js"
 
 
 export async function addTrackToStation(track, stationId) {
-
     try {
-        const trackToAdd = await stationService.addTrackToStation(track, stationId)
-        store.dispatch({ type: ADD_TRACK_TO_STATION, track: trackToAdd })
-
+        await stationService.addTrackToStation(track, stationId)
+        store.dispatch({ type: ADD_TRACK_TO_STATION, track })
     } catch (err) {
         console.log('Station actions -> Cannot add track to station', err)
         throw err

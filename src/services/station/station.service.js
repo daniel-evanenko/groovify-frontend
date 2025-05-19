@@ -22,7 +22,7 @@ export const stationService = {
     getTracks,
     createNewStation,
     getTracksById,
-    getStationsById
+    getStationsById,
 }
 
 window.cs = stationService
@@ -51,11 +51,9 @@ async function addTrackToStation(track, stationId) {
         const station = await getById(stationId)
         const trackToAdd = {
             ...structuredClone(track),
-            id: makeId()
         }
         station.tracks.push(trackToAdd)
-        await save(station)
-        return trackToAdd
+        return await save(station)
 
     } catch (error) {
         console.error('ERROR addTrackToStation', error)
@@ -90,13 +88,14 @@ export async function createNewStation({ userFullName }) {
         categoryId: "",
         owner: {
             fullname: userFullName
-        }
+        },
+        tracks: []
     }
 
     return await addStation(newStation);
 }
 
-export async function getStationLists() {
+export async function getHomePageStationLists() {
     try {
         const response = await fetch("/tmp-assets/stations-home-page.json")
         if (!response.ok) {
@@ -185,12 +184,8 @@ async function getTracksById(likedTrackIds = []) {
 
 async function getStationsById(likedPlaylistIds = []) {
     try {
-        const response = await fetch("/tmp-assets/filtered-stations.json")
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`)
-        }
-        const allStations = await response.json()
-        return allStations.filter(station => likedPlaylistIds.includes(station._id))
+        const stationsFromLocalStorage = await query()
+        return stationsFromLocalStorage.filter(station => likedPlaylistIds.includes(station._id))
     } catch (error) {
         console.error('Error fetching liked stations:', err)
     }
