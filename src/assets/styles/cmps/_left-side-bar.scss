@@ -138,6 +138,8 @@
                 grid-area: pic;
                 border-radius: 5px;
                 width: 50px;
+                aspect-ratio: 1;
+                object-fit: cover;
                 margin: auto;
             }
 

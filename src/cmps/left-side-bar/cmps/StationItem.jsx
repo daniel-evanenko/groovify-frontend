@@ -6,7 +6,8 @@ import { libraryReducer } from "../../../store/reducers/library.reducer";
 
 const StationItem = ({ station }) => {
     const navigate = useNavigate()
-    const { imgUrl, name, spotifyId, isAlbum } = station;
+    const { name, spotifyId, isAlbum } = station
+    const imgUrl = station.images.length > 0 && station.images[0].url
 
     const handleClick = () => {
         if (!station) {
@@ -18,8 +19,8 @@ const StationItem = ({ station }) => {
 
     const setActiveStationClass = () => {
         const activeStationId = store.getState().libraryModule.activeStationId
-        console.log('activeStationId', activeStationId)
-        console.log('spotifyId', spotifyId)
+        // console.log('activeStationId', activeStationId)
+        // console.log('spotifyId', spotifyId)
         return activeStationId === spotifyId ? 'active-station' : ''
     }
 
