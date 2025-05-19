@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: 12px;
     padding: 12px;
+
     background-color: $bg-base;
     border-radius: 6px;
     pointer-events: auto;
@@ -33,6 +34,9 @@
     }
 
     img {
+        width: $station-width;
+        aspect-ratio: 1;
+        object-fit: cover;
         border-radius: 6px;
     }
 
@@ -44,5 +48,10 @@
         white-space: normal;
         overflow-wrap: normal;
         line-height: normal;
+        max-width: $station-width;
+
+        >span>a {
+            color: $text-base;
+        }
     }
 }

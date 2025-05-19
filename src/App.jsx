@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { HashRouter as Router, Route, Routes } from "react-router-dom"
 import { StationIndex } from "./pages/StationIndex"
 import { AppHeader } from "./cmps/AppHeader"
@@ -7,8 +8,12 @@ import { RightSideBar } from "./cmps/RightSideBar"
 import { StationDetails } from "./pages/StationDetails"
 import { AudioPlayer } from "./cmps/AudioPlayer"
 import { CategoriesPage } from "./pages/CategoriesPage"
+import { loadStations } from "./store/actions/library.actions"
 
 function App() {
+    useEffect(() => {
+        loadStations()
+    }, [])
 
     return (
         <Router>

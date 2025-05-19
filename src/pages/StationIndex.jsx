@@ -1,40 +1,37 @@
 import { useEffect, useState } from "react";
 import { StationList } from "../cmps/StationList";
-import { getStationLists } from "../services/station/station.service";
+import { getStationsByCategories } from "../services/station/station.service";
 import { Loader } from "../cmps/Loader";
 import { eventBus, INDEX_MOUNT } from "../services/event-bus.service";
-import { loadStations } from "../store/actions/library.actions";
 
 
 
 export function StationIndex() {
-    const [allStationsLists, setAllStationsLists] = useState([])
+    const [stationsLists, setStationsLists] = useState({})
     const [loading, setLoading] = useState(true)
-
-    const fetchData = async () => {
-        try {
-            const stationList = await getStationLists()
-            setAllStationsLists(stationList)
-            await loadStations()
-
-        } catch (error) {
-            console.error("Error getting data", error)
-        } finally {
-            setLoading(false)
-        }
-    };
 
     useEffect(() => {
         eventBus.emit(INDEX_MOUNT)
-        fetchData()
+
+        async function getLists() {
+            try {     
+                const lists = await getStationsByCategories()
+                setStationsLists(lists)
+            } catch (err) {
+                console.error(err)
+            } finally {
+                setLoading(false)
+            }
+        }
+        getLists()
     }, [])
 
-
     if (loading) return <Loader></Loader>
+
     return (
         <section className="station-index">
-            {allStationsLists.map(stationList =>
-                <StationList key={stationList[0].categoryId} stations={stationList}></StationList>
+            {Object.keys(stationsLists).map((category, idx) =>
+                <StationList key={idx} stations={stationsLists[category]} />
             )}
         </section>
     )
