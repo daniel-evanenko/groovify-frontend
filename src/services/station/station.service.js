@@ -3,7 +3,7 @@ import { loadFromStorage, makeId, saveToStorage } from '../util.service.js';
 import { addStation } from '../../store/actions/library.actions.js';
 import { store } from '../../store/store.js';
 
-export const STORAGE_KEY = "stationsDB";
+export const STORAGE_KEY = "stations";
 export const INITIAL_STATION_PREFIX = "My Station #";
 export const INITIAL_STATION_PREFIX_REGEX = /[a-zA-Z #]/g;
 export const DEFAULT_IMAGE_URL = '/public/img/default-playlist-img.png';
@@ -95,20 +95,31 @@ export async function createNewStation({ userFullName }) {
     return await addStation(newStation);
 }
 
-export async function getStationLists() {
+export async function getStationsByCategories() {
     try {
-        const response = await fetch("/tmp-assets/stations-home-page.json")
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`)
+        const stations = await storageService.query(STORAGE_KEY, 0)
+        const stationsByCategories = {}
+        for (const station of stations) {
+            if (station.category in stationsByCategories) stationsByCategories[station.category].push(station)
+            else stationsByCategories[station.category] = [station]
         }
-        const homePageStations = await response.json()
-        return homePageStations
-    } catch (error) {
-        console.error("Error fetching JSON:", error)
+        console.log("stationsByCategories: \n", stationsByCategories)
+        return stationsByCategories
+
+    } catch (err) {
+        console.error(err)
     }
+    // try {
+    //     const response = await fetch("/tmp-assets/stations-home-page.json")
+    //     if (!response.ok) {
+    //         throw new Error(`HTTP error! Status: ${response.status}`)
+    //     }
+    //     const homePageStations = await response.json()
+    //     return homePageStations
+    // } catch (error) {
+    //     console.error("Error fetching JSON:", error)
+    // }
 }
-
-
 
 async function _saveRequest(station, methodType) {
     const stationToSave = {

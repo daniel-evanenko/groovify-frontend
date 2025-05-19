@@ -12,15 +12,13 @@ const creds = qs.stringify({
 
 export async function getSpotifyToken() {
     try {
-        const content = loadFromStorage(STORAGE_KEY)
-
-        const { access_token, expires_at } = JSON.parse(content)
+        const { access_token, expires_at } = loadFromStorage(STORAGE_KEY)
 
         if (Date.now() < expires_at) {
             return access_token
         }
-    } catch {
-
+    } catch(err) {
+        console.error(err)
     }
 
     const tokenData = await requestAccessToken()
