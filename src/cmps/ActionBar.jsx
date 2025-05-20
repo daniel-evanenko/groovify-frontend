@@ -1,10 +1,11 @@
 
 import { useNavigate } from "react-router-dom";
-import { clearStation, removeStation, saveStation } from "../store/actions/station.actions";
+import { clearStation, saveStation } from "../store/actions/station.actions";
 import { PlayButton } from "./PlayButton";
 import { StationDropdownOptions } from "./StationDropdownOptions";
 import { useState } from "react";
 import { StationEditModal } from "./StationEditModal";
+import { removeStation } from "../store/actions/library.actions";
 
 
 export function ActionBar({ station }) {
@@ -46,7 +47,7 @@ export function ActionBar({ station }) {
 
     async function _removeStation(station) {
         try {
-            removeStation(station._id)
+            await removeStation(station._id)
             clearStation();
             navigate('/');
         } catch (error) {

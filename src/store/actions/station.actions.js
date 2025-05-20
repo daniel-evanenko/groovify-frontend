@@ -27,16 +27,6 @@ export async function removeTrackFromStation(trackId, stationId) {
         throw err
     }
 }
-export async function removeStation(stationId) {
-    try {
-        await stationService.remove(stationId)
-    } catch (err) {
-        console.log('Station actions -> Cannot remove station', err)
-        throw err
-    }
-}
-
-
 
 export async function loadStation(stationId) {
     try {
