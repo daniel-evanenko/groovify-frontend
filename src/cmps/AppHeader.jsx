@@ -26,6 +26,10 @@ export function AppHeader() {
 
     useEffect(() => {
         const indexMountCleanup = eventBus.on(INDEX_MOUNT, onIndexMount)
+        if (window.location.hash === '#/search') {
+            setFillBrowse(true)
+            setFillHome(false)
+        }
 
         return indexMountCleanup()
     }, [])
