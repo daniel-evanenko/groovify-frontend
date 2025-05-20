@@ -40,7 +40,6 @@ export function StationEditModal({ onClose, onConfirm, station, openFileUpload =
                         ...prev.images?.[0],
                         url: response.data.secure_url
                     },
-                    ...prev.images.slice(1)
                 ]
             }))
         } catch (error) {
