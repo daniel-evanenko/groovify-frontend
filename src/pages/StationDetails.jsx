@@ -10,6 +10,7 @@ import { ReactSVG } from 'react-svg';
 import { StationEditModal } from '../cmps/StationEditModal.jsx'
 import { setIsLoading } from '../store/actions/system.actions.js';
 import { StationTrackSearch } from '../cmps/StationTrackSearch.jsx';
+import { DEFAULT_IMAGE_URL } from '../services/station/station.service.js';
 
 export function StationDetails() {
     const station = useSelector(storeState => storeState.stationModule.station)
@@ -17,7 +18,7 @@ export function StationDetails() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const params = useParams()
     const navigate = useNavigate()
-    const imgUrl = station?.images?.length > 0 && station.images[0].url
+    const imgUrl = station?.images?.length > 0 && station.images[0].url || DEFAULT_IMAGE_URL
 
 
     async function handleConfirm(station) {

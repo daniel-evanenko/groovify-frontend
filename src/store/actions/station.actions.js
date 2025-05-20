@@ -39,7 +39,7 @@ export async function removeStation(stationId) {
 
 export async function loadStation(stationId) {
     try {
-        const station = await stationService.getStationBySpotifyId(stationId)
+        const station = await stationService.getById(stationId)
         store.dispatch({ type: SET_STATION, station })
 
     } catch (error) {

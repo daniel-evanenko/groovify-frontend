@@ -2,13 +2,13 @@ import { storageService } from '../async-storage.service.js'
 import { loadFromStorage, makeId, saveToStorage } from '../util.service.js';
 import { addStation } from '../../store/actions/library.actions.js';
 import { store } from '../../store/store.js';
+import { TRACKS_STORAGE_KEY_PREFIX } from '../spotify/spotify-api.service.js';
 
 export const STORAGE_KEY = "stations";
 export const INITIAL_STATION_PREFIX = "My Station #";
 export const INITIAL_STATION_PREFIX_REGEX = /[a-zA-Z #]/g;
 export const DEFAULT_IMAGE_URL = '/img/default-playlist-img.png';
 
-// _createStations() // temp way to create stationsDB
 
 export const stationService = {
     query,
@@ -17,8 +17,6 @@ export const stationService = {
     remove,
     addTrackToStation,
     removeTrackFromStation,
-    getStationBySpotifyId,
-    fetchStations,
     getDefaultFilter,
     getTracks,
     createNewStation
@@ -80,7 +78,7 @@ export async function createNewStation({ userFullName }) {
     const nextStationId = findNextStationId() || '1';
     const stationName = `${INITIAL_STATION_PREFIX}${nextStationId}`;
 
-    const newStation = {
+    let newStation = {
         name: stationName,
         images: { 0: { url: DEFAULT_IMAGE_URL, height: null, width: null } },
         description: "",
@@ -91,7 +89,13 @@ export async function createNewStation({ userFullName }) {
         }
     }
 
-    return await addStation(newStation);
+    const newStationId = await addStation(newStation);
+
+    // Add the tracks array to localStorage, associated with the new station. 
+    const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `_${newStationId}`
+    saveToStorage(STATION_TRACKS_STORAGE_KEY, [])
+
+    return newStationId
 }
 
 export async function getStationsByCategories() {
@@ -118,43 +122,10 @@ async function _saveRequest(station, methodType) {
     return await storageService[methodType](STORAGE_KEY, stationToSave)
 }
 
-async function getStationBySpotifyId(entityId) {
-    try {
-        const stations = await query()
-        const station = await stations.find(entity => entity._id === entityId)
-        return station
-    } catch (error) {
-        console.error("Error getting station:", error)
-    }
-}
-
-async function _createStations() {
-    let stations = loadFromStorage(STORAGE_KEY)
-    try {
-        if (!stations || !stations.length) {
-            const response = await fetch("/tmp-assets/filtered-stations.json")
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`)
-            }
-            stations = await response.json()
-        }
-
-    } catch (error) {
-        console.error("Error fetching JSON:", error)
-
-    }
-    saveToStorage(STORAGE_KEY, stations)
-
-}
 
 
-async function fetchStations() {
-    const response = await fetch("/tmp-assets/stations.json")
-    if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`)
-    }
-    return await response.json()
-}
+
+
 
 function getDefaultFilter() {
     return { title: '' }
