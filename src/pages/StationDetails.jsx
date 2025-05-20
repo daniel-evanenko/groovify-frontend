@@ -17,6 +17,7 @@ export function StationDetails() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const params = useParams()
     const navigate = useNavigate()
+    const imgUrl = station.images?.length > 0 && station.images[0].url || "/img/default-playlist-img.png"
 
     async function handleConfirm(station) {
         try {
@@ -63,7 +64,7 @@ export function StationDetails() {
             const mainElement = document.querySelector(".station-header-bg")
             if (!mainElement) return;
 
-            const colors = await extractColors(station.imgUrl);
+            const colors = await extractColors(imgUrl);
             if (colors.length > 0) {
                 const { red, green, blue } = colors[0];
                 const gradient = `linear-gradient(to bottom, rgb(${red}, ${green}, ${blue}), rgba(0,0,0,0))`
@@ -84,7 +85,7 @@ export function StationDetails() {
                 <header className="top-bar"></header>
                 <div className="station-header">
                     <div className="station-image">
-                        <img src={station.imgUrl} alt="station" />
+                        <img src={imgUrl} alt="station" />
                         <div className="overlay" onClick={() => setIsModalOpen(true)}>
                             <ReactSVG src='/icons/Pencil.svg' />
                             <p>Choose photo</p>
@@ -97,7 +98,7 @@ export function StationDetails() {
                         <div className="station-info">
                             <span>{station.owner.fullname}</span>
                             <span>•</span>
-                            <span>{station.tracks?.length ? `${station.tracks?.length} songs` : "" }</span>
+                            <span>{station.tracks?.length ? `${station.tracks?.length} songs` : ""}</span>
                         </div>
                     </div>
                 </div>
