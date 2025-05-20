@@ -45,6 +45,21 @@ async function save(station) {
 
 async function addTrackToStation(track, stationId) {
     try {
+        const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `_${stationId}`
+        const tracks = loadFromStorage(STATION_TRACKS_STORAGE_KEY) || []
+
+        const trackToAdd = {
+            ...structuredClone(track),
+            id: makeId()
+        }
+        tracks.push(trackToAdd)
+        saveToStorage(STATION_TRACKS_STORAGE_KEY, tracks)
+        return trackToAdd
+    } catch (error) {
+        console.log('error removing a track', error)
+    }
+
+    try {
         const station = await getById(stationId)
         const trackToAdd = {
             ...structuredClone(track),
