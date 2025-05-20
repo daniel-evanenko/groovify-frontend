@@ -20,6 +20,7 @@ export function StationDetails() {
     const navigate = useNavigate()
     const imgUrl = station?.images?.length > 0 && station.images[0].url || DEFAULT_IMAGE_URL
     const user = useSelector(storeState => storeState.userModule.user)
+    const tracks = useSelector(storeState => storeState.stationModule.tracks)
 
     function isAllowed() {
         return ((station.owner.fullname || station.owner.display_name) === user.fullname)
@@ -103,9 +104,9 @@ export function StationDetails() {
                         <h1 className="station-name">{station.name}</h1>
                         <div className="station-description">{station.description}</div>
                         <div className="station-info">
-                            <span>{station.owner.fullname}</span>
+                            <span>{station.owner.fullname ||station.owner.display_name}</span>
                             <span>•</span>
-                            <span>{station.tracks?.length ? `${station.tracks?.length} songs` : ""}</span>
+                            <span>{tracks?.length ? `${tracks?.length} songs` : ""}</span>
                         </div>
                     </div>
                 </div>

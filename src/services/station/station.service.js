@@ -50,27 +50,13 @@ async function addTrackToStation(track, stationId) {
 
         const trackToAdd = {
             ...structuredClone(track),
-            id: makeId()
         }
+        trackToAdd.track.id = makeId()
         tracks.push(trackToAdd)
         saveToStorage(STATION_TRACKS_STORAGE_KEY, tracks)
         return trackToAdd
     } catch (error) {
-        console.log('error removing a track', error)
-    }
-
-    try {
-        const station = await getById(stationId)
-        const trackToAdd = {
-            ...structuredClone(track),
-            id: makeId()
-        }
-        station.tracks.push(trackToAdd)
-        await save(station)
-        return trackToAdd
-
-    } catch (error) {
-        console.error('ERROR addTrackToStation', error)
+        console.log('error adding a track', error)
     }
 }
 
