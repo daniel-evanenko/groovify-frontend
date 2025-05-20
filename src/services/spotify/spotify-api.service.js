@@ -5,6 +5,7 @@ import { processSpotifyStations } from "../station/station.service.js";
 
 const CATEGORIES_STORAGE_KEY = "categories"
 const STATIONS_STORAGE_KEY = "stations"
+const TRACKS_STORAGE_KEY_PREFIX = "tracks"
 
 export async function getCategories() {
     const categories = loadFromStorage(CATEGORIES_STORAGE_KEY)
@@ -64,5 +65,32 @@ export async function getStations(queries) {
     } catch (err) {
         console.error(err)
         throw err
+    }
+}
+
+export async function getStationsTracks(stationId) {
+    const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `_${stationId}`
+    let tracks = loadFromStorage(STATION_TRACKS_STORAGE_KEY)
+
+    try {
+        if (tracks && tracks.length > 0) return tracks
+
+        console.log("requesting tracks for station ", stationId)
+        const accessToken = await getSpotifyToken()
+        const response = await axios.get(`https://api.spotify.com/v1/playlists/${stationId}/tracks?limit=20`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        })
+
+        tracks = response.data.items
+        console.log(tracks)
+
+        saveToStorage(STATION_TRACKS_STORAGE_KEY, tracks)
+        return tracks
+
+
+    } catch (err) {
+        console.error(err)
     }
 }
