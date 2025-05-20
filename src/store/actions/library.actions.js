@@ -22,7 +22,7 @@ export async function addStation(station) {
     try {
         const savedStation = await stationService.save(station)
         store.dispatch({ type: ADD_STATION_ACTIVATE, savedStation })
-        return savedStation.spotifyId
+        return savedStation._id
     } catch (err) {
         console.log('library actions -> Cannot add station', err)
         throw err

@@ -1,13 +1,14 @@
 
 import { useNavigate } from "react-router-dom";
-import { clearStation, removeStation, saveStation } from "../store/actions/station.actions";
+import { clearStation, saveStation } from "../store/actions/station.actions";
 import { PlayButton } from "./PlayButton";
 import { StationDropdownOptions } from "./StationDropdownOptions";
 import { useState } from "react";
 import { StationEditModal } from "./StationEditModal";
+import { removeStation } from "../store/actions/library.actions";
 
 
-export function ActionBar({ station }) {
+export function ActionBar({ station ,isAllowed}) {
     const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -46,7 +47,7 @@ export function ActionBar({ station }) {
 
     async function _removeStation(station) {
         try {
-            removeStation(station._id)
+            await removeStation(station._id)
             clearStation();
             navigate('/');
         } catch (error) {
@@ -58,7 +59,7 @@ export function ActionBar({ station }) {
     return (
         <section className='action-bar'>
             <PlayButton />
-            <StationDropdownOptions options={moreOptions} onOptionClick={(option) => handleOptionClick(option)}></StationDropdownOptions>
+            {isAllowed && <StationDropdownOptions options={moreOptions} onOptionClick={(option) => handleOptionClick(option)}></StationDropdownOptions>}
             {isModalOpen && <StationEditModal onClose={() => setIsModalOpen(false)} onConfirm={handleConfirm} station={station}>
             </StationEditModal>}
         </section>

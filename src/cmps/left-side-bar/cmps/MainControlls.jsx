@@ -16,7 +16,7 @@ const MainControlls = () => {
     const navigate = useNavigate();
 
     const handleClick = async () => {
-        const newStationId = await createNewStation({userFullName: 'David Gelbard'})
+        const newStationId = await createNewStation()
         navigate(`station/${newStationId}`)
     }
 

@@ -11,8 +11,8 @@ export function StationPreview({ station }) {
         if (!station) {
             navigate('/')
         }
-        setActiveStation(station?.spotifyId)
-        navigate(`/station/${station?.spotifyId}`)
+        setActiveStation(station?._id)
+        navigate(`/station/${station?._id}`)
 
     }
 

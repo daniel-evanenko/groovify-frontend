@@ -9,7 +9,7 @@ const StationsLibraryList = memo(() => {
     return (
         <section class="library-stations">
             {
-                stations.map(station => <StationItem key={station.spotifyId} station={station} />)
+                stations.map(station => <StationItem key={station._id} station={station} />)
             }
         </section>
     )

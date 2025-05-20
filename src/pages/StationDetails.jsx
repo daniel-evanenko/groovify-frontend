@@ -10,6 +10,7 @@ import { ReactSVG } from 'react-svg';
 import { StationEditModal } from '../cmps/StationEditModal.jsx'
 import { setIsLoading } from '../store/actions/system.actions.js';
 import { StationTrackSearch } from '../cmps/StationTrackSearch.jsx';
+import { DEFAULT_IMAGE_URL } from '../services/station/station.service.js';
 
 export function StationDetails() {
     const station = useSelector(storeState => storeState.stationModule.station)
@@ -17,7 +18,14 @@ export function StationDetails() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const params = useParams()
     const navigate = useNavigate()
-    const imgUrl = station.images?.length > 0 && station.images[0].url || "/img/default-playlist-img.png"
+    const imgUrl = station?.images?.length > 0 && station.images[0].url || DEFAULT_IMAGE_URL
+    const user = useSelector(storeState => storeState.userModule.user)
+    const tracks = useSelector(storeState => storeState.stationModule.tracks)
+
+    function isAllowed() {
+        return ((station.owner.fullname || station.owner.display_name) === user.fullname)
+
+    }
 
     async function handleConfirm(station) {
         try {
@@ -96,17 +104,17 @@ export function StationDetails() {
                         <h1 className="station-name">{station.name}</h1>
                         <div className="station-description">{station.description}</div>
                         <div className="station-info">
-                            <span>{station.owner.fullname}</span>
+                            <span>{station.owner.fullname ||station.owner.display_name}</span>
                             <span>•</span>
-                            <span>{station.tracks?.length ? `${station.tracks?.length} songs` : ""}</span>
+                            <span>{tracks?.length ? `${tracks?.length} songs` : ""}</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="content-spacing">
-                <ActionBar station={station}></ActionBar>
-                <TrackList station={station}></TrackList>
-                <StationTrackSearch station={station}></StationTrackSearch>
+                <ActionBar isAllowed={isAllowed()} station={station}></ActionBar>
+                <TrackList isAllowed={isAllowed()} station={station}></TrackList>
+                {isAllowed() && <StationTrackSearch isAllowed={isAllowed()} station={station}></StationTrackSearch>}
             </div>
             {isModalOpen && <StationEditModal onClose={() => setIsModalOpen(false)} onConfirm={handleConfirm} station={station} openFileUpload={true}>
             </StationEditModal>}

@@ -5,12 +5,14 @@ import { StationDropdownOptions } from "./StationDropdownOptions"
 import { useClickOutside } from "../hooks/useClickOutside"
 import { removeTrackFromStation } from "../store/actions/station.actions"
 import defaultImg from "/img/default-playlist-img.png"
+import { useSelector } from "react-redux"
 
-export function TrackList({ station }) {
+export function TrackList({ station, isAllowed }) {
     const [activeRowIndex, setActiveRowIndex] = useState(null)
     const [hoveredRow, setHoveredRow] = useState(null)
     const [currentlyPlayingTrackId, setCurrentlyPlayingTrackId] = useState(null)
     const activeRow = useClickOutside(() => setActiveRowIndex(null))
+    const tracks = useSelector(storeState => storeState.stationModule.tracks)
 
     const moreOptions = [
         { label: "Add to playlist", value: "add to playlist", icon: "icons/create-playlist.svg" },
@@ -37,7 +39,7 @@ export function TrackList({ station }) {
 
     }
 
-    function onPause(track) {
+    function onPause() {
         setCurrentlyPlayingTrackId(null)
     }
     return (
@@ -56,10 +58,23 @@ export function TrackList({ station }) {
                 </div>
             </li>
 
-            {station.tracks?.map((track, index) => {
+            {tracks.map((trackObj, index) => {
+                const {
+                    track,
+                    track: {
+                        id,
+                        name,
+                        duration_ms,
+                        album,
+                        artists,
+                        external_urls,
+                    },
+                    added_at,
+                } = trackObj
+
                 const isActive = activeRowIndex === index
                 const isHovered = hoveredRow === index
-                const isPlaying = track.id === currentlyPlayingTrackId
+                const isPlaying = id === currentlyPlayingTrackId
 
                 return (
                     <li
@@ -76,62 +91,72 @@ export function TrackList({ station }) {
                             )}
 
                             {!isPlaying && isHovered && (
-                                <ReactSVG onClick={(e) => {
-                                    e.stopPropagation()
-                                    onPlay(track)
-                                }}
-                                    src="/icons/play.svg"></ReactSVG>
+                                <ReactSVG
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        onPlay(track)
+                                    }}
+                                    src="/icons/play.svg"
+                                />
                             )}
 
                             {isPlaying && !isHovered && (
-                                <ReactSVG className="now-playing" src="/icons/pause.svg"></ReactSVG>
-
+                                <ReactSVG className="now-playing" src="/icons/pause.svg" />
                             )}
 
                             {isPlaying && isHovered && (
-                                <ReactSVG onClick={(e) => {
-                                    e.stopPropagation()
-                                    onPause(track)
-                                }} src="/icons/pause.svg"></ReactSVG>
+                                <ReactSVG
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        onPause()
+                                    }}
+                                    src="/icons/pause.svg"
+                                />
                             )}
                         </div>
 
-                        <div className={`track-title ${isPlaying ? "now-playing" : ""}`} >
+                        <div className={`track-title ${isPlaying ? "now-playing" : ""}`}>
                             <img
-                                src={track.imgUrl?.[0]?.url || defaultImg}
-                                alt={track.title}
+                                src={album?.images?.[0]?.url || defaultImg}
+                                alt={name}
                             />
                             <div className="track-info">
-                                <span>{track.title}</span>
+                                <span>{name}</span>
                                 <div className="artist-list">
-                                    {track.artists?.map((artist, idx) => (
-                                        <a key={artist.spotifyId || idx}>{artist.name}</a>
+                                    {artists?.map((artist, idx) => (
+                                        <a key={artist.id || idx}>{artist.name}</a>
                                     ))}
                                 </div>
                             </div>
                         </div>
 
                         <div className="track-album">
-                            <a>{track.album}</a>
+                            <a>{album?.name}</a>
                         </div>
 
-                        <div className="track-date-added">{formatDate(track.addedAt)}</div>
+                        <div className="track-date-added">{formatDate(added_at)}</div>
 
                         <div className="track-duration">
                             <div className="duration-btn">
-                                <ReactSVG src="/icons/like.svg" />
+                                <ReactSVG
+                                    src={"/icons/like.svg"}
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                    }}
+                                />
                             </div>
-                            <span className="duration-text">{formatTime(track.formalDuration)}</span>
+                            <span className="duration-text">{formatTime(duration_ms)}</span>
                             <div className="duration-btn">
-                                <StationDropdownOptions
+                                {isAllowed && <StationDropdownOptions
                                     options={moreOptions}
                                     onOptionClick={(option) => handleOptionClick(option, track)}
-                                />
+                                />}
                             </div>
                         </div>
                     </li>
                 )
             })}
+
         </ul>
     )
 }
