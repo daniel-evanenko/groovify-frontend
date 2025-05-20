@@ -33,7 +33,16 @@ export function StationEditModal({ onClose, onConfirm, station, openFileUpload =
                 formData
             );
 
-            setStationToEdit((prevStationToEdit) => ({ ...prevStationToEdit, imgUrl: response.data.secure_url, }))
+            setStationToEdit(prev => ({
+                ...prev,
+                images: [
+                    {
+                        ...prev.images?.[0],
+                        url: response.data.secure_url
+                    },
+                    ...prev.images.slice(1)
+                ]
+            }))
         } catch (error) {
             console.error('Upload error:', error)
 
@@ -60,7 +69,9 @@ export function StationEditModal({ onClose, onConfirm, station, openFileUpload =
         setStationToEdit(prevStationToEdit => ({ ...prevStationToEdit, [field]: value }))
     }
 
-    const { name, description, imgUrl } = stationToEdit
+    const { name, description, images } = stationToEdit
+    const imgUrl = images[0].url
+    console.log("🚀 ~ StationEditModal ~ imgUrl:", imgUrl)
     return (
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>

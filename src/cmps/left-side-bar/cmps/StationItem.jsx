@@ -2,12 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { ALBUM, STATION, GROOVIFY } from "../../../utils/constants"
 import { setActiveStation } from "../../../store/actions/library.actions";
 import { store } from "../../../store/store";
-import { libraryReducer } from "../../../store/reducers/library.reducer";
 
 const StationItem = ({ station }) => {
     const navigate = useNavigate()
     const { name, spotifyId, isAlbum } = station
-    const imgUrl = station.images.length > 0 && station.images[0].url
+    const imgUrl = station.images?.length > 0 && station.images[0].url
 
     const handleClick = () => {
         if (!station) {
