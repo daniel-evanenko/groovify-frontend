@@ -81,7 +81,8 @@ function findNextStationId() {
     if (newStationNumber.length) return Math.max(...newStationNumber) + 1
 }
 
-export async function createNewStation({ userFullName }) {
+export async function createNewStation() {
+    const user = store.getState()?.userModule?.user
     const nextStationId = findNextStationId() || '1';
     const stationName = `${INITIAL_STATION_PREFIX}${nextStationId}`;
 
@@ -92,7 +93,7 @@ export async function createNewStation({ userFullName }) {
         category: "",
         categoryId: "",
         owner: {
-            fullname: userFullName
+            fullname: user.fullname
         }
     }
 
@@ -146,15 +147,20 @@ async function getTracks(filter = {}) {
         const response = await fetch('/tmp-assets/track.json')
         if (!response.ok) throw new Error('Failed to fetch tracks')
 
-        const tracks = await response.json()
+        const rawData = await response.json()
         const regex = new RegExp(title, 'i')
 
-        return tracks.filter(track => regex.test(track.title)).slice(1, 10)
+        const filteredTracks = rawData
+            .filter(trackObj => regex.test(trackObj.track?.name))
+            .slice(0, 10) // Limit to 10 results
+
+        return filteredTracks
     } catch (err) {
         console.error('Error fetching tracks:', err)
         return []
     }
 }
+
 
 export function processSpotifyStations(stations) {
     stations = _removeDups(stations)

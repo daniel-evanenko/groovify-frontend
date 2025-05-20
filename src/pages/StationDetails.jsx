@@ -19,7 +19,12 @@ export function StationDetails() {
     const params = useParams()
     const navigate = useNavigate()
     const imgUrl = station?.images?.length > 0 && station.images[0].url || DEFAULT_IMAGE_URL
+    const user = useSelector(storeState => storeState.userModule.user)
 
+    function isAllowed() {
+        return ((station.owner.fullname || station.owner.display_name) === user.fullname)
+
+    }
 
     async function handleConfirm(station) {
         try {
@@ -106,9 +111,9 @@ export function StationDetails() {
                 </div>
             </div>
             <div className="content-spacing">
-                <ActionBar station={station}></ActionBar>
-                <TrackList station={station}></TrackList>
-                <StationTrackSearch station={station}></StationTrackSearch>
+                <ActionBar isAllowed={isAllowed()} station={station}></ActionBar>
+                <TrackList isAllowed={isAllowed()} station={station}></TrackList>
+                {isAllowed && <StationTrackSearch isAllowed={isAllowed()} station={station}></StationTrackSearch>}
             </div>
             {isModalOpen && <StationEditModal onClose={() => setIsModalOpen(false)} onConfirm={handleConfirm} station={station} openFileUpload={true}>
             </StationEditModal>}

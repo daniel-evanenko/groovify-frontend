@@ -1,20 +1,18 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { ReactSVG } from "react-svg"
 import { formatDate, formatTime } from "../services/util.service"
 import { StationDropdownOptions } from "./StationDropdownOptions"
 import { useClickOutside } from "../hooks/useClickOutside"
 import { removeTrackFromStation } from "../store/actions/station.actions"
 import defaultImg from "/img/default-playlist-img.png"
-import { getStationsTracks } from "../services/spotify/spotify-api.service"
 import { useSelector } from "react-redux"
 
-export function TrackList({ station }) {
+export function TrackList({ station, isAllowed }) {
     const [activeRowIndex, setActiveRowIndex] = useState(null)
     const [hoveredRow, setHoveredRow] = useState(null)
     const [currentlyPlayingTrackId, setCurrentlyPlayingTrackId] = useState(null)
     const activeRow = useClickOutside(() => setActiveRowIndex(null))
     const tracks = useSelector(storeState => storeState.stationModule.tracks)
-
 
     const moreOptions = [
         { label: "Add to playlist", value: "add to playlist", icon: "icons/create-playlist.svg" },
@@ -149,10 +147,10 @@ export function TrackList({ station }) {
                             </div>
                             <span className="duration-text">{formatTime(duration_ms)}</span>
                             <div className="duration-btn">
-                                <StationDropdownOptions
+                                {isAllowed && <StationDropdownOptions
                                     options={moreOptions}
                                     onOptionClick={(option) => handleOptionClick(option, track)}
-                                />
+                                />}
                             </div>
                         </div>
                     </li>
