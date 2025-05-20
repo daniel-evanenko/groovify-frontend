@@ -59,11 +59,18 @@ async function addTrackToStation(track, stationId) {
     }
 }
 
-async function removeTrackFromStation(trackId, stationId) {
-    const station = await getById(stationId);
-    const filteredTracks = station.tracks.filter(track => track.id !== trackId)
-    station.tracks = filteredTracks;
-    return await save(station)
+function removeTrackFromStation(trackId, stationId) {
+    try {
+        const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `_${stationId}`
+        const tracks = loadFromStorage(STATION_TRACKS_STORAGE_KEY) || []
+
+        const updatedTracks = tracks.filter(
+            trackObj => trackObj.track?.id !== trackId
+        )
+        return saveToStorage(STATION_TRACKS_STORAGE_KEY, updatedTracks)
+    } catch (error) {
+        console.log('error removing a track', error)
+    }
 }
 
 function findNextStationId() {

@@ -29,7 +29,7 @@ export function TrackList({ station }) {
             case 'add to queue':
                 break
             case 'delete':
-                removeTrackFromStation(track.id, station.id)
+                removeTrackFromStation(track.id, station._id)
                 break
             default:
                 break

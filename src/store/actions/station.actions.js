@@ -19,7 +19,7 @@ export async function addTrackToStation(track, stationId) {
 
 export async function removeTrackFromStation(trackId, stationId) {
     try {
-        await stationService.removeTrackFromStation(trackId, stationId)
+        stationService.removeTrackFromStation(trackId, stationId)
         store.dispatch({ type: REMOVE_TRACK_FROM_STATION, trackId })
 
     } catch (err) {
