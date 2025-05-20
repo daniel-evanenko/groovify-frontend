@@ -27,7 +27,7 @@ export function StationList({ stations }) {
             <a>{listTitle}</a>
             <div className="station-previews">
                 {stations.slice(0, displayStationsAmount).map(station =>
-                    <StationPreview key={station.spotifyId} station={station}></StationPreview>
+                    <StationPreview key={station._id} station={station}></StationPreview>
                 )}
             </div>
         </article>

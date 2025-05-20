@@ -121,7 +121,7 @@ async function _saveRequest(station, methodType) {
 async function getStationBySpotifyId(entityId) {
     try {
         const stations = await query()
-        const station = await stations.find(entity => entity.spotifyId === entityId)
+        const station = await stations.find(entity => entity._id === entityId)
         return station
     } catch (error) {
         console.error("Error getting station:", error)
@@ -195,5 +195,5 @@ function _removeDups(arr) {
 }
 
 function _renameId(arr) {
-    return arr.map(({ id, ...rest }) => ({ spotifyId: id, ...rest })) // rename id to spotifyId
+    return arr.map(({ id, ...rest }) => ({ _id: id, ...rest })) // rename id to _id
 }

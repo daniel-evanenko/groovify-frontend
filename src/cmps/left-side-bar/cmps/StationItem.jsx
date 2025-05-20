@@ -5,22 +5,22 @@ import { store } from "../../../store/store";
 
 const StationItem = ({ station }) => {
     const navigate = useNavigate()
-    const { name, spotifyId, isAlbum } = station
-    const imgUrl = station.images?.length > 0 && station.images[0].url
+    const { name, _id, isAlbum } = station
+    const imgUrl = station.images.length > 0 && station.images[0].url
 
     const handleClick = () => {
         if (!station) {
             navigate('/')
         }
-        setActiveStation(station?.spotifyId)
-        navigate(`/station/${station?.spotifyId}`)
+        setActiveStation(station?._id)
+        navigate(`/station/${station?._id}`)
     }
 
     const setActiveStationClass = () => {
         const activeStationId = store.getState().libraryModule.activeStationId
         // console.log('activeStationId', activeStationId)
-        // console.log('spotifyId', spotifyId)
-        return activeStationId === spotifyId ? 'active-station' : ''
+        // console.log('id', id)
+        return activeStationId === _id ? 'active-station' : ''
     }
 
     return (
@@ -30,7 +30,7 @@ const StationItem = ({ station }) => {
             <p className="lib-station-artist">
                 <span>{isAlbum ? ALBUM : STATION}</span>
                 <span> • </span>
-                <span>{spotifyId ? GROOVIFY : "David Gelbard"}</span>
+                <span>{_id ? GROOVIFY : "David Gelbard"}</span>
             </p>
         </div>
     )

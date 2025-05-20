@@ -17,7 +17,8 @@ export function StationDetails() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const params = useParams()
     const navigate = useNavigate()
-    const imgUrl = station.images?.length > 0 && station.images[0].url || "/img/default-playlist-img.png"
+    const imgUrl = station?.images?.length > 0 && station.images[0].url
+
 
     async function handleConfirm(station) {
         try {
