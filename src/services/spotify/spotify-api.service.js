@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getSpotifyToken } from "./spotify-token.service.js";
 import { loadFromStorage, makeId, saveToStorage } from "../util.service.js";
+import { processSpotifyStations } from "../station/station.service.js";
 
 const CATEGORIES_STORAGE_KEY = "categories"
 const STATIONS_STORAGE_KEY = "stations"
@@ -34,10 +35,9 @@ export async function getStations(queries) {
     try {
         if (stations && stations.length > 0) return stations
 
-
         stations = []
         const accessToken = await getSpotifyToken()
-        
+
 
         for (const query of queries) {
             console.log(`making request for stations with query: ${query}`)
@@ -49,13 +49,15 @@ export async function getStations(queries) {
 
             const categoryId = makeId(6)
             let items = response.data.playlists.items
+
             items = items.filter(item => item !== null)
-            items = items.map(item => ({...item, category: query, categoryId}))
+            items = items.map(item => ({ ...item, category: query, categoryId })) // add categories for sorting in index
 
             stations.push(items)
         }
         stations = stations.flat()
-        
+        stations = processSpotifyStations(stations)
+
         saveToStorage(STATIONS_STORAGE_KEY, stations)
         return stations
 

@@ -80,7 +80,7 @@ export async function createNewStation({ userFullName }) {
     const imgUrl = DEFAULT_IMAGE_URL;
     const nextStationId = findNextStationId() || '1';
     const stationName = `${INITIAL_STATION_PREFIX}${nextStationId}`;
-    
+
     const newStation = {
         name: stationName,
         imgUrl,
@@ -177,4 +177,24 @@ async function getTracks(filter = {}) {
         console.error('Error fetching tracks:', err)
         return []
     }
+}
+
+export function processSpotifyStations(stations) {
+    stations = _removeDups(stations)
+    stations = _renameId(stations)
+
+    return stations
+}
+
+function _removeDups(arr) {
+    let noDups = arr.reduce((acc, item) => {
+        if (!acc.some(existing => existing.id === item.id)) acc.push(item)
+        return acc
+    }, [])
+
+    return noDups
+}
+
+function _renameId(arr) {
+    return arr.map(({ id, ...rest }) => ({ spotifyId: id, ...rest })) // rename id to spotifyId
 }

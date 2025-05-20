@@ -22,13 +22,12 @@ export function StationList({ stations }) {
     if (!stations) return <Loader></Loader>
 
     const listTitle = stations[0].category
-    let a = 1
     return (
         <article ref={elStationsList} className="station-list">
             <a>{listTitle}</a>
             <div className="station-previews">
                 {stations.slice(0, displayStationsAmount).map(station =>
-                    <StationPreview key={station.spotifyId + `${a++}`} station={station}></StationPreview>
+                    <StationPreview key={station.spotifyId} station={station}></StationPreview>
                 )}
             </div>
         </article>

@@ -5,11 +5,11 @@ import StationItem from "./StationItem"
 const StationsLibraryList = memo(() => {
 
     const stations = useSelector(state => state.libraryModule.stations)
-
+    
     return (
         <section class="library-stations">
             {
-                stations.map(station => <StationItem station={station} />)
+                stations.map(station => <StationItem key={station.spotifyId} station={station} />)
             }
         </section>
     )
