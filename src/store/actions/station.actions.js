@@ -1,6 +1,7 @@
+import { getStationsTracks } from "../../services/spotify/spotify-api.service.js"
 import { stationService } from "../../services/station/station.service.js"
 import { makeId } from "../../services/util.service.js"
-import { ADD_TRACK_TO_STATION, REMOVE_TRACK_FROM_STATION, SET_STATION, UPDATE_STATION } from "../reducers/station.reducer.js"
+import { ADD_TRACK_TO_STATION, REMOVE_TRACK_FROM_STATION, SET_STATION, SET_TRACKS, UPDATE_STATION } from "../reducers/station.reducer.js"
 import { store } from "../store.js"
 
 
@@ -40,7 +41,9 @@ export async function removeStation(stationId) {
 export async function loadStation(stationId) {
     try {
         const station = await stationService.getById(stationId)
+        const tracks = await getStationsTracks(stationId)
         store.dispatch({ type: SET_STATION, station })
+        store.dispatch({ type: SET_TRACKS, tracks })
 
     } catch (error) {
         console.log('Station actions -> Cannot load station', error)

@@ -6,26 +6,15 @@ import { useClickOutside } from "../hooks/useClickOutside"
 import { removeTrackFromStation } from "../store/actions/station.actions"
 import defaultImg from "/img/default-playlist-img.png"
 import { getStationsTracks } from "../services/spotify/spotify-api.service"
+import { useSelector } from "react-redux"
 
 export function TrackList({ station }) {
     const [activeRowIndex, setActiveRowIndex] = useState(null)
     const [hoveredRow, setHoveredRow] = useState(null)
     const [currentlyPlayingTrackId, setCurrentlyPlayingTrackId] = useState(null)
     const activeRow = useClickOutside(() => setActiveRowIndex(null))
-    const [tracks, setTracks] = useState([])
+    const tracks = useSelector(storeState => storeState.stationModule.tracks)
 
-    useEffect(() => {
-        async function loadTracks() {
-            try {
-                const tracks = await getStationsTracks(station._id)
-                setTracks(tracks)
-            } catch (error) {
-                console.error('error getting station tracks', error)
-            }
-        }
-
-        loadTracks()
-    }, [station._id])
 
     const moreOptions = [
         { label: "Add to playlist", value: "add to playlist", icon: "icons/create-playlist.svg" },
