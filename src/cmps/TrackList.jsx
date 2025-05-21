@@ -6,6 +6,8 @@ import { useClickOutside } from "../hooks/useClickOutside"
 import { removeTrackFromStation } from "../store/actions/station.actions"
 import defaultImg from "/img/default-playlist-img.png"
 import { useSelector } from "react-redux"
+import { getYtVideoUrls } from "../services/youtube/yt-api.service"
+import { makeYtQueryFromTrack } from "../services/youtube/yt.service"
 
 export function TrackList({ station, isAllowed }) {
     const [activeRowIndex, setActiveRowIndex] = useState(null)
@@ -34,9 +36,11 @@ export function TrackList({ station, isAllowed }) {
         }
     }
 
-    function onPlay(track) {
+    async function onPlay(track) {
         setCurrentlyPlayingTrackId(track.id)
-
+        const query = makeYtQueryFromTrack(track)
+        const videoUrls = await getYtVideoUrls(station._id, track.id, query)
+        console.log(videoUrls)
     }
 
     function onPause() {
@@ -57,7 +61,6 @@ export function TrackList({ station, isAllowed }) {
                     <div className="duration-btn right"></div>
                 </div>
             </li>
-
             {tracks.map((trackObj, index) => {
                 const {
                     track,

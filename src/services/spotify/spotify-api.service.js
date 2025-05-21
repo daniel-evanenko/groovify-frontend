@@ -5,7 +5,7 @@ import { processSpotifyStations } from "../station/station.service.js";
 
 const CATEGORIES_STORAGE_KEY = "categories"
 const STATIONS_STORAGE_KEY = "stations"
-export const TRACKS_STORAGE_KEY_PREFIX = "tracks"
+export const TRACKS_STORAGE_KEY_PREFIX = "tracks_"
 
 export async function getCategories() {
     const categories = loadFromStorage(CATEGORIES_STORAGE_KEY)
@@ -69,7 +69,7 @@ export async function getStations(queries) {
 }
 
 export async function getStationsTracks(stationId) {
-    const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `_${stationId}`
+    const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${stationId}`
     let tracks = loadFromStorage(STATION_TRACKS_STORAGE_KEY)
     try {
         if (tracks) return tracks
@@ -87,7 +87,6 @@ export async function getStationsTracks(stationId) {
         } else {
             tracks = []
         }
-        console.log(tracks)
 
         saveToStorage(STATION_TRACKS_STORAGE_KEY, tracks)
         return tracks

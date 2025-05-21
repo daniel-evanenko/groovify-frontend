@@ -45,7 +45,7 @@ async function save(station) {
 
 async function addTrackToStation(track, stationId) {
     try {
-        const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `_${stationId}`
+        const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${stationId}`
         const tracks = loadFromStorage(STATION_TRACKS_STORAGE_KEY) || []
 
         const trackToAdd = {
@@ -62,7 +62,7 @@ async function addTrackToStation(track, stationId) {
 
 function removeTrackFromStation(trackId, stationId) {
     try {
-        const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `_${stationId}`
+        const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${stationId}`
         const tracks = loadFromStorage(STATION_TRACKS_STORAGE_KEY) || []
 
         const updatedTracks = tracks.filter(
@@ -101,7 +101,7 @@ export async function createNewStation() {
     const newStationId = await addStation(newStation);
 
     // Add the tracks array to localStorage, associated with the new station. 
-    const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `_${newStationId}`
+    const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${newStationId}`
     saveToStorage(STATION_TRACKS_STORAGE_KEY, [])
 
     return newStationId
@@ -132,10 +132,6 @@ async function _saveRequest(station, methodType) {
 }
 
 
-
-
-
-
 function getDefaultFilter() {
     return { title: '' }
 }
@@ -160,6 +156,20 @@ async function getTracks(filter = {}) {
         console.error('Error fetching tracks:', err)
         return []
     }
+}
+
+export function addYtUrlsToTrack(stationId, trackId, youtubeUrls) {
+    const stationTracks = loadFromStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`)
+    const trackObj = stationTracks.find(trackObject => trackObject.track.id === trackId)
+    trackObj.youtubeUrls = youtubeUrls
+    const updatedTracks = [...stationTracks, trackObj]
+    saveToStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`, updatedTracks)
+}
+
+export function getTrackYtUrls(stationId, trackId) {
+    const stationTracks = loadFromStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`)
+    const trackObj = stationTracks.find(trackObject => trackObject.track.id === trackId)
+    return trackObj.youtubeUrls ? trackObj.youtubeUrls : undefined
 }
 
 
