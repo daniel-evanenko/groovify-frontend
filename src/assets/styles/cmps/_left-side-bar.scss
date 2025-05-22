@@ -1,8 +1,10 @@
 .left-side-bar {
     grid-area: left;
-    display: flex;
+    // display: flex;
+    display: grid;
+    grid-template-columns: 1;
     flex-direction: column;
-    min-width: 72px;
+    min-width: 100px;
     background-color: $bg-base;
     overflow: scroll;
 
@@ -11,7 +13,7 @@
     }
 
     &.left-side-bar-collapsed {
-        width: 72px;    
+        width: 100px;    
     }
     
     &::-webkit-scrollbar {
@@ -62,24 +64,19 @@
 
         .icon-content {
             cursor: pointer;
+            width: em(16px);
+            aspect-ratio: 1;
 
             &.icon-content-show {
                 display: block;
+                opacity: 1;
             }
 
             &.icon-content-hidden {
                 display: none;
+                opacity: 0;
              }
-    
-            .library-open-icon {
-                width: em(30px);
-                height: em(30px);
-            }
-    
-            .library-closed-icon {
-                width: em(20px);
-                height: em(20px);
-            }
+
         }
         
         .create-button {
@@ -184,7 +181,7 @@
             .lib-station-image {
                 grid-area: pic;
                 border-radius: 5px;
-                width: 50px;
+                min-width: 50px;
                 aspect-ratio: 1;
                 object-fit: cover;
                 margin: auto;

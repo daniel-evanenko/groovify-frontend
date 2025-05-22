@@ -13,21 +13,12 @@ const ICON_CONTENT = 'icon-content';
 const ICON_CONTENT_HIDDEN = 'icon-content-hidden';
 const ICON_CONTENT_SHOW = 'icon-content-show';
 
-const MainControlls = ({ onMiniMaxClick, isMouseOver }) => {
+const MainControlls = ({ onMiniMaxClick, isMouseLeftSideBarOver }) => {
 
-    const [iconClassNames, setIconClassNames] = useState([CREATE_PLAYLIST_ICON]);
-    // const [isMouseOver, setIsMouseOver] = useState(false);
-    const [isMinimized, setIsMinimized] = useState(false);
+    const [iconClassNames, setIconClassNames] = useState([CREATE_PLAYLIST_ICON])
+    const [isMinimized, setIsMinimized] = useState(false)
+    const [isIconHover, setIsIconHover] = useState(false)
     const navigate = useNavigate();
-
-    useEffect(() => {
-        // window.addEventListener('mouseover', onMouseOver)
-        // window.addEventListener('mouseout', onMouseOut)
-        // return () => {
-        //     window.removeEventListener('mouseover', onMouseOver)
-        //     window.addEventListener('mouseout', onMouseOut)
-        // }
-    }, [])
 
     const handleClick = async () => {
         const newStationId = await createNewStation({userFullName: 'David Gelbard'})
@@ -39,21 +30,23 @@ const MainControlls = ({ onMiniMaxClick, isMouseOver }) => {
         setIsMinimized(preValue => !preValue)
     }
 
-    const onMouseOver = (event) => { 
-        // console.log('clientY:', event.clientY, 'clientX:', clientX);
-        // console.log(event)
-        // if (event.x < 280 && event.y < 180 && event.y < 900) setIsMouseOver(true)
-    }
-
-    const onMouseOut = (event) => setIsMouseOver(false)
-
     const getButtonMarginClass = () => isMinimized ? "create-button-mini" : "create-button-max"
+
+    const getSelectedIcon = () => {
+        let svgIconPath
+
+        if (!isMinimized && isMouseLeftSideBarOver) svgIconPath = "/icons/library-opened.svg"
+        if (isMinimized) svgIconPath = "/icons/library-closed.svg"
+        if (isMinimized && isIconHover) svgIconPath = "/icons/library-opened.svg"
+
+        return svgIconPath;
+    }
 
     return (
         <section className={`${MAIN_CONTROLS} ${isMinimized ? "main-controlls-column" : "main-controlls-row"}`}>
-            <div className={` ${ICON_CONTENT} ${isMouseOver ? ICON_CONTENT_SHOW : ICON_CONTENT_HIDDEN}`}
-                 onClick={handleMiniMaxClick}>
-                <ReactSVG src="/icons/library-closed.svg" className={`library-closed-icon ${isMouseOver ? "svg-show" : "svg-hide"}`} />
+            <div className={` ${ICON_CONTENT} ${isMouseLeftSideBarOver || isMinimized ? ICON_CONTENT_SHOW : ICON_CONTENT_HIDDEN}`}
+                 onClick={handleMiniMaxClick} onMouseOver={() => setIsIconHover(true)} onMouseOut={() => setIsIconHover(false)}>
+                <ReactSVG src={getSelectedIcon()} />
             </div>
             <h1 className="fs14" style={{ display: `${isMinimized ? "none" : "block"}` }}>Your Library</h1>
             <button className={`${CREATE_BUTTON} ${PRIMARY_BUTTON} ${getButtonMarginClass()}`} onClick={handleClick}>

@@ -22,11 +22,11 @@ const LeftSideBar = () => {
 
     return (
         <aside className={`left-side-bar ${getWidthClass()}`} onMouseOver={handleMouseOver} onMouseOut={handleMouseOver}>
-            <MainControlls onMiniMaxClick={handleMiniMaxClick} isMouseOver={isMouseOver}/>
-            { stations.length > 0 && <TagControlls /> }
-            { stations.length > 0 && <FilterControlls /> }
-            { stations.length === 0 && <NoUserStations /> }
-            <StationsLibraryList />
+            <MainControlls onMiniMaxClick={handleMiniMaxClick} isMouseLeftSideBarOver={isMouseOver} />
+            { stations.length > 0 && !isMinimized && <TagControlls /> }
+            { stations.length > 0 && !isMinimized && <FilterControlls /> }
+            { stations.length === 0 && !isMinimized && <NoUserStations /> }
+            <StationsLibraryList isMinimized={isMinimized} />
         </aside>
     )
 }
