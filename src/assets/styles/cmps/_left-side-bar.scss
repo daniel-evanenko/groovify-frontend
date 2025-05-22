@@ -2,10 +2,17 @@
     grid-area: left;
     display: flex;
     flex-direction: column;
-    width: 280px;
-    min-width: 264px;
+    min-width: 72px;
     background-color: $bg-base;
     overflow: scroll;
+
+    &.left-side-bar-expanded {
+        width: 280px;
+    }
+
+    &.left-side-bar-collapsed {
+        width: 72px;    
+    }
     
     &::-webkit-scrollbar {
         display: none;
@@ -42,6 +49,36 @@
         
         & > * {
             margin: 10px;
+        }
+
+        &.main-controlls-row {
+            flex-direction: row;    
+        }
+
+        &.main-controlls-column {
+            flex-direction: column;    
+        }
+
+        .icon-content {
+            cursor: pointer;
+
+            .icon-content-hidden {
+                display: none;
+             }
+    
+            .library-open-icon {
+                width: em(30px);
+                height: em(30px);
+            }
+    
+            .icon-content-show {
+                display: block;
+            }
+    
+            .library-closed-icon {
+                width: em(20px);
+                height: em(20px);
+            }
         }
         
         .create-button {
