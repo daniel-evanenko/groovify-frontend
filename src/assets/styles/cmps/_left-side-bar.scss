@@ -1,11 +1,20 @@
 .left-side-bar {
     grid-area: left;
-    display: flex;
+    // display: flex;
+    display: grid;
+    grid-template-columns: 1;
     flex-direction: column;
-    width: 280px;
-    min-width: 264px;
+    min-width: 100px;
     background-color: $bg-base;
     overflow: scroll;
+
+    &.left-side-bar-expanded {
+        width: 280px;
+    }
+
+    &.left-side-bar-collapsed {
+        width: 100px;    
+    }
     
     &::-webkit-scrollbar {
         display: none;
@@ -37,16 +46,51 @@
     }
 
     .main-controlls {
-        justify-content: space-between;
+        justify-content: flex-start;
         margin: 0;
+        gap: 5px;
         
         & > * {
-            margin: 10px;
+            margin: 15px;
+        }
+
+        &.main-controlls-row {
+            flex-direction: row;    
+        }
+
+        &.main-controlls-column {
+            flex-direction: column;    
+        }
+
+        .icon-content {
+            cursor: pointer;
+            width: em(16px);
+            aspect-ratio: 1;
+
+            &.icon-content-show {
+                display: block;
+                opacity: 1;
+            }
+
+            &.icon-content-hidden {
+                display: none;
+                opacity: 0;
+             }
+
         }
         
         .create-button {
             color: $text-base;
             font-weight: 700;
+            margin-left: auto;
+
+            &.create-button-mini {
+                margin: auto;
+            }
+
+            &.create-button-max {
+                margin-left: auto; 
+            }
 
             & .minimized-bar {
                 aspect-ratio: 1;
@@ -137,7 +181,7 @@
             .lib-station-image {
                 grid-area: pic;
                 border-radius: 5px;
-                width: 50px;
+                min-width: 50px;
                 aspect-ratio: 1;
                 object-fit: cover;
                 margin: auto;

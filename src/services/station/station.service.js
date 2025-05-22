@@ -7,7 +7,7 @@ import { TRACKS_STORAGE_KEY_PREFIX } from '../spotify/spotify-api.service.js';
 export const STORAGE_KEY = "stations";
 export const INITIAL_STATION_PREFIX = "My Station #";
 export const INITIAL_STATION_PREFIX_REGEX = /[a-zA-Z #]/g;
-export const DEFAULT_IMAGE_URL = '/img/default-playlist-img.png';
+export const DEFAULT_IMAGE_URL = '/public/img/default-playlist-img.png';
 
 
 export const stationService = {
@@ -82,8 +82,8 @@ function findNextStationId() {
     if (newStationNumber.length) return Math.max(...newStationNumber) + 1
 }
 
-export async function createNewStation() {
-    const user = store.getState()?.userModule?.user
+export async function createNewStation({ userFullName }) {
+    const imgUrl = DEFAULT_IMAGE_URL;
     const nextStationId = findNextStationId() || '1';
     const stationName = `${INITIAL_STATION_PREFIX}${nextStationId}`;
 
