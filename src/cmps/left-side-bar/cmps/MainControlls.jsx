@@ -13,10 +13,10 @@ const ICON_CONTENT = 'icon-content';
 const ICON_CONTENT_HIDDEN = 'icon-content-hidden';
 const ICON_CONTENT_SHOW = 'icon-content-show';
 
-const MainControlls = ({ onMiniMaxClick }) => {
+const MainControlls = ({ onMiniMaxClick, isMouseOver }) => {
 
     const [iconClassNames, setIconClassNames] = useState([CREATE_PLAYLIST_ICON]);
-    const [isMouseOver, setIsMouseOver] = useState(false);
+    // const [isMouseOver, setIsMouseOver] = useState(false);
     const [isMinimized, setIsMinimized] = useState(false);
     const navigate = useNavigate();
 
@@ -47,14 +47,16 @@ const MainControlls = ({ onMiniMaxClick }) => {
 
     const onMouseOut = (event) => setIsMouseOver(false)
 
+    const getButtonMarginClass = () => isMinimized ? "create-button-mini" : "create-button-max"
+
     return (
         <section className={`${MAIN_CONTROLS} ${isMinimized ? "main-controlls-column" : "main-controlls-row"}`}>
-            <div className={` ${ICON_CONTENT} ${ICON_CONTENT_SHOW}`}
+            <div className={` ${ICON_CONTENT} ${isMouseOver ? ICON_CONTENT_SHOW : ICON_CONTENT_HIDDEN}`}
                  onClick={handleMiniMaxClick}>
                 <ReactSVG src="/icons/library-closed.svg" className={`library-closed-icon ${isMouseOver ? "svg-show" : "svg-hide"}`} />
             </div>
             <h1 className="fs14" style={{ display: `${isMinimized ? "none" : "block"}` }}>Your Library</h1>
-            <button className={`${CREATE_BUTTON} ${PRIMARY_BUTTON}`} onClick={handleClick}>
+            <button className={`${CREATE_BUTTON} ${PRIMARY_BUTTON} ${getButtonMarginClass()}`} onClick={handleClick}>
                 <CreatePlaylistIcon className={iconClassNames.join(' ')} />
             </button>
         </section>

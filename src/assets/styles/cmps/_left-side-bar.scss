@@ -44,11 +44,12 @@
     }
 
     .main-controlls {
-        justify-content: space-between;
+        justify-content: flex-start;
         margin: 0;
+        gap: 5px;
         
         & > * {
-            margin: 10px;
+            margin: 15px;
         }
 
         &.main-controlls-row {
@@ -62,17 +63,17 @@
         .icon-content {
             cursor: pointer;
 
-            .icon-content-hidden {
+            &.icon-content-show {
+                display: block;
+            }
+
+            &.icon-content-hidden {
                 display: none;
              }
     
             .library-open-icon {
                 width: em(30px);
                 height: em(30px);
-            }
-    
-            .icon-content-show {
-                display: block;
             }
     
             .library-closed-icon {
@@ -84,6 +85,15 @@
         .create-button {
             color: $text-base;
             font-weight: 700;
+            margin-left: auto;
+
+            &.create-button-mini {
+                margin: auto;
+            }
+
+            &.create-button-max {
+                margin-left: auto; 
+            }
 
             & .minimized-bar {
                 aspect-ratio: 1;
