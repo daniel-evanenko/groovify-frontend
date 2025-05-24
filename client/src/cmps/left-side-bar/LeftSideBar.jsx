@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const LeftSideBar = () => {
     
-    const stations = useSelector((state) => state.libraryModule.stations);
+    const stations = useSelector((state) => state.libraryModule.libraryStations);
     const [isMinimized, setIsMinimized] = useState(false);
     const [isMouseOver, setIsMouseOver] = useState(false);
 

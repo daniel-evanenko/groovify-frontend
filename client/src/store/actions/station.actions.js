@@ -1,15 +1,15 @@
 import { getStationsTracks } from "../../services/spotify/spotify-api.service.js"
 import { stationService } from "../../services/station/station.service.js"
 import { makeId } from "../../services/util.service.js"
-import { ADD_TRACK_TO_STATION, REMOVE_TRACK_FROM_STATION, SET_STATION, SET_TRACKS, UPDATE_STATION } from "../reducers/station.reducer.js"
+import { ADD_TRACK_TO_STATION, REMOVE_TRACK_FROM_STATION, SET_ACTIVE_STATION, SET_INDEX_STATIONS, SET_TRACKS, UPDATE_STATION } from "../reducers/station.reducer.js"
 import { store } from "../store.js"
 
 
 export async function addTrackToStation(track, stationId) {
 
     try {
-        const trackToAdd = await stationService.addTrackToStation(track, stationId)
-        store.dispatch({ type: ADD_TRACK_TO_STATION, track: trackToAdd })
+        const updatedTracks = await stationService.addTrackToStation(track, stationId)
+        store.dispatch({ type: SET_TRACKS, tracks: updatedTracks })
 
     } catch (err) {
         console.log('Station actions -> Cannot add track to station', err)
@@ -19,8 +19,8 @@ export async function addTrackToStation(track, stationId) {
 
 export async function removeTrackFromStation(trackId, stationId) {
     try {
-        stationService.removeTrackFromStation(trackId, stationId)
-        store.dispatch({ type: REMOVE_TRACK_FROM_STATION, trackId })
+        const updatedTracks = await stationService.removeTrackFromStation(trackId, stationId)
+        store.dispatch({ type: SET_TRACKS, tracks: updatedTracks })
 
     } catch (err) {
         console.log('Station actions -> Cannot remove track from station', err)
@@ -28,11 +28,11 @@ export async function removeTrackFromStation(trackId, stationId) {
     }
 }
 
-export async function loadStation(stationId) {
+export async function loadActiveStation(stationId) {
     try {
         const station = await stationService.getById(stationId)
         const tracks = await getStationsTracks(stationId)
-        store.dispatch({ type: SET_STATION, station })
+        store.dispatch({ type: SET_ACTIVE_STATION, station })
         store.dispatch({ type: SET_TRACKS, tracks })
 
     } catch (error) {
@@ -52,10 +52,52 @@ export async function saveStation(station) {
 }
 export function clearStation() {
     try {
-        store.dispatch({ type: SET_STATION, station: null })
+        store.dispatch({ type: SET_ACTIVE_STATION, station: {} })
+        store.dispatch({ type: SET_INDEX_STATIONS, tracks: [] })
     } catch (error) {
         console.log('Station actions -> Cannot clear station', error)
         throw err
+    }
+}
+
+
+export async function toggleLikeTrack(trackToToggle) {
+    try {
+        const state = store.getState()
+
+        const user = { ...state.userModule.user }
+        const likedStationId = user.likedTracksStationId
+        const activeStation = state.stationModule.currentActiveStation
+        const trackId = trackToToggle.track.id
+
+        if (!user || !trackId) {
+            console.error("❌ Missing user or track ID.")
+            return
+        }
+
+
+
+        const likedTracks = await stationService.getStationTracks(user.likedTracksStationId)
+        const isAlreadyLiked =
+            Array.isArray(likedTracks) &&
+            likedTracks.some(t => t.track?.id === trackToToggle.track?.id)
+
+        console.log(`🔍 Track is ${isAlreadyLiked ? "already" : "not yet"} liked`)
+
+        let updatedTracks = {}
+        if (isAlreadyLiked) {
+            updatedTracks = await stationService.removeTrackFromStation(trackToToggle.track.id, likedStationId)
+            console.log("🧹 Track removed from Liked Songs.")
+        } else {
+            updatedTracks = await stationService.addTrackToStation(trackToToggle, likedStationId)
+            console.log("❤️ Track added to Liked Songs.")
+        }
+        if (activeStation._id == likedStationId) {
+            store.dispatch({ type: SET_TRACKS, tracks: updatedTracks })
+        }
+
+    } catch (error) {
+        console.error("❌ Error in toggleLikeTrack:", error)
     }
 }
 

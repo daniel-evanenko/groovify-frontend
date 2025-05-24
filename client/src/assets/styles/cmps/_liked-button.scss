@@ -1,0 +1,19 @@
+.like-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 42px;
+    height: 42px;
+    color: red;
+    fill: red;
+
+    &.big-btn {
+        width: 72px;
+        height: 72px;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}

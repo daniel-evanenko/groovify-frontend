@@ -1,11 +1,10 @@
 import { useSelector } from "react-redux"
-import { memo, useEffect } from "react"
+import { memo } from "react"
 import StationItem from "./StationItem"
 
 const StationsLibraryList = memo(({ isMinimized }) => {
+    const stations = useSelector(state => state.libraryModule.libraryStations)
 
-    const stations = useSelector(state => state.libraryModule.stations)
-    
     return (
         <section class="library-stations">
             {
@@ -15,4 +14,4 @@ const StationsLibraryList = memo(({ isMinimized }) => {
     )
 })
 
-export default StationsLibraryList;
+export default StationsLibraryList

@@ -1,28 +1,24 @@
 import { useEffect, useRef, useState } from 'react'
 import { ReactSVG } from 'react-svg'
 import { debounce } from '../services/util.service'
-import { stationService } from '../services/station/station.service'
 import { SearchTrackList } from './SearchTrackList'
 import { addTrackToStation } from '../store/actions/station.actions'
+import { searchTracks } from '../services/spotify/spotify-api.service'
 
 export function StationTrackSearch({ station }) {
-    const [filterBy, setFilterBy] = useState(stationService.getDefaultFilter())
+    const [query, setQuery] = useState('')
     const debouncedLoadTracks = useRef(debounce(loadTracks, 300)).current
     const [tracks, setTracks] = useState([])
 
     useEffect(() => {
-        debouncedLoadTracks(filterBy)
-    }, [filterBy, debouncedLoadTracks])
+        debouncedLoadTracks(query)
+    }, [query, debouncedLoadTracks])
 
-    function handleChange({ target }) {
-        const { value, name, type } = target
-        const newValue = type === 'number' ? +value : value
-        setFilterBy((prevFilter) => ({ ...prevFilter, [name]: newValue }))
-    }
+
 
     async function loadTracks(currentFilter) {
         try {
-            const fetchedTracks = await stationService.getTracks(currentFilter)
+            const fetchedTracks = await searchTracks(currentFilter)
             setTracks(fetchedTracks)
         } catch (error) {
             console.error('Error loading tracks:', error)
@@ -30,10 +26,13 @@ export function StationTrackSearch({ station }) {
         }
     }
 
-    async function onAddTrack(track) {
-        addTrackToStation(track, station._id)
+    async function onAddTrack(trackToAdd) {
+        const filteredTracks = tracks.filter(
+            trackObj => trackObj.track?.id !== trackToAdd.track.id
+        )
+        setTracks(filteredTracks)
+        addTrackToStation(trackToAdd, station._id)
     }
-    const { title } = filterBy
 
     return (
         <section className="station-track-search">
@@ -43,13 +42,12 @@ export function StationTrackSearch({ station }) {
                     <ReactSVG className="search-icon" src="/icons/search.svg" />
                     <input
                         type="search"
-                        name="title"
-                        value={title}
-                        onChange={handleChange}
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
                         placeholder="Search for songs or episodes"
                     />
-                    {title && (
-                        <button className="clear-btn" onClick={() => setFilterBy((prev) => ({ ...prev, title: '' }))}>
+                    {query && (
+                        <button className="clear-btn" onClick={() => setQuery('')}>
                             ✕
                         </button>
                     )}
@@ -57,10 +55,10 @@ export function StationTrackSearch({ station }) {
                 {tracks.length > 0 && (
                     <SearchTrackList tracks={tracks} onAddTrack={onAddTrack}></SearchTrackList>
                 )}
-                {tracks.length === 0 && title && (
+                {tracks.length === 0 && query && (
                     <>
 
-                        <div className="no-results">No results found for "{title}"
+                        <div className="no-results">No results found for "{query}"
                             <p>Please make sure your words are spelled correctly, or use fewer or different keywords.</p>
                         </div>
 

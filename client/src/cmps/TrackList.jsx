@@ -1,20 +1,39 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { ReactSVG } from "react-svg"
 import { formatDate, formatTime } from "../services/util.service"
 import { StationDropdownOptions } from "./StationDropdownOptions"
 import { useClickOutside } from "../hooks/useClickOutside"
-import { removeTrackFromStation } from "../store/actions/station.actions"
+import { removeTrackFromStation, toggleLikeTrack } from "../store/actions/station.actions"
 import defaultImg from "/img/default-playlist-img.png"
-import { useSelector } from "react-redux"
+import { stationService } from "../services/station/station.service"
+import { LikeButton } from "./TrackLikedButton"
 import { getYtVideoUrls } from "../services/youtube/yt-api.service"
 import { makeYtQueryFromTrack } from "../services/youtube/yt.service"
 
-export function TrackList({ station, isAllowed }) {
+export function TrackList({ station, isAllowed, tracks }) {
     const [activeRowIndex, setActiveRowIndex] = useState(null)
     const [hoveredRow, setHoveredRow] = useState(null)
     const [currentlyPlayingTrackId, setCurrentlyPlayingTrackId] = useState(null)
     const activeRow = useClickOutside(() => setActiveRowIndex(null))
-    const tracks = useSelector(storeState => storeState.stationModule.tracks)
+    const [userLikedTracks, setUserLikedTracks] = useState([])
+
+    useEffect(() => {
+        async function fetchLikedTracks() {
+            try {
+                const likedTracks = await stationService.getLikedStationTracks()
+                setUserLikedTracks(likedTracks || [])
+            } catch (err) {
+                console.error("Failed to fetch liked tracks", err)
+            }
+        }
+
+        fetchLikedTracks()
+    }, [])
+
+    function isTrackLiked(track) {
+        const res = userLikedTracks.some(t => t.track?.id === track.track?.id)
+        return res
+    }
 
     const moreOptions = [
         { label: "Add to playlist", value: "add to playlist", icon: "icons/create-playlist.svg" },
@@ -141,11 +160,9 @@ export function TrackList({ station, isAllowed }) {
 
                         <div className="track-duration">
                             <div className="duration-btn">
-                                <ReactSVG
-                                    src={"/icons/like.svg"}
-                                    onClick={(e) => {
-                                        e.stopPropagation()
-                                    }}
+                                <LikeButton track={trackObj}
+                                    isLiked={isTrackLiked(trackObj)}
+                                    onToggle={() => toggleLikeTrack(trackObj)}
                                 />
                             </div>
                             <span className="duration-text">{formatTime(duration_ms)}</span>

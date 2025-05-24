@@ -1,44 +1,50 @@
-export const SET_STATION = 'SET_STATION'
+export const SET_ACTIVE_STATION = 'SET_ACTIVE_STATION'
 export const SET_TRACKS = 'SET_TRACKS'
+export const SET_INDEX_STATIONS = 'SET_INDEX_STATIONS'
 export const ADD_TRACK_TO_STATION = 'ADD_TRACK_TO_STATION'
 export const REMOVE_TRACK_FROM_STATION = 'REMOVE_TRACK_FROM_STATION'
 export const PLAY_TRACK = 'PLAY_TRACK'
 export const UPDATE_STATION = 'UPDATE_STATION'
 
 const initialState = {
-    station: {},
-    tracks: [],
+    indexStations: [],
+    currentActiveStation: {},
+    activeStationTracks: [],
     playingTrack: {}
 }
 
 export function stationReducer(state = initialState, action) {
     switch (action.type) {
-        case SET_STATION:
+        case SET_INDEX_STATIONS:
             return {
                 ...state,
-                station: action.station
+                indexStations: action.stations
+            }
+        case SET_ACTIVE_STATION:
+            return {
+                ...state,
+                currentActiveStation: action.station
             }
         case SET_TRACKS:
             return {
                 ...state,
-                tracks: action.tracks
+                activeStationTracks: action.tracks
             }
         case ADD_TRACK_TO_STATION:
             return {
                 ...state,
-                    tracks: [...(state.tracks || []), action.track],
+                activeStationTracks: [...(state.activeStationTracks || []), action.track],
             }
 
         case REMOVE_TRACK_FROM_STATION:
-            const currentTracks = Array.isArray(state.tracks) ? state.tracks : []
+            const currentTracks = Array.isArray(state.activeStationTracks) ? state.activeStationTracks : []
             const filteredTracks = currentTracks.filter(
                 trackObj => trackObj.track?.id !== action.trackId
             )
             return {
                 ...state,
-                tracks: filteredTracks
+                activeStationTracks: filteredTracks
             }
-
 
         case PLAY_TRACK:
             return { ...state, playingTrack: action.playingTrack }
@@ -46,7 +52,7 @@ export function stationReducer(state = initialState, action) {
         case UPDATE_STATION:
             return {
                 ...state,
-                station: { ...state.station, ...action.station, lastUpdate: Date.now() }
+                currentActiveStation: { ...state.currentActiveStation, ...action.station, lastUpdate: Date.now() }
             }
 
         default:

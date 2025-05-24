@@ -1,7 +1,8 @@
 import axios from "axios";
 import { getSpotifyToken } from "./spotify-token.service.js";
 import { loadFromStorage, makeId, saveToStorage } from "../util.service.js";
-import { processSpotifyStations } from "../station/station.service.js";
+import { processSpotifyStations, stationService } from "../station/station.service.js";
+import { store } from "../../store/store.js";
 
 const CATEGORIES_STORAGE_KEY = "categories"
 const STATIONS_STORAGE_KEY = "stations"
@@ -94,5 +95,65 @@ export async function getStationsTracks(stationId) {
 
     } catch (err) {
         console.error(err)
+    }
+}
+
+export async function searchTracks(query, limit = 10, offset = 0) {
+    const name = query.trim()
+    if (!name) return []
+    try {
+
+        const accessToken = await getSpotifyToken()
+        const encodedQuery = encodeURIComponent(name)
+        const response = await axios.get(`https://api.spotify.com/v1/search?q=${encodedQuery}&type=track&limit=${limit}&offset=${offset}`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        })
+        let tracks = []
+        if (response.data.tracks) {
+            tracks = response.data.tracks.items.map(wrapSpotifyTrack)
+            tracks = await _filterOutLikedTracks(tracks)
+
+        } else {
+            tracks = []
+        }
+        return tracks
+    } catch (error) {
+        console.error(`error searching a track with query ${name}`, error)
+    }
+
+
+    async function _filterOutLikedTracks(tracks) {
+        try {
+            const user = store.getState()?.userModule?.user
+            const userLikedTracks = await stationService.getStationTracks(user.likedTracksStationId)
+            if (userLikedTracks?.length <= 0) return tracks
+            const likedTrackIds = new Set(
+                userLikedTracks.map(liked => liked.track?.id)
+            )
+            return tracks.filter(t => !likedTrackIds.has(t.track?.id))
+        } catch (error) {
+            console.log('error filtering out liked tracks', error)
+        }
+
+
+    }
+
+}
+export function wrapSpotifyTrack(track) {
+    return {
+        added_at: new Date().toISOString(),
+        added_by: {
+            id: 'search-ui',
+            type: 'user',
+            uri: '',
+            external_urls: {},
+        },
+        is_local: false,
+        track,
+        video_thumbnail: {
+            url: null,
+        },
     }
 }

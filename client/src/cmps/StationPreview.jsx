@@ -1,8 +1,8 @@
 import { LongTxt } from "./LongTxt"
 import { useNavigate } from "react-router-dom"
 import defaultImg from "/img/default-playlist-img.png"
-import { setActiveStation } from "../store/actions/library.actions"
 import { PlayButton } from "./PlayButton"
+import { setActiveStation } from "../store/actions/library.actions"
 
 export function StationPreview({ station }) {
     const navigate = useNavigate()
@@ -11,7 +11,7 @@ export function StationPreview({ station }) {
         if (!station) {
             navigate('/')
         }
-        setActiveStation(station?._id)
+        // setActiveStation(station)
         navigate(`/station/${station?._id}`)
 
     }

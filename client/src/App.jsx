@@ -9,10 +9,12 @@ import { StationDetails } from "./pages/StationDetails"
 import { AudioPlayer } from "./cmps/AudioPlayer"
 import { CategoriesPage } from "./pages/CategoriesPage"
 import { loadStations } from "./store/actions/library.actions"
+import { tempLogin } from "./store/actions/user.actions"
 
 function App() {
     useEffect(() => {
         loadStations()
+        tempLogin()
     }, [])
 
     return (
