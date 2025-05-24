@@ -21,7 +21,7 @@ const MainControlls = ({ onMiniMaxClick, isMouseLeftSideBarOver }) => {
     const navigate = useNavigate();
 
     const handleClick = async () => {
-        const newStationId = await createNewStation({userFullName: 'David Gelbard'})
+        const newStationId = await createNewStation({ userFullName: 'David Gelbard' })
         navigate(`station/${newStationId}`)
     }
 
@@ -45,7 +45,7 @@ const MainControlls = ({ onMiniMaxClick, isMouseLeftSideBarOver }) => {
     return (
         <section className={`${MAIN_CONTROLS} ${isMinimized ? "main-controlls-column" : "main-controlls-row"}`}>
             <div className={` ${ICON_CONTENT} ${isMouseLeftSideBarOver || isMinimized ? ICON_CONTENT_SHOW : ICON_CONTENT_HIDDEN}`}
-                 onClick={handleMiniMaxClick} onMouseOver={() => setIsIconHover(true)} onMouseOut={() => setIsIconHover(false)}>
+                onClick={handleMiniMaxClick} onMouseOver={() => setIsIconHover(true)} onMouseOut={() => setIsIconHover(false)}>
                 <ReactSVG src={getSelectedIcon()} />
             </div>
             <h1 className="fs14" style={{ display: `${isMinimized ? "none" : "block"}` }}>Your Library</h1>

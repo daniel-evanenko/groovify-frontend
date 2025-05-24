@@ -4,11 +4,13 @@ import { PlayerProgressBar } from "./progress-bars/PlayerProgressBar";
 import { VolumeBar } from "./progress-bars/VolumeBar";
 import { useEffect, useState } from "react";
 import { eventBus, playerEvents } from "../services/event-bus.service";
+import { useSelector } from "react-redux";
 
 
 export function AppFooter() {
     const [trackDuration, setTrackDuration] = useState(0)
     const [isInert, setIsInert] = useState(true)
+    const activeStationId = useSelector(state => state.systemModule.activeStationId)
 
     useEffect(() => {
         const trackPlaybackReadyCleanup = eventBus.on(playerEvents.TRACK_PLAYBACK_READY, onTrackPlaybackReady)
@@ -32,7 +34,7 @@ export function AppFooter() {
                         <ReactSVG src="/icons/previous.svg" />
                     </button>
 
-                    <PlayButton className={`player-controls-btn`} />
+                    <PlayButton className={`player-controls-btn`} stationId={activeStationId}/>
 
                     <button className=" player-controls-btn">
                         <ReactSVG src="/icons/next.svg" />

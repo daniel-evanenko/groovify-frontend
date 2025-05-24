@@ -2,7 +2,7 @@ import { storageService } from '../async-storage.service.js'
 import { loadFromStorage, makeId, saveToStorage } from '../util.service.js';
 import { addStation } from '../../store/actions/library.actions.js';
 import { store } from '../../store/store.js';
-import { TRACKS_STORAGE_KEY_PREFIX } from '../spotify/spotify-api.service.js';
+import { getStationsTracks, TRACKS_STORAGE_KEY_PREFIX } from '../spotify/spotify-api.service.js';
 
 export const STORAGE_KEY = "stations";
 export const INITIAL_STATION_PREFIX = "My Station #";
@@ -94,7 +94,7 @@ export async function createNewStation({ userFullName }) {
         category: "",
         categoryId: "",
         owner: {
-            fullname: user.fullname
+            fullname: userFullName
         }
     }
 
@@ -155,6 +155,16 @@ async function getTracks(filter = {}) {
     } catch (err) {
         console.error('Error fetching tracks:', err)
         return []
+    }
+}
+
+export async function getStationFirstTrack(stationId) {
+    try {
+        const tracks = await getStationsTracks(stationId)
+        return tracks && tracks.length > 0 && tracks[0]
+    } catch (err) {
+        console.log("couldnt get first track")
+        throw err
     }
 }
 

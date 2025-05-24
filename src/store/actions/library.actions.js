@@ -1,6 +1,6 @@
 import { getStations } from "../../services/spotify/spotify-api.service.js"
 import { stationService } from "../../services/station/station.service.js"
-import { ADD_STATION_ACTIVATE, REMOVE_STATION, SET_ACTIVE_STATION_ID, SET_STATIONS } from "../reducers/library.reducer.js"
+import { ADD_STATION_ACTIVATE, REMOVE_STATION, SET_STATIONS } from "../reducers/library.reducer.js"
 import { store } from "../store.js"
 
 export async function loadStations() {
@@ -36,16 +36,6 @@ export async function removeStation(stationId) {
 
     } catch (err) {
         console.log('library actions -> Cannot remove station', err)
-        throw err
-    }
-}
-// setting station as active causes the main section to render it.
-export async function setActiveStation(stationId) {
-    try {
-        store.dispatch({ type: SET_ACTIVE_STATION_ID, stationId })
-
-    } catch (err) {
-        console.log('library actions -> Cannot set active station', err)
         throw err
     }
 }

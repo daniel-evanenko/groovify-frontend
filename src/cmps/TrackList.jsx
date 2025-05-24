@@ -8,13 +8,16 @@ import defaultImg from "/img/default-playlist-img.png"
 import { useSelector } from "react-redux"
 import { getYtVideoUrls } from "../services/youtube/yt-api.service"
 import { makeYtQueryFromTrack } from "../services/youtube/yt.service"
+import { setActiveStation, setTrack } from "../store/actions/system.actions"
+import { setPlaying } from "../store/actions/player.actions"
 
 export function TrackList({ station, isAllowed }) {
-    const [activeRowIndex, setActiveRowIndex] = useState(null)
+    const [selectedRowIndex, setSelectedRowIndex] = useState(null)
     const [hoveredRow, setHoveredRow] = useState(null)
-    const [currentlyPlayingTrackId, setCurrentlyPlayingTrackId] = useState(null)
-    const activeRow = useClickOutside(() => setActiveRowIndex(null))
-    const tracks = useSelector(storeState => storeState.stationModule.tracks)
+    const activeRow = useClickOutside(() => setSelectedRowIndex(null))
+    const tracks = useSelector(state => state.stationModule.tracks)
+    const activeTrackId = useSelector(state => state.systemModule.activeTrackId)
+    const playing = useSelector(state => state.playerModule.playing)
 
     const moreOptions = [
         { label: "Add to playlist", value: "add to playlist", icon: "icons/create-playlist.svg" },
@@ -37,15 +40,17 @@ export function TrackList({ station, isAllowed }) {
     }
 
     async function onPlay(track) {
-        setCurrentlyPlayingTrackId(track.id)
         const query = makeYtQueryFromTrack(track)
         const videoUrls = await getYtVideoUrls(station._id, track.id, query)
-        console.log(videoUrls)
+        setActiveStation(station._id)
+        setTrack(track.id)
+        setPlaying(true)
     }
 
-    function onPause() {
-        setCurrentlyPlayingTrackId(null)
+    async function onPause() {
+        setPlaying(false)
     }
+
     return (
         <ul className="track-list">
             <li className="track-header">
@@ -75,25 +80,26 @@ export function TrackList({ station, isAllowed }) {
                     added_at,
                 } = trackObj
 
-                const isActive = activeRowIndex === index
+                const isSelected = selectedRowIndex === index
                 const isHovered = hoveredRow === index
-                const isPlaying = id === currentlyPlayingTrackId
+                const isTrackActive = id === activeTrackId
+                // console.log(id, activeTrackId, id === activeTrackId, playing)
 
                 return (
                     <li
                         ref={activeRow}
                         key={index}
-                        onClick={() => setActiveRowIndex(isActive ? null : index)}
+                        onClick={() => setSelectedRowIndex(isSelected ? null : index)}
                         onMouseEnter={() => setHoveredRow(index)}
                         onMouseLeave={() => setHoveredRow(null)}
-                        className={`track-container ${isActive ? "active" : ""}`}
+                        className={`track-container ${isSelected ? "active" : ""}`}
                     >
                         <div className="track-order">
-                            {!isPlaying && !isHovered && (
+                            {!isHovered && (
                                 <span className="track-number">{index + 1}</span>
                             )}
-
-                            {!isPlaying && isHovered && (
+                            
+                            {!isTrackActive && isHovered && (
                                 <ReactSVG
                                     onClick={(e) => {
                                         e.stopPropagation()
@@ -103,11 +109,7 @@ export function TrackList({ station, isAllowed }) {
                                 />
                             )}
 
-                            {isPlaying && !isHovered && (
-                                <ReactSVG className="now-playing" src="/icons/pause.svg" />
-                            )}
-
-                            {isPlaying && isHovered && (
+                            {isTrackActive && isHovered && (
                                 <ReactSVG
                                     onClick={(e) => {
                                         e.stopPropagation()
@@ -118,7 +120,7 @@ export function TrackList({ station, isAllowed }) {
                             )}
                         </div>
 
-                        <div className={`track-title ${isPlaying ? "now-playing" : ""}`}>
+                        <div className={`track-title ${isTrackActive ? "now-playing" : ""}`}>
                             <img
                                 src={album?.images?.[0]?.url || defaultImg}
                                 alt={name}

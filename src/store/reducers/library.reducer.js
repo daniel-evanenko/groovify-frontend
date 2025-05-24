@@ -1,12 +1,9 @@
 export const ADD_STATION_ACTIVATE = 'ADD_STATION'
 export const SET_STATIONS = 'SET_STATIONS'
 export const REMOVE_STATION = 'REMOVE_STATION'
-export const SET_ACTIVE_STATION_ID = 'SET_ACTIVE_STATION_ID'
-
 
 const initialState = {
-    stations: [],
-    activeStationId: ''
+    stations: []
 }
 
 export function libraryReducer(state = initialState, action) {
@@ -19,10 +16,9 @@ export function libraryReducer(state = initialState, action) {
 
         case ADD_STATION_ACTIVATE:
             return {
-                    ...state,
-                    stations: [action.savedStation, ...state.stations],
-                    activeStationId: action.savedStation.spotifyId
-                }
+                ...state,
+                stations: [action.savedStation, ...state.stations],
+            }
 
         case REMOVE_STATION:
             const { stations } = state
@@ -30,11 +26,7 @@ export function libraryReducer(state = initialState, action) {
             return {
                 ...state,
                 stations: filteredStations
-
             }
-
-        case SET_ACTIVE_STATION_ID:
-            return { ...state, activeStationId: action.stationId }
 
         default:
             return state

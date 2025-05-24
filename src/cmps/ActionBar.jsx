@@ -8,9 +8,9 @@ import { StationEditModal } from "./StationEditModal";
 import { removeStation } from "../store/actions/library.actions";
 
 
-export function ActionBar({ station ,isAllowed}) {
+export function ActionBar({ station, isAllowed}) {
     const navigate = useNavigate()
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     const moreOptions = [
         { label: "Edit details", value: "edit", icon: 'icons/Pencil.svg' },
@@ -27,10 +27,11 @@ export function ActionBar({ station ,isAllowed}) {
             setIsModalOpen(false)
         }
     }
+
     function handleOptionClick(option) {
         switch (option) {
             case 'delete':
-                _removeStation(station);
+                _removeStation(station)
                 break;
             case 'edit':
                 setIsModalOpen(true)
@@ -42,8 +43,6 @@ export function ActionBar({ station ,isAllowed}) {
                 break;
         }
     }
-
-
 
     async function _removeStation(station) {
         try {
@@ -58,7 +57,7 @@ export function ActionBar({ station ,isAllowed}) {
 
     return (
         <section className='action-bar'>
-            <PlayButton />
+            <PlayButton stationId={station?._id}/>
             {isAllowed && <StationDropdownOptions options={moreOptions} onOptionClick={(option) => handleOptionClick(option)}></StationDropdownOptions>}
             {isModalOpen && <StationEditModal onClose={() => setIsModalOpen(false)} onConfirm={handleConfirm} station={station}>
             </StationEditModal>}

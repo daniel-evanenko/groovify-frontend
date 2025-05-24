@@ -2,13 +2,11 @@ export const SET_STATION = 'SET_STATION'
 export const SET_TRACKS = 'SET_TRACKS'
 export const ADD_TRACK_TO_STATION = 'ADD_TRACK_TO_STATION'
 export const REMOVE_TRACK_FROM_STATION = 'REMOVE_TRACK_FROM_STATION'
-export const PLAY_TRACK = 'PLAY_TRACK'
 export const UPDATE_STATION = 'UPDATE_STATION'
 
 const initialState = {
     station: {},
-    tracks: [],
-    playingTrack: {}
+    tracks: []
 }
 
 export function stationReducer(state = initialState, action) {
@@ -26,7 +24,7 @@ export function stationReducer(state = initialState, action) {
         case ADD_TRACK_TO_STATION:
             return {
                 ...state,
-                    tracks: [...(state.tracks || []), action.track],
+                tracks: [...(state.tracks || []), action.track],
             }
 
         case REMOVE_TRACK_FROM_STATION:
@@ -38,10 +36,6 @@ export function stationReducer(state = initialState, action) {
                 ...state,
                 tracks: filteredTracks
             }
-
-
-        case PLAY_TRACK:
-            return { ...state, playingTrack: action.playingTrack }
 
         case UPDATE_STATION:
             return {
