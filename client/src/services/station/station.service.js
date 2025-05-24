@@ -124,7 +124,7 @@ export async function createNewLikedStation(user) {
 
         newStation = await stationService.save(newStation)
         // Add the tracks array to localStorage, associated with the new station. 
-        const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `_${newStation._id}`
+        const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${newStation._id}`
         saveToStorage(STATION_TRACKS_STORAGE_KEY, [])
         return newStation
 
@@ -187,7 +187,7 @@ async function getStationsById(likedPlaylistIds = []) {
 }
 
 async function getStationTracks(stationId) {
-    const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `_${stationId}`
+    const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${stationId}`
     return loadFromStorage(STATION_TRACKS_STORAGE_KEY) || []
 }
 
