@@ -1,41 +1,39 @@
-export const ADD_STATION_ACTIVATE = 'ADD_STATION'
-export const SET_STATIONS = 'SET_STATIONS'
-export const REMOVE_STATION = 'REMOVE_STATION'
-export const SET_ACTIVE_STATION_ID = 'SET_ACTIVE_STATION_ID'
+export const ADD_LIBRARY_STATION = 'ADD_STATION'
+export const SET_LIBRARY_STATIONS = 'SET_LIBRARY_STATIONS'
+export const ADD_LIBRARY_STATIONS = 'ADD_LIBRARY_STATIONS'
+export const REMOVE_LIBRARY_STATION = 'REMOVE_LIBRARY_STATION'
 
 
 const initialState = {
-    stations: [],
-    activeStationId: ''
+    libraryStations: [],
 }
 
 export function libraryReducer(state = initialState, action) {
     switch (action.type) {
-        case SET_STATIONS:
+        case SET_LIBRARY_STATIONS:
             return {
                 ...state,
-                stations: action.stations
+                libraryStations: action.stations
             }
-
-        case ADD_STATION_ACTIVATE:
-            return {
-                    ...state,
-                    stations: [action.savedStation, ...state.stations],
-                    activeStationId: action.savedStation.spotifyId
-                }
-
-        case REMOVE_STATION:
-            const { stations } = state
-            const filteredStations = stations.filter(station => station._id !== action.stationId)
+        case ADD_LIBRARY_STATIONS:
             return {
                 ...state,
-                stations: filteredStations
-
+                libraryStations: [...action.stations, ...state.libraryStations]
+            }
+        case ADD_LIBRARY_STATION:
+            return {
+                ...state,
+                libraryStations: [action.savedStation, ...state.libraryStations],
             }
 
-        case SET_ACTIVE_STATION_ID:
-            return { ...state, activeStationId: action.stationId }
+        case REMOVE_LIBRARY_STATION:
+            const { libraryStations } = state
+            const filteredStations = libraryStations.filter(station => station._id !== action.stationId)
+            return {
+                ...state,
+                libraryStations: filteredStations
 
+            }
         default:
             return state
     }
