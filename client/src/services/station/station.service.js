@@ -3,6 +3,7 @@ import { loadFromStorage, makeId, saveToStorage } from '../util.service.js';
 import { addStation } from '../../store/actions/library.actions.js';
 import { store } from '../../store/store.js';
 import { TRACKS_STORAGE_KEY_PREFIX } from '../spotify/spotify-api.service.js';
+import { updateUser } from '../../store/actions/user.actions.js';
 
 export const STORAGE_KEY = "stations";
 export const INITIAL_STATION_PREFIX = "My Station #";
@@ -105,6 +106,9 @@ export async function createNewStation() {
     const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${newStationId}`
     saveToStorage(STATION_TRACKS_STORAGE_KEY, [])
 
+    user.likedStationIds.push(newStationId)
+    updateUser(user, false)
+
     return newStationId
 }
 
@@ -126,6 +130,7 @@ export async function createNewLikedStation(user) {
         // Add the tracks array to localStorage, associated with the new station. 
         const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${newStation._id}`
         saveToStorage(STATION_TRACKS_STORAGE_KEY, [])
+
         return newStation
 
     } catch (error) {
