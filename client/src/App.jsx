@@ -13,10 +13,13 @@ import { tempLogin } from "./store/actions/user.actions"
 
 function App() {
     useEffect(() => {
-        loadStations()
-        tempLogin()
+        init()
     }, [])
 
+    async function init() {
+        await loadStations()
+        tempLogin()
+    }
     return (
         <Router>
             <section className="app">
