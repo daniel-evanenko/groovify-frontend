@@ -1,4 +1,2 @@
 
-export const ALBUM = "Album"
-export const STATION = "Station"
-export const GROOVIFY = "Groovify"
+export const DEFAULT_PORT = 3000;
