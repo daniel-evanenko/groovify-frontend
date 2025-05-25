@@ -1,4 +1,4 @@
-import { createNewLikedStation, stationService } from "../../services/station/station.service.js"
+import { createNewLikedStation } from "../../services/station/station.service.js"
 import defaultUser from "../../services/user/defaultUser.js"
 import { userService } from "../../services/user/user.service.js"
 import { SET_IS_GUEST_USER, SET_USER } from "../reducers/user.reducer.js"

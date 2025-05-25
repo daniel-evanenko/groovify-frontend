@@ -2,7 +2,8 @@ import { LongTxt } from "./LongTxt"
 import { useNavigate } from "react-router-dom"
 import defaultImg from "/img/default-playlist-img.png"
 import { PlayButton } from "./PlayButton"
-import { setActiveStation } from "../store/actions/library.actions"
+import { loadStation } from "../store/actions/station.actions"
+import { useSelector } from "react-redux"
 
 export function StationPreview({ station }) {
     const navigate = useNavigate()
@@ -11,12 +12,12 @@ export function StationPreview({ station }) {
         if (!station) {
             navigate('/')
         }
-        // setActiveStation(station)
+        loadStation(station?._id)
         navigate(`/station/${station?._id}`)
-
     }
 
     const imgUrl = station?.images[0]?.url || defaultImg
+
     return (
         <article className="station-preview" onClick={handleStationClick}>
             <div>
@@ -24,7 +25,7 @@ export function StationPreview({ station }) {
                     e.currentTarget.onerror = null; // prevent infinite loop
                     e.currentTarget.src = defaultImg;
                 }}></img>
-                <PlayButton />
+                <PlayButton stationId={station._id}/>
             </div>
             <LongTxt>{station?.description || "Your weekly update of the most played tracks right now - Global."}</LongTxt>
         </article>

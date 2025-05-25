@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import CreatePlaylistIcon from '../../../../public/icons/create-playlist.svg?react';
 import { createNewStation } from '../../../services/station/station.service'
 import { useNavigate } from 'react-router-dom';
@@ -21,7 +21,7 @@ const MainControlls = ({ onMiniMaxClick, isMouseLeftSideBarOver }) => {
     const navigate = useNavigate();
 
     const handleClick = async () => {
-        const newStationId = await createNewStation()
+        const newStationId = await createNewStation({ userFullName: 'David Gelbard' })
         navigate(`station/${newStationId}`)
     }
 

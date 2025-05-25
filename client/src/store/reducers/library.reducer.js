@@ -1,39 +1,33 @@
-export const ADD_LIBRARY_STATION = 'ADD_STATION'
-export const SET_LIBRARY_STATIONS = 'SET_LIBRARY_STATIONS'
-export const ADD_LIBRARY_STATIONS = 'ADD_LIBRARY_STATIONS'
-export const REMOVE_LIBRARY_STATION = 'REMOVE_LIBRARY_STATION'
-
+export const ADD_STATION = 'ADD_STATION'
+export const REMOVE_STATION = 'REMOVE_STATION'
+export const SET_STATIONS = 'SET_STATIONS'
 
 const initialState = {
-    libraryStations: [],
+    stations: []
 }
 
 export function libraryReducer(state = initialState, action) {
     switch (action.type) {
-        case SET_LIBRARY_STATIONS:
+        case SET_STATIONS:
             return {
                 ...state,
-                libraryStations: action.stations
-            }
-        case ADD_LIBRARY_STATIONS:
-            return {
-                ...state,
-                libraryStations: [...action.stations, ...state.libraryStations]
-            }
-        case ADD_LIBRARY_STATION:
-            return {
-                ...state,
-                libraryStations: [action.savedStation, ...state.libraryStations],
+                stations: action.stations
             }
 
-        case REMOVE_LIBRARY_STATION:
-            const { libraryStations } = state
-            const filteredStations = libraryStations.filter(station => station._id !== action.stationId)
+        case ADD_STATION:
             return {
                 ...state,
-                libraryStations: filteredStations
-
+                stations: [action.savedStation, ...state.stations],
             }
+
+        case REMOVE_STATION:
+            const { stations } = state
+            const filteredStations = stations.filter(station => station._id !== action.stationId)
+            return {
+                ...state,
+                stations: filteredStations
+            }
+
         default:
             return state
     }

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { clearStation, saveStation } from "../store/actions/station.actions";
 import { PlayButton } from "./PlayButton";
 import { StationDropdownOptions } from "./StationDropdownOptions";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { StationEditModal } from "./StationEditModal";
 import { removeStation, toggleLikeStation } from "../store/actions/library.actions";
 import { LikeButton } from "./TrackLikedButton";
@@ -12,17 +12,19 @@ import { useSelector } from "react-redux";
 
 export function ActionBar({ station, isAllowed }) {
     const navigate = useNavigate()
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const stations = useSelector(state => state.libraryModule.libraryStations)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const stations = useSelector(state => state.libraryModule.stations)
 
     const moreOptions = [
         { label: "Edit details", value: "edit", icon: 'icons/Pencil.svg' },
         { label: "Add to queue", value: "add to queue", icon: "icons/add-to-queue.svg" },
         { label: "Delete", value: "delete", icon: 'icons/Delete.svg' },
     ]
+
     function isLikedStation() {
         return stations.some(s => s._id === station._id)
     }
+
     async function handleConfirm(station) {
         try {
             saveStation(station)
@@ -32,23 +34,22 @@ export function ActionBar({ station, isAllowed }) {
             setIsModalOpen(false)
         }
     }
+
     function handleOptionClick(option) {
         switch (option) {
             case 'delete':
-                _removeStation(station);
-                break;
+                _removeStation(station)
+                break
             case 'edit':
                 setIsModalOpen(true)
-                break;
+                break
             case 'add to queue':
-                break;
+                break
 
             default:
-                break;
+                break
         }
     }
-
-
 
     async function _removeStation(station) {
         try {
@@ -64,9 +65,10 @@ export function ActionBar({ station, isAllowed }) {
     function onToggleLikedStation(station) {
         toggleLikeStation(station)
     }
+
     return (
         <section className='action-bar'>
-            <PlayButton />
+            <PlayButton stationId={station?._id} />
             <LikeButton track={station}
                 isLiked={isLikedStation()}
                 onToggle={() => onToggleLikedStation(station)}
