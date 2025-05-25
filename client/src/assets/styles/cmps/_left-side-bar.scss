@@ -1,18 +1,17 @@
 .left-side-bar {
     grid-area: left;
-    display: grid;
-    grid-template-columns: 1;
-    flex-direction: column;
-    min-width: 100px;
+    min-width: fit-content;
     background-color: $bg-base;
     overflow: scroll;
+    margin-inline-start: 8px;
 
     &.left-side-bar-expanded {
         width: 280px;
     }
 
     &.left-side-bar-collapsed {
-        width: 100px;
+        width: min-content;
+        padding: 4px;
     }
 
     &::-webkit-scrollbar {
@@ -47,7 +46,9 @@
     .main-controlls {
         justify-content: flex-start;
         margin: 0;
-        gap: 5px;
+        position: sticky;
+        top: 0;
+        background-color: $bg-base;
 
         &>* {
             margin: 15px;
@@ -61,21 +62,45 @@
             flex-direction: column;
         }
 
-        .icon-content {
-            cursor: pointer;
-            width: em(16px);
+        .icon-content{
+            width: 24px;
+            &:not(.minimized) {
+                width: 16px;
+            }
             aspect-ratio: 1;
+            transition: all 0.2s ease;
+            cursor: pointer;
 
-            &.icon-content-show {
-                display: block;
+            &.icon-content-show:not(.minimized) {
+                transform: translateX(8px);
                 opacity: 1;
+                pointer-events: all;
             }
 
-            &.icon-content-hidden {
-                display: none;
+            &.icon-content-hidden:not(.minimized) {
+                transform: translateX(-16px);
                 opacity: 0;
+                pointer-events: none;
+            }
+        }
+
+        h1 {
+            margin: -4px 4px 0 -16px;
+            font-size: medium;
+            color: $text-base;
+            transition: all 0.2s ease 0.05s;
+
+            &:hover {
+                cursor: pointer;
             }
 
+            &.slide-in {
+                transform: translateX(24px);
+            }
+
+            &.slide-out {
+                transform: translateX(-16px);
+            }
         }
 
         .create-button {
@@ -85,6 +110,7 @@
 
             &.create-button-mini {
                 margin: auto;
+                margin-block-end: 8px;
             }
 
             &.create-button-max {
@@ -150,7 +176,6 @@
     .library-stations {
         display: flex;
         flex-direction: column;
-        gap: 2px;
         user-select: none;
         overflow: scroll;
         overflow-x: hidden;
@@ -176,6 +201,13 @@
                 cursor: pointer;
             }
 
+            &.minimized {
+                grid-template: none;
+                grid-template-areas: none;
+                width: 64px;
+                aspect-ratio: 1;
+            }
+
             .lib-station-image {
                 grid-area: pic;
                 border-radius: 5px;
@@ -192,6 +224,7 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+
                 &.active {
                     color: $green-base;
                 }
