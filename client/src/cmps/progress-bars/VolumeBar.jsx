@@ -16,7 +16,7 @@ export function VolumeBar({ maxVolume = 100, initialVolume = 10 }) {
     return (
         <div className="volume-bar">
             <ReactSVG src="/icons/volume.svg" />
-            <ProgressBarVisuals value={volume} max={maxVolume} onChange={volumeChanged} />
+            <ProgressBarVisuals value={volume} max={maxVolume} onValueChange={volumeChanged} />
         </div>
     )
 }

@@ -59,7 +59,6 @@ export function ProgressBarVisuals({ value, max, onValueChange, onDragStart, onD
 
     const fillPercentage = (value / max) * 100
 
-    console.log(value)
     return (
         <div
             className="progress-bar-wrapper"
