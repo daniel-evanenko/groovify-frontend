@@ -14,7 +14,6 @@ const ICON_CONTENT_HIDDEN = 'icon-content-hidden';
 const ICON_CONTENT_SHOW = 'icon-content-show';
 
 const MainControlls = ({ onMiniMaxClick, isMouseLeftSideBarOver }) => {
-
     const [iconClassNames, setIconClassNames] = useState([CREATE_PLAYLIST_ICON])
     const [isMinimized, setIsMinimized] = useState(false)
     const [isIconHover, setIsIconHover] = useState(false)
@@ -26,8 +25,9 @@ const MainControlls = ({ onMiniMaxClick, isMouseLeftSideBarOver }) => {
     }
 
     const handleMiniMaxClick = (event) => {
-        onMiniMaxClick(event);
+        onMiniMaxClick(event)
         setIsMinimized(preValue => !preValue)
+
     }
 
     const getButtonMarginClass = () => isMinimized ? "create-button-mini" : "create-button-max"
@@ -35,7 +35,7 @@ const MainControlls = ({ onMiniMaxClick, isMouseLeftSideBarOver }) => {
     const getSelectedIcon = () => {
         let svgIconPath
 
-        if (!isMinimized && isMouseLeftSideBarOver) svgIconPath = "/icons/library-opened.svg"
+        if (!isMinimized) svgIconPath = "/icons/library-opened.svg"
         if (isMinimized) svgIconPath = "/icons/library-closed.svg"
         if (isMinimized && isIconHover) svgIconPath = "/icons/library-opened.svg"
 
@@ -44,11 +44,15 @@ const MainControlls = ({ onMiniMaxClick, isMouseLeftSideBarOver }) => {
 
     return (
         <section className={`${MAIN_CONTROLS} ${isMinimized ? "main-controlls-column" : "main-controlls-row"}`}>
-            <div className={` ${ICON_CONTENT} ${isMouseLeftSideBarOver || isMinimized ? ICON_CONTENT_SHOW : ICON_CONTENT_HIDDEN}`}
+            <div className={` ${ICON_CONTENT} ${isMinimized ? "minimized" : ""} ${isMouseLeftSideBarOver ? ICON_CONTENT_SHOW : ICON_CONTENT_HIDDEN}`}
                 onClick={handleMiniMaxClick} onMouseOver={() => setIsIconHover(true)} onMouseOut={() => setIsIconHover(false)}>
                 <ReactSVG src={getSelectedIcon()} />
             </div>
-            <h1 className="fs14" style={{ display: `${isMinimized ? "none" : "block"}` }}>Your Library</h1>
+            <h1 className={`fs14 ${isMouseLeftSideBarOver ? "slide-in" : "slide-out"}`}
+                style={{ display: `${isMinimized ? "none" : "block"}` }}
+                onClick={handleMiniMaxClick}>
+                Your Library
+            </h1>
             <button className={`${CREATE_BUTTON} ${PRIMARY_BUTTON} ${getButtonMarginClass()}`} onClick={handleClick}>
                 <CreatePlaylistIcon className={iconClassNames.join(' ')} />
             </button>

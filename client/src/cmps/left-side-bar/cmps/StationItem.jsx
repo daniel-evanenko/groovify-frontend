@@ -22,7 +22,7 @@ const StationItem = ({ station, isMinimized }) => {
     const activeClass = activeStationId === _id ? "active" : ""
     
     return (
-        <div onClick={handleClick} className={`station-item ${selectedClass}`}>
+        <div onClick={handleClick} className={`station-item ${selectedClass} ${isMinimized ? "minimized" : ""}`}>
             <img className="lib-station-image" src={imgUrl || "/img/default-playlist-img.png"}></img>
             {
                 !isMinimized && <>
