@@ -3,7 +3,7 @@ import FilteringOptions from '../../../../public/icons/filtering-options.svg?rea
 const ViewControlButton = () => {
 
     return (
-        <section class="view-control-button-section">
+        <section className="view-control-button-section">
             <button className="list-button">
                 <span>Recents</span>
             </button>

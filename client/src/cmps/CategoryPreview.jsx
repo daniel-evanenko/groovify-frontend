@@ -10,7 +10,7 @@ export function CategoryPreview({ category }) {
     const randColor = colors[Math.floor(Math.random() * colors.length)]
 
     return (
-        <article className="category-preview" style={{"background-color": randColor}}>
+        <article className="category-preview" style={{backgroundColor: randColor}}>
             <span>{category.name}</span>
             <img src={`${category.icons[0].url}`}></img>
         </article>

@@ -8,9 +8,9 @@ import { useState } from "react";
 
 const LeftSideBar = () => {
     
-    const stations = useSelector((state) => state.libraryModule.libraryStations);
-    const [isMinimized, setIsMinimized] = useState(false);
-    const [isMouseOver, setIsMouseOver] = useState(false);
+    const stations = useSelector(state => state.libraryModule.stations)
+    const [isMinimized, setIsMinimized] = useState(false)
+    const [isMouseOver, setIsMouseOver] = useState(false)
 
     const handleMiniMaxClick = () => setIsMinimized(preValue => !preValue)
 

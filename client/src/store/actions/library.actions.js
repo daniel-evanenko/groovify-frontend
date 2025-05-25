@@ -1,7 +1,7 @@
 import { getStations } from "../../services/spotify/spotify-api.service.js"
 import { stationService } from "../../services/station/station.service.js"
-import { ADD_LIBRARY_STATION, ADD_LIBRARY_STATIONS, REMOVE_LIBRARY_STATION, SET_LIBRARY_STATIONS } from "../reducers/library.reducer.js"
-import { SET_ACTIVE_STATION, SET_INDEX_STATIONS } from "../reducers/station.reducer.js"
+import { ADD_STATION, REMOVE_STATION, SET_STATIONS } from "../reducers/library.reducer.js"
+import { SET_INDEX_STATIONS } from "../reducers/station.reducer.js"
 import { store } from "../store.js"
 import { updateUser } from "./user.actions.js"
 
@@ -23,8 +23,8 @@ export async function loadStations() {
 export async function addStation(station) {
     try {
         const savedStation = await stationService.save(station)
-        store.dispatch({ type: ADD_LIBRARY_STATION, savedStation })
-        store.dispatch({ type: SET_ACTIVE_STATION, station: savedStation })
+        store.dispatch({ type: ADD_STATION, savedStation })
+
         return savedStation._id
     } catch (err) {
         console.log('library actions -> Cannot add station', err)
@@ -35,19 +35,10 @@ export async function addStation(station) {
 export async function removeStation(stationId) {
     try {
         await stationService.remove(stationId)
-        store.dispatch({ type: REMOVE_LIBRARY_STATION, stationId })
+        store.dispatch({ type: REMOVE_STATION, stationId })
 
     } catch (err) {
         console.log('library actions -> Cannot remove station', err)
-        throw err
-    }
-}
-// setting station as active causes the main section to render it.
-export async function setActiveStation(station) {
-    try {
-        store.dispatch({ type: SET_ACTIVE_STATION, station })
-    } catch (err) {
-        console.log('library actions -> Cannot set active station', err)
         throw err
     }
 }
@@ -55,7 +46,7 @@ export async function setActiveStation(station) {
 export async function fetchLikedContent(user) {
     try {
         const likedStations = await stationService.getStationsById(user.likedStationIds)
-        store.dispatch({ type: SET_LIBRARY_STATIONS, stations: likedStations })
+        store.dispatch({ type: SET_STATIONS, stations: likedStations })
     } catch (err) {
         console.error('Failed to fetch liked content', err)
     }
@@ -63,7 +54,7 @@ export async function fetchLikedContent(user) {
 
 export async function clearLikedContent() {
     try {
-        store.dispatch({ type: SET_LIBRARY_STATIONS, stations: [] })
+        store.dispatch({ type: SET_STATIONS, stations: [] })
     } catch (err) {
         console.error('Failed to clear liked content', err)
     }

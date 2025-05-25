@@ -5,7 +5,7 @@ import { ActionBar } from '../cmps/ActionBar.jsx'
 import { TrackList } from '../cmps/TrackList.jsx'
 import { extractColors } from 'extract-colors'
 import { useSelector } from 'react-redux'
-import { clearStation, loadActiveStation, saveStation } from '../store/actions/station.actions.js'
+import { clearStation, loadStation, saveStation } from '../store/actions/station.actions.js'
 import { ReactSVG } from 'react-svg'
 import { StationEditModal } from '../cmps/StationEditModal.jsx'
 import { setIsLoading } from '../store/actions/system.actions.js'
@@ -13,7 +13,7 @@ import { StationTrackSearch } from '../cmps/StationTrackSearch.jsx'
 import { DEFAULT_IMAGE_URL } from '../services/station/station.service.js'
 
 export function StationDetails() {
-    const station = useSelector(storeState => storeState.stationModule.currentActiveStation)
+    const station = useSelector(storeState => storeState.stationModule.station)
     const globalIsLoading = useSelector(storeState => storeState.systemModule.isLoading)
 
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -48,7 +48,7 @@ export function StationDetails() {
     async function fetchStationData() {
         setIsLoading(true)
         try {
-            await loadActiveStation(params.stationId)
+            await loadStation(params.stationId)
         } catch (error) {
             console.error('Error fetching station:', error)
             navigate('/')

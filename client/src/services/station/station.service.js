@@ -2,7 +2,7 @@ import { storageService } from '../async-storage.service.js'
 import { loadFromStorage, makeId, saveToStorage } from '../util.service.js';
 import { addStation } from '../../store/actions/library.actions.js';
 import { store } from '../../store/store.js';
-import { TRACKS_STORAGE_KEY_PREFIX } from '../spotify/spotify-api.service.js';
+import { getStationsTracks, TRACKS_STORAGE_KEY_PREFIX } from '../spotify/spotify-api.service.js';
 import { updateUser } from '../../store/actions/user.actions.js';
 
 export const STORAGE_KEY = "stations";
@@ -20,12 +20,10 @@ export const stationService = {
     removeTrackFromStation,
     createNewStation,
     getStationsById,
-    getStationTracks,
     getLikedStationTracks
 }
 
 window.cs = stationService
-
 
 
 async function query(filter = {}) {
@@ -53,9 +51,11 @@ async function addTrackToStation(track, stationId) {
         const trackToAdd = {
             ...structuredClone(track),
         }
+
+        trackToAdd.track.id = makeId()
         tracks.push(trackToAdd)
         saveToStorage(STATION_TRACKS_STORAGE_KEY, tracks)
-        return tracks
+        return trackToAdd
     } catch (error) {
         console.log('error adding a track', error)
     }
@@ -65,6 +65,7 @@ function removeTrackFromStation(trackId, stationId) {
     try {
         const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${stationId}`
         const tracks = loadFromStorage(STATION_TRACKS_STORAGE_KEY) || []
+
         const updatedTracks = tracks.filter(
             trackObj => trackObj.track?.id !== trackId
         )
@@ -76,7 +77,7 @@ function removeTrackFromStation(trackId, stationId) {
 }
 
 function findNextStationId() {
-    const allStations = store.getState()?.libraryModule?.libraryStations
+    const allStations = store.getState()?.libraryModule?.stations
     const allStationsNames = allStations.map(station => station.name)
     const nonRenamedNewStations = allStationsNames.filter(stationName => stationName.startsWith(INITIAL_STATION_PREFIX));
     const newStationNumber = nonRenamedNewStations.map(stationName => parseInt(stationName.replace(INITIAL_STATION_PREFIX_REGEX, '')))
@@ -85,9 +86,8 @@ function findNextStationId() {
 
 export async function createNewStation() {
     const user = store.getState()?.userModule?.user
-
-    const nextStationId = findNextStationId() || '1';
-    const stationName = `${INITIAL_STATION_PREFIX}${nextStationId}`;
+    const nextStationId = findNextStationId() || '1'
+    const stationName = `${INITIAL_STATION_PREFIX}${nextStationId}`
 
     let newStation = {
         name: stationName,
@@ -96,11 +96,11 @@ export async function createNewStation() {
         category: "",
         categoryId: "",
         owner: {
-            fullname: user.fullname
+            fullname: user?.fullname
         }
     }
 
-    const newStationId = await addStation(newStation);
+    const newStationId = await addStation(newStation)
 
     // Add the tracks array to localStorage, associated with the new station. 
     const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${newStationId}`
@@ -111,7 +111,6 @@ export async function createNewStation() {
 
     return newStationId
 }
-
 
 export async function createNewLikedStation(user) {
     try {
@@ -138,6 +137,7 @@ export async function createNewLikedStation(user) {
     }
 
 }
+
 export async function getStationsByCategories() {
     try {
         const stations = await storageService.query(STORAGE_KEY, 0)
@@ -162,6 +162,30 @@ async function _saveRequest(station, methodType) {
     return await storageService[methodType](STORAGE_KEY, stationToSave)
 }
 
+export async function getStationFirstTrack(stationId) {
+    try {
+        const tracks = await getStationsTracks(stationId)
+        return tracks && tracks.length > 0 && tracks[0]
+    } catch (err) {
+        console.log("couldnt get first track")
+        throw err
+    }
+}
+
+export function addYtUrlsToTrack(stationId, trackId, youtubeUrls) {
+    const stationTracks = loadFromStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`)
+    const trackObj = stationTracks.find(trackObject => trackObject.track.id === trackId)
+    trackObj.youtubeUrls = youtubeUrls
+    const updatedTracks = [...stationTracks, trackObj]
+    saveToStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`, updatedTracks)
+}
+
+export function getTrackYtUrls(stationId, trackId) {
+    const stationTracks = loadFromStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`)
+    const trackObj = stationTracks.find(trackObject => trackObject.track.id === trackId)
+    return trackObj.youtubeUrls ? trackObj.youtubeUrls : undefined
+}
+
 export function processSpotifyStations(stations) {
     stations = _removeDups(stations)
     stations = _renameId(stations)
@@ -182,40 +206,21 @@ function _renameId(arr) {
     return arr.map(({ id, ...rest }) => ({ _id: id, ...rest })) // rename id to _id
 }
 
-async function getStationsById(likedPlaylistIds = []) {
+async function getStationsById(likedStationsIds = []) {
     try {
         const stationsFromLocalStorage = await query()
-        return stationsFromLocalStorage.filter(station => likedPlaylistIds.includes(station._id))
+        return stationsFromLocalStorage.filter(station => likedStationsIds.includes(station._id))
     } catch (error) {
         console.error('Error fetching liked stations:', err)
     }
 }
 
-async function getStationTracks(stationId) {
-    const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${stationId}`
-    return loadFromStorage(STATION_TRACKS_STORAGE_KEY) || []
-}
-
 async function getLikedStationTracks() {
     try {
         const user = store.getState()?.userModule?.user
-        return await getStationTracks(user.likedTracksStationId)
+        return await getStationsTracks(user.likedTracksStationId)
     } catch (error) {
         console.error('error getting liked station tracks', error)
     }
 
-}
-
-export function addYtUrlsToTrack(stationId, trackId, youtubeUrls) {
-    const stationTracks = loadFromStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`)
-    const trackObj = stationTracks.find(trackObject => trackObject.track.id === trackId)
-    trackObj.youtubeUrls = youtubeUrls
-    const updatedTracks = [...stationTracks, trackObj]
-    saveToStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`, updatedTracks)
-}
-
-export function getTrackYtUrls(stationId, trackId) {
-    const stationTracks = loadFromStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`)
-    const trackObj = stationTracks.find(trackObject => trackObject.track.id === trackId)
-    return trackObj.youtubeUrls ? trackObj.youtubeUrls : undefined
 }
