@@ -8,7 +8,7 @@ import { removeTrackFromStation, toggleLikeTrack } from "../store/actions/statio
 import defaultImg from "/img/default-playlist-img.png"
 import { stationService } from "../services/station/station.service"
 import { LikeButton } from "./TrackLikedButton"
-import { setActiveStation, setTrack } from "../store/actions/system.actions"
+import { setActiveStation, setTrackId } from "../store/actions/system.actions"
 import { setPlaying } from "../store/actions/player.actions"
 
 export function TrackList({ station, isAllowed }) {
@@ -60,7 +60,7 @@ export function TrackList({ station, isAllowed }) {
 
     async function onPlay(track) {
         setActiveStation(station._id)
-        setTrack(track.id)
+        setTrackId(track.id)
         setPlaying(true)
     }
 

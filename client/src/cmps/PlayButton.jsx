@@ -1,7 +1,7 @@
 import { ReactSVG } from "react-svg";
 import { useSelector } from "react-redux";
 import { setPlaying } from "../store/actions/player.actions";
-import { setActiveStation, setTrack } from "../store/actions/system.actions";
+import { setActiveStation, setTrackId } from "../store/actions/system.actions";
 import { getStationFirstTrack } from "../services/station/station.service";
 
 export function PlayButton({ stationId }) {
@@ -14,7 +14,7 @@ export function PlayButton({ stationId }) {
             try {
                 const trackObj = await getStationFirstTrack(stationId)
                 setActiveStation(stationId)
-                setTrack(trackObj.track.id)
+                setTrackId(trackObj.track.id)
             } catch (err) {
                 console.error("failed to fetch first track", err)
             }
