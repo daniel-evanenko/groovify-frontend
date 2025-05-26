@@ -1,5 +1,5 @@
 export const SET_STATION = 'SET_STATION'
-export const SET_TRACKS = 'SET_TRACKS'
+export const SET_TRACK_IDS = 'SET_TRACK_IDS'
 export const SET_INDEX_STATIONS = 'SET_INDEX_STATIONS'
 export const ADD_TRACK_TO_STATION = 'ADD_TRACK_TO_STATION'
 export const REMOVE_TRACK_FROM_STATION = 'REMOVE_TRACK_FROM_STATION'
@@ -22,7 +22,7 @@ export function stationReducer(state = initialState, action) {
                 ...state,
                 station: action.station
             }
-        case SET_TRACKS:
+        case SET_TRACK_IDS:
             return {
                 ...state,
                 tracks: action.tracks

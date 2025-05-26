@@ -1,0 +1,44 @@
+.active-track-preview {
+    display: flex;
+    margin: 0px 0px 16px 16px;
+    gap: 16px;
+
+    img {
+        grid-area: img;
+        border-radius: 4px;
+        width: 56px;
+        aspect-ratio: 1;
+        object-fit: cover;
+    }
+
+    .active-track-details {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+
+        .title {
+            align-self: end;
+
+            color: $text-base;
+            font-size: 14px;
+    
+            &:hover {
+                cursor: pointer;
+            }
+    
+        }
+    
+        .artist {
+            align-self: baseline;
+
+            color: $text-subdued;
+            font-size: 12px;
+    
+            &:hover {
+                cursor: pointer;
+                color: $text-base;
+            }
+    
+        }
+    }
+    
+}
