@@ -77,8 +77,7 @@ export function formatTime(time) {
     if (time / 60 > 250) {
         time = time / 1000;
     }
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes < 10 ? "0" : ""}${minutes}:${seconds < 10 ? "0" : ""
-        }${seconds}`;
+    const minutes = Math.floor(time / 60)
+    const seconds = Math.floor(time % 60)
+    return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
 }
