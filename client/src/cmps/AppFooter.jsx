@@ -3,28 +3,17 @@ import { PlayButton } from "./PlayButton";
 import { PlayerProgressBar } from "./progress-bars/PlayerProgressBar";
 import { VolumeBar } from "./progress-bars/VolumeBar";
 import { useEffect, useState } from "react";
-import { eventBus, playerEvents } from "../services/event-bus.service";
 import { useSelector } from "react-redux";
 
 
 export function AppFooter() {
-    const [trackDuration, setTrackDuration] = useState(0)
-    const [isInert, setIsInert] = useState(true)
     const activeStationId = useSelector(state => state.systemModule.activeStationId)
+    const trackPlaybackState = useSelector(state => state.playerModule.playbackReady)
+    const [isInert, setIsInert] = useState(true)
 
     useEffect(() => {
-        const trackPlaybackReadyCleanup = eventBus.on(playerEvents.TRACK_PLAYBACK_READY, onTrackPlaybackReady)
-
-        return () => {
-            trackPlaybackReadyCleanup()
-        }
-
-    }, [])
-
-    function onTrackPlaybackReady(duration) {
-        setTrackDuration(duration)
-        setIsInert(false)
-    }
+        if (trackPlaybackState) setIsInert(false)
+    }, [trackPlaybackState])
 
     return (
         <footer className="app-footer">
@@ -40,10 +29,9 @@ export function AppFooter() {
                         <ReactSVG src="/icons/next.svg" />
                     </button>
                 </div>
-                <PlayerProgressBar trackDuration={trackDuration} />
+                <PlayerProgressBar />
             </div>
             <VolumeBar />
-
         </footer>
     )
 }

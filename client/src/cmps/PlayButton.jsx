@@ -14,7 +14,6 @@ export function PlayButton({ stationId }) {
             try {
                 const trackObj = await getStationFirstTrack(stationId)
                 setActiveStation(stationId)
-                setPlaying(!isPlaying)
                 setTrack(trackObj.track.id)
             } catch (err) {
                 console.error("failed to fetch first track", err)

@@ -2,8 +2,10 @@ import { useEffect, useRef, useState } from "react"
 import { ProgressBarVisuals } from "./ProgressBarVisuals"
 import { eventBus, playerEvents } from "../../services/event-bus.service"
 import { formatTime } from "../../services/util.service"
+import { useSelector } from "react-redux"
 
-export function PlayerProgressBar({ trackDuration }) {
+export function PlayerProgressBar() {
+    const trackDuration = useSelector(state => state.playerModule.curTrackDuration)
     const [curTrackPos, setCurTrackPos] = useState(0)
     const trackDurationRef = useRef(trackDuration)
     const curTimeDisplayRef = useRef()

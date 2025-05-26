@@ -8,31 +8,30 @@ import { removeTrackFromStation, toggleLikeTrack } from "../store/actions/statio
 import defaultImg from "/img/default-playlist-img.png"
 import { stationService } from "../services/station/station.service"
 import { LikeButton } from "./TrackLikedButton"
-import { getYtVideoUrls } from "../services/youtube/yt-api.service"
-import { makeYtQueryFromTrack } from "../services/youtube/yt.service"
 import { setActiveStation, setTrack } from "../store/actions/system.actions"
 import { setPlaying } from "../store/actions/player.actions"
 
 export function TrackList({ station, isAllowed }) {
     const tracks = useSelector(state => state.stationModule.tracks)
     const activeTrackId = useSelector(state => state.systemModule.activeTrackId)
+    const playing = useSelector(state => state.playerModule.playing)
     const [selectedRowIndex, setSelectedRowIndex] = useState(null)
     const [hoveredRow, setHoveredRow] = useState(null)
     const activeRow = useClickOutside(() => setSelectedRowIndex(null))
     const [userLikedTracks, setUserLikedTracks] = useState([])
 
-    useEffect(() => {
-        async function fetchLikedTracks() {
-            try {
-                const likedTracks = await stationService.getLikedStationTracks()
-                setUserLikedTracks(likedTracks || [])
-            } catch (err) {
-                console.error("Failed to fetch liked tracks", err)
-            }
-        }
+    // useEffect(() => {
+    //     async function fetchLikedTracks() {
+    //         try {
+    //             const likedTracks = await stationService.getLikedStationTracks()
+    //             setUserLikedTracks(likedTracks || [])
+    //         } catch (err) {
+    //             console.error("Failed to fetch liked tracks", err)
+    //         }
+    //     }
 
-        fetchLikedTracks()
-    }, [])
+    //     fetchLikedTracks()
+    // }, [])
 
     function isTrackLiked(trackObj) {
         const res = userLikedTracks.some(_trackObj => _trackObj.track?.id === trackObj.track?.id)
@@ -60,8 +59,6 @@ export function TrackList({ station, isAllowed }) {
     }
 
     async function onPlay(track) {
-        const query = makeYtQueryFromTrack(track)
-        const videoUrls = await getYtVideoUrls(station._id, track.id, query)
         setActiveStation(station._id)
         setTrack(track.id)
         setPlaying(true)
@@ -70,6 +67,49 @@ export function TrackList({ station, isAllowed }) {
     function onPause() {
         setPlaying(false)
     }
+
+    function getPlayIcon(track) {
+        return <ReactSVG
+            onClick={e => {
+                e.stopPropagation()
+                onPlay(track)
+            }}
+            src="/icons/play.svg"
+        />
+    }
+
+    function getPauseIcon(track) {
+        return <ReactSVG
+            onClick={e => {
+                e.stopPropagation()
+                onPause(track)
+            }}
+            src="/icons/pause.svg"
+        />
+    }
+
+    function getAppropriateTrackIcon(
+        isHovered,
+        isTrackActive,
+        index,
+        track
+    ) {
+        if (!isHovered) {
+            return <span className="track-number">{index + 1}</span>
+        }
+
+        if (!isTrackActive) {
+            return getPlayIcon(track)
+        }
+
+        if (playing) {
+            return getPauseIcon(track)
+        }
+
+        return getPlayIcon(track)
+    }
+
+
     return (
         <ul className="track-list">
             <li className="track-header">
@@ -113,29 +153,7 @@ export function TrackList({ station, isAllowed }) {
                         className={`track-container ${isSelected ? "active" : ""}`}
                     >
                         <div className="track-order">
-                            {!isHovered && (
-                                <span className="track-number">{index + 1}</span>
-                            )}
-
-                            {!isTrackActive && isHovered && (
-                                <ReactSVG
-                                    onClick={(e) => {
-                                        e.stopPropagation()
-                                        onPlay(track)
-                                    }}
-                                    src="/icons/play.svg"
-                                />
-                            )}
-
-                            {isTrackActive && isHovered && (
-                                <ReactSVG
-                                    onClick={(e) => {
-                                        e.stopPropagation()
-                                        onPause()
-                                    }}
-                                    src="/icons/pause.svg"
-                                />
-                            )}
+                            {getAppropriateTrackIcon(isHovered, isTrackActive, index, track)}
                         </div>
 
                         <div className={`track-title ${isTrackActive ? "now-playing" : ""}`}>
