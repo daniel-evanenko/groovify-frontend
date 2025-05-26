@@ -20,11 +20,18 @@ export function PlayerProgressBar() {
     }, [])
 
     useEffect(() => {
+        if (trackDuration === 0){
+            trackDurationDisplayRef.current.innerText = "-:--"
+            curTimeDisplayRef.current.innerText = "-:--"
+            return
+        }
+
         trackDurationRef.current = trackDuration
         trackDurationDisplayRef.current.innerText = formatTime(trackDuration)
     }, [trackDuration])
 
     useEffect(() => {
+        if (trackDuration === 0) return
         curTimeDisplayRef.current.innerText = formatTime(curTrackPos)
     }, [curTrackPos])
 
