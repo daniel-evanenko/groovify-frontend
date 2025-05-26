@@ -45,8 +45,7 @@ async function save(station) {
 
 async function addTrackToStation(track, stationId) {
     try {
-        const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${stationId}`
-        const tracks = loadFromStorage(STATION_TRACKS_STORAGE_KEY) || []
+        const tracks = _getStationTracks(stationId) || []
 
         const trackToAdd = {
             ...structuredClone(track),
@@ -63,8 +62,7 @@ async function addTrackToStation(track, stationId) {
 
 function removeTrackFromStation(trackId, stationId) {
     try {
-        const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${stationId}`
-        const tracks = loadFromStorage(STATION_TRACKS_STORAGE_KEY) || []
+        const tracks = _getStationTracks(stationId) || []
 
         const updatedTracks = tracks.filter(
             trackObj => trackObj.track?.id !== trackId
@@ -173,7 +171,7 @@ export async function getStationFirstTrack(stationId) {
 }
 
 export function addYtUrlsToTrack(stationId, trackId, youtubeUrls) {
-    const stationTracks = loadFromStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`)
+    const stationTracks = _getStationTracks(stationId)
     const trackObj = stationTracks.find(trackObject => trackObject.track.id === trackId)
     trackObj.youtubeUrls = youtubeUrls
     const updatedTracks = [...stationTracks, trackObj]
@@ -181,7 +179,7 @@ export function addYtUrlsToTrack(stationId, trackId, youtubeUrls) {
 }
 
 export function getTrackYtUrls(stationId, trackId) {
-    const stationTracks = loadFromStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`)
+    const stationTracks = _getStationTracks(stationId)
     const trackObj = stationTracks.find(trackObject => trackObject.track.id === trackId)
     return trackObj.youtubeUrls ? trackObj.youtubeUrls : undefined
 }
@@ -222,5 +220,12 @@ async function getLikedStationTracks() {
     } catch (error) {
         console.error('error getting liked station tracks', error)
     }
+}
 
+function _getStationTracks(stationId) {
+    return loadFromStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`)
+}
+
+export function getTrackById(stationId, trackId) {
+    return _getStationTracks(stationId).find(trackObj => trackObj.track.id === trackId)
 }
