@@ -53,6 +53,8 @@ async function addTrackToStation(track, stationId) {
 
         trackToAdd.track.id = makeId()
         tracks.push(trackToAdd)
+
+        const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${stationId}`
         saveToStorage(STATION_TRACKS_STORAGE_KEY, tracks)
         return trackToAdd
     } catch (error) {
@@ -67,6 +69,8 @@ function removeTrackFromStation(trackId, stationId) {
         const updatedTracks = tracks.filter(
             trackObj => trackObj.track?.id !== trackId
         )
+
+        const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${stationId}`
         saveToStorage(STATION_TRACKS_STORAGE_KEY, updatedTracks)
         return updatedTracks
     } catch (error) {
@@ -213,10 +217,10 @@ async function getStationsById(likedStationsIds = []) {
     }
 }
 
-async function getLikedStationTracks() {
+function getLikedStationTracks() {
     try {
         const user = store.getState()?.userModule?.user
-        return await getStationsTracks(user.likedTracksStationId)
+        return _getStationTracks(user.likedTracksStationId)
     } catch (error) {
         console.error('error getting liked station tracks', error)
     }
