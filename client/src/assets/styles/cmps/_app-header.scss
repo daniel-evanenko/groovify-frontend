@@ -158,10 +158,16 @@
     }
 
     >.profile {
+        justify-self: end;
+        height: 48px;
+        aspect-ratio: 1;
+
         background-color: $bg-elevated-base;
         border-radius: 50%;
-        height: 48px;
-        aspect-ratio: 1/1;
-        justify-self: center;
+
+        svg {
+            margin: 8px;
+            padding: 2px;
+        }
     }
 }
