@@ -20,18 +20,19 @@ export function TrackList({ station, isAllowed }) {
     const activeRow = useClickOutside(() => setSelectedRowIndex(null))
     const [userLikedTracks, setUserLikedTracks] = useState([])
 
-    // useEffect(() => {
-    //     async function fetchLikedTracks() {
-    //         try {
-    //             const likedTracks = await stationService.getLikedStationTracks()
-    //             setUserLikedTracks(likedTracks || [])
-    //         } catch (err) {
-    //             console.error("Failed to fetch liked tracks", err)
-    //         }
-    //     }
+    useEffect(() => {
+        async function fetchLikedTracks() {
+            try {
+                const likedTracks = await stationService.getLikedStationTracks()
+                setUserLikedTracks(likedTracks || [])
+                console.log(likedTracks)
+            } catch (err) {
+                console.error("Failed to fetch liked tracks", err)
+            }
+        }
 
-    //     fetchLikedTracks()
-    // }, [])
+        fetchLikedTracks()
+    }, [])
 
     function isTrackLiked(trackObj) {
         const res = userLikedTracks.some(_trackObj => _trackObj.track?.id === trackObj.track?.id)

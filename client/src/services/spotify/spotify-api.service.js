@@ -2,7 +2,6 @@ import axios from "axios";
 import { getSpotifyToken } from "./spotify-token.service.js";
 import { loadFromStorage, makeId, saveToStorage } from "../util.service.js";
 import { processSpotifyStations, stationService } from "../station/station.service.js";
-import { store } from "../../store/store.js";
 
 const CATEGORIES_STORAGE_KEY = "categories"
 const STATIONS_STORAGE_KEY = "stations"
@@ -126,8 +125,7 @@ export async function searchTracks(query, limit = 10, offset = 0) {
 
     async function _filterOutLikedTracks(tracks) {
         try {
-            const user = store.getState()?.userModule?.user
-            const userLikedTracks = await stationService.getStationTracks(user.likedTracksStationId)
+            const userLikedTracks = stationService.getLikedStationTracks()
             if (userLikedTracks?.length <= 0) return tracks
             const likedTrackIds = new Set(
                 userLikedTracks.map(liked => liked.track?.id)
