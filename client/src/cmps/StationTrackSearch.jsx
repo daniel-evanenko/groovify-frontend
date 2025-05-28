@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { ReactSVG } from 'react-svg'
 import { debounce } from '../services/util.service'
 import { SearchTrackList } from './SearchTrackList'
 import { addTrackToStation } from '../store/actions/station.actions'
 import { searchTracks } from '../services/spotify/spotify-api.service'
+import { SearchBar } from './SearchBar'
 
 export function StationTrackSearch({ station }) {
     const [query, setQuery] = useState('')
@@ -38,23 +38,16 @@ export function StationTrackSearch({ station }) {
         <section className="station-track-search">
             <div className="search">
                 <h2>Let's find something for your playlist</h2>
-                <div className="search-input">
-                    <ReactSVG className="search-icon" src="/icons/search.svg" />
-                    <input
-                        type="search"
-                        value={query}
-                        onChange={(e) => setQuery(e.target.value)}
-                        placeholder="Search for songs or episodes"
-                    />
-                    {query && (
-                        <button className="clear-btn" onClick={() => setQuery('')}>
-                            ✕
-                        </button>
-                    )}
-                </div>
+                <SearchBar
+                    onSearch={setQuery}
+                    updateQuery={setQuery}
+                    placeholder="Search for songs"
+                />
+
                 {tracks.length > 0 && (
                     <SearchTrackList tracks={tracks} onAddTrack={onAddTrack}></SearchTrackList>
                 )}
+                
                 {tracks.length === 0 && query && (
                     <>
 

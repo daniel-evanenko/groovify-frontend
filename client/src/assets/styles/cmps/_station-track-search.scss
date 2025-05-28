@@ -14,12 +14,13 @@
             font-family: 'CircularSpotifyText';
         }
 
-        .search-input {
+        .search-bar {
             position: relative;
             display: flex;
+            gap: 4px;
             align-items: center;
             background-color: $bg-tinted-base;
-            padding: 8px 32px;
+            padding: 8px;
             border-radius: 4px;
             text-overflow: ellipsis;
             height: 40px;
@@ -29,17 +30,13 @@
             transition: border-color 0.2s ease;
 
             input {
+                flex: 1;
+                min-width: 0;
                 background: transparent;
                 border: none;
                 outline: none;
-                color: #fff;
-                font-size: 14px;
-                flex: 1;
-                min-width: 0;
-
-                &::placeholder {
-                    color: rgba(255, 255, 255, 0.7);
-                }
+                color: $text-subdued;
+                font: bold 14px sans-serif;
 
                 &::-webkit-search-cancel-button {
                     -webkit-appearance: none;
@@ -47,31 +44,35 @@
                     display: none;
                 }
             }
+            
+            button {
+                width: 16px;
+                aspect-ratio: 1;
+                background-color: transparent;
+                padding: 0;
+            }
 
-            .search-icon {
-                left: 12px;
-                position: absolute;
-                font-size: 16px;
+            .search-btn {
+                cursor: text;
+                background-color: transparent;
 
                 svg {
                     fill: rgba(255, 255, 255, 0.6);
-                    width: 16px;
-                    height: 16px;
                 }
             }
 
             .clear-btn {
-                position: absolute;
-                right: 12px;
-                background: none;
-                border: none;
-                font-size: 16px;
-                cursor: pointer;
-                padding: 0;
+                // position: absolute;
+                // right: 12px;
+                // background: none;
+                // border: none;
+                // font-size: 16px;
+                // cursor: pointer;
+                // padding: 0;
 
-                &:hover {
-                    opacity: 0.7;
-                }
+                // &:hover {
+                //     opacity: 0.7;
+                // }
             }
 
             &:focus-within {

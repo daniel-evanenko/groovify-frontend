@@ -31,7 +31,7 @@ export async function getCategories() {
     }
 }
 
-export async function getStations(queries) {
+export async function getStations(queries, limit = 20) {
     let stations = loadFromStorage(STATIONS_STORAGE_KEY)
     try {
         if (stations && stations.length > 0) return stations
@@ -42,7 +42,7 @@ export async function getStations(queries) {
 
         for (const query of queries) {
             console.log(`making request for stations with query: ${query}`)
-            const response = await axios.get(`https://api.spotify.com/v1/search?q=${query}&type=playlist&limit=20&offset=0`, {
+            const response = await axios.get(`https://api.spotify.com/v1/search?q=${query}&type=playlist&limit=${limit}&offset=0`, {
                 headers: {
                     Authorization: `Bearer ${accessToken}`
                 }
@@ -96,6 +96,26 @@ export async function getStationsTracks(stationId) {
         console.error(err)
     }
 }
+
+export async function searchStations(query, limit) {
+    try {
+        const accessToken = await getSpotifyToken()
+
+        const response = await axios.get(`https://api.spotify.com/v1/search?q=${query}&type=playlist&limit=${limit}&offset=0`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        })
+        let items = response.data.playlists.items
+        items = items.filter(item => item !== null)
+        return items
+
+    } catch (err) {
+        console.error(err)
+        throw err
+    }
+}
+
 
 export async function searchTracks(query, limit = 10, offset = 0) {
     const name = query.trim()
