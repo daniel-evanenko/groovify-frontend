@@ -10,6 +10,7 @@ import { AudioPlayer } from "./cmps/AudioPlayer"
 import { CategoriesPage } from "./pages/CategoriesPage"
 import { loadStations } from "./store/actions/library.actions"
 import { tempLogin } from "./store/actions/user.actions"
+import { SearchIndex } from "./cmps/SearchIndex"
 
 function App() {
     useEffect(() => {
@@ -29,6 +30,7 @@ function App() {
                     <Route element={<StationIndex />} path="/" />
                     <Route element={<StationDetails />} path="/station/:stationId" />
                     <Route element={<CategoriesPage />} path="/search" />
+                    <Route element={<SearchIndex />} path="/search/:query" />
                 </Routes>
                 <RightSideBar />
                 <AppFooter />

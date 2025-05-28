@@ -100,33 +100,46 @@
             * {
                 background-color: transparent;
             }
+            
+            .search-bar {
+                flex-grow: 1;
+                margin-inline-start: 8px;     
+                
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                
+                .search-btn {
+                    svg {
+                        width: 24px;
+                        color: $text-subdued;
+                        transition: color 0.3s;
+                    }
+                }
 
-            .search-btn {
-                padding-inline-start: 10px;
-                padding-block-start: 2px;
+                input {
+                    margin: 0;
+                    padding: 0;
+                    font-size: 1rem;
+                    color: $text-base;
+                    border: 0;
+                    text-overflow: ellipsis;
+                    font-family: sans-serif;
 
-                svg {
-                    width: 24px;
-                    color: $text-subdued;
-                    transition: color 0.3s;
+                    &:focus-visible {
+                        outline: none;
+                    }
                 }
             }
 
-            .search-input {
-                font-size: 1rem;
-                min-width: 0;
-                width: 0;
-                height: 100%;
-                padding-inline-start: 5px;
-                padding-block-start: 0px;
-                flex-grow: 1;
-                color: $text-base;
-                border: 0;
-                text-overflow: ellipsis;
-                font-family: "spotify-regular", sans-serif;
+            .clear-btn {
+                padding-block-start: 4px;
+                padding-inline-end: 12px;
+                @include color-descendant-svg-on-hover($text-base);
 
-                &:focus-visible {
-                    outline: none;
+                svg {
+                    width: 24px;
+                    aspect-ratio: 1;
                 }
             }
 

@@ -34,8 +34,8 @@ export async function loadStation(stationId) {
         store.dispatch({ type: SET_STATION, station })
         store.dispatch({ type: SET_TRACK_IDS, tracks })
 
-    } catch (error) {
-        console.log('Station actions -> Cannot load station', error)
+    } catch (err) {
+        console.log('Station actions -> Cannot load station', err)
         throw err
     }
 }
@@ -45,8 +45,8 @@ export async function saveStation(station) {
         const savedStation = await stationService.save(station)
         store.dispatch({ type: UPDATE_STATION, station: savedStation })
 
-    } catch (error) {
-        console.log('Station actions -> Cannot save station', error)
+    } catch (err) {
+        console.log('Station actions -> Cannot save station', err)
         throw err
     }
 }
@@ -55,8 +55,8 @@ export function clearStation() {
     try {
         store.dispatch({ type: SET_STATION, station: null })
         store.dispatch({ type: SET_INDEX_STATIONS, tracks: [] })
-    } catch (error) {
-        console.log('Station actions -> Cannot clear station', error)
+    } catch (err) {
+        console.log('Station actions -> Cannot clear station', err)
         throw err
     }
 }

@@ -3,13 +3,13 @@ import { useNavigate, useLocation } from "react-router-dom"
 import { useEffect, useRef, useState } from "react"
 import { eventBus, INDEX_MOUNT } from "../services/event-bus.service"
 import { ReactSVG } from "react-svg"
+import { SearchBar } from "./SearchBar"
 
 export function AppHeader() {
     const [fillHome, setFillHome] = useState(true)
     const [fillBrowse, setFillBrowse] = useState(false)
     const elSearchOptions = useRef()
     const elSearchButton = useRef()
-    const elSearchInput = useRef()
     const navigate = useNavigate()
 
     const location = useLocation()
@@ -49,11 +49,6 @@ export function AppHeader() {
         navigate("/")
     }
 
-    function onSearchClicked() {
-        elSearchInput.current.focus()
-        elSearchButton.current.style.setProperty("cursor", "default")
-    }
-
     function onBrowseClicked() {
         setFillBrowse(true)
         setFillHome(false)
@@ -63,6 +58,16 @@ export function AppHeader() {
     function onIndexMount() {
         setFillHome(true)
         setFillBrowse(false)
+    }
+
+    function search(query) {
+        const trimmedQuery = query?.trim()
+
+        if (trimmedQuery) {
+            setFillHome(false)
+            setFillBrowse(false)
+            navigate(`/search/${trimmedQuery}`)
+        }
     }
 
     return (
@@ -75,17 +80,12 @@ export function AppHeader() {
                 </button>
 
                 <div className="search-options" ref={elSearchOptions}>
-                    <button ref={elSearchButton} className="search-btn" onClick={onSearchClicked}>
-                        <ReactSVG src="/icons/search.svg" />
-                    </button>
-
-                    <input
-                        ref={elSearchInput}
-                        className="search-input"
-                        type="text"
-                        placeholder="What do you want to play?"
+                    <SearchBar
+                        onSearch={search}
                         onFocus={onInputFocus}
-                        onBlur={onInputFocusLost} />
+                        onBlur={onInputFocusLost}
+                        placeholder="What do you want to play?"
+                    />
 
                     <span className="vert-bar"></span>
                     <button className={`browse-btn nav-btn ${fillBrowse ? "pressed" : ""}`} onClick={onBrowseClicked}>

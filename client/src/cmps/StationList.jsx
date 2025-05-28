@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { StationPreview } from "./StationPreview"
 import { Loader } from "./Loader"
 
-export function StationList({ stations }) {
+export function StationList({ stations, title }) {
     const elStationsList = useRef()
     const [displayStationsAmount, setDisplayStationsAmount] = useState(stations.length)
 
@@ -21,13 +21,13 @@ export function StationList({ stations }) {
 
     if (!stations) return <Loader></Loader>
 
-    const listTitle = stations[0].category
+    const listTitle = title || stations[0].category
     return (
         <article ref={elStationsList} className="station-list">
             <a>{listTitle}</a>
             <div className="station-previews">
-                {stations.slice(0, displayStationsAmount).map(station =>
-                    <StationPreview key={station._id} station={station}></StationPreview>
+                {stations.slice(0, displayStationsAmount).map((station, idx) =>
+                    <StationPreview key={idx} station={station}></StationPreview>
                 )}
             </div>
         </article>
