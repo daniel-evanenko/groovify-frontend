@@ -2,7 +2,7 @@ import { storageService } from '../async-storage.service.js'
 import { loadFromStorage, makeId, saveToStorage } from '../util.service.js';
 import { addStation } from '../../store/actions/library.actions.js';
 import { store } from '../../store/store.js';
-import { getStationsTracks, TRACKS_STORAGE_KEY_PREFIX } from '../spotify/spotify-api.service.js';
+import { getStation, getStationsTracks, TRACKS_STORAGE_KEY_PREFIX } from '../spotify/spotify-api.service.js';
 import { updateUser } from '../../store/actions/user.actions.js';
 
 export const STORAGE_KEY = "stations";
@@ -30,8 +30,29 @@ async function query(filter = {}) {
     return await storageService.query(STORAGE_KEY)
 }
 
-function getById(stationId) {
-    return storageService.get(STORAGE_KEY, stationId)
+async function getById(stationId) {
+    try {
+        const station = await storageService.get(STORAGE_KEY, stationId)
+        return station
+    } catch (err) {
+        if (
+            err instanceof Error &&
+            err.message.startsWith('Get failed, cannot find entity with id:')
+        ) {
+            try {
+                console.log(`trying to get station with id ${stationId} from spotify`)
+                const station = await getStation(stationId)
+                const savedStation = await save(station)
+                return savedStation
+            } catch (fetchErr) {
+                console.error(`failed to get the station (${stationId}) from spotify`, fetchErr)
+                throw fetchErr
+            }
+        } else {
+            console.error("encountred unexpected error", err)
+            throw err
+        }
+    }
 }
 
 async function remove(stationId) {

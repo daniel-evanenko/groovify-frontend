@@ -20,6 +20,9 @@ export async function getCategories() {
             }
         })
 
+        const isRateExceeded = _checkRateExceeded(response, "fetch categories")
+        if (isRateExceeded) throw new Error("rate exceeded")
+
         const items = response.data.categories.items
 
         saveToStorage(CATEGORIES_STORAGE_KEY, items)
@@ -48,6 +51,9 @@ export async function getStations(queries, limit = 20) {
                 }
             })
 
+            const isRateExceeded = _checkRateExceeded(response, "fetch stations")
+            if (isRateExceeded) throw new Error("rate exceeded")
+
             const categoryId = makeId(6)
             let items = response.data.playlists.items
 
@@ -61,6 +67,30 @@ export async function getStations(queries, limit = 20) {
 
         saveToStorage(STATIONS_STORAGE_KEY, stations)
         return stations
+
+    } catch (err) {
+        console.error(err)
+        throw err
+    }
+}
+
+export async function getStation(stationId) {
+    const savedStations = loadFromStorage(STATIONS_STORAGE_KEY)
+    try {
+        const station = savedStations.find(station => station._id === stationId)
+        if (station) return station
+
+        const accessToken = await getSpotifyToken()
+        const response = await axios.get(`https://api.spotify.com/v1/playlists/${stationId}`, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        })
+
+        const isRateExceeded = _checkRateExceeded(response, "fetch station")
+        if (isRateExceeded) throw new Error("rate exceeded")
+
+        return response.data
 
     } catch (err) {
         console.error(err)
@@ -82,6 +112,9 @@ export async function getStationsTracks(stationId) {
             }
         })
 
+        const isRateExceeded = _checkRateExceeded(response, "fetch station tracks")
+        if (isRateExceeded) throw new Error("rate exceeded")
+
         if (response.data.items) {
             tracks = response.data.items
         } else {
@@ -94,6 +127,7 @@ export async function getStationsTracks(stationId) {
 
     } catch (err) {
         console.error(err)
+        throw err
     }
 }
 
@@ -106,6 +140,10 @@ export async function searchStations(query, limit) {
                 Authorization: `Bearer ${accessToken}`
             }
         })
+
+        const isRateExceeded = _checkRateExceeded(response, "search for stations")
+        if (isRateExceeded) throw new Error("rate exceeded")
+
         let items = response.data.playlists.items
         items = items.filter(item => item !== null)
         return items
@@ -115,7 +153,6 @@ export async function searchStations(query, limit) {
         throw err
     }
 }
-
 
 export async function searchTracks(query, limit = 10, offset = 0) {
     const name = query.trim()
@@ -129,6 +166,10 @@ export async function searchTracks(query, limit = 10, offset = 0) {
                 Authorization: `Bearer ${accessToken}`
             }
         })
+
+        const isRateExceeded = _checkRateExceeded(response, "search for tracks")
+        if (isRateExceeded) throw new Error("rate exceeded")
+
         let tracks = []
         if (response.data.tracks) {
             tracks = response.data.tracks.items.map(wrapSpotifyTrack)
@@ -142,7 +183,6 @@ export async function searchTracks(query, limit = 10, offset = 0) {
         console.error(`error searching a track with query ${name}`, error)
     }
 
-
     async function _filterOutLikedTracks(tracks) {
         try {
             const userLikedTracks = stationService.getLikedStationTracks()
@@ -154,11 +194,9 @@ export async function searchTracks(query, limit = 10, offset = 0) {
         } catch (error) {
             console.log('error filtering out liked tracks', error)
         }
-
-
     }
-
 }
+
 export function wrapSpotifyTrack(track) {
     return {
         added_at: new Date().toISOString(),
@@ -174,4 +212,13 @@ export function wrapSpotifyTrack(track) {
             url: null,
         },
     }
+}
+
+function _checkRateExceeded(response, msg) {
+    if (response.status === 429) {
+        const retryAfter = parseInt(response.headers["retry-after"] || "unknowen")
+        console.warn(`exceeded quota while trying to ${msg}. try in ${retryAfter} seconds...`)
+        return true
+    }
+    return false
 }
