@@ -1,85 +1,91 @@
-
 import { useNavigate } from "react-router-dom";
-import { clearStation, saveStation } from "../store/actions/station.actions";
-import { PlayButton } from "./PlayButton";
-import { StationDropdownOptions } from "./StationDropdownOptions";
-import { useState } from "react";
-import { StationEditModal } from "./StationEditModal";
-import { removeStation, toggleLikeStation } from "../store/actions/library.actions";
-import { LikeButton } from "./TrackLikedButton";
+import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 
+import { clearStation, saveStation } from "../store/actions/station.actions";
+import { removeStation, toggleLikeStation } from "../store/actions/library.actions";
+
+import { PlayButton } from "./PlayButton";
+import { StationDropdownOptions } from "./StationDropdownOptions";
+import { StationEditModal } from "./StationEditModal";
+import { LikeButton } from "./LikeButton";
+
+const ICONS = {
+    edit: "/icons/Pencil.svg",
+    queue: "/icons/add-to-queue.svg",
+    delete: "/icons/Delete.svg"
+};
 
 export function ActionBar({ station, isAllowed }) {
-    const navigate = useNavigate()
-    const [isModalOpen, setIsModalOpen] = useState(false)
-    const stations = useSelector(state => state.libraryModule.stations)
+    const navigate = useNavigate();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const stations = useSelector(state => state.libraryModule.stations);
 
-    const moreOptions = [
-        { label: "Edit details", value: "edit", icon: 'icons/Pencil.svg' },
-        { label: "Add to queue", value: "add to queue", icon: "icons/add-to-queue.svg" },
-        { label: "Delete", value: "delete", icon: 'icons/Delete.svg' },
-    ]
+    const isLiked = useMemo(() => stations.some(s => s._id === station?._id), [stations, station?._id]);
 
-    function isLikedStation() {
-        return stations.some(s => s._id === station._id)
-    }
+    const moreOptions = useMemo(() => [
+        { label: "Edit details", value: "edit", icon: ICONS.edit },
+        { label: "Add to queue", value: "add to queue", icon: ICONS.queue },
+        { label: "Delete", value: "delete", icon: ICONS.delete }
+    ], []);
 
-    async function handleConfirm(station) {
+    async function handleConfirm(updatedStation) {
         try {
-            saveStation(station)
+            await saveStation(updatedStation);
         } catch (error) {
-            console.error(error)
+            console.error("Failed to save station:", error);
         } finally {
-            setIsModalOpen(false)
+            setIsModalOpen(false);
         }
     }
 
-    function handleOptionClick(option) {
+    async function handleOptionClick(option) {
         switch (option) {
-            case 'delete':
-                _removeStation(station)
-                break
-            case 'edit':
-                setIsModalOpen(true)
-                break
-            case 'add to queue':
-                break
-
+            case "delete":
+                try {
+                    await removeStation(station._id);
+                    clearStation();
+                    navigate("/");
+                } catch (error) {
+                    console.error("Failed to remove station:", error);
+                }
+                break;
+            case "edit":
+                setIsModalOpen(true);
+                break;
+            case "add to queue":
+                // Future implementation
+                break;
             default:
-                break
+                break;
         }
-    }
-
-    async function _removeStation(station) {
-        try {
-            await removeStation(station._id)
-            clearStation();
-            navigate('/');
-        } catch (error) {
-            console.error(error)
-        }
-
-    }
-
-    function onToggleLikedStation(station) {
-        toggleLikeStation(station)
     }
 
     return (
-        <section className='action-bar'>
+        <section className="action-bar">
             <PlayButton stationId={station?._id} />
-            <LikeButton track={station}
-                isLiked={isLikedStation()}
-                onToggle={() => onToggleLikedStation(station)}
+
+            <LikeButton
+                isLiked={isLiked}
+                onToggle={() => toggleLikeStation(station)}
+                size={31}
                 bigBtn={true}
             />
-            {isAllowed && <StationDropdownOptions options={moreOptions} onOptionClick={(option) => handleOptionClick(option)}></StationDropdownOptions>}
-            {isModalOpen && <StationEditModal onClose={() => setIsModalOpen(false)} onConfirm={handleConfirm} station={station}>
-            </StationEditModal>}
+
+            {isAllowed && (
+                <StationDropdownOptions
+                    options={moreOptions}
+                    onOptionClick={handleOptionClick}
+                />
+            )}
+
+            {isModalOpen && (
+                <StationEditModal
+                    onClose={() => setIsModalOpen(false)}
+                    onConfirm={handleConfirm}
+                    station={station}
+                />
+            )}
         </section>
-    )
-
+    );
 }
-
-

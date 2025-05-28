@@ -129,8 +129,8 @@ export function StationDetails() {
                 </div>
             </div>
             <div className="content-spacing">
-                {isNotLikedStation() && <ActionBar isAllowed={isAllowed()} station={station}></ActionBar>
-                }                <TrackList isAllowed={isAllowed()} station={station} tracks={tracks}></TrackList>
+                {isNotLikedStation() && <ActionBar isAllowed={isAllowed()} station={station}></ActionBar>}
+                <TrackList isAllowed={isAllowed()} station={station} tracks={tracks}></TrackList>
                 {isAllowed() && <StationTrackSearch isAllowed={isAllowed()} station={station}></StationTrackSearch>}
             </div>
             {isModalOpen && (

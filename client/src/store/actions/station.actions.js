@@ -67,7 +67,7 @@ export async function toggleLikeTrack(trackToToggle) {
 
         const user = { ...state.userModule.user }
         const likedStationId = user.likedTracksStationId
-        const activeStationId = state.systemModule.activeStationId
+        const activeStation = state.stationModule.station
         const trackId = trackToToggle.track.id
 
         if (!user || !trackId) {
@@ -90,7 +90,7 @@ export async function toggleLikeTrack(trackToToggle) {
             updatedTracks = await stationService.addTrackToStation(trackToToggle, likedStationId)
             console.log("❤️ Track added to Liked Songs.")
         }
-        if (activeStationId == likedStationId) {
+        if (activeStation._id == likedStationId) {
             store.dispatch({ type: SET_TRACKS, tracks: updatedTracks })
         }
 
