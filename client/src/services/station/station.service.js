@@ -52,9 +52,8 @@ async function addTrackToStation(track, stationId) {
         }
 
         tracks.push(trackToAdd)
-        const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${stationId}`
-        saveToStorage(STATION_TRACKS_STORAGE_KEY, tracks)
-        return trackToAdd
+        saveToStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`, tracks)
+        return tracks
     } catch (error) {
         console.log('error adding a track', error)
     }
@@ -68,8 +67,7 @@ function removeTrackFromStation(trackId, stationId) {
             trackObj => trackObj.track?.id !== trackId
         )
 
-        const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${stationId}`
-        saveToStorage(STATION_TRACKS_STORAGE_KEY, updatedTracks)
+        saveToStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`, updatedTracks)
         return updatedTracks
     } catch (error) {
         console.log('error removing a track', error)
