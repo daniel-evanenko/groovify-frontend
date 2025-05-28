@@ -51,9 +51,7 @@ async function addTrackToStation(track, stationId) {
             ...structuredClone(track),
         }
 
-        trackToAdd.track.id = makeId()
         tracks.push(trackToAdd)
-
         const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${stationId}`
         saveToStorage(STATION_TRACKS_STORAGE_KEY, tracks)
         return trackToAdd

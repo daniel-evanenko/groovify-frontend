@@ -76,8 +76,6 @@ export async function toggleLikeTrack(trackToToggle) {
         }
 
         const likedTracks = await stationService.getLikedStationTracks()
-        console.log(likedTracks)
-        console.log(trackToToggle.track.id)
         const isAlreadyLiked =
             Array.isArray(likedTracks) &&
             likedTracks.some(t => t.track?.id === trackToToggle.track?.id)
