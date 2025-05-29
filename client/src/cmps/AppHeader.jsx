@@ -95,7 +95,7 @@ export function AppHeader() {
             </div>
 
             <div className="profile">
-                <ReactSVG src="/icons/profile.svg" />
+                <ReactSVG src="/icons/profile2.svg" />
             </div>
         </header>
     )
