@@ -16,13 +16,18 @@
         grid-template-columns: 1fr 40% 8fr 8fr 5fr;
         gap: 16px;
         align-items: center;
-        padding: 0 24px;
+        margin-block-end: 8px;
+        padding: 0 16px;
         height: 54px;
 
         svg {
             width: em(20px);
             height: em(20px);
             fill: $text-subdued;
+        }
+
+        .track-title {
+            color: $text-subdued;
         }
     }
 
@@ -99,10 +104,7 @@
             }
 
         }
-
-
     }
-
 
     .track-title {
         display: flex;
@@ -110,7 +112,6 @@
         gap: em(10px);
         min-width: 0;
         overflow: hidden;
-        color: white;
 
         img {
             border-radius: em(4px);
@@ -130,6 +131,7 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                color: $text-base;
             }
 
             .artist-list {

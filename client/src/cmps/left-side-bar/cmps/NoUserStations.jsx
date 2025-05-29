@@ -3,7 +3,7 @@ const NoUserStations = () => {
 
     return (
         <section className="no-user-stations">
-            <h1>This folder looks empty</h1>
+            <h1>Create or Add a playlist</h1>
         </section>
     )
 }
