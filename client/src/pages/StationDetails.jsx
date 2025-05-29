@@ -12,6 +12,7 @@ import { setIsLoading } from '../store/actions/system.actions.js'
 import { StationTrackSearch } from '../cmps/StationTrackSearch.jsx'
 import { DEFAULT_IMAGE_URL } from '../services/station/station.service.js'
 import { saveLibraryStation } from '../store/actions/library.actions.js'
+import { LongTxt } from '../cmps/LongTxt.jsx'
 
 export function StationDetails() {
     const station = useSelector(storeState => storeState.stationModule.station)
@@ -164,26 +165,24 @@ export function StationDetails() {
 
     return (
         <section className="station-page">
-            <div className='station-header-bg'>
-                <header className="top-bar"></header>
-                <div className="station-header">
-                    <div className="station-image">
-                        <img src={imgUrl} alt="station cover" />
-                        {isAllowed() && <div className="overlay" onClick={() => setIsModalOpen(true)}>
-                            <ReactSVG src='/icons/Pencil.svg' />
-                            <p>Choose photo</p>
-                        </div>}
+            <div className='station-header-bg' />
+            <div className="station-header">
+                <div className="station-image">
+                    <img src={imgUrl} alt="station cover" />
+                    {isAllowed() && <div className="overlay" onClick={() => setIsModalOpen(true)}>
+                        <ReactSVG src='/icons/Pencil.svg' />
+                        <p>Choose photo</p>
+                    </div>}
 
-                    </div>
-                    <div className="station-details">
-                        <span className="station-type">Playlist</span>
-                        <h1 className="station-name">{station.name}</h1>
-                        {station.description && <div className="station-description">{station.description}</div>}
-                        <div className="station-info">
-                            <span>{station.owner?.fullname || station.owner?.display_name || 'Unknown User'}</span>
-                            <span> • </span>
-                            <span>{calculatePlaylistInfo()}</span>
-                        </div>
+                </div>
+                <div className="station-details">
+                    <span className="station-type">Playlist</span>
+                    <h1 className="station-name">{station.name}</h1>
+                    {station.description && <div className="station-description">{station.description}</div>}
+                    <div className="station-info">
+                        <a>{station.owner?.fullname || station.owner?.display_name || 'Unknown User'}</a>
+                        <span> • </span>
+                        <span>{calculatePlaylistInfo()}</span>
                     </div>
                 </div>
             </div>

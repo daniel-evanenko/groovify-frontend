@@ -1,31 +1,34 @@
 .station-page {
+    position: relative;
     color: white;
     line-height: normal;
     user-select: none;
     overflow-y: scroll;
 
-
-    .content-spacing {
-        padding-inline: 3.4375em;
-    }
-
     .station-header-bg {
-        padding: $content-padding $content-padding $content-padding 3.4375em;
-        border-radius: 8px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 66%;
+        pointer-events: none;
     }
 
     .station-header {
+        position: relative;
+        z-index: 1;
         display: flex;
         gap: 20px;
-        align-items: center;
+        align-items: end;
+        margin: 30px;
 
         .station-image {
             min-width: 150px;
             max-width: 232px;
             aspect-ratio: 1;
             overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             position: relative;
         }
 
@@ -66,9 +69,12 @@
         }
 
         .station-details {
+            width: 100%;
+            container-type: inline-size;
+
             .station-type {
-                font-size: 16px;
-                font-weight: normal;
+                font-size: 14px;
+                font-weight: bold;
                 color: #fff;
             }
 
@@ -77,28 +83,67 @@
                 color: #fff;
                 font-weight: 700;
                 line-height: normal;
+                white-space: nowrap;
             }
 
             .station-description {
                 font-size: 14px;
                 color: rgba(255, 255, 255, 0.7);
+
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
             }
 
             .station-info {
                 display: flex;
                 gap: 10px;
-                font-size: 0.9em;
+                margin-block-start: 8px;
+                font-size: 14px;
                 color: #bbb;
 
                 span {
                     font-weight: normal;
+                    white-space: nowrap;
+                }
+
+                a {
+                    font-weight: bold;
+                    color: $text-base;
+                    cursor: pointer;
+                }
+            }
+
+            @container (max-width: 850px) {
+                .station-name {
+                    font-size: 32px;
+                }
+            }
+
+            @container (max-width: 550px) {
+                .station-name {
+                    font-size: 24px;
+                }
+            }
+
+            @container (min-width: 851px) {
+                .station-name {
+                    font-size: 48px;
+                }
+            }
+
+            @container (min-width: 1100px) {
+                .station-name {
+                    font-size: 72px;
                 }
             }
         }
     }
 
-    .top-bar {
-        height: 64px;
+    .content-spacing {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), $bg-base);
+        padding: 0 30px;
     }
-
 }
