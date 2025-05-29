@@ -1,0 +1,33 @@
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease;
+
+    svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.2s ease;
+    }
+
+    &:hover svg {
+        transform: scale(1.1);
+    }
+
+    &.unliked svg {
+        color: $text-subdued !important;
+    }
+
+    &.liked svg {
+        fill: $green-base !important;
+    }
+
+    &.bigBtn {
+        width: 32px;
+        height: 32px;
+    }
+}

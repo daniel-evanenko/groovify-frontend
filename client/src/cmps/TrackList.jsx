@@ -7,9 +7,9 @@ import { useClickOutside } from "../hooks/useClickOutside"
 import { removeTrackFromStation, toggleLikeTrack } from "../store/actions/station.actions"
 import defaultImg from "/img/default-playlist-img.png"
 import { stationService } from "../services/station/station.service"
-import { LikeButton } from "./TrackLikedButton"
 import { setActiveStation, setTrackId } from "../store/actions/system.actions"
 import { setPlaying } from "../store/actions/player.actions"
+import { LikeButton } from "./LikeButton"
 
 export function TrackList({ station, isAllowed }) {
     const tracks = useSelector(state => state.stationModule.tracks)
@@ -19,20 +19,18 @@ export function TrackList({ station, isAllowed }) {
     const [hoveredRow, setHoveredRow] = useState(null)
     const activeRow = useClickOutside(() => setSelectedRowIndex(null))
     const [userLikedTracks, setUserLikedTracks] = useState([])
-
-    useEffect(() => {
-        async function fetchLikedTracks() {
-            try {
-                const likedTracks = await stationService.getLikedStationTracks()
-                setUserLikedTracks(likedTracks || [])
-                console.log(likedTracks)
-            } catch (err) {
-                console.error("Failed to fetch liked tracks", err)
-            }
+    async function fetchLikedTracks() {
+        try {
+            const likedTracks = await stationService.getLikedStationTracks()
+            setUserLikedTracks(likedTracks || [])
+        } catch (err) {
+            console.error("Failed to fetch liked tracks", err)
         }
-
+    }
+    useEffect(() => {
         fetchLikedTracks()
     }, [])
+
 
     function isTrackLiked(trackObj) {
         const res = userLikedTracks.some(_trackObj => _trackObj.track?.id === trackObj.track?.id)
@@ -40,8 +38,8 @@ export function TrackList({ station, isAllowed }) {
     }
 
     const moreOptions = [
-        { label: "Add to playlist", value: "add to playlist", icon: "icons/create-playlist.svg" },
-        { label: "Add to queue", value: "add to queue", icon: "icons/add-to-queue.svg" },
+        // { label: "Add to playlist", value: "add to playlist", icon: "icons/create-playlist.svg" },
+        // { label: "Add to queue", value: "add to queue", icon: "icons/add-to-queue.svg" },
         { label: "Remove from this playlist", value: "delete", icon: "icons/trash.svg" },
     ]
 
@@ -110,6 +108,10 @@ export function TrackList({ station, isAllowed }) {
         return getPlayIcon(track)
     }
 
+    async function onToggleTrack(track) {
+        await toggleLikeTrack(track)
+        fetchLikedTracks()
+    }
 
     return (
         <ul className="track-list">
@@ -180,11 +182,11 @@ export function TrackList({ station, isAllowed }) {
 
                         <div className="track-duration">
                             <div className="duration-btn">
-                                <LikeButton track={trackObj}
+                                <LikeButton
                                     isLiked={isTrackLiked(trackObj)}
-                                    onToggle={() => toggleLikeTrack(trackObj)}
-                                />
-                            </div>
+                                    onToggle={() => onToggleTrack(trackObj)}
+                                    size={14}
+                                />                            </div>
                             <span className="duration-text">{formatTime(duration_ms)}</span>
                             <div className="duration-btn">
                                 {isAllowed && <StationDropdownOptions

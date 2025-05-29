@@ -1,6 +1,6 @@
 import { getStationsTracks } from "../../services/spotify/spotify-api.service.js"
 import { stationService } from "../../services/station/station.service.js"
-import { SET_STATION, SET_INDEX_STATIONS, SET_TRACK_IDS, UPDATE_STATION } from "../reducers/station.reducer.js"
+import { SET_STATION, SET_INDEX_STATIONS, SET_TRACKS, UPDATE_STATION } from "../reducers/station.reducer.js"
 import { store } from "../store.js"
 
 
@@ -8,7 +8,7 @@ export async function addTrackToStation(track, stationId) {
 
     try {
         const updatedTracks = await stationService.addTrackToStation(track, stationId)
-        store.dispatch({ type: SET_TRACK_IDS, tracks: updatedTracks })
+        store.dispatch({ type: SET_TRACKS, tracks: updatedTracks })
 
     } catch (err) {
         console.log('Station actions -> Cannot add track to station', err)
@@ -19,7 +19,7 @@ export async function addTrackToStation(track, stationId) {
 export async function removeTrackFromStation(trackId, stationId) {
     try {
         const updatedTracks = await stationService.removeTrackFromStation(trackId, stationId)
-        store.dispatch({ type: SET_TRACK_IDS, tracks: updatedTracks })
+        store.dispatch({ type: SET_TRACKS, tracks: updatedTracks })
 
     } catch (err) {
         console.log('Station actions -> Cannot remove track from station', err)
@@ -32,7 +32,7 @@ export async function loadStation(stationId) {
         const station = await stationService.getById(stationId)
         const tracks = await getStationsTracks(stationId)
         store.dispatch({ type: SET_STATION, station })
-        store.dispatch({ type: SET_TRACK_IDS, tracks })
+        store.dispatch({ type: SET_TRACKS, tracks })
 
     } catch (err) {
         console.log('Station actions -> Cannot load station', err)
@@ -67,7 +67,7 @@ export async function toggleLikeTrack(trackToToggle) {
 
         const user = { ...state.userModule.user }
         const likedStationId = user.likedTracksStationId
-        const activeStationId = state.systemModule.activeStationId
+        const activeStation = state.stationModule.station
         const trackId = trackToToggle.track.id
 
         if (!user || !trackId) {
@@ -76,8 +76,6 @@ export async function toggleLikeTrack(trackToToggle) {
         }
 
         const likedTracks = await stationService.getLikedStationTracks()
-        console.log(likedTracks)
-        console.log(trackToToggle.track.id)
         const isAlreadyLiked =
             Array.isArray(likedTracks) &&
             likedTracks.some(t => t.track?.id === trackToToggle.track?.id)
@@ -92,8 +90,8 @@ export async function toggleLikeTrack(trackToToggle) {
             updatedTracks = await stationService.addTrackToStation(trackToToggle, likedStationId)
             console.log("❤️ Track added to Liked Songs.")
         }
-        if (activeStationId == likedStationId) {
-            store.dispatch({ type: SET_TRACK_IDS, tracks: updatedTracks })
+        if (activeStation._id == likedStationId) {
+            store.dispatch({ type: SET_TRACKS, tracks: updatedTracks })
         }
 
     } catch (error) {

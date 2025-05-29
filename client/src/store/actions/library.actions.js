@@ -1,7 +1,7 @@
 import { getStations } from "../../services/spotify/spotify-api.service.js"
 import { stationService } from "../../services/station/station.service.js"
-import { ADD_STATION, REMOVE_STATION, SET_STATIONS } from "../reducers/library.reducer.js"
-import { SET_INDEX_STATIONS } from "../reducers/station.reducer.js"
+import { ADD_STATION, REMOVE_STATION, SET_STATIONS, UPDATE_LIBRARY_STATION } from "../reducers/library.reducer.js"
+import { SET_INDEX_STATIONS, UPDATE_STATION } from "../reducers/station.reducer.js"
 import { store } from "../store.js"
 import { updateUser } from "./user.actions.js"
 
@@ -91,5 +91,17 @@ export async function toggleLikeStation(stationToToggle) {
 
     } catch (error) {
         console.error("❌ Error in toggleLikeTrack:", error)
+    }
+}
+
+export async function saveLibraryStation(station) {
+    try {
+        const updatedStation = await stationService.save(station)
+        store.dispatch({ type: UPDATE_LIBRARY_STATION, updatedStation })
+        store.dispatch({ type: UPDATE_STATION, station: updatedStation })
+
+    } catch (error) {
+        console.log('Station actions -> Cannot save station', error)
+        throw err
     }
 }
