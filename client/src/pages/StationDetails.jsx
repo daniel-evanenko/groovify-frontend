@@ -89,7 +89,7 @@ export function StationDetails() {
         )
     }
     function isNotLikedStation() {
-        return station._id != user.likedTracksStationId
+        return station._id != user?.likedTracksStationId
     }
 
     async function handleConfirm(stationToSave) {
