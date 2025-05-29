@@ -1,18 +1,18 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Loader } from '../cmps/Loader.jsx'
 import { ActionBar } from '../cmps/ActionBar.jsx'
 import { TrackList } from '../cmps/TrackList.jsx'
 import { extractColors } from 'extract-colors'
 import { useSelector } from 'react-redux'
-import { clearStation, loadStation, saveStation } from '../store/actions/station.actions.js'
+import { clearStation, loadStation } from '../store/actions/station.actions.js'
 import { ReactSVG } from 'react-svg'
 import { StationEditModal } from '../cmps/StationEditModal.jsx'
 import { setIsLoading } from '../store/actions/system.actions.js'
 import { StationTrackSearch } from '../cmps/StationTrackSearch.jsx'
 import { DEFAULT_IMAGE_URL } from '../services/station/station.service.js'
 import { saveLibraryStation } from '../store/actions/library.actions.js'
-import { LongTxt } from '../cmps/LongTxt.jsx'
+import { PlayButton } from '../cmps/PlayButton.jsx'
 
 export function StationDetails() {
     const station = useSelector(storeState => storeState.stationModule.station)
@@ -26,6 +26,41 @@ export function StationDetails() {
 
     const user = useSelector(storeState => storeState.userModule.user)
     const tracks = useSelector(storeState => storeState.stationModule.tracks)
+    const [isActionBarVisible, setIsActionBarVisible] = useState(true);
+
+
+    useEffect(() => {
+        setTopBarBg()
+    }, [isActionBarVisible])
+
+    async function setTopBarBg() {
+        try {
+            const topBar = document.querySelector('.top-bar')
+            if (!topBar) return
+            if (!isActionBarVisible) {
+                const colors = await extractColors(imgUrl)
+                if (colors.length > 0) {
+                    const { red, green, blue } = colors[0]
+                    const color = `rgb(${red}, ${green}, ${blue}`
+                    topBar.style.backgroundColor = color
+
+
+                } else {
+                    topBar.style.backgroundColor = ''
+                }
+            } else {
+                topBar.style.backgroundColor = ''
+
+            }
+
+        } catch (error) {
+            console.error('Error setting top bar background:', error)
+            const topBar = document.querySelector('.top-bar')
+            if (topBar) {
+                topBar.style.backgroundColor = ''
+            }
+        }
+    }
 
     function calculatePlaylistInfo() {
         const totalSongs = tracks.length
@@ -159,6 +194,20 @@ export function StationDetails() {
         }
     }
 
+    async function extractColor() {
+        try {
+            const colors = await extractColors(imgUrl)
+            if (colors.length > 0) {
+                const { red, green, blue } = colors[0]
+                return `rgb(${red}, ${green}, ${blue}`
+            } else {
+                return ''
+            }
+        } catch (error) {
+            console.error('error extracting colors from img', error)
+        }
+
+    }
     if (globalIsLoading) return <Loader />
 
     if (!station) return <div>No playlist data available</div>
@@ -166,7 +215,8 @@ export function StationDetails() {
     return (
         <section className="station-page">
             <div className='station-header-bg' />
-            <div className="station-header">
+            <header className="top-bar"> {!isActionBarVisible && <div className='intersection-header'><PlayButton stationId={station?._id} /> <h1 className="station-name">{station.name}</h1>  </div>}</header>
+            <div className="station-header" >
                 <div className="station-image">
                     <img src={imgUrl} alt="station cover" />
                     {isAllowed() && <div className="overlay" onClick={() => setIsModalOpen(true)}>
@@ -187,7 +237,8 @@ export function StationDetails() {
                 </div>
             </div>
             <div className="content-spacing">
-                {isNotLikedStation() && <ActionBar isAllowed={isAllowed()} station={station}></ActionBar>}
+                {isNotLikedStation() && <ActionBar isAllowed={isAllowed()} station={station} onVisibilityChange={setIsActionBarVisible}
+                ></ActionBar>}
                 <TrackList isAllowed={isAllowed()} station={station} tracks={tracks}></TrackList>
                 {isAllowed() && <StationTrackSearch isAllowed={isAllowed()} station={station}></StationTrackSearch>}
             </div>

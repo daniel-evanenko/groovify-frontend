@@ -1,41 +1,68 @@
-import { useNavigate } from "react-router-dom";
-import { useMemo, useState } from "react";
-import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom"
+import { useMemo, useState, useRef, useEffect } from "react"
+import { useSelector } from "react-redux"
 
-import { clearStation, saveStation } from "../store/actions/station.actions";
-import { removeStation, toggleLikeStation } from "../store/actions/library.actions";
+import { clearStation, saveStation } from "../store/actions/station.actions"
+import { removeStation, toggleLikeStation } from "../store/actions/library.actions"
 
-import { PlayButton } from "./PlayButton";
-import { StationDropdownOptions } from "./StationDropdownOptions";
-import { StationEditModal } from "./StationEditModal";
-import { LikeButton } from "./LikeButton";
+import { PlayButton } from "./PlayButton"
+import { StationDropdownOptions } from "./StationDropdownOptions"
+import { StationEditModal } from "./StationEditModal"
+import { LikeButton } from "./LikeButton"
 
 const ICONS = {
     edit: "/icons/Pencil.svg",
     queue: "/icons/add-to-queue.svg",
     delete: "/icons/Delete.svg"
-};
+}
 
-export function ActionBar({ station, isAllowed }) {
-    const navigate = useNavigate();
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const stations = useSelector(state => state.libraryModule.stations);
+export function ActionBar({ station, isAllowed, onVisibilityChange }) {
+    const navigate = useNavigate()
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const stations = useSelector(state => state.libraryModule.stations)
 
-    const isLiked = useMemo(() => stations.some(s => s._id === station?._id), [stations, station?._id]);
+    const actionBarRef = useRef(null)
+
+    const isLiked = useMemo(() => stations.some(s => s._id === station?._id), [stations, station?._id])
 
     const moreOptions = useMemo(() => [
         { label: "Edit details", value: "edit", icon: ICONS.edit },
         // { label: "Add to queue", value: "add to queue", icon: ICONS.queue },
         { label: "Delete", value: "delete", icon: ICONS.delete }
-    ], []);
+    ], [])
+
+    useEffect(() => {
+        const elementToObserve = actionBarRef.current
+
+        if (!elementToObserve) return
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                onVisibilityChange?.(entry.isIntersecting)
+            },
+            {
+                root: null,
+                rootMargin: "0px 0px 10px 0px",
+                threshold: 0.4,
+            }
+        )
+
+        observer.observe(elementToObserve)
+
+        return () => {
+            if (elementToObserve) {
+                observer.unobserve(elementToObserve)
+            }
+        }
+    }, [onVisibilityChange])
 
     async function handleConfirm(updatedStation) {
         try {
-            await saveStation(updatedStation);
+            await saveStation(updatedStation)
         } catch (error) {
-            console.error("Failed to save station:", error);
+            console.error("Failed to save station:", error)
         } finally {
-            setIsModalOpen(false);
+            setIsModalOpen(false)
         }
     }
 
@@ -43,26 +70,26 @@ export function ActionBar({ station, isAllowed }) {
         switch (option) {
             case "delete":
                 try {
-                    await removeStation(station._id);
-                    clearStation();
-                    navigate("/");
+                    await removeStation(station._id)
+                    clearStation()
+                    navigate("/")
                 } catch (error) {
-                    console.error("Failed to remove station:", error);
+                    console.error("Failed to remove station:", error)
                 }
-                break;
+                break
             case "edit":
-                setIsModalOpen(true);
-                break;
+                setIsModalOpen(true)
+                break
             case "add to queue":
                 // Future implementation
-                break;
+                break
             default:
-                break;
+                break
         }
     }
 
     return (
-        <section className="action-bar">
+        <section className="action-bar" ref={actionBarRef}>
             <PlayButton stationId={station?._id} />
 
             <LikeButton
@@ -87,5 +114,5 @@ export function ActionBar({ station, isAllowed }) {
                 />
             )}
         </section>
-    );
+    )
 }
