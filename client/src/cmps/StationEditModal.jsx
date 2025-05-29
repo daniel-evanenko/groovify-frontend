@@ -70,7 +70,6 @@ export function StationEditModal({ onClose, onConfirm, station, openFileUpload =
 
     const { name, description, images } = stationToEdit
     const imgUrl = images[0].url
-    console.log("🚀 ~ StationEditModal ~ imgUrl:", imgUrl)
     return (
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
