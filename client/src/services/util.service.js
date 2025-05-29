@@ -52,23 +52,59 @@ export function randomColor() {
 
 export function formatDate(date) {
     if (!date) return "Unknown date";
-    if (typeof date === "string") date = new Date(date);
-    if (typeof date === "number") date = new Date(date);
 
-    // If date is more than a week ago, return the date in "Oct 2, 2023" format
-    if (Date.now() - date > ms("7d"))
-        return new Date(date).toLocaleDateString("en-US", {
+    let dateObj;
+    // Ensure date is a valid Date object
+    if (typeof date === "string" || typeof date === "number") {
+        dateObj = new Date(date);
+    } else if (date instanceof Date) {
+        dateObj = date;
+    } else {
+        return "Invalid date format"; // Handle cases where input is not string, number, or Date
+    }
+
+    // If the date is invalid (e.g., "new Date('invalid string')"), return an error.
+    if (isNaN(dateObj.getTime())) {
+        return "Invalid date";
+    }
+
+    const now = Date.now();
+    const diff = now - dateObj.getTime(); // Difference in milliseconds
+
+    // Define time intervals in milliseconds for clarity
+    const SECOND = 1000;
+    const MINUTE = 60 * SECOND;
+    const HOUR = 60 * MINUTE;
+    const DAY = 24 * HOUR;
+    const WEEK = 7 * DAY;
+    const MONTH = 30 * DAY; // Approximate month (for 30 days)
+    const YEAR = 365 * DAY; // Approximate year (for 365 days)
+
+    if (diff < MINUTE) {
+        const seconds = Math.floor(diff / SECOND);
+        return seconds <= 0 ? "just now" : `${seconds} second${seconds === 1 ? '' : 's'} ago`;
+    } else if (diff < HOUR) {
+        const minutes = Math.floor(diff / MINUTE);
+        return `${minutes} minute${minutes === 1 ? '' : 's'} ago`;
+    } else if (diff < DAY) {
+        const hours = Math.floor(diff / HOUR);
+        return `${hours} hour${hours === 1 ? '' : 's'} ago`;
+    } else if (diff < WEEK) {
+        const days = Math.floor(diff / DAY);
+        return `${days} day${days === 1 ? '' : 's'} ago`;
+    } else if (diff < MONTH) { // Check for weeks before months
+        const weeks = Math.floor(diff / WEEK);
+        return `${weeks} week${weeks === 1 ? '' : 's'} ago`;
+    } else if (diff < YEAR) { // Check for months before years
+        const months = Math.floor(diff / MONTH);
+        return `${months} month${months === 1 ? '' : 's'} ago`;
+    } else {
+        // If more than a year, return the full date in "Oct 2, 2023" format
+        return dateObj.toLocaleDateString("en-US", {
             month: "short",
-            day: "numeric", // Add day
-            year: "numeric", // Add year
+            day: "numeric",
+            year: "numeric",
         });
-
-    // Return the time passed since the date if it's less than a week ago
-    else {
-        if (Date.now() - date < ms("1h")) return "Last hour";
-        if (Date.now() - date < ms("1d"))
-            return ms(Date.now() - date, { long: true }).split(" ")[0] + " hours ago";
-        return ms(Date.now() - date, { long: true }).split(" ")[0] + " days ago";
     }
 }
 

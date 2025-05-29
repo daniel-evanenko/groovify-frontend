@@ -25,7 +25,7 @@ export function ActionBar({ station, isAllowed }) {
 
     const moreOptions = useMemo(() => [
         { label: "Edit details", value: "edit", icon: ICONS.edit },
-        { label: "Add to queue", value: "add to queue", icon: ICONS.queue },
+        // { label: "Add to queue", value: "add to queue", icon: ICONS.queue },
         { label: "Delete", value: "delete", icon: ICONS.delete }
     ], []);
 

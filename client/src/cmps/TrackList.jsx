@@ -31,14 +31,15 @@ export function TrackList({ station, isAllowed }) {
         fetchLikedTracks()
     }, [])
 
+
     function isTrackLiked(trackObj) {
         const res = userLikedTracks.some(_trackObj => _trackObj.track?.id === trackObj.track?.id)
         return res
     }
 
     const moreOptions = [
-        { label: "Add to playlist", value: "add to playlist", icon: "icons/create-playlist.svg" },
-        { label: "Add to queue", value: "add to queue", icon: "icons/add-to-queue.svg" },
+        // { label: "Add to playlist", value: "add to playlist", icon: "icons/create-playlist.svg" },
+        // { label: "Add to queue", value: "add to queue", icon: "icons/add-to-queue.svg" },
         { label: "Remove from this playlist", value: "delete", icon: "icons/trash.svg" },
     ]
 

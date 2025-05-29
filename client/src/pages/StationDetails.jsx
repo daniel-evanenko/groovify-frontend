@@ -24,7 +24,63 @@ export function StationDetails() {
     const imgUrl = station?.images?.length > 0 ? station.images[0].url : DEFAULT_IMAGE_URL
 
     const user = useSelector(storeState => storeState.userModule.user)
-    const tracks = useSelector(storeState => storeState.stationModule.activeStationTracks)
+    const tracks = useSelector(storeState => storeState.stationModule.tracks)
+
+    function calculatePlaylistInfo() {
+        const totalSongs = tracks.length
+        if (totalSongs <= 0) return
+        let totalDurationMs = 0
+
+        for (const trackObj of tracks) {
+            if (trackObj && trackObj.track && typeof trackObj.track.duration_ms === 'number' && !isNaN(trackObj.track.duration_ms)) {
+                totalDurationMs += trackObj.track.duration_ms
+            } else {
+                console.warn(`Warning: Track with missing or invalid duration (track.track.duration_ms) found. Skipping duration for track:`, trackObj)
+            }
+        }
+
+        const totalDurationSeconds = Math.floor(totalDurationMs / 1000)
+
+        const hours = Math.floor(totalDurationSeconds / 3600)
+        const remainingSecondsAfterHours = totalDurationSeconds % 3600
+
+        const minutes = Math.floor(remainingSecondsAfterHours / 60)
+
+        let durationParts = []
+        let prefix = ""
+
+        if (hours >= 2) {
+            prefix = "about "
+        }
+
+        if (hours > 0) {
+            durationParts.push(`${hours} hr`)
+        }
+
+        if (minutes > 0) {
+            if (hours === 0 || minutes > 0) {
+                durationParts.push(`${minutes} min`)
+            }
+        }
+
+        let formattedDuration
+        if (durationParts.length === 0) {
+            if (totalDurationSeconds > 0) {
+                formattedDuration = "less than 1 min"
+                prefix = ""
+            } else {
+
+                formattedDuration = "0 min"
+                prefix = ""
+            }
+        } else {
+            formattedDuration = durationParts.join(" ")
+        }
+
+        const finalDurationString = prefix + formattedDuration
+
+        return `${totalSongs} songs, ${finalDurationString}`
+    }
 
     function isAllowed() {
         if (!station || !user) return false
@@ -126,7 +182,7 @@ export function StationDetails() {
                         <div className="station-info">
                             <span>{station.owner?.fullname || station.owner?.display_name || 'Unknown User'}</span>
                             <span> • </span>
-                            <span>{tracks?.length ? `${tracks.length} songs` : '0 songs'}</span>
+                            <span>{calculatePlaylistInfo()}</span>
                         </div>
                     </div>
                 </div>
