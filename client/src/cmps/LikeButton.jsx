@@ -8,7 +8,7 @@ const ICONS = {
 export function LikeButton({ isLiked, onToggle, bigBtn = false }) {
     return (
         <div
-            className={`icon ${isLiked ? "liked" : "unliked"} ${bigBtn ? "bigBtn" : ""}`}
+            className={`like-icon ${isLiked ? "liked" : "unliked"} ${bigBtn ? "bigBtn" : ""}`}
             onClick={onToggle}
         >
             <ReactSVG src={isLiked ? ICONS.liked : ICONS.like} />
