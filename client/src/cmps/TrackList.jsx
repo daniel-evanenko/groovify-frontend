@@ -128,7 +128,7 @@ export function TrackList({ station, isAllowed }) {
                     <div className="duration-btn right"></div>
                 </div>
             </li>
-            {tracks?.map((trackObj, index) => {
+            {tracks.map((trackObj, index) => {
                 const {
                     track,
                     track: {

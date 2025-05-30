@@ -68,7 +68,7 @@ export async function getStations(queries, limit = 20) {
         // stations = stations.flat()
         // stations = processSpotifyStations(stations)
 
-        saveToStorage(STATIONS_STORAGE_KEY, stations)
+        // saveToStorage(STATIONS_STORAGE_KEY, stations)
         return stations
 
     } catch (err) {
@@ -103,11 +103,11 @@ export async function getStation(stationId) {
 
 export async function getStationsTracks(station) {
     try {
-        const { tracks } = station || {};
-        const { data: trackObjs } = Api.get('/tracks', {
-            params: tracks,
-            paramsSerializer: params => qs.stringify(params, { arrayFormat: "brackets" })
-        });
+        const { tracks } = station || []
+        const { data: trackObjs } = await Api.get('/tracks', {
+            params: { trackIds: tracks },
+            paramsSerializer: params => qs.stringify(params, { arrayFormat: "repeat" })
+        })
         return trackObjs
 
     } catch (err) {
