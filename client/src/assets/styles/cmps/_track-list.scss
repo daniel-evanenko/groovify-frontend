@@ -8,6 +8,15 @@
 
     .track-header {
         border-bottom: 1px solid $bg-tinted-hl;
+        position: sticky;
+        top: 50px;
+    }
+
+    .observer-track-heaer{
+        background-color: #1f1f1f;
+        padding-top: 10px !important;
+        z-index: 10;
+        border: none;
     }
 
     .track-header,

@@ -1,18 +1,18 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Loader } from '../cmps/Loader.jsx'
 import { ActionBar } from '../cmps/ActionBar.jsx'
 import { TrackList } from '../cmps/TrackList.jsx'
 import { extractColors } from 'extract-colors'
 import { useSelector } from 'react-redux'
-import { clearStation, loadStation, saveStation } from '../store/actions/station.actions.js'
+import { clearStation, loadStation } from '../store/actions/station.actions.js'
 import { ReactSVG } from 'react-svg'
 import { StationEditModal } from '../cmps/StationEditModal.jsx'
 import { setIsLoading } from '../store/actions/system.actions.js'
 import { StationTrackSearch } from '../cmps/StationTrackSearch.jsx'
 import { DEFAULT_IMAGE_URL } from '../services/station/station.service.js'
 import { saveLibraryStation } from '../store/actions/library.actions.js'
-import { LongTxt } from '../cmps/LongTxt.jsx'
+import { PlayButton } from '../cmps/PlayButton.jsx'
 
 export function StationDetails() {
     const station = useSelector(storeState => storeState.stationModule.station)
@@ -26,6 +26,50 @@ export function StationDetails() {
 
     const user = useSelector(storeState => storeState.userModule.user)
     const tracks = useSelector(storeState => storeState.stationModule.tracks)
+    const [isActionBarVisible, setIsActionBarVisible] = useState(true)
+
+
+    useEffect(() => {
+        setTopBarBg()
+    }, [isActionBarVisible])
+
+    async function setTopBarBg() {
+        try {
+            const topBar = document.querySelector('.top-bar')
+            const trackHeader = document.querySelector('.track-header')
+            if (!topBar) return
+            if (!isActionBarVisible) {
+                const colors = await extractColors(imgUrl)
+                if (colors.length > 0) {
+                    const { red, green, blue } = colors[0]
+                    const darkenFactor = 0.30
+                    const darkRed = Math.round(red * darkenFactor)
+                    const darkGreen = Math.round(green * darkenFactor)
+                    const darkBlue = Math.round(blue * darkenFactor)
+
+                    const darkerColor = `rgb(${darkRed}, ${darkGreen}, ${darkBlue})`
+                    topBar.style.backgroundColor = darkerColor
+                    trackHeader.classList.add('observer-track-heaer')
+
+
+                } else {
+                    topBar.style.backgroundColor = ''
+
+                }
+            } else {
+                topBar.style.backgroundColor = ''
+                trackHeader.classList.remove('observer-track-heaer')
+
+            }
+
+        } catch (error) {
+            console.error('Error setting top bar background:', error)
+            const topBar = document.querySelector('.top-bar')
+            if (topBar) {
+                topBar.style.backgroundColor = ''
+            }
+        }
+    }
 
     function calculatePlaylistInfo() {
         const totalSongs = tracks.length
@@ -147,6 +191,7 @@ export function StationDetails() {
                 const { red, green, blue } = colors[0]
                 const gradient = `linear-gradient(to bottom, rgb(${red}, ${green}, ${blue}), rgba(0,0,0,0))`
                 mainElement.style.backgroundImage = gradient
+
             } else {
                 mainElement.style.backgroundImage = 'none'
             }
@@ -159,6 +204,15 @@ export function StationDetails() {
         }
     }
 
+    function interpolateColor({ red, green, blue }, percentage) {
+        const t = percentage / 100
+        return {
+            r: Math.round(red * (1 - t)),
+            g: Math.round(green * (1 - t)),
+            b: Math.round(blue * (1 - t)),
+            a: +(1 * (1 - t)).toFixed(2) // from 1 to 0
+        }
+    }
     if (globalIsLoading) return <Loader />
 
     if (!station) return <div>No playlist data available</div>
@@ -166,7 +220,8 @@ export function StationDetails() {
     return (
         <section className="station-page">
             <div className='station-header-bg' />
-            <div className="station-header">
+            <header className="top-bar"> {!isActionBarVisible && <div className='intersection-header'><PlayButton stationId={station?._id} /> <h1 className="station-name">{station.name}</h1>  </div>}</header>
+            <div className="station-header" >
                 <div className="station-image">
                     <img src={imgUrl} alt="station cover" />
                     {isAllowed() && <div className="overlay" onClick={() => setIsModalOpen(true)}>
@@ -187,7 +242,8 @@ export function StationDetails() {
                 </div>
             </div>
             <div className="content-spacing">
-                {isNotLikedStation() && <ActionBar isAllowed={isAllowed()} station={station}></ActionBar>}
+                {isNotLikedStation() && <ActionBar isAllowed={isAllowed()} station={station} onVisibilityChange={setIsActionBarVisible}
+                ></ActionBar>}
                 <TrackList isAllowed={isAllowed()} station={station} tracks={tracks}></TrackList>
                 {isAllowed() && <StationTrackSearch isAllowed={isAllowed()} station={station}></StationTrackSearch>}
             </div>
