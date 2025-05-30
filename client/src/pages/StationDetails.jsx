@@ -26,7 +26,7 @@ export function StationDetails() {
 
     const user = useSelector(storeState => storeState.userModule.user)
     const tracks = useSelector(storeState => storeState.stationModule.tracks)
-    const [isActionBarVisible, setIsActionBarVisible] = useState(true);
+    const [isActionBarVisible, setIsActionBarVisible] = useState(true)
 
 
     useEffect(() => {
@@ -36,20 +36,29 @@ export function StationDetails() {
     async function setTopBarBg() {
         try {
             const topBar = document.querySelector('.top-bar')
+            const trackHeader = document.querySelector('.track-header')
             if (!topBar) return
             if (!isActionBarVisible) {
                 const colors = await extractColors(imgUrl)
                 if (colors.length > 0) {
                     const { red, green, blue } = colors[0]
-                    const color = `rgb(${red}, ${green}, ${blue}`
-                    topBar.style.backgroundColor = color
+                    const darkenFactor = 0.30
+                    const darkRed = Math.round(red * darkenFactor)
+                    const darkGreen = Math.round(green * darkenFactor)
+                    const darkBlue = Math.round(blue * darkenFactor)
+
+                    const darkerColor = `rgb(${darkRed}, ${darkGreen}, ${darkBlue})`
+                    topBar.style.backgroundColor = darkerColor
+                    trackHeader.classList.add('observer-track-heaer')
 
 
                 } else {
                     topBar.style.backgroundColor = ''
+
                 }
             } else {
                 topBar.style.backgroundColor = ''
+                trackHeader.classList.remove('observer-track-heaer')
 
             }
 
@@ -182,6 +191,7 @@ export function StationDetails() {
                 const { red, green, blue } = colors[0]
                 const gradient = `linear-gradient(to bottom, rgb(${red}, ${green}, ${blue}), rgba(0,0,0,0))`
                 mainElement.style.backgroundImage = gradient
+
             } else {
                 mainElement.style.backgroundImage = 'none'
             }
@@ -194,19 +204,14 @@ export function StationDetails() {
         }
     }
 
-    async function extractColor() {
-        try {
-            const colors = await extractColors(imgUrl)
-            if (colors.length > 0) {
-                const { red, green, blue } = colors[0]
-                return `rgb(${red}, ${green}, ${blue}`
-            } else {
-                return ''
-            }
-        } catch (error) {
-            console.error('error extracting colors from img', error)
+    function interpolateColor({ red, green, blue }, percentage) {
+        const t = percentage / 100
+        return {
+            r: Math.round(red * (1 - t)),
+            g: Math.round(green * (1 - t)),
+            b: Math.round(blue * (1 - t)),
+            a: +(1 * (1 - t)).toFixed(2) // from 1 to 0
         }
-
     }
     if (globalIsLoading) return <Loader />
 
