@@ -204,15 +204,6 @@ export function StationDetails() {
         }
     }
 
-    function interpolateColor({ red, green, blue }, percentage) {
-        const t = percentage / 100
-        return {
-            r: Math.round(red * (1 - t)),
-            g: Math.round(green * (1 - t)),
-            b: Math.round(blue * (1 - t)),
-            a: +(1 * (1 - t)).toFixed(2) // from 1 to 0
-        }
-    }
     if (globalIsLoading) return <Loader />
 
     if (!station) return <div>No playlist data available</div>

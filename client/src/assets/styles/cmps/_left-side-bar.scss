@@ -62,11 +62,13 @@
             flex-direction: column;
         }
 
-        .icon-content{
+        .icon-content {
             width: 24px;
+
             &:not(.minimized) {
                 width: 16px;
             }
+
             aspect-ratio: 1;
             transition: all 0.2s ease;
             cursor: pointer;
@@ -183,7 +185,7 @@
 
         .station-item {
             display: grid;
-            grid-template: 1fr 1fr / 1fr 5fr;
+            grid-template: 1fr 1fr / 1fr 3fr;
             grid-template-areas:
                 "pic track-name"
                 "pic track-artist";

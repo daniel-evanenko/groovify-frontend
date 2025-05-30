@@ -34,7 +34,7 @@ export function StationDropdownOptions({ options = [], onOptionClick }) {
                             onClick={(event) => handleOptionClick(option, event)}
                         >
                             {option.icon && (
-                                <ReactSVG src={option.icon} className="dropdown-icon" />
+                                <ReactSVG src={option.icon} className="dropdown-icon-size" />
                             )}
                             {option.label}
                         </li>
