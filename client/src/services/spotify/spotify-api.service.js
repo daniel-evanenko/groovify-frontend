@@ -1,4 +1,6 @@
+import qs from 'qs';
 import axios from "axios";
+import Api from '../api-service.js';
 import { getSpotifyToken } from "./spotify-token.service.js";
 import { loadFromStorage, makeId, saveToStorage } from "../util.service.js";
 import { processSpotifyStations, stationService } from "../station/station.service.js";
@@ -35,35 +37,36 @@ export async function getCategories() {
 }
 
 export async function getStations(queries, limit = 20) {
-    let stations = loadFromStorage(STATIONS_STORAGE_KEY)
+    // let stations = loadFromStorage(STATIONS_STORAGE_KEY)
     try {
-        if (stations && stations.length > 0) return stations
+        const { data: stations } = await Api.get('/stations');
+        // if (stations && stations.length > 0) return stations
 
-        stations = []
-        const accessToken = await getSpotifyToken()
+        // stations = []
+        // const accessToken = await getSpotifyToken()
 
 
-        for (const query of queries) {
-            console.log(`making request for stations with query: ${query}`)
-            const response = await axios.get(`https://api.spotify.com/v1/search?q=${query}&type=playlist&limit=${limit}&offset=0`, {
-                headers: {
-                    Authorization: `Bearer ${accessToken}`
-                }
-            })
+        // for (const query of queries) {
+        //     console.log(`making request for stations with query: ${query}`)
+        //     const response = await axios.get(`https://api.spotify.com/v1/search?q=${query}&type=playlist&limit=${limit}&offset=0`, {
+        //         headers: {
+        //             Authorization: `Bearer ${accessToken}`
+        //         }
+        //     })
 
-            const isRateExceeded = _checkRateExceeded(response, "fetch stations")
-            if (isRateExceeded) throw new Error("rate exceeded")
+        //     const isRateExceeded = _checkRateExceeded(response, "fetch stations")
+        //     if (isRateExceeded) throw new Error("rate exceeded")
 
-            const categoryId = makeId(6)
-            let items = response.data.playlists.items
+        //     const categoryId = makeId(6)
+        //     let items = response.data.playlists.items
 
-            items = items.filter(item => item !== null)
-            items = items.map(item => ({ ...item, category: query, categoryId })) // add categories for sorting in index
+        //     items = items.filter(item => item !== null)
+        //     items = items.map(item => ({ ...item, category: query, categoryId })) // add categories for sorting in index
 
-            stations.push(items)
-        }
-        stations = stations.flat()
-        stations = processSpotifyStations(stations)
+        //     stations.push(items)
+        // }
+        // stations = stations.flat()
+        // stations = processSpotifyStations(stations)
 
         saveToStorage(STATIONS_STORAGE_KEY, stations)
         return stations
@@ -98,32 +101,14 @@ export async function getStation(stationId) {
     }
 }
 
-export async function getStationsTracks(stationId) {
-    const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${stationId}`
-    let tracks = loadFromStorage(STATION_TRACKS_STORAGE_KEY)
+export async function getStationsTracks(station) {
     try {
-        if (tracks) return tracks
-
-        console.log("requesting tracks for station ", stationId)
-        const accessToken = await getSpotifyToken()
-        const response = await axios.get(`https://api.spotify.com/v1/playlists/${stationId}/tracks?limit=20`, {
-            headers: {
-                Authorization: `Bearer ${accessToken}`
-            }
-        })
-
-        const isRateExceeded = _checkRateExceeded(response, "fetch station tracks")
-        if (isRateExceeded) throw new Error("rate exceeded")
-
-        if (response.data.items) {
-            tracks = response.data.items
-        } else {
-            tracks = []
-        }
-
-        saveToStorage(STATION_TRACKS_STORAGE_KEY, tracks)
-        return tracks
-
+        const { tracks } = station || {};
+        const { data: trackObjs } = Api.get('/tracks', {
+            params: tracks,
+            paramsSerializer: params => qs.stringify(params, { arrayFormat: "brackets" })
+        });
+        return trackObjs
 
     } catch (err) {
         console.error(err)

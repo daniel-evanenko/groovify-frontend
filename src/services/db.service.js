@@ -2,6 +2,7 @@ import { MongoClient } from 'mongodb';
 
 export const COLLECTION_NAMES = {
     STATIONS: 'stations',
+    TRACKS: 'tracks',
     USERS: 'users'
 }
 
@@ -18,11 +19,10 @@ export const getCollection = async (collectionName) => {
         const collection = await db.collection(collectionName).find({}).toArray();
         return collection;
     } catch (err) {
-        console.log('Failed tp get Mongo collection', err);
+        console.error('Failed to get DB collection', err);
         throw err;
     }
 }
-
 
 const _connect = async () => {
     if (dbConnection) return dbConnection;

@@ -6,6 +6,7 @@ export const REMOVE_TRACK_FROM_STATION = 'REMOVE_TRACK_FROM_STATION'
 export const UPDATE_STATION = 'UPDATE_STATION'
 
 const initialState = {
+    indexStations: [],
     station: {},
     tracks: []
 }

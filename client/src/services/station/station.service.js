@@ -32,7 +32,8 @@ async function query(filter = {}) {
 
 async function getById(stationId) {
     try {
-        const station = await storageService.get(STORAGE_KEY, stationId)
+        const stations = store.getState().stationModule.indexStations
+        const station = stations.find(station => station._id === stationId)
         return station
     } catch (err) {
         if (
@@ -157,9 +158,8 @@ export async function createNewLikedStation(user) {
 
 }
 
-export async function getStationsByCategories() {
+export async function getStationsByCategories(stations) {
     try {
-        const stations = await storageService.query(STORAGE_KEY, 0)
         const stationsByCategories = {}
         for (const station of stations) {
             if (station.category in stationsByCategories) stationsByCategories[station.category].push(station)

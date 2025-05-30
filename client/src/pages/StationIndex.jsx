@@ -3,19 +3,19 @@ import { StationList } from "../cmps/StationList";
 import { getStationsByCategories } from "../services/station/station.service";
 import { Loader } from "../cmps/Loader";
 import { eventBus, INDEX_MOUNT } from "../services/event-bus.service";
-
-
+import { useSelector } from "react-redux";
 
 export function StationIndex() {
     const [stationsLists, setStationsLists] = useState({})
     const [loading, setLoading] = useState(true)
+    const stationsList = useSelector(state => state.stationModule.indexStations)
 
     useEffect(() => {
         eventBus.emit(INDEX_MOUNT)
 
         async function getLists() {
-            try {     
-                const lists = await getStationsByCategories()
+            try {
+                const lists = await getStationsByCategories(stationsList)
                 setStationsLists(lists)
             } catch (err) {
                 console.error(err)
@@ -24,7 +24,7 @@ export function StationIndex() {
             }
         }
         getLists()
-    }, [])
+    }, [stationsList])
 
     if (loading) return <Loader></Loader>
 

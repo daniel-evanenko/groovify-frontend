@@ -3,7 +3,6 @@ import { stationService } from "../../services/station/station.service.js"
 import { SET_STATION, SET_INDEX_STATIONS, SET_TRACKS, UPDATE_STATION } from "../reducers/station.reducer.js"
 import { store } from "../store.js"
 
-
 export async function addTrackToStation(track, stationId) {
 
     try {
@@ -28,9 +27,9 @@ export async function removeTrackFromStation(trackId, stationId) {
 }
 
 export async function loadStation(stationId) {
-    try {
+    try {        
         const station = await stationService.getById(stationId)
-        const tracks = await getStationsTracks(stationId)
+        const tracks = await getStationsTracks(station)
         store.dispatch({ type: SET_STATION, station })
         store.dispatch({ type: SET_TRACKS, tracks })
 
@@ -54,7 +53,7 @@ export async function saveStation(station) {
 export function clearStation() {
     try {
         store.dispatch({ type: SET_STATION, station: null })
-        store.dispatch({ type: SET_INDEX_STATIONS, tracks: [] })
+        // store.dispatch({ type: SET_INDEX_STATIONS, tracks: [] })
     } catch (err) {
         console.log('Station actions -> Cannot clear station', err)
         throw err

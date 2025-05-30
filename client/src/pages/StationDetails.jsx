@@ -72,8 +72,8 @@ export function StationDetails() {
     }
 
     function calculatePlaylistInfo() {
-        const totalSongs = tracks.length
-        if (totalSongs <= 0) return
+        const totalSongs = tracks?.length
+        if (!totalSongs) return
         let totalDurationMs = 0
 
         for (const trackObj of tracks) {
