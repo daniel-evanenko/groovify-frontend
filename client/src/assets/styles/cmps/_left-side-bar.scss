@@ -62,11 +62,13 @@
             flex-direction: column;
         }
 
-        .icon-content{
+        .icon-content {
             width: 24px;
+
             &:not(.minimized) {
                 width: 16px;
             }
+
             aspect-ratio: 1;
             transition: all 0.2s ease;
             cursor: pointer;

@@ -4,6 +4,9 @@ import { useEffect, useRef, useState } from "react"
 import { eventBus, INDEX_MOUNT } from "../services/event-bus.service"
 import { ReactSVG } from "react-svg"
 import { SearchBar } from "./SearchBar"
+import Avatar from '@mui/material/Avatar';
+import { useSelector } from "react-redux"
+import { capitalize } from "@mui/material"
 
 export function AppHeader() {
     const [fillHome, setFillHome] = useState(true)
@@ -15,7 +18,7 @@ export function AppHeader() {
     const location = useLocation()
     const match = location.pathname.match(/^\/station\/(.+)$/)
     const stationId = match ? match[1] : null
-
+    const user = useSelector(storeState => storeState.userModule.user)
     useEffect(() => {
         if (stationId !== null) {
             setFillHome(false)
@@ -69,7 +72,25 @@ export function AppHeader() {
             navigate(`/search/${trimmedQuery}`)
         }
     }
+    function stringToColor(string) {
+        let hash = 0;
+        let i;
 
+        /* eslint-disable no-bitwise */
+        for (i = 0; i < string.length; i += 1) {
+            hash = string.charCodeAt(i) + ((hash << 5) - hash);
+        }
+
+        let color = '#';
+
+        for (i = 0; i < 3; i += 1) {
+            const value = (hash >> (i * 8)) & 0xff;
+            color += `00${value.toString(16)}`.slice(-2);
+        }
+        /* eslint-enable no-bitwise */
+
+        return color;
+    }
     return (
         <header className="app-header">
             <img className="icon" src={icon} alt="icon" onClick={onHomeClicked} style={{ cursor: "pointer" }}></img>
@@ -95,7 +116,17 @@ export function AppHeader() {
             </div>
 
             <div className="profile">
-                <ReactSVG src="/icons/profile2.svg" />
+                <Avatar
+                    sx={{
+                        bgcolor: stringToColor(user.fullname),
+                        color: 'black',
+                        width: 32,
+                        height: 32,
+                        fontSize: '16px',
+                    }} alt={capitalize(user.fullname)}
+                    src={'/broken-image.jpg'}
+                >
+                </Avatar>
             </div>
         </header>
     )
