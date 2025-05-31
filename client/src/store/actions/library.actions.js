@@ -17,7 +17,6 @@ export async function loadStations() {
         console.error('library actions -> Cannot load stations', err)
         throw err;
     }
-
 }
 
 export async function addStation(station) {

@@ -4,6 +4,7 @@ import { addStation } from '../../store/actions/library.actions.js';
 import { store } from '../../store/store.js';
 import { getStation, getStationsTracks, TRACKS_STORAGE_KEY_PREFIX } from '../spotify/spotify-api.service.js';
 import { updateUser } from '../../store/actions/user.actions.js';
+import Api from "../api-service.js"
 
 export const STORAGE_KEY = "stations";
 export const INITIAL_STATION_PREFIX = "My Station #";
@@ -181,19 +182,6 @@ async function _saveRequest(station, methodType) {
     return await storageService[methodType](STORAGE_KEY, stationToSave)
 }
 
-export function addYtUrlsToTrack(stationId, trackId, youtubeUrls) {
-    const stationTracks = _getStationTracks(stationId)
-    const trackObj = stationTracks.find(trackObject => trackObject.track.id === trackId)
-    trackObj.youtubeUrls = youtubeUrls
-    const updatedTracks = [...stationTracks, trackObj]
-    saveToStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`, updatedTracks)
-}
-
-export function getTrackYtUrls(stationId, trackId) {
-    const stationTracks = _getStationTracks(stationId)
-    const trackObj = stationTracks.find(trackObject => trackObject.track.id === trackId)
-    return trackObj.youtubeUrls ? trackObj.youtubeUrls : undefined
-}
 
 export function processSpotifyStations(stations) {
     stations = _removeDups(stations)
@@ -251,6 +239,17 @@ export async function getStationFirstTrack(stationId) {
         return tracks && tracks.length > 0 && tracks[0]
     } catch (err) {
         console.error("couldnt get first track: ", err)
+        throw err
+    }
+}
+
+export async function getTrackUrl(trackId) {
+    try {
+        const { data: playUrl } = await Api.get(`/tracks/${trackId}`)
+        console.log(playUrl)
+        return playUrl
+    } catch (err) {
+        console.error("failed to get url for track with id: ", trackId)
         throw err
     }
 }
