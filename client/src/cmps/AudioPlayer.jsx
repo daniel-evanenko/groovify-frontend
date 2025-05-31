@@ -2,14 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player/youtube";
 import { eventBus, playerEvents } from "../services/event-bus.service";
 import { setCurTrackDuration, setPlaybackReady, setPlaying } from "../store/actions/player.actions";
-import { getTrackById, getTrackYtUrls } from "../services/station/station.service";
+import { getTrackUrl } from "../services/station/station.service";
 import { useSelector } from "react-redux";
-import { getYtVideoUrls } from "../services/youtube/yt-api.service";
-import { makeYtQueryFromTrack } from "../services/youtube/yt.service";
 
 export function AudioPlayer() {
     const reactPlayer = useRef(null)
-    const activeStationId = useSelector(state => state.systemModule.activeStationId)
     const activeTrackId = useSelector(state => state.systemModule.activeTrackId)
     const isPlaying = useSelector(state => state.playerModule.playing)
     const [trackUrl, setTrackUrl] = useState("")
@@ -34,26 +31,22 @@ export function AudioPlayer() {
 
     useEffect(() => {
         async function fetchYtUrl() {
+            if (!activeTrackId) return
             try {
-                const ytUrl = await getTrackYtUrls(activeStationId, activeTrackId)?.[0]
+                const ytUrl = await getTrackUrl(activeTrackId)
                 if (ytUrl) {
                     setTrackUrl(ytUrl)
-                } else {
-                    throw undefined
                 }
+                else {
+                    setPlaybackReady(false)
+                    setPlaying(false)
+                }
+
             } catch (err) {
-                if (err === undefined) {
-                    const trackObj = getTrackById(activeStationId, activeTrackId)
-                    const query = makeYtQueryFromTrack(trackObj.track)
-                    const videoUrls = await getYtVideoUrls(activeStationId, activeTrackId, query)
-                    setTrackUrl(videoUrls[0])
-                }
-            } finally {
-                setPlaybackReady(false)
+                console.error("couldnt load track playUrl")
             }
         }
-        
-        setPlaying(false)
+
         fetchYtUrl()
 
     }, [activeTrackId])

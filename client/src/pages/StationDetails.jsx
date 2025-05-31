@@ -28,6 +28,14 @@ export function StationDetails() {
     const tracks = useSelector(storeState => storeState.stationModule.tracks)
     const [isActionBarVisible, setIsActionBarVisible] = useState(true)
 
+    const indexStations = useSelector(state => state.stationModule.indexStations)
+    const [isInitialized, setIsInitialized] = useState(false)
+
+    useEffect(() => {
+        if (indexStations?.length) {
+            setIsInitialized(true)
+        }
+    }, [indexStations])
 
     useEffect(() => {
         setTopBarBg()
@@ -72,8 +80,8 @@ export function StationDetails() {
     }
 
     function calculatePlaylistInfo() {
-        const totalSongs = tracks.length
-        if (totalSongs <= 0) return
+        const totalSongs = tracks?.length
+        if (!totalSongs) return
         let totalDurationMs = 0
 
         for (const trackObj of tracks) {
@@ -166,12 +174,12 @@ export function StationDetails() {
             return
         }
 
-        fetchStationData()
+        if (isInitialized) fetchStationData()
 
         return () => {
             clearStation()
         }
-    }, [params.stationId, navigate])
+    }, [params.stationId, navigate, isInitialized])
 
     useEffect(() => {
         if (!station || !imgUrl) return
@@ -213,6 +221,8 @@ export function StationDetails() {
             a: +(1 * (1 - t)).toFixed(2) // from 1 to 0
         }
     }
+
+    if (!isInitialized) return <Loader />
     if (globalIsLoading) return <Loader />
 
     if (!station) return <div>No playlist data available</div>
