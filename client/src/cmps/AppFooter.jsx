@@ -19,11 +19,19 @@ export function AppFooter() {
         if (trackPlaybackState) setIsInert(false)
     }, [trackPlaybackState])
 
-    useEffect(() => {
+    useEffect(() => {   
         if (!activeTrackId) return
 
-        const trackObj = getTrackById(activeStationId, activeTrackId)
-        setMiniActiveTrack(trackObj)
+        async function setTrack() {
+            try {
+                const trackObj = await getTrackById(activeStationId, activeTrackId)
+                setMiniActiveTrack(trackObj)
+            } catch (err) {
+                console.error("failed to set the track in footer")
+            }
+        }
+
+        setTrack()
     }, [activeTrackId])
 
     return (

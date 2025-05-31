@@ -181,16 +181,6 @@ async function _saveRequest(station, methodType) {
     return await storageService[methodType](STORAGE_KEY, stationToSave)
 }
 
-export async function getStationFirstTrack(stationId) {
-    try {
-        const tracks = await getStationsTracks(stationId)
-        return tracks && tracks.length > 0 && tracks[0]
-    } catch (err) {
-        console.log("couldnt get first track")
-        throw err
-    }
-}
-
 export function addYtUrlsToTrack(stationId, trackId, youtubeUrls) {
     const stationTracks = _getStationTracks(stationId)
     const trackObj = stationTracks.find(trackObject => trackObject.track.id === trackId)
@@ -243,10 +233,24 @@ function getLikedStationTracks() {
     }
 }
 
-function _getStationTracks(stationId) {
-    return loadFromStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`)
+export async function getTrackById(stationId, trackId) {
+    try {
+        const tracks = await getStationsTracks(stationId)
+        const track = tracks.find(trackObj => trackObj.track.id === trackId)
+        return track
+    } catch (err) {
+        console.error(`couldnt retrieve track by id: ${trackId} from station id: ${stationId}`)
+        throw err
+    }
 }
 
-export function getTrackById(stationId, trackId) {
-    return _getStationTracks(stationId).find(trackObj => trackObj.track.id === trackId)
+export async function getStationFirstTrack(stationId) {
+    try {
+        const station = await getById(stationId)
+        const tracks = await getStationsTracks(station)
+        return tracks && tracks.length > 0 && tracks[0]
+    } catch (err) {
+        console.error("couldnt get first track: ", err)
+        throw err
+    }
 }

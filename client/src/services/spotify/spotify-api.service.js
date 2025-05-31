@@ -36,39 +36,9 @@ export async function getCategories() {
     }
 }
 
-export async function getStations(queries, limit = 20) {
-    // let stations = loadFromStorage(STATIONS_STORAGE_KEY)
+export async function getStations() {
     try {
         const { data: stations } = await Api.get('/stations');
-        // if (stations && stations.length > 0) return stations
-
-        // stations = []
-        // const accessToken = await getSpotifyToken()
-
-
-        // for (const query of queries) {
-        //     console.log(`making request for stations with query: ${query}`)
-        //     const response = await axios.get(`https://api.spotify.com/v1/search?q=${query}&type=playlist&limit=${limit}&offset=0`, {
-        //         headers: {
-        //             Authorization: `Bearer ${accessToken}`
-        //         }
-        //     })
-
-        //     const isRateExceeded = _checkRateExceeded(response, "fetch stations")
-        //     if (isRateExceeded) throw new Error("rate exceeded")
-
-        //     const categoryId = makeId(6)
-        //     let items = response.data.playlists.items
-
-        //     items = items.filter(item => item !== null)
-        //     items = items.map(item => ({ ...item, category: query, categoryId })) // add categories for sorting in index
-
-        //     stations.push(items)
-        // }
-        // stations = stations.flat()
-        // stations = processSpotifyStations(stations)
-
-        // saveToStorage(STATIONS_STORAGE_KEY, stations)
         return stations
 
     } catch (err) {

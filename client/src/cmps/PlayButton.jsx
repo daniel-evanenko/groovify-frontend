@@ -3,25 +3,16 @@ import { useSelector } from "react-redux";
 import { setPlaying } from "../store/actions/player.actions";
 import { setActiveStation, setTrackId } from "../store/actions/system.actions";
 import { getStationFirstTrack } from "../services/station/station.service";
-import { store } from "../store/store";
-import { useEffect, useRef } from "react";
 
 export function PlayButton({ stationId }) {
     const isPlaying = useSelector(state => state.playerModule.playing)
     const activeStationId = useSelector(state => state.systemModule.activeStationId)
-    const station = useRef({})
-
-    useEffect(() => {
-        const allStations = store.getState().stationModule.indexStations
-        const activeStation = allStations.find(currentStation => currentStation._id === activeStationId)
-        station.current = activeStation;
-    }, [activeStationId])
 
     async function handlePlayClick(ev) {
         ev.stopPropagation()
         if (stationId !== activeStationId) {
             try {
-                const trackObj = await getStationFirstTrack(station)
+                const trackObj = await getStationFirstTrack(stationId)
                 setActiveStation(stationId)
                 setTrackId(trackObj.track.id)
             } catch (err) {
