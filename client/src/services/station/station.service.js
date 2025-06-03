@@ -106,32 +106,31 @@ function findNextStationId() {
 }
 
 export async function createNewStation() {
-    const user = store.getState()?.userModule?.user
-    const nextStationId = findNextStationId() || '1'
-    const stationName = `${INITIAL_STATION_PREFIX}${nextStationId}`
+    // const user = store.getState()?.userModule?.user
+    // const nextStationId = findNextStationId() || '1'
+    // const stationName = `${INITIAL_STATION_PREFIX}${nextStationId}`
 
-    let newStation = {
-        name: stationName,
-        images: { 0: { url: DEFAULT_IMAGE_URL, height: null, width: null } },
-        description: "",
-        category: "",
-        categoryId: "",
-        owner: {
-            fullname: user?.fullname
-        }
-    }
+    // let newStation = {
+    //     name: stationName,
+    //     images: { 0: { url: DEFAULT_IMAGE_URL, height: null, width: null } },
+    //     description: "",
+    //     category: "",
+    //     categoryId: "",
+    //     owner: {
+    //         fullname: user?.fullname
+    //     }
+    // }
 
-    const newStation2 = await createNewUserStation();
-    console.log('newStation2', newStation2)
+    const newStation = await createNewUserStation();
 
     const newStationId = await addStation(newStation)
 
     // Add the tracks array to localStorage, associated with the new station. 
-    const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${newStationId}`
-    saveToStorage(STATION_TRACKS_STORAGE_KEY, [])
+    // const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${newStationId}`
+    // saveToStorage(STATION_TRACKS_STORAGE_KEY, [])
 
-    user.savedStations.push(newStationId)
-    updateUser(user, false)
+    // user.savedStations.push(newStationId)
+    // updateUser(user, false)
 
     return newStationId
 }

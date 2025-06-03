@@ -38,7 +38,13 @@ export const createNewUserStation = async (req, res) => {
 
         await attachNewStationToUser(newStationInDb, user);
 
-        res.status(200).send(newStationInDb);
+        const stationId = newStationInDb?._id?.toString();
+        const stationSend = {
+            _id: stationId,
+            ...newStationInDb
+        }
+
+        res.status(200).send(stationSend);
     } catch (err) {
         console.error("Failed to create a new user station");
         res.status(500).send("Failed to create a new user station");

@@ -18,7 +18,7 @@ export function libraryReducer(state = initialState, action) {
         case ADD_STATION:
             return {
                 ...state,
-                stations: [action.savedStation, ...state.stations],
+                stations: [action.station, ...state.stations],
             }
         case UPDATE_LIBRARY_STATION:
             return {

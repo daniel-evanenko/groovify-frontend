@@ -16,11 +16,11 @@ export const getUserStations = async () => {
         const user = await getMockUser();
         const { savedStations } = user;
 
-        const setIdsCriteria = savedStations.map(savedStationId => savedStationId?.toString() || savedStationId);
-        const criteria = { "owner.user_id": { "$in": [...setIdsCriteria] } };
+        const setIdsCriteria = savedStations.map(savedStationId => typeof savedStationId === 'string' ? ObjectId.createFromHexString(savedStationId) : savedStationId);
+        const criteria = { "_id": { "$in": [...setIdsCriteria] } };
         const userStations = await getCollectionItem(COLLECTION_NAMES.STATIONS, criteria);
 
-        return userStations;
+        return userStations;    
     } catch (err) {
         console.error("Failed to get user stations list.")
         throw err;
@@ -29,7 +29,7 @@ export const getUserStations = async () => {
 
 export const attachNewStationToUser = async (newStation, userToUpdate) => {
     try {
-        const { insertedId: newStationId } = newStation;
+        const { _id: newStationId } = newStation;
         const { savedStations } = userToUpdate;
         
         savedStations.push(newStationId);

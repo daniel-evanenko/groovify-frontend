@@ -21,10 +21,11 @@ export async function loadStations() {
 
 export async function addStation(station) {
     try {
-        const savedStation = await stationService.save(station)
-        store.dispatch({ type: ADD_STATION, savedStation })
+        // const savedStation = await stationService.save(station)
+        
+        store.dispatch({ type: ADD_STATION, station })
 
-        return savedStation._id
+        return station._id
     } catch (err) {
         console.log('library actions -> Cannot add station', err)
         throw err
