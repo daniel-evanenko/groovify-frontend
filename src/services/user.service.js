@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { COLLECTION_NAMES, getCollection, getCollectionItem, updateColectionItem } from "./db.service.js"
+import { COLLECTION_NAMES, getCollection, updateColectionItem } from "./db.service.js"
 
 export const getMockUser = async () => {
     try {
@@ -18,7 +18,7 @@ export const getUserStations = async () => {
 
         const setIdsCriteria = savedStations.map(savedStationId => typeof savedStationId === 'string' ? ObjectId.createFromHexString(savedStationId) : savedStationId);
         const criteria = { "_id": { "$in": [...setIdsCriteria] } };
-        const userStations = await getCollectionItem(COLLECTION_NAMES.STATIONS, criteria);
+        const userStations = await getCollection(COLLECTION_NAMES.STATIONS, criteria);
 
         return userStations;    
     } catch (err) {

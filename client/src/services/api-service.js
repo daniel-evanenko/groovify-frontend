@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOCALHOST_PATH, PRODUCTION } from "../utils/constants";
+import { LOCALHOST_PATH, PRODUCTION } from "../utils/constants.js";
 
 const isProd = process.env.NODE_ENV === PRODUCTION;
 const BASE_URL = isProd ? '' : LOCALHOST_PATH;
