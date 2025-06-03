@@ -1,4 +1,5 @@
-import { getMockUser, getUserStations } from "../services/user.service.js";
+import { ObjectId } from "mongodb";
+import { getById, getMockUser, getUserStations, updateSavedStations } from "../services/user.service.js";
 
 export const getUserController = async (req, res) => {
     try {
@@ -18,5 +19,21 @@ export const getUserStationsController = async (req, res) => {
     } catch (err) {
         console.error('Failed to load user stations');
         throw err;
+    }
+}
+export async function toggleSavedStation(req, res) {
+    try {
+        const { userId, stationId } = req.body
+        const user = await getById(userId)
+
+        const stationObjectId = ObjectId.createFromHexString(stationId)
+        const isAlreadySaved = user.savedStations.some(savedId => savedId.equals(stationObjectId))
+
+        const updatedUser = await updateSavedStations(userId, stationObjectId, isAlreadySaved)
+
+        res.status(200).json(updatedUser)
+    } catch (err) {
+        console.error('Failed to toggle saved station', err)
+        res.status(500).send('Internal server error')
     }
 }

@@ -67,3 +67,14 @@ export async function tempLogin() {
         throw err
     }
 }
+
+
+export const handleToggleStation = async (stationId) => {
+    const loggedinUser = userService.getLoggedinUser()
+    try {
+        const updatedUser = await userService.toggleSavedStation(loggedinUser._id, stationId)
+        await updateUser(updatedUser)
+    } catch (err) {
+        console.error('Error toggling saved station:', err)
+    }
+}

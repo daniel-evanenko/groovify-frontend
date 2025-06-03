@@ -72,8 +72,9 @@ export async function removeStation(req, res) {
         await remove(id, user)
         res.send('OK')
     } catch (err) {
-        console.error(`Couldn't remove bug ${id}`, err)
-        res.status(400).send(`Couldn't remove bug`)
+        console.error(`Couldn't remove station ${id}`, err)
+        res.status(500).send(`Couldn't remove station`)
 
     }
 }
+

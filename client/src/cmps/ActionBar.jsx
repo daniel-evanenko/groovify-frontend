@@ -3,12 +3,13 @@ import { useMemo, useState, useRef, useEffect } from "react"
 import { useSelector } from "react-redux"
 
 import { clearStation, saveStation } from "../store/actions/station.actions"
-import { removeStation, toggleLikeStation } from "../store/actions/library.actions"
+import { removeStation } from "../store/actions/library.actions"
 
 import { PlayButton } from "./PlayButton"
 import { StationDropdownOptions } from "./StationDropdownOptions"
 import { StationEditModal } from "./StationEditModal"
 import { LikeButton } from "./LikeButton"
+import { handleToggleStation } from "../store/actions/user.actions"
 
 const ICONS = {
     edit: "/icons/Pencil.svg",
@@ -94,7 +95,7 @@ export function ActionBar({ station, isAllowed, onVisibilityChange }) {
 
             <LikeButton
                 isLiked={isLiked}
-                onToggle={() => toggleLikeStation(station)}
+                onToggle={() => handleToggleStation(station._id)}
                 size={31}
                 bigBtn={true}
             />

@@ -14,7 +14,7 @@ export const userService = {
     saveLoggedinUser,
     updateUser,
     signup,
-    getUserLibrary
+    toggleSavedStation
 }
 
 // async function getUsers() {
@@ -77,13 +77,15 @@ async function signup(userCred) {
 }
 
 
-async function getUserLibrary() {
+
+
+
+async function toggleSavedStation(userId, stationId) {
     try {
-        const { data } = await Api.get('/user/library');
-        return data
+        const { data: updatedUser } = await Api.put('users/savedStation', { userId, stationId })
+        return updatedUser
     } catch (err) {
-        console.error(err)
+        console.error('Failed to toggle saved station', err)
         throw err
     }
-
 }

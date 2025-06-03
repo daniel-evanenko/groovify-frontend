@@ -4,7 +4,6 @@ import { userService } from "../../services/user/user.service.js"
 import { ADD_STATION, REMOVE_STATION, SET_STATIONS, UPDATE_LIBRARY_STATION } from "../reducers/library.reducer.js"
 import { SET_INDEX_STATIONS, UPDATE_STATION } from "../reducers/station.reducer.js"
 import { store } from "../store.js"
-import { updateUser } from "./user.actions.js"
 
 export async function loadStations() {
     const queries = ["Top Lists", "Featured Playlists", "Summer", "Workout", "Mood", "Trending",
@@ -58,39 +57,6 @@ export async function clearLikedContent() {
     }
 }
 
-export async function toggleLikeStation(stationToToggle) {
-    try {
-        const state = store.getState()
-
-        const user = { ...state.userModule.user }
-        const stationId = stationToToggle._id
-
-        if (!user || !stationId) {
-            console.error("❌ Missing user or station ID.")
-            return
-        }
-
-        const isAlreadyLiked =
-            Array.isArray(user.savedStations) &&
-            user.savedStations.some(id => id === stationId)
-
-        console.log(`🔍 Station is ${isAlreadyLiked ? "already" : "not yet"} liked`)
-
-        let updatedStations = []
-        if (isAlreadyLiked) {
-            updatedStations = user.savedStations.filter(id => id != stationId)
-            console.log("🧹 Station removed from Liked Stations.")
-        } else {
-            updatedStations = [stationToToggle._id, ...user.savedStations]
-            console.log("❤️ Station added to Liked Stations.")
-        }
-        user.savedStations = updatedStations
-        updateUser(user)
-
-    } catch (error) {
-        console.error("❌ Error in toggleLikeTrack:", error)
-    }
-}
 
 export async function saveLibraryStation(station) {
     try {
