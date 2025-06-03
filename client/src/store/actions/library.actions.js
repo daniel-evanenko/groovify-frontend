@@ -58,14 +58,13 @@ export async function clearLikedContent() {
 }
 
 
-export async function saveLibraryStation(station) {
+export async function updateStation(station) {
     try {
         const updatedStation = await stationService.update(station)
+        store.dispatch({ type: UPDATE_STATION, updatedStation })
         store.dispatch({ type: UPDATE_LIBRARY_STATION, updatedStation })
-        store.dispatch({ type: UPDATE_STATION, station: updatedStation })
-
-    } catch (error) {
-        console.log('Station actions -> Cannot save station', error)
+    } catch (err) {
+        console.log('Station actions -> Cannot save station', err)
         throw err
     }
 }

@@ -55,7 +55,6 @@ async function save(station) {
 }
 
 async function update(station) {
-    console.log("🚀 ~ update ~ station:", station)
     try {
         const { data: savedStation } = await Api.put(`/station/${station._id}`, { station })
         return savedStation

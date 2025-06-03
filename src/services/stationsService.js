@@ -81,12 +81,14 @@ export async function remove(stationId, user) {
 export async function update(station) {
     try {
         const stationId = ObjectId.createFromHexString(station._id)
-        delete station._id // avoid trying to update _id
+        const stationToUpdate = { ...station } // create a shallow copy
+        delete stationToUpdate._id // remove _id before updating Mongo
 
         const collection = await getCollection(COLLECTION_NAMES.STATIONS, {}, false)
-        await collection.updateOne({ _id: stationId }, { $set: station })
+        await collection.updateOne({ _id: stationId }, { $set: stationToUpdate })
 
-        return station
+        // Return the updated station with _id re-attached
+        return { ...stationToUpdate, _id: stationId.toString() }
     } catch (err) {
         console.error(`cannot update station ${station._id}`, err)
         throw err
