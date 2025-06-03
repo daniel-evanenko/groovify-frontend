@@ -47,9 +47,19 @@ export async function getStations() {
 }
 
 export async function createNewUserStation() {
-        try {
+    try {
         const { data: newStation } = await Api.post('/stations/create');
         return newStation;
+    } catch (err) {
+        console.error(err)
+        throw err
+    }
+}
+
+export async function getUserStations() {
+    try {
+        const { data: userStations } = await Api.get('/users/stations');
+        return userStations;
     } catch (err) {
         console.error(err)
         throw err

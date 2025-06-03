@@ -1,22 +1,11 @@
-import { storageService } from "../../services/async-storage.service.js"
+import { getUserStations } from "../../services/spotify/spotify-api.service.js"
 import { createNewLikedStation } from "../../services/station/station.service.js"
 import defaultUser from "../../services/user/defaultUser.js"
 import { userService } from "../../services/user/user.service.js"
 import { getUser } from "../../services/user/users-api.service.js"
+import { SET_STATIONS } from "../reducers/library.reducer.js"
 import { SET_IS_GUEST_USER, SET_USER } from "../reducers/user.reducer.js"
 import { store } from "../store.js"
-import { fetchLikedContent } from "./library.actions.js"
-
-// export async function login(credentials) {
-//     try {
-//         const user = await userService.login(credentials)
-//         store.dispatch({ type: SET_USER, user })
-//         store.dispatch({ type: SET_IS_GUEST_USER, isGuestUser: false })
-//     } catch (err) {
-//         console.log('user actions -> Cannot login', err)
-//         throw err
-//     }
-// }
 
 export async function signup(credentials) {
     try {
@@ -32,11 +21,14 @@ export async function signup(credentials) {
     }
 }
 export async function updateUser(user, isGuest = false) {
-    // const updatedUser = await userService.updateUser(user)
     userService.saveLoggedinUser(user)
+
+    const userStations = await getUserStations();
+
     store.dispatch({ type: SET_USER, user: user })
     store.dispatch({ type: SET_IS_GUEST_USER, isGuestUser: isGuest })
-    await fetchLikedContent(user)
+    store.dispatch({ type: SET_STATIONS, stations: userStations })
+
     return user
 }
 export function logout() {
@@ -74,23 +66,4 @@ export async function tempLogin() {
         console.error('tempLogin failed:', err)
         throw err
     }
-
-    // try {
-    //     let user = userService.getLoggedinUser()
-    //     if (!user) {
-    //         try {
-    //             user = await userService.login(defaultUser)
-    //         } catch (loginErr) {
-    //             console.warn('Login failed, trying signup...')
-    //             user = await signup(defaultUser)
-    //         }
-    //     }
-
-    //     await updateUser(user, user.fullname === 'Guest')
-
-    //     return user
-    // } catch (err) {
-    //     console.error('tempLogin failed:', err)
-    //     throw err
-    // }
 }
