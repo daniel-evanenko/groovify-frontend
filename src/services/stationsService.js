@@ -33,21 +33,21 @@ export const getNewStationDefaultName = async () => {
     }
 }
 
-export const getStation = async (stationId) => {
+export const getById = async (stationId) => {
     const criteria = { _id: ObjectId.createFromHexString(`${stationId}`) }
     const station = await getCollectionItem(COLLECTION_NAMES.STATIONS, criteria)
     return station
 }
 
 export const getPrevTrackId = async (curStationId, curTrackId) => {
-    const curStation = await getStation(curStationId)
+    const curStation = await getById(curStationId)
     const curTrackIdx = curStation.tracks.findIndex(trackId => trackId === curTrackId)
     const prevTrackIdx = Math.max(0, curTrackIdx - 1)
     return curStation.tracks[prevTrackIdx]
 }
 
 export const getNextTrackId = async (curStationId, curTrackId) => {
-    const curStation = await getStation(curStationId)
+    const curStation = await getById(curStationId)
     const curTrackIdx = curStation.tracks.findIndex(trackId => trackId === curTrackId)
     const nextTrackIdx = Math.min(curTrackIdx + 1, curStation.tracks.length - 1)
     return curStation.tracks[nextTrackIdx]

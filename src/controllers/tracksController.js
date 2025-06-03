@@ -1,5 +1,5 @@
 import { getNextTrackId, getPrevTrackId } from "../services/stationsService.js";
-import { getTrack, getTracks, getTrackUrl } from "../services/tracksService.js";
+import { getStationTracks, getTrack, getTrackUrl } from "../services/tracksService.js";
 
 
 export const getTracksController = async (req, res) => {
