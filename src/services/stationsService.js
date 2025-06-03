@@ -55,8 +55,8 @@ export const getNextTrackId = async (curStationId, curTrackId) => {
 
 export async function remove(stationId, user) {
     try {
-        const stationCollection = await getCollection(COLLECTION_NAMES.STATIONS, false)
-        const userCollection = await getCollection(COLLECTION_NAMES.USERS, false)
+        const stationCollection = await getCollection(COLLECTION_NAMES.STATIONS, {}, false)
+        const userCollection = await getCollection(COLLECTION_NAMES.USERS, {}, false)
         const stationObjectId = ObjectId.createFromHexString(stationId)
 
         const res = await stationCollection.deleteOne({ _id: stationObjectId })
@@ -65,16 +65,11 @@ export async function remove(stationId, user) {
         }
 
         await userCollection.updateOne(
-            { _id: ObjectId.createFromHexString(user._id) },
+            { _id: user._id },
             { $pull: { savedStations: stationObjectId } }
         )
 
-        if (user.likedTracksStationId?.toString() === stationId) {
-            await userCollection.updateOne(
-                { _id: ObjectId.createFromHexString(user._id) },
-                { $unset: { likedTracksStationId: "" } }
-            )
-        }
+
 
         return stationId
     } catch (err) {
