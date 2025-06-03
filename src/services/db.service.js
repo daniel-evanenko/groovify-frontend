@@ -1,4 +1,4 @@
-import { MongoClient, ObjectId } from 'mongodb';
+import { MongoClient } from 'mongodb';
 
 export const COLLECTION_NAMES = {
     STATIONS: 'stations',
@@ -13,11 +13,11 @@ const config = {
 
 let dbConnection;
 
-export const getCollection = async (collectionName, parsed = true) => {
+export const getCollection = async (collectionName, criteria = {}, parsed = true) => {
     try {
         const db = await _connect();
         const collection = await db.collection(collectionName);
-        const collectionParsed = collection.find({}).toArray();
+        const collectionParsed = collection.find(criteria).toArray();
         return parsed ? collectionParsed : collection;
     } catch (err) {
         console.error('Failed to get DB collection', err);
@@ -28,8 +28,9 @@ export const getCollection = async (collectionName, parsed = true) => {
 export const getCollectionItem = async (collectionName, criteria, parsed = true) => {
     try {
         const db = await _connect();
-        const item = await db.collection(collectionName).find(criteria);
-        return parsed ? item.toArray() : item;
+        const item = await db.collection(collectionName).findOne(criteria);
+        return item
+        // return parsed ? item.toArray() : item;
     } catch (err) {
         console.error("failed to get collection item")
         throw err

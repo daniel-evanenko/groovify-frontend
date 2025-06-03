@@ -4,8 +4,8 @@ import { PlayerProgressBar } from "./progress-bars/PlayerProgressBar";
 import { VolumeBar } from "./progress-bars/VolumeBar";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { setMiniActiveTrack } from "../store/actions/system.actions";
-import { getTrackById } from "../services/station/station.service";
+import { setMiniActiveTrack, setTrackId } from "../store/actions/system.actions";
+import { getNextTrackId, getPrevTrackId, getTrackById } from "../services/station/station.service";
 
 
 export function AppFooter() {
@@ -19,11 +19,12 @@ export function AppFooter() {
         if (trackPlaybackState) setIsInert(false)
     }, [trackPlaybackState])
 
-    useEffect(() => {   
+    useEffect(() => {
         if (!activeTrackId) return
 
         async function setTrack() {
             try {
+                console.log("active track ID: ", activeTrackId)
                 const trackObj = await getTrackById(activeStationId, activeTrackId)
                 setMiniActiveTrack(trackObj)
             } catch (err) {
@@ -33,6 +34,18 @@ export function AppFooter() {
 
         setTrack()
     }, [activeTrackId])
+
+
+    async function onPrevClicked() {
+        const prevTrackId = await getPrevTrackId(activeStationId, activeTrackId)
+        setTrackId(prevTrackId)
+    }
+
+    async function onNextClicked() {
+        const nextTrackId = await getNextTrackId(activeStationId, activeTrackId)
+        console.log()
+        setTrackId(nextTrackId)
+    }
 
     return (
         <footer className="app-footer">
@@ -48,13 +61,13 @@ export function AppFooter() {
             <div className={`player-controls ${isInert ? "inert" : ""}`}>
                 <div className="player-buttons">
                     <button className=" player-controls-btn">
-                        <ReactSVG src="/icons/previous.svg" />
+                        <ReactSVG src="/icons/previous.svg" onClick={onPrevClicked} />
                     </button>
 
                     <PlayButton className={`player-controls-btn`} stationId={activeStationId} />
 
                     <button className=" player-controls-btn">
-                        <ReactSVG src="/icons/next.svg" />
+                        <ReactSVG src="/icons/next.svg" onClick={onNextClicked} />
                     </button>
                 </div>
                 <PlayerProgressBar />

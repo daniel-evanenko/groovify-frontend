@@ -255,3 +255,24 @@ export async function getTrackUrl(trackId) {
         throw err
     }
 }
+
+export async function getPrevTrackId(stationId, trackId) {
+    try {
+        const { data: prevTrack } = await Api.get(`/stations/${stationId}/${trackId}/prev`)
+        console.log("prevTrack: ", prevTrack)
+        return prevTrack
+    } catch (err) {
+        console.error(`failed to get previous track in station ${stationId}`)
+        throw err
+    }
+}
+
+export async function getNextTrackId(stationId, trackId) {
+    try {
+        const { data: nextTrack } = await Api.get(`/stations/${stationId}/${trackId}/next`)
+        return nextTrack
+    } catch (err) {
+        console.error(`failed to get next track in station ${stationId}`)
+        throw err
+    }
+}

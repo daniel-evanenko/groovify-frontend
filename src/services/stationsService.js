@@ -8,7 +8,7 @@ export const getStations = async () => {
 }
 
 export const createNewStation = async (stationData) => {
-    const stationsCollectionInstance = await getCollection(COLLECTION_NAMES.STATIONS, false);
+    const stationsCollectionInstance = await getCollection(COLLECTION_NAMES.STATIONS, {}, false);
     const { insertedId = '' } = await stationsCollectionInstance.insertOne(stationData);
     
 
@@ -31,4 +31,24 @@ export const getNewStationDefaultName = async () => {
         const nextId = Math.max(...newStationNumber) + 1;
         return `${INITIAL_STATION_PREFIX}${nextId}`;
     }
+}
+
+export const getStation = async (stationId) => {
+    const criteria = { _id: ObjectId.createFromHexString(`${stationId}`) }
+    const station = await getCollectionItem(COLLECTION_NAMES.STATIONS, criteria)
+    return station
+}
+
+export const getPrevTrackId = async (curStationId, curTrackId) => {
+    const curStation = await getStation(curStationId)
+    const curTrackIdx = curStation.tracks.findIndex(trackId => trackId === curTrackId)
+    const prevTrackIdx = Math.max(0, curTrackIdx - 1)
+    return curStation.tracks[prevTrackIdx]
+}
+
+export const getNextTrackId = async (curStationId, curTrackId) => {
+    const curStation = await getStation(curStationId)
+    const curTrackIdx = curStation.tracks.findIndex(trackId => trackId === curTrackId)
+    const nextTrackIdx = Math.min(curTrackIdx + 1, curStation.tracks.length - 1)
+    return curStation.tracks[nextTrackIdx]
 }
