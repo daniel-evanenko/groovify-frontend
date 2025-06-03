@@ -10,7 +10,7 @@ export const getStations = async () => {
 export const createNewStation = async (stationData) => {
     const stationsCollectionInstance = await getCollection(COLLECTION_NAMES.STATIONS, {}, false);
     const { insertedId = '' } = await stationsCollectionInstance.insertOne(stationData);
-    
+
 
     const searchedId = typeof insertedId === 'string' ? ObjectId.createFromHexString(insertedId) : insertedId;
     const newStation = await stationsCollectionInstance.findOne({ _id: searchedId })
