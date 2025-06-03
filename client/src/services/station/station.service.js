@@ -2,7 +2,7 @@ import { storageService } from '../async-storage.service.js'
 import { loadFromStorage, makeId, saveToStorage } from '../util.service.js';
 import { addStation } from '../../store/actions/library.actions.js';
 import { store } from '../../store/store.js';
-import { getStation, getStationsTracks, TRACKS_STORAGE_KEY_PREFIX } from '../spotify/spotify-api.service.js';
+import { createNewUserStation, getStation, getStationsTracks, TRACKS_STORAGE_KEY_PREFIX } from '../spotify/spotify-api.service.js';
 import { updateUser } from '../../store/actions/user.actions.js';
 import Api from "../api-service.js"
 
@@ -106,29 +106,31 @@ function findNextStationId() {
 }
 
 export async function createNewStation() {
-    const user = store.getState()?.userModule?.user
-    const nextStationId = findNextStationId() || '1'
-    const stationName = `${INITIAL_STATION_PREFIX}${nextStationId}`
+    // const user = store.getState()?.userModule?.user
+    // const nextStationId = findNextStationId() || '1'
+    // const stationName = `${INITIAL_STATION_PREFIX}${nextStationId}`
 
-    let newStation = {
-        name: stationName,
-        images: { 0: { url: DEFAULT_IMAGE_URL, height: null, width: null } },
-        description: "",
-        category: "",
-        categoryId: "",
-        owner: {
-            fullname: user?.fullname
-        }
-    }
+    // let newStation = {
+    //     name: stationName,
+    //     images: { 0: { url: DEFAULT_IMAGE_URL, height: null, width: null } },
+    //     description: "",
+    //     category: "",
+    //     categoryId: "",
+    //     owner: {
+    //         fullname: user?.fullname
+    //     }
+    // }
+
+    const newStation = await createNewUserStation();
 
     const newStationId = await addStation(newStation)
 
     // Add the tracks array to localStorage, associated with the new station. 
-    const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${newStationId}`
-    saveToStorage(STATION_TRACKS_STORAGE_KEY, [])
+    // const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${newStationId}`
+    // saveToStorage(STATION_TRACKS_STORAGE_KEY, [])
 
-    user.likedStationIds.push(newStationId)
-    updateUser(user, false)
+    // user.savedStations.push(newStationId)
+    // updateUser(user, false)
 
     return newStationId
 }

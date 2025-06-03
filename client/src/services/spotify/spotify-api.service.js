@@ -40,7 +40,16 @@ export async function getStations() {
     try {
         const { data: stations } = await Api.get('/stations');
         return stations
+    } catch (err) {
+        console.error(err)
+        throw err
+    }
+}
 
+export async function createNewUserStation() {
+        try {
+        const { data: newStation } = await Api.post('/stations/create');
+        return newStation;
     } catch (err) {
         console.error(err)
         throw err

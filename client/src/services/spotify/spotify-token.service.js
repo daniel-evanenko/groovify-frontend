@@ -1,6 +1,6 @@
 import axios from "axios"
 import qs from "qs"
-import { loadFromStorage, saveToStorage } from "../util.service"
+import { loadFromStorage, saveToStorage } from "../util.service.js"
 
 
 const STORAGE_KEY = "access-token"

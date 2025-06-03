@@ -7,31 +7,31 @@ const STORAGE_KEY = 'user'
 export const userService = {
     login,
     logout,
-    getUsers,
-    getById,
+    // getUsers,
+    // getById,
     getLoggedinUser,
     saveLoggedinUser,
     updateUser,
     signup
 }
 
-async function getUsers() {
-    const users = await storageService.query(STORAGE_KEY)
-    return users.map(user => {
-        delete user.password
-        return user
-    })
-}
+// async function getUsers() {
+//     const users = await storageService.query(STORAGE_KEY)
+//     return users.map(user => {
+//         delete user.password
+//         return user
+//     })
+// }
 
-async function getById(userId) {
-    return await storageService.get(STORAGE_KEY, userId)
-}
+// async function getById(userId) {
+//     return await storageService.get(STORAGE_KEY, userId)
+// }
 
-async function login(userCred) {
-    const users = await storageService.query(STORAGE_KEY)
-    const user = users.find(user => user.username === userCred.username)
+async function login(userCred, user) {
+    // const users = await storageService.query(STORAGE_KEY)
+    // const user = users.find(user => user.username === userCred.username)
 
-    if (!user) throw new Error('Invalid credentials')
+    // if (!user) throw new Error('Invalid credentials')
     return saveLoggedinUser(user)
 }
 
@@ -51,7 +51,7 @@ function saveLoggedinUser(user) {
         fullname: user.fullname,
         imgUrl: user.imgUrl,
         likedTracksStationId: user.likedTracksStationId,
-        likedStationIds: user.likedStationIds
+        savedStations: user.savedStations
     }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(loggedInUser))
     return loggedInUser

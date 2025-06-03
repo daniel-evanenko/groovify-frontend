@@ -21,10 +21,11 @@ export async function loadStations() {
 
 export async function addStation(station) {
     try {
-        const savedStation = await stationService.save(station)
-        store.dispatch({ type: ADD_STATION, savedStation })
+        // const savedStation = await stationService.save(station)
+        
+        store.dispatch({ type: ADD_STATION, station })
 
-        return savedStation._id
+        return station._id
     } catch (err) {
         console.log('library actions -> Cannot add station', err)
         throw err
@@ -44,7 +45,7 @@ export async function removeStation(stationId) {
 
 export async function fetchLikedContent(user) {
     try {
-        const likedStations = await stationService.getStationsById(user.likedStationIds)
+        const likedStations = await stationService.getStationsById(user.savedStations)
         store.dispatch({ type: SET_STATIONS, stations: likedStations })
     } catch (err) {
         console.error('Failed to fetch liked content', err)
@@ -72,20 +73,20 @@ export async function toggleLikeStation(stationToToggle) {
         }
 
         const isAlreadyLiked =
-            Array.isArray(user.likedStationIds) &&
-            user.likedStationIds.some(id => id === stationId)
+            Array.isArray(user.savedStations) &&
+            user.savedStations.some(id => id === stationId)
 
         console.log(`🔍 Station is ${isAlreadyLiked ? "already" : "not yet"} liked`)
 
         let updatedStations = []
         if (isAlreadyLiked) {
-            updatedStations = user.likedStationIds.filter(id => id != stationId)
+            updatedStations = user.savedStations.filter(id => id != stationId)
             console.log("🧹 Station removed from Liked Stations.")
         } else {
-            updatedStations = [stationToToggle._id, ...user.likedStationIds]
+            updatedStations = [stationToToggle._id, ...user.savedStations]
             console.log("❤️ Station added to Liked Stations.")
         }
-        user.likedStationIds = updatedStations
+        user.savedStations = updatedStations
         updateUser(user)
 
     } catch (error) {

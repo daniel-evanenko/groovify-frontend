@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Loader } from '../cmps/Loader.jsx'
 import { ActionBar } from '../cmps/ActionBar.jsx'
 import { TrackList } from '../cmps/TrackList.jsx'
