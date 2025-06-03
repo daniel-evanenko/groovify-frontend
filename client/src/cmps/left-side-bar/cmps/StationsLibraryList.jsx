@@ -10,7 +10,7 @@ const StationsLibraryList = ({ isMinimized }) => {
         const likedTracksStation = stations.filter(station => station.isLikedTracks);
         const allOtherTracks = stations.filter(station => !station.isLikedTracks);
 
-        const updatedLibrary = likedTracksStation?.stations?.length ? [...likedTracksStation, ...allOtherTracks] : [...likedTracksStation, ...allOtherTracks]
+        const updatedLibrary = likedTracksStation?.stations?.length ? [...likedTracksStation, ...allOtherTracks] : [...allOtherTracks]
         libraryStations.current = updatedLibrary
 
     }, [stations])
