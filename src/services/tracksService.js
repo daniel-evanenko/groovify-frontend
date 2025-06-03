@@ -2,15 +2,25 @@ import { COLLECTION_NAMES, getCollection, getCollectionItem, updateColectionItem
 import { getUrl } from "./youtubeService.js"
 
 
-export const getTracks = async (trackIds) => {
+export const getStationTracks = async (trackIds) => {
     try {
         const trackIdsArr = Object.values(trackIds || {});
+        if (!trackIdsArr.length) return [];
 
         const tracks = await getCollection(COLLECTION_NAMES.TRACKS);
-        if (!trackIdsArr.length) return tracks;
 
         const filteredTracks = tracks.filter(trackObj => trackIdsArr.includes(trackObj.spotifyId))
         return filteredTracks
+    } catch (err) {
+        console.error('Failed to get tracks from DB');
+        throw err;
+    }
+}
+
+export const getTracksforSearch = async () => {
+    try {
+        const tracks = await getCollection(COLLECTION_NAMES.TRACKS);
+        return tracks
     } catch (err) {
         console.error('Failed to get tracks from DB');
         throw err;
@@ -22,7 +32,7 @@ export const getTrack = async (trackId) => {
         const criteria = { spotifyId: trackId }
         const trackObj = getCollectionItem(COLLECTION_NAMES.TRACKS, criteria)
         return trackObj
-        
+
     } catch (err) {
         console.error("Failed to find track with id: ", trackId)
         throw err

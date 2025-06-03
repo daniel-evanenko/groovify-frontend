@@ -21,8 +21,8 @@ export function TrackList({ station, isAllowed }) {
     const [userLikedTracks, setUserLikedTracks] = useState([])
     async function fetchLikedTracks() {
         try {
-            const likedTracks = await stationService.getLikedStationTracks()
-            setUserLikedTracks(likedTracks || [])
+            // const likedTracks = await stationService.getLikedStationTracks()
+            setUserLikedTracks([])
         } catch (err) {
             console.error("Failed to fetch liked tracks", err)
         }

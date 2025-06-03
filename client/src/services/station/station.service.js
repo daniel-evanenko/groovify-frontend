@@ -1,9 +1,8 @@
 import { storageService } from '../async-storage.service.js'
-import { loadFromStorage, makeId, saveToStorage } from '../util.service.js';
+import { saveToStorage } from '../util.service.js';
 import { addStation } from '../../store/actions/library.actions.js';
 import { store } from '../../store/store.js';
-import { createNewUserStation, getStation, getStationsTracks, TRACKS_STORAGE_KEY_PREFIX } from '../spotify/spotify-api.service.js';
-import { updateUser } from '../../store/actions/user.actions.js';
+import { createNewUserStation, getStationsTracks, TRACKS_STORAGE_KEY_PREFIX } from '../spotify/spotify-api.service.js';
 import Api from "../api-service.js"
 
 export const STORAGE_KEY = "stations";
@@ -33,32 +32,20 @@ async function query(filter = {}) {
 
 async function getById(stationId) {
     try {
-        const stations = store.getState().stationModule.indexStations
-        const station = stations.find(station => station._id === stationId)
+        const { data: station } = await Api.get(`/station/${stationId}`)
         return station
-    } catch (err) {
-        if (
-            err instanceof Error &&
-            err.message.startsWith('Get failed, cannot find entity with id:')
-        ) {
-            try {
-                console.log(`trying to get station with id ${stationId} from spotify`)
-                const station = await getStation(stationId)
-                const savedStation = await save(station)
-                return savedStation
-            } catch (fetchErr) {
-                console.error(`failed to get the station (${stationId}) from spotify`, fetchErr)
-                throw fetchErr
-            }
-        } else {
-            console.error("encountred unexpected error", err)
-            throw err
-        }
+    } catch (error) {
+        console.error(error)
     }
+
 }
 
 async function remove(stationId) {
-    await storageService.remove(STORAGE_KEY, stationId)
+    try {
+        return await Api.delete(`/station/${stationId}`)
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 async function save(station) {
@@ -122,7 +109,6 @@ export async function createNewStation() {
     // }
 
     const newStation = await createNewUserStation();
-
     const newStationId = await addStation(newStation)
 
     // Add the tracks array to localStorage, associated with the new station. 
@@ -217,7 +203,7 @@ async function getStationsById(likedStationsIds = []) {
 function getLikedStationTracks() {
     try {
         const user = store.getState()?.userModule?.user
-        return _getStationTracks(user.likedTracksStationId)
+        // return _getStationTracks(user.likedTracksStationId)
     } catch (error) {
         console.error('error getting liked station tracks', error)
     }

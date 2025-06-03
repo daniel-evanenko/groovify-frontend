@@ -27,7 +27,7 @@ export async function removeTrackFromStation(trackId, stationId) {
 }
 
 export async function loadStation(stationId) {
-    try {        
+    try {
         const station = await stationService.getById(stationId)
         const tracks = await getStationsTracks(station)
         store.dispatch({ type: SET_STATION, station })

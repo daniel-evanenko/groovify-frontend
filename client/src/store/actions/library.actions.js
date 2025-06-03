@@ -1,5 +1,6 @@
 import { getStations } from "../../services/spotify/spotify-api.service.js"
 import { stationService } from "../../services/station/station.service.js"
+import { userService } from "../../services/user/user.service.js"
 import { ADD_STATION, REMOVE_STATION, SET_STATIONS, UPDATE_LIBRARY_STATION } from "../reducers/library.reducer.js"
 import { SET_INDEX_STATIONS, UPDATE_STATION } from "../reducers/station.reducer.js"
 import { store } from "../store.js"
@@ -21,10 +22,7 @@ export async function loadStations() {
 
 export async function addStation(station) {
     try {
-        // const savedStation = await stationService.save(station)
-        
         store.dispatch({ type: ADD_STATION, station })
-
         return station._id
     } catch (err) {
         console.log('library actions -> Cannot add station', err)
@@ -43,12 +41,12 @@ export async function removeStation(stationId) {
     }
 }
 
-export async function fetchLikedContent(user) {
+export async function loadUserSavedContent() {
     try {
-        const likedStations = await stationService.getStationsById(user.savedStations)
+        const likedStations = await userService.getUserLibrary()
         store.dispatch({ type: SET_STATIONS, stations: likedStations })
     } catch (err) {
-        console.error('Failed to fetch liked content', err)
+        console.error('Failed to load user saved content', err)
     }
 }
 
