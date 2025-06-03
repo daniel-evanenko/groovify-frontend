@@ -13,22 +13,23 @@ const config = {
 
 let dbConnection;
 
-export const getCollection = async (collectionName) => {
+export const getCollection = async (collectionName, parsed = true) => {
     try {
         const db = await _connect();
-        const collection = await db.collection(collectionName).find({}).toArray();
-        return collection;
+        const collection = await db.collection(collectionName);
+        const collectionParsed = collection.find({}).toArray();
+        return parsed ? collectionParsed : collection;
     } catch (err) {
         console.error('Failed to get DB collection', err);
         throw err;
     }
 }
 
-export const getCollectionItem = async (collectionName, criteria) => {
+export const getCollectionItem = async (collectionName, criteria, parsed = true) => {
     try {
         const db = await _connect();
-        const item = await db.collection(collectionName).findOne(criteria)
-        return item
+        const item = await db.collection(collectionName).find(criteria);
+        return parsed ? item.toArray() : item;
     } catch (err) {
         console.error("failed to get collection item")
         throw err
@@ -37,9 +38,7 @@ export const getCollectionItem = async (collectionName, criteria) => {
 
 export const updateColectionItem = async (collectionName, item) => {
     try {
-        console.log(item._id)
         const criteria = { _id: item._id }
-        console.log(criteria)
         const db = await _connect()
         await db.collection(collectionName).updateOne(criteria, { $set: item })
 

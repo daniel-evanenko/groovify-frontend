@@ -2,7 +2,7 @@ import { storageService } from '../async-storage.service.js'
 import { loadFromStorage, makeId, saveToStorage } from '../util.service.js';
 import { addStation } from '../../store/actions/library.actions.js';
 import { store } from '../../store/store.js';
-import { getStation, getStationsTracks, TRACKS_STORAGE_KEY_PREFIX } from '../spotify/spotify-api.service.js';
+import { createNewUserStation, getStation, getStationsTracks, TRACKS_STORAGE_KEY_PREFIX } from '../spotify/spotify-api.service.js';
 import { updateUser } from '../../store/actions/user.actions.js';
 import Api from "../api-service.js"
 
@@ -121,13 +121,16 @@ export async function createNewStation() {
         }
     }
 
+    const newStation2 = await createNewUserStation();
+    console.log('newStation2', newStation2)
+
     const newStationId = await addStation(newStation)
 
     // Add the tracks array to localStorage, associated with the new station. 
     const STATION_TRACKS_STORAGE_KEY = TRACKS_STORAGE_KEY_PREFIX + `${newStationId}`
     saveToStorage(STATION_TRACKS_STORAGE_KEY, [])
 
-    user.likedStationIds.push(newStationId)
+    user.savedStations.push(newStationId)
     updateUser(user, false)
 
     return newStationId

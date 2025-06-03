@@ -3,6 +3,8 @@ import CreatePlaylistIcon from '../../../../public/icons/create-playlist.svg?rea
 import { createNewStation } from '../../../services/station/station.service'
 import { useNavigate } from 'react-router-dom';
 import { ReactSVG } from "react-svg";
+import { store } from '../../../store/store';
+import { useSelector } from'react-redux';
 
 const CREATE_PLAYLIST_ICON = 'create-playlist-icon';
 const CLICKED = 'button-clicked-options';
@@ -17,10 +19,11 @@ const MainControlls = ({ onMiniMaxClick, isMouseLeftSideBarOver }) => {
     const [iconClassNames, setIconClassNames] = useState([CREATE_PLAYLIST_ICON])
     const [isMinimized, setIsMinimized] = useState(false)
     const [isIconHover, setIsIconHover] = useState(false)
+    const user = useSelector(state => state.userModule.user);
     const navigate = useNavigate();
 
     const handleClick = async () => {
-        const newStationId = await createNewStation({ userFullName: 'David Gelbard' })
+        const newStationId = await createNewStation({ userFullName: user.fullname })
         navigate(`station/${newStationId}`)
     }
 

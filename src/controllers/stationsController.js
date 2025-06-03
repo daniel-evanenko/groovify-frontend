@@ -1,4 +1,6 @@
-import { getStations as getDbStations } from "../services/stationsService.js";
+import { createNewStation, getNewStationDefaultName, getStations as getDbStations } from "../services/stationsService.js";
+import { attachNewStationToUser, getMockUser, getUserStations } from "../services/user.service.js";
+import { DEFAULT_IMAGE_URL } from "../utils/constants.js";
 
 
 export const getStations = async (req, res) => {
@@ -9,5 +11,37 @@ export const getStations = async (req, res) => {
         const errMessage = 'Could not load stations';
         console.log(errMessage, err);
         res.status(500).send(errMessage);
+    }
+}
+
+export const createNewUserStation = async (req, res) => {
+    try {
+        const newStationName = await getNewStationDefaultName();
+
+        const user = await getMockUser();
+        const { _id: userId, fullname } = user;
+
+        const newStation = {
+            name: newStationName,
+            description: '',
+            public: false,
+            tracks: [],
+            type: "playlist",
+            images: { 0: { url: DEFAULT_IMAGE_URL, height: null, width: null } },
+            owner: {
+                display_name: fullname,
+                user_id: userId
+            }
+        }
+
+        const newStationInDb = await createNewStation(newStation);
+
+        await attachNewStationToUser(newStationInDb, user);
+
+        res.status(200).send(newStationInDb);
+    } catch (err) {
+        console.error("Failed to create a new user station");
+        res.status(500).send("Failed to create a new user station");
+        throw err;
     }
 }

@@ -18,9 +18,7 @@ export const getTrackUrlController = async (req, res) => {
         const { id: trackId } = req.params
 
         const trackObj = await getTrack(trackId)
-        console.log(trackObj)
         const url = await getTrackUrl(trackObj)
-        console.log(url)
         
         res.status(200).json(url)
     } catch (err) {

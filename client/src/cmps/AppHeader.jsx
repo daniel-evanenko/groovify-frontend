@@ -72,7 +72,7 @@ export function AppHeader() {
             navigate(`/search/${trimmedQuery}`)
         }
     }
-    function stringToColor(string) {
+    function stringToColor(string = '') {
         let hash = 0;
         let i;
 
@@ -91,6 +91,7 @@ export function AppHeader() {
 
         return color;
     }
+
     return (
         <header className="app-header">
             <img className="icon" src={icon} alt="icon" onClick={onHomeClicked} style={{ cursor: "pointer" }}></img>
@@ -118,12 +119,12 @@ export function AppHeader() {
             <div className="profile">
                 <Avatar
                     sx={{
-                        bgcolor: stringToColor(user.fullname),
+                        bgcolor: stringToColor(user?.fullname),
                         color: 'black',
                         width: 32,
                         height: 32,
                         fontSize: '16px',
-                    }} alt={capitalize(user.fullname)}
+                    }} alt={capitalize(user?.fullname || '')}
                     src={'/broken-image.jpg'}
                 >
                 </Avatar>

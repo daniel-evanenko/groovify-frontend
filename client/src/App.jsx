@@ -18,8 +18,8 @@ function App() {
     }, [])
 
     async function init() {
-        await loadStations()
         tempLogin()
+        await loadStations()
     }
     return (
         <Router>
