@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import { useMemo, useState, useRef, useEffect } from "react"
 import { useSelector } from "react-redux"
 
-import { clearStation, saveStation } from "../store/actions/station.actions"
+import { clearStation, updateStation } from "../store/actions/station.actions"
 import { removeStation } from "../store/actions/library.actions"
 
 import { PlayButton } from "./PlayButton"
@@ -59,7 +59,7 @@ export function ActionBar({ station, isAllowed, onVisibilityChange }) {
 
     async function handleConfirm(updatedStation) {
         try {
-            await saveStation(updatedStation)
+            await updateStation(updatedStation)
         } catch (error) {
             console.error("Failed to save station:", error)
         } finally {

@@ -77,3 +77,18 @@ export async function remove(stationId, user) {
         throw err
     }
 }
+
+export async function update(station) {
+    try {
+        const stationId = ObjectId.createFromHexString(station._id)
+        delete station._id // avoid trying to update _id
+
+        const collection = await getCollection(COLLECTION_NAMES.STATIONS, {}, false)
+        await collection.updateOne({ _id: stationId }, { $set: station })
+
+        return station
+    } catch (err) {
+        console.error(`cannot update station ${station._id}`, err)
+        throw err
+    }
+}

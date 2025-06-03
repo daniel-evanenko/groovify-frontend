@@ -1,4 +1,4 @@
-import { createNewStation, getNewStationDefaultName, getStations as getDbStations, getById, remove } from "../services/stationsService.js";
+import { createNewStation, getNewStationDefaultName, getStations as getDbStations, getById, remove, update } from "../services/stationsService.js";
 import { attachNewStationToUser, getMockUser, getUserStations } from "../services/user.service.js";
 import { DEFAULT_IMAGE_URL } from "../utils/constants.js";
 
@@ -78,3 +78,14 @@ export async function removeStation(req, res) {
     }
 }
 
+export async function updateStation(req, res) {
+    const { station } = req.body
+    try {
+        const savedStation = await update(station)
+        res.send(savedStation)
+    } catch (err) {
+        console.error(`Couldn't update station ${station._id}`, err)
+        res.status(500).send(`Couldn't update station`)
+
+    }
+}

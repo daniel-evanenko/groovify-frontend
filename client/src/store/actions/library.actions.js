@@ -60,7 +60,7 @@ export async function clearLikedContent() {
 
 export async function saveLibraryStation(station) {
     try {
-        const updatedStation = await stationService.save(station)
+        const updatedStation = await stationService.update(station)
         store.dispatch({ type: UPDATE_LIBRARY_STATION, updatedStation })
         store.dispatch({ type: UPDATE_STATION, station: updatedStation })
 

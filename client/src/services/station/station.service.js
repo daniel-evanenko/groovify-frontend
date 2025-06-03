@@ -20,7 +20,8 @@ export const stationService = {
     removeTrackFromStation,
     createNewStation,
     getStationsById,
-    getLikedStationTracks
+    getLikedStationTracks,
+    update
 }
 
 window.cs = stationService
@@ -51,6 +52,17 @@ async function remove(stationId) {
 async function save(station) {
     const methodType = station._id ? 'put' : 'post';
     return await _saveRequest(station, methodType);
+}
+
+async function update(station) {
+    console.log("🚀 ~ update ~ station:", station)
+    try {
+        const { data: savedStation } = await Api.put(`/station/${station._id}`, { station })
+        return savedStation
+    } catch (error) {
+        console.log('error updation station', error)
+
+    }
 }
 
 async function addTrackToStation(track, stationId) {
