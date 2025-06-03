@@ -132,7 +132,7 @@ export async function createNewStation() {
     // user.savedStations.push(newStationId)
     // updateUser(user, false)
 
-    return newStationId
+    return newStation
 }
 
 export async function createNewLikedStation(user) {

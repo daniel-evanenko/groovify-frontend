@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { ReactSVG } from "react-svg";
 import { store } from '../../../store/store';
 import { useSelector } from'react-redux';
+import { SET_STATIONS } from '../../../store/reducers/library.reducer';
 
 const CREATE_PLAYLIST_ICON = 'create-playlist-icon';
 const CLICKED = 'button-clicked-options';
@@ -20,10 +21,13 @@ const MainControlls = ({ onMiniMaxClick, isMouseLeftSideBarOver }) => {
     const [isMinimized, setIsMinimized] = useState(false)
     const [isIconHover, setIsIconHover] = useState(false)
     const user = useSelector(state => state.userModule.user);
+    const stations = useSelector(state => state.libraryModule.stations);
     const navigate = useNavigate();
 
     const handleClick = async () => {
-        const newStationId = await createNewStation({ userFullName: user.fullname })
+        const newStation = await createNewStation({ userFullName: user.fullname })
+        const { _id: newStationId } = newStation
+        store.dispatch({ type: SET_STATIONS, stations: [...stations, newStation] })
         navigate(`station/${newStationId}`)
     }
 

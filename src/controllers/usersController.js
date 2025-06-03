@@ -1,4 +1,4 @@
-import { getMockUser } from "../services/user.service.js";
+import { getMockUser, getUserStations } from "../services/user.service.js";
 
 export const getUserController = async (req, res) => {
     try {
@@ -8,5 +8,15 @@ export const getUserController = async (req, res) => {
         const errMessage = 'Could not get track URL';
         console.log(errMessage, err);
         res.status(500).send(errMessage);
+    }
+}
+
+export const getUserStationsController = async (req, res) => {
+    try {
+        const userStations = await getUserStations();
+        res.status(200).json(userStations);
+    } catch (err) {
+        console.error('Failed to load user stations');
+        throw err;
     }
 }
