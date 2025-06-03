@@ -1,6 +1,7 @@
 import { storageService } from '../async-storage.service.js'
 import defaultUser from './defaultUser.js'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
+import Api from "../api-service.js"
 
 const STORAGE_KEY = 'user'
 
@@ -12,7 +13,8 @@ export const userService = {
     getLoggedinUser,
     saveLoggedinUser,
     updateUser,
-    signup
+    signup,
+    getUserLibrary
 }
 
 // async function getUsers() {
@@ -72,4 +74,16 @@ async function signup(userCred) {
         console.error('ERROR - cannot signup', error)
         throw error
     }
+}
+
+
+async function getUserLibrary() {
+    try {
+        const { data } = await Api.get('/user/library');
+        return data
+    } catch (err) {
+        console.error(err)
+        throw err
+    }
+
 }

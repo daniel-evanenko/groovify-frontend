@@ -5,7 +5,7 @@ import { getTrack, getTracks, getTrackUrl } from "../services/tracksService.js";
 export const getTracksController = async (req, res) => {
     try {
         const { trackIds } = req.query;
-        const tracks = await getTracks(trackIds);
+        const tracks = await getStationTracks(trackIds);
         res.status(200).json(tracks);
     } catch (err) {
         const errMessage = 'Could not load tracks';
