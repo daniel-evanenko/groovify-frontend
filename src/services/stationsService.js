@@ -1,7 +1,7 @@
 import { ObjectId } from "mongodb";
 import { INITIAL_STATION_PREFIX, INITIAL_STATION_PREFIX_REGEX } from "../utils/constants.js";
 import { COLLECTION_NAMES, getCollection, getCollectionItem } from "./db.service.js"
-import { getUserStations } from "./user.service.js";
+import { getMockUser, getUserStations } from "./user.service.js";
 
 export const getStations = async () => {
     return await getCollection(COLLECTION_NAMES.STATIONS);
@@ -51,4 +51,34 @@ export const getNextTrackId = async (curStationId, curTrackId) => {
     const curTrackIdx = curStation.tracks.findIndex(trackId => trackId === curTrackId)
     const nextTrackIdx = Math.min(curTrackIdx + 1, curStation.tracks.length - 1)
     return curStation.tracks[nextTrackIdx]
+}
+
+export async function remove(stationId, user) {
+    try {
+        const stationCollection = await getCollection(COLLECTION_NAMES.STATIONS, false)
+        const userCollection = await getCollection(COLLECTION_NAMES.USERS, false)
+        const stationObjectId = ObjectId.createFromHexString(stationId)
+
+        const res = await stationCollection.deleteOne({ _id: stationObjectId })
+        if (res.deletedCount === 0) {
+            throw new Error(`Station ${stationId} not found.`)
+        }
+
+        await userCollection.updateOne(
+            { _id: ObjectId.createFromHexString(user._id) },
+            { $pull: { savedStations: stationObjectId } }
+        )
+
+        if (user.likedTracksStationId?.toString() === stationId) {
+            await userCollection.updateOne(
+                { _id: ObjectId.createFromHexString(user._id) },
+                { $unset: { likedTracksStationId: "" } }
+            )
+        }
+
+        return stationId
+    } catch (err) {
+        console.error(`Cannot remove station ${stationId}`, err)
+        throw err
+    }
 }

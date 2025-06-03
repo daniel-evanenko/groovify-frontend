@@ -41,7 +41,11 @@ async function getById(stationId) {
 }
 
 async function remove(stationId) {
-    await storageService.remove(STORAGE_KEY, stationId)
+    try {
+        return await Api.delete(`/station/${stationId}`)
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 async function save(station) {
