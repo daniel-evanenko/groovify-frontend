@@ -34,15 +34,17 @@ export function stationReducer(state = initialState, action) {
                 tracks: [...(state.tracks || []), action.track],
             }
 
-        case REMOVE_TRACK_FROM_STATION:
+        case REMOVE_TRACK_FROM_STATION: {
             const currentTracks = Array.isArray(state.tracks) ? state.tracks : []
             const filteredTracks = currentTracks.filter(
-                trackObj => trackObj.track?.id !== action.trackId
+                track => track.spotifyId !== action.trackId
             )
             return {
                 ...state,
                 tracks: filteredTracks
             }
+        }
+
 
         case UPDATE_STATION:
             return {

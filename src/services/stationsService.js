@@ -5,7 +5,7 @@ import { getUserStations } from "./user.service.js";
 
 export const getStations = async (query = "", limit = null) => {
     if (query) {
-        const criteria = { $or: [ { name: { $regex: `${query}`, $options: "i" } }, { description: { $regex: `${query}`, $options: "i" } } ] }
+        const criteria = { $or: [{ name: { $regex: `${query}`, $options: "i" } }, { description: { $regex: `${query}`, $options: "i" } }] }
         const _limit = limit ? +limit : null
         return await queryCollection(COLLECTION_NAMES.STATIONS, criteria, _limit)
     }
@@ -99,4 +99,35 @@ export async function update(station) {
         console.error(`cannot update station ${station._id}`, err)
         throw err
     }
+}
+
+
+export async function addTrack(stationId, trackId) {
+    const stationCollection = await getCollection(COLLECTION_NAMES.STATIONS, false)
+
+    const stationObjectId = ObjectId.createFromHexString(stationId)
+    const station = await stationCollection.findOne({ _id: stationObjectId })
+
+    if (!station) throw new Error("Liked station not found")
+
+    await stationCollection.updateOne(
+        { _id: stationObjectId },
+        { $addToSet: { tracks: trackId } }
+    )
+    return trackId
+}
+
+export async function removeTrack(stationId, trackId) {
+    const stationCollection = await getCollection(COLLECTION_NAMES.STATIONS, false)
+
+    const stationObjectId = ObjectId.createFromHexString(stationId)
+    const station = await stationCollection.findOne({ _id: stationObjectId })
+
+    if (!station) throw new Error("station not found")
+
+    await stationCollection.updateOne(
+        { _id: stationObjectId },
+        { $pull: { tracks: trackId } }
+    )
+    return trackId
 }

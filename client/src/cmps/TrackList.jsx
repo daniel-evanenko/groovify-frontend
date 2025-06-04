@@ -22,7 +22,7 @@ export function TrackList({ station, isAllowed }) {
 
     const likedStationTracks = useMemo(() => {
         const likedTracksStation = stations.find(station => station.isLikedTracks)
-        return likedTracksStation.tracks
+        return likedTracksStation?.tracks || []
     }, [stations])
 
     function isTrackLiked(trackObj) {
@@ -42,7 +42,7 @@ export function TrackList({ station, isAllowed }) {
             case 'add to queue':
                 break
             case 'delete':
-                removeTrackFromStation(track.id, station._id)
+                removeTrackFromStation(station._id, track.spotifyId)
                 break
             default:
                 break
@@ -182,7 +182,7 @@ export function TrackList({ station, isAllowed }) {
                             <div className="duration-btn">
                                 {isAllowed && <StationDropdownOptions
                                     options={moreOptions}
-                                    onOptionClick={(option) => handleOptionClick(option, track)}
+                                    onOptionClick={(option) => handleOptionClick(option, trackObj)}
                                 />}
                             </div>
                         </div>

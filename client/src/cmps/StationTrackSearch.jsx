@@ -31,7 +31,7 @@ export function StationTrackSearch({ station }) {
             trackObj => trackObj.track?.id !== trackToAdd.track.id
         )
         setTracks(filteredTracks)
-        addTrackToStation(trackToAdd, station._id)
+        addTrackToStation(station._id, trackToAdd)
     }
 
     return (
@@ -47,7 +47,7 @@ export function StationTrackSearch({ station }) {
                 {tracks.length > 0 && (
                     <SearchTrackList tracks={tracks} onAddTrack={onAddTrack}></SearchTrackList>
                 )}
-                
+
                 {tracks.length === 0 && query && (
                     <>
 
