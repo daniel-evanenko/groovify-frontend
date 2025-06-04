@@ -1,4 +1,4 @@
-import { createNewStation, getNewStationDefaultName, getStations, getById, remove, update } from "../services/stationsService.js";
+import { createNewStation, getNewStationDefaultName, getStations, getById, remove, update, addTrack } from "../services/stationsService.js";
 import { attachNewStationToUser, getMockUser, getUserStations } from "../services/user.service.js";
 import { DEFAULT_IMAGE_URL } from "../utils/constants.js";
 
@@ -92,6 +92,19 @@ export async function updateStation(req, res) {
     } catch (err) {
         console.error(`Couldn't update station ${station._id}`, err)
         res.status(500).send(`Couldn't update station`)
+
+    }
+}
+
+
+export async function addTrackToStation(req, res) {
+    const { stationId, trackId } = req.params
+    try {
+        const savedTrack = await addTrack(stationId, trackId)
+        res.status(200).send(savedTrack)
+    } catch (err) {
+        console.error(`Couldn't add track ${trackId} to station ${stationId}`, err)
+        res.status(500).send(`Couldn't add track to station`)
 
     }
 }

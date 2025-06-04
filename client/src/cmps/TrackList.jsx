@@ -22,7 +22,7 @@ export function TrackList({ station, isAllowed }) {
 
     const likedStationTracks = useMemo(() => {
         const likedTracksStation = stations.find(station => station.isLikedTracks)
-        return likedTracksStation.tracks
+        return likedTracksStation?.tracks || []
     }, [stations])
 
     function isTrackLiked(trackObj) {

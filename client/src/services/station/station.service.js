@@ -64,17 +64,10 @@ async function update(station) {
     }
 }
 
-async function addTrackToStation(track, stationId) {
+async function addTrackToStation(stationId, trackId) {
     try {
-        const tracks = _getStationTracks(stationId) || []
-
-        const trackToAdd = {
-            ...structuredClone(track),
-        }
-
-        tracks.push(trackToAdd)
-        saveToStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`, tracks)
-        return tracks
+        const { data: savedTrack } = await Api.put(`stations/${stationId}/addTrack/${trackId}`)
+        return savedTrack
     } catch (error) {
         console.log('error adding a track', error)
     }

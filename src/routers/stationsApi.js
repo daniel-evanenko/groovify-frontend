@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { queryStations, createNewUserStation, getStation, removeStation, updateStation } from "../controllers/stationsController.js";
+import { queryStations, createNewUserStation, getStation, removeStation, updateStation, addTrackToStation } from "../controllers/stationsController.js";
 import { getNextTrackContoller, getPreviousTrackContoller } from '../controllers/tracksController.js';
 
 const stationsRouter = Router();
@@ -11,5 +11,6 @@ stationsRouter.post('/stations/create', createNewUserStation)
 stationsRouter.delete('/station/:id', removeStation)
 stationsRouter.get('/stations/:stationId/:trackId/prev', getPreviousTrackContoller)
 stationsRouter.get('/stations/:stationId/:trackId/next', getNextTrackContoller)
+stationsRouter.put('/stations/:stationId/addTrack/:trackId', addTrackToStation)
 
 export default stationsRouter;

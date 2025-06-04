@@ -1,13 +1,13 @@
 import { getStationsTracks } from "../../services/spotify/spotify-api.service.js"
 import { stationService } from "../../services/station/station.service.js"
-import { SET_STATION, SET_TRACKS } from "../reducers/station.reducer.js"
+import { ADD_TRACK_TO_STATION, SET_STATION, SET_TRACKS } from "../reducers/station.reducer.js"
 import { store } from "../store.js"
 
-export async function addTrackToStation(track, stationId) {
+export async function addTrackToStation(stationId, track) {
 
     try {
-        const updatedTracks = await stationService.addTrackToStation(track, stationId)
-        store.dispatch({ type: SET_TRACKS, tracks: updatedTracks })
+        const updatedTrackId = await stationService.addTrackToStation(stationId, track.spotifyId)
+        store.dispatch({ type: ADD_TRACK_TO_STATION,  track })
 
     } catch (err) {
         console.log('Station actions -> Cannot add track to station', err)
