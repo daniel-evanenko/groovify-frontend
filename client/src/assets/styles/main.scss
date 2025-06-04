@@ -1,19 +1,19 @@
 // Setup
-@import "setup/variables";
-@import "setup/functions";
-@import "setup/mixins";
-@import "setup/typography";
+@import "setup/_variables";
+@import "setup/_functions";
+@import "setup/_mixins";
+@import "setup/_typography";
 
 // Basics
-@import "basics/helpers";
-@import "basics/layout";
-@import "basics/base";
-@import "basics/common";
+@import "basics/_helpers";
+@import "basics/_layout";
+@import "basics/_base";
+@import "basics/_common";
 @import "basics/firefox-scrollbar.css";
 
 
 // pages
-@import "pages/app";
+@import "pages/_app";
 @import "pages/_station-index";
 @import "pages/_categories-page";
 
@@ -31,11 +31,11 @@
 @import "cmps/_station-edit-modal";
 @import "cmps/_progress-bar";
 @import "cmps/_volume-bar";
-@import "cmps/station-track-search";
+@import "cmps/_station-track-search";
 @import "cmps/_search-track-list";
-@import "cmps/left-side-bar";
+@import "cmps/_left-side-bar";
 @import "cmps/_player_progress_bar";
-@import "cmps/category-list";
+@import "cmps/_category-list";
 @import "cmps/_category-preview";
-@import "cmps/active_track_preview";
+@import "cmps/_active_track_preview";
 @import "cmps/_like-button";
