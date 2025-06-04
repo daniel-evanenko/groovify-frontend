@@ -20,25 +20,31 @@
 
             color: $text-base;
             font-size: 14px;
-    
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
             &:hover {
                 cursor: pointer;
             }
-    
+
         }
-    
+
         .artist {
             align-self: baseline;
 
             color: $text-subdued;
             font-size: 12px;
-    
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
             &:hover {
                 cursor: pointer;
                 color: $text-base;
             }
-    
+
         }
     }
-    
+
 }
