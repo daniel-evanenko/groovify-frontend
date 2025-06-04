@@ -1,25 +1,23 @@
-import { COLLECTION_NAMES, getCollection, getCollectionItem, queryCollection, updateColectionItem } from "./db.service.js"
+import { COLLECTION_NAMES, getCollectionItem, queryCollection, updateColectionItem } from "./db.service.js"
 import { getUrl } from "./youtubeService.js"
 
 
 export const getStationTracks = async (trackIds) => {
     try {
-        const trackIdsArr = Object.values(trackIds || {});
-        if (!trackIdsArr.length) return [];
+        if (!Array.isArray(trackIds) || !trackIds.length) return [];
 
-        const tracks = await getCollection(COLLECTION_NAMES.TRACKS);
+        const criteria = { spotifyId: { $in: trackIds } };
+        const tracks = await queryCollection(COLLECTION_NAMES.TRACKS, criteria, 20);
 
-        const filteredTracks = tracks.filter(trackObj => trackIdsArr.includes(trackObj.spotifyId))
-        return filteredTracks
+        return tracks;
     } catch (err) {
-        console.error('Failed to get tracks from DB');
+        console.error('Failed to get tracks from DB:', err);
         throw err;
     }
-}
+};
 
 export const queryTracks = async (query = "", limit = null) => {
     if (query) {
-        console.log("got query ", query)
         const pipeline = [
             {
                 $match: {

@@ -28,7 +28,7 @@ export const getNewStationDefaultName = async () => {
     if (!allStations?.length) return `${INITIAL_STATION_PREFIX}1`;
 
     const allStationsNames = allStations.map(station => station.name)
-    const nonRenamedNewStations = allStationsNames.filter(stationName => stationName.startsWith(INITIAL_STATION_PREFIX));
+    const nonRenamedNewStations = allStationsNames.filter(stationName => stationName?.startsWith(INITIAL_STATION_PREFIX));
     if (!nonRenamedNewStations?.length) return `${INITIAL_STATION_PREFIX}1`;
 
     const newStationNumber = nonRenamedNewStations.map(stationName => parseInt(stationName.replace(INITIAL_STATION_PREFIX_REGEX, '')))
