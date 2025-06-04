@@ -40,15 +40,6 @@ export async function removeStation(stationId) {
     }
 }
 
-export async function loadUserSavedContent() {
-    try {
-        const likedStations = await userService.getUserLibrary()
-        store.dispatch({ type: SET_STATIONS, stations: likedStations })
-    } catch (err) {
-        console.error('Failed to load user saved content', err)
-    }
-}
-
 export async function clearLikedContent() {
     try {
         store.dispatch({ type: SET_STATIONS, stations: [] })

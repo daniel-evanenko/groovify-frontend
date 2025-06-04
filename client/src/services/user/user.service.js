@@ -1,7 +1,5 @@
 import { storageService } from '../async-storage.service.js'
-import defaultUser from './defaultUser.js'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
-import Api from "../api-service.js"
 import Api from "../api-service.js"
 
 const STORAGE_KEY = 'user'
@@ -15,7 +13,6 @@ export const userService = {
     saveLoggedinUser,
     updateUser,
     signup,
-    getUserLibrary,
     toggleSavedStation,
     toggleLikedTrack
 }
@@ -79,17 +76,6 @@ async function signup(userCred) {
     }
 }
 
-
-async function getUserLibrary() {
-    try {
-        const { data } = await Api.get('/user/library');
-        return data
-    } catch (err) {
-        console.error(err)
-        throw err
-    }
-
-}
 async function toggleSavedStation(userId, stationId) {
     try {
         const { data: updatedUser } = await Api.put('users/savedStation', { userId, stationId })
