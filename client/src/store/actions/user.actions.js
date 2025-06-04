@@ -4,6 +4,7 @@ import defaultUser from "../../services/user/defaultUser.js"
 import { userService } from "../../services/user/user.service.js"
 import { getUser } from "../../services/user/users-api.service.js"
 import { SET_STATIONS, UPDATE_LIKED_STATION } from "../reducers/library.reducer.js"
+import { REMOVE_TRACK_FROM_STATION } from "../reducers/station.reducer.js"
 import { SET_IS_GUEST_USER, SET_USER } from "../reducers/user.reducer.js"
 import { store } from "../store.js"
 
@@ -79,10 +80,14 @@ export const handleToggleStation = async (stationId) => {
     }
 }
 
-export async function toggleLikedTrack(trackId) {
+export async function toggleLikedTrack(trackId, isLikedStation = false) {
     const loggedinUser = userService.getLoggedinUser()
     try {
         const result = await userService.toggleLikedTrack(loggedinUser._id, trackId)
+        if (isLikedStation && result.action == 'unliked') {
+            store.dispatch({ type: REMOVE_TRACK_FROM_STATION, trackId })
+
+        }
         store.dispatch({
             type: UPDATE_LIKED_STATION, trackId, toggleAction: result.action
         })

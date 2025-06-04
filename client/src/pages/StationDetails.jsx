@@ -141,8 +141,8 @@ export function StationDetails() {
             (station.owner?.fullname || station.owner?.display_name) === user.fullname
         )
     }
-    function isNotLikedStation() {
-        return station._id != user?.likedTracksStationId
+    function isLikedStation() {
+        return station._id == user?.likedTracksStationId
     }
 
     async function handleConfirm(stationToSave) {
@@ -212,16 +212,6 @@ export function StationDetails() {
         }
     }
 
-    function interpolateColor({ red, green, blue }, percentage) {
-        const t = percentage / 100
-        return {
-            r: Math.round(red * (1 - t)),
-            g: Math.round(green * (1 - t)),
-            b: Math.round(blue * (1 - t)),
-            a: +(1 * (1 - t)).toFixed(2) // from 1 to 0
-        }
-    }
-
     if (!isInitialized) return <Loader />
     if (globalIsLoading) return <Loader />
 
@@ -234,7 +224,7 @@ export function StationDetails() {
             <div className="station-header" >
                 <div className="station-image">
                     <img src={imgUrl} alt="station cover" />
-                    {isAllowed() && <div className="overlay" onClick={() => setIsModalOpen(true)}>
+                    {isAllowed() && !isLikedStation() && <div className="overlay" onClick={() => setIsModalOpen(true)}>
                         <ReactSVG src='/icons/Pencil.svg' />
                         <p>Choose photo</p>
                     </div>}
@@ -252,7 +242,7 @@ export function StationDetails() {
                 </div>
             </div>
             <div className="content-spacing">
-                {isNotLikedStation() && <ActionBar isAllowed={isAllowed()} station={station} onVisibilityChange={setIsActionBarVisible}
+                {<ActionBar isAllowed={isAllowed()} isLikedStation={isLikedStation()} station={station} onVisibilityChange={setIsActionBarVisible}
                 ></ActionBar>}
                 <TrackList isAllowed={isAllowed()} station={station} tracks={tracks}></TrackList>
                 {isAllowed() && <StationTrackSearch isAllowed={isAllowed()} station={station}></StationTrackSearch>}

@@ -17,7 +17,7 @@ const ICONS = {
     delete: "/icons/Delete.svg"
 }
 
-export function ActionBar({ station, isAllowed, onVisibilityChange }) {
+export function ActionBar({ station, isAllowed, onVisibilityChange, isLikedStation }) {
     const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState(false)
     const stations = useSelector(state => state.libraryModule.stations)
@@ -93,14 +93,14 @@ export function ActionBar({ station, isAllowed, onVisibilityChange }) {
         <section className="action-bar" ref={actionBarRef}>
             <PlayButton stationId={station?._id} />
 
-            <LikeButton
+            {station.public && <LikeButton
                 isLiked={isLiked}
                 onToggle={() => handleToggleStation(station._id)}
                 size={31}
                 bigBtn={true}
-            />
+            />}
 
-            {isAllowed && (
+            {isAllowed && !isLikedStation && (
                 <StationDropdownOptions
                     options={moreOptions}
                     onOptionClick={handleOptionClick}
