@@ -9,7 +9,7 @@ import defaultImg from "/img/default-playlist-img.png"
 import { setActiveStation, setTrackId } from "../store/actions/system.actions"
 import { setPlaying } from "../store/actions/player.actions"
 import { LikeButton } from "./LikeButton"
-import { toggleLikedTrack } from "../store/actions/user.actions"
+import { toggleLikedTrack, updateUser } from "../store/actions/user.actions"
 
 export function TrackList({ station, isAllowed }) {
     const tracks = useSelector(state => state.stationModule.tracks)
@@ -100,8 +100,11 @@ export function TrackList({ station, isAllowed }) {
         return getPlayIcon(track)
     }
 
-    async function onToggleTrack(track) {
-        await toggleLikedTrack(track.spotifyId)
+    async function onToggleTrack(station, track) {
+        const likedTracksStation = stations.find(station => station.isLikedTracks)
+        const isLikedStation = likedTracksStation._id == station._id
+        await toggleLikedTrack(track.spotifyId, isLikedStation)
+
     }
 
     return (
@@ -175,7 +178,7 @@ export function TrackList({ station, isAllowed }) {
                             <div className="duration-btn">
                                 <LikeButton
                                     isLiked={isTrackLiked(trackObj)}
-                                    onToggle={() => onToggleTrack(trackObj)}
+                                    onToggle={() => onToggleTrack(station, trackObj)}
                                     size={14}
                                 />                            </div>
                             <span className="duration-text">{formatTime(duration_ms)}</span>
