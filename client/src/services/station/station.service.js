@@ -222,7 +222,8 @@ function getLikedStationTracks() {
 
 export async function getTrackById(stationId, trackId) {
     try {
-        const tracks = await getStationsTracks(stationId)
+        const station = await getById(stationId)
+        const tracks = await getStationsTracks(station)
         const track = tracks.find(trackObj => trackObj.track.id === trackId)
         return track
     } catch (err) {

@@ -36,7 +36,7 @@
         }
 
         .track-title {
-            color: $text-subdued;
+            color: $text-base;
         }
     }
 
@@ -140,7 +140,7 @@
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                color: $text-base;
+                color: inherit;
             }
 
             .artist-list {
