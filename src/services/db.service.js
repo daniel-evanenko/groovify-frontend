@@ -7,7 +7,7 @@ export const COLLECTION_NAMES = {
 }
 
 const config = {
-    dbURL: process.env.MONGODB_CONNECTION_STRING,
+    dbURL: process.env.NODE_ENV === 'production' ? process.env.MONGODB_CONNECTION_STRING : 'mongodb://localhost:27017',
     dbName: 'stations_db'
 }
 
