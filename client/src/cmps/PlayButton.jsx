@@ -28,7 +28,7 @@ export function PlayButton({ stationId }) {
     }
 
     return (
-        <button className="play-btn" onClick={ev => handlePlayClick(ev)}>
+        <button className={`play-btn ${isPlaying ? "paused" : "playing"}` } onClick={ev => handlePlayClick(ev)}>
             {isActiveStation() && isPlaying ? <ReactSVG src="/icons/pause.svg" /> : <ReactSVG src="/icons/play.svg" />}
         </button>
     )
