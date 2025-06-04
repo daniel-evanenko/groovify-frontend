@@ -24,7 +24,6 @@ export function AppFooter() {
 
         async function setTrack() {
             try {
-                console.log("active track ID: ", activeTrackId)
                 const trackObj = await getTrackById(activeStationId, activeTrackId)
                 setMiniActiveTrack(trackObj)
             } catch (err) {
@@ -43,7 +42,6 @@ export function AppFooter() {
 
     async function onNextClicked() {
         const nextTrackId = await getNextTrackId(activeStationId, activeTrackId)
-        console.log()
         setTrackId(nextTrackId)
     }
 

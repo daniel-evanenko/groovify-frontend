@@ -1,16 +1,21 @@
 import { ObjectId } from "mongodb";
 import { INITIAL_STATION_PREFIX, INITIAL_STATION_PREFIX_REGEX } from "../utils/constants.js";
-import { COLLECTION_NAMES, getCollection, getCollectionItem } from "./db.service.js"
-import { getMockUser, getUserStations } from "./user.service.js";
+import { COLLECTION_NAMES, getCollection, getCollectionItem, queryCollection } from "./db.service.js"
+import { getUserStations } from "./user.service.js";
 
-export const getStations = async () => {
-    return await getCollection(COLLECTION_NAMES.STATIONS);
+export const getStations = async (query = "", limit = null) => {
+    if (query) {
+        const criteria = { $or: [ { name: { $regex: `${query}`, $options: "i" } }, { description: { $regex: `${query}`, $options: "i" } } ] }
+        const _limit = limit ? +limit : null
+        return await queryCollection(COLLECTION_NAMES.STATIONS, criteria, _limit)
+    }
+
+    return await getCollection(COLLECTION_NAMES.STATIONS)
 }
 
 export const createNewStation = async (stationData) => {
-    const stationsCollectionInstance = await getCollection(COLLECTION_NAMES.STATIONS, {}, false);
+    const stationsCollectionInstance = await getCollection(COLLECTION_NAMES.STATIONS, false);
     const { insertedId = '' } = await stationsCollectionInstance.insertOne(stationData);
-
 
     const searchedId = typeof insertedId === 'string' ? ObjectId.createFromHexString(insertedId) : insertedId;
     const newStation = await stationsCollectionInstance.findOne({ _id: searchedId })
@@ -55,8 +60,8 @@ export const getNextTrackId = async (curStationId, curTrackId) => {
 
 export async function remove(stationId, user) {
     try {
-        const stationCollection = await getCollection(COLLECTION_NAMES.STATIONS, {}, false)
-        const userCollection = await getCollection(COLLECTION_NAMES.USERS, {}, false)
+        const stationCollection = await getCollection(COLLECTION_NAMES.STATIONS, false)
+        const userCollection = await getCollection(COLLECTION_NAMES.USERS, false)
         const stationObjectId = ObjectId.createFromHexString(stationId)
 
         const res = await stationCollection.deleteOne({ _id: stationObjectId })
@@ -84,7 +89,7 @@ export async function update(station) {
         const stationToUpdate = { ...station } // create a shallow copy
         delete stationToUpdate._id // remove _id before updating Mongo
 
-        const collection = await getCollection(COLLECTION_NAMES.STATIONS, {}, false)
+        const collection = await getCollection(COLLECTION_NAMES.STATIONS, false)
         await collection.updateOne({ _id: stationId }, { $set: stationToUpdate })
 
         // Return the updated station with _id re-attached
