@@ -50,8 +50,20 @@
             @include bg-color-on-hover($text-subdued);
 
             svg {
-                width: 20px;
                 aspect-ratio: 1/1;
+            }
+
+            &.playing {
+                svg {
+                    width: 20px;
+                }
+            }
+
+            &.paused {
+                svg {
+                    margin-block-start: 2px;
+                    width: 16px;
+                }
             }
         }
     }
@@ -64,6 +76,10 @@
         align-items: center;
         margin-inline-end: 38px;
         margin-block-end: 7px;
+
+        svg {
+            margin-block-start: 8px;
+        }
 
     }
 }
