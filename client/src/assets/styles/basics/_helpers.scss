@@ -1,3 +1,5 @@
+@use "../mixins" as mixins;
+
 // Font Sizes
 .fs12 {
     font-size: remCalc(12px);
@@ -52,16 +54,16 @@
 
 // Media helpers
 
-.square-ratio {
-    @include aspect-ratio(1, 1);
+.square-ratio {mixins.
+    @include mixins.aspect-ratio(1, 1);
 }
 
 .video-ratio {
-    @include aspect-ratio(16, 9);
+    @include mixins.aspect-ratio(16, 9);
 }
 
 .portrait-ratio {
-    @include aspect-ratio(9, 16);
+    @include mixins.aspect-ratio(9, 16);
 }
 
 //buttons

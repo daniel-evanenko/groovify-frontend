@@ -1,3 +1,5 @@
+@use "../mixins" as mixins;
+
 .play-btn {
     display: flex;
     justify-content: center;
@@ -7,18 +9,18 @@
     background-color: $green-base;
     transition: background-color 0.3s;
     
-    @include scale-on-hover(1.05);
+    @include mixins.scale-on-hover(1.05);
     &:hover {
         background-color: $green-hl;
     }
 
-    @include scale-on-press(1);
+    @include mixins.scale-on-press(1);
     &:active {
         background-color: $green-press;
     }
 
     svg {
-        @include prevent-scale-on-hover(1.05);
+        @include mixins.prevent-scale-on-hover(1.05);
         color: black;
         width: remCalc(24px);
         aspect-ratio: 1/1;

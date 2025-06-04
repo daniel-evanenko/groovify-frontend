@@ -1,3 +1,5 @@
+@use "../mixins" as mixins;
+
 .app-header {
     position: sticky;
     top: 0;
@@ -27,8 +29,8 @@
         height: 100%;
 
         .nav-btn {
-            @include scale-on-hover(1.05);
-            @include scale-on-press(1);
+            @include mixins.scale-on-hover(1.05);
+            @include mixins.scale-on-press(1);
 
             &.pressed {
                 color: $text-base;
@@ -140,7 +142,7 @@
             .clear-btn {
                 padding-block-start: 4px;
                 padding-inline-end: 12px;
-                @include color-descendant-svg-on-hover($text-base);
+                @include mixins.color-descendant-svg-on-hover($text-base);
 
                 svg {
                     width: 24px;

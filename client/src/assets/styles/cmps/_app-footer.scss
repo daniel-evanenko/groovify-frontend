@@ -1,3 +1,5 @@
+@use "../mixins" as mixins;
+
 .app-footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -32,10 +34,10 @@
         .player-controls-btn {
             background-color: transparent;
             padding: 0 0.5rem;
-            @include scale-on-hover();
-            @include scale-on-press(1);
-            @include color-descendant-svg-on-hover($text-base);
-            @include color-descendant-svg-on-press($text-subdued);
+            @include mixins.scale-on-hover();
+            @include mixins.scale-on-press(1);
+            @include mixins.color-descendant-svg-on-hover($text-base);
+            @include mixins.color-descendant-svg-on-press($text-subdued);
 
             svg {
                 width: 16px;
@@ -47,7 +49,7 @@
         .play-btn {
             width: 32px;
             background-color: $text-base;
-            @include bg-color-on-hover($text-subdued);
+            @include mixins.bg-color-on-hover($text-subdued);
 
             svg {
                 aspect-ratio: 1/1;
