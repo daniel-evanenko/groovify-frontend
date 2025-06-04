@@ -66,25 +66,19 @@ async function update(station) {
 
 async function addTrackToStation(stationId, trackId) {
     try {
-        const { data: savedTrack } = await Api.put(`stations/${stationId}/addTrack/${trackId}`)
-        return savedTrack
+        const { data: savedTrackId } = await Api.put(`stations/${stationId}/addTrack/${trackId}`)
+        return savedTrackId
     } catch (error) {
         console.log('error adding a track', error)
     }
 }
 
-function removeTrackFromStation(trackId, stationId) {
+async function removeTrackFromStation(stationId, trackId) {
     try {
-        const tracks = _getStationTracks(stationId) || []
-
-        const updatedTracks = tracks.filter(
-            trackObj => trackObj.track?.id !== trackId
-        )
-
-        saveToStorage(TRACKS_STORAGE_KEY_PREFIX + `${stationId}`, updatedTracks)
-        return updatedTracks
+        const { data: removedTrackId } = await Api.delete(`stations/${stationId}/removeTrack/${trackId}`)
+        return removedTrackId
     } catch (error) {
-        console.log('error removing a track', error)
+        console.log('error adding a track', error)
     }
 }
 

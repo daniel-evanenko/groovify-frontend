@@ -1,4 +1,4 @@
-import { createNewStation, getNewStationDefaultName, getStations, getById, remove, update, addTrack } from "../services/stationsService.js";
+import { createNewStation, getNewStationDefaultName, getStations, getById, remove, update, addTrack, removeTrack } from "../services/stationsService.js";
 import { attachNewStationToUser, getMockUser, getUserStations } from "../services/user.service.js";
 import { DEFAULT_IMAGE_URL } from "../utils/constants.js";
 
@@ -100,11 +100,23 @@ export async function updateStation(req, res) {
 export async function addTrackToStation(req, res) {
     const { stationId, trackId } = req.params
     try {
-        const savedTrack = await addTrack(stationId, trackId)
-        res.status(200).send(savedTrack)
+        const savedTrackId = await addTrack(stationId, trackId)
+        res.status(200).send(savedTrackId)
     } catch (err) {
         console.error(`Couldn't add track ${trackId} to station ${stationId}`, err)
         res.status(500).send(`Couldn't add track to station`)
+
+    }
+}
+
+export async function removeTrackFromStation(req, res) {
+    const { stationId, trackId } = req.params
+    try {
+        const removedTrackId = await removeTrack(stationId, trackId)
+        res.status(200).send(removedTrackId)
+    } catch (err) {
+        console.error(`Couldn't remove track ${trackId} from station ${stationId}`, err)
+        res.status(500).send(`Couldn't renmove track from station`)
 
     }
 }

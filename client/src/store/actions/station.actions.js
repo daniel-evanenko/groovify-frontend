@@ -1,13 +1,13 @@
 import { getStationsTracks } from "../../services/spotify/spotify-api.service.js"
 import { stationService } from "../../services/station/station.service.js"
-import { ADD_TRACK_TO_STATION, SET_STATION, SET_TRACKS } from "../reducers/station.reducer.js"
+import { ADD_TRACK_TO_STATION, REMOVE_TRACK_FROM_STATION, SET_STATION, SET_TRACKS } from "../reducers/station.reducer.js"
 import { store } from "../store.js"
 
 export async function addTrackToStation(stationId, track) {
 
     try {
         const updatedTrackId = await stationService.addTrackToStation(stationId, track.spotifyId)
-        store.dispatch({ type: ADD_TRACK_TO_STATION,  track })
+        store.dispatch({ type: ADD_TRACK_TO_STATION, track })
 
     } catch (err) {
         console.log('Station actions -> Cannot add track to station', err)
@@ -15,10 +15,10 @@ export async function addTrackToStation(stationId, track) {
     }
 }
 
-export async function removeTrackFromStation(trackId, stationId) {
+export async function removeTrackFromStation(stationId, trackId) {
     try {
-        const updatedTracks = await stationService.removeTrackFromStation(trackId, stationId)
-        store.dispatch({ type: SET_TRACKS, tracks: updatedTracks })
+        const removedTrackId = await stationService.removeTrackFromStation(stationId, trackId)
+        store.dispatch({ type: REMOVE_TRACK_FROM_STATION, trackId: removedTrackId })
 
     } catch (err) {
         console.log('Station actions -> Cannot remove track from station', err)

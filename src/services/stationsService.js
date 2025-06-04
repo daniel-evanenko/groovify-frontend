@@ -116,3 +116,18 @@ export async function addTrack(stationId, trackId) {
     )
     return trackId
 }
+
+export async function removeTrack(stationId, trackId) {
+    const stationCollection = await getCollection(COLLECTION_NAMES.STATIONS, false)
+
+    const stationObjectId = ObjectId.createFromHexString(stationId)
+    const station = await stationCollection.findOne({ _id: stationObjectId })
+
+    if (!station) throw new Error("station not found")
+
+    await stationCollection.updateOne(
+        { _id: stationObjectId },
+        { $pull: { tracks: trackId } }
+    )
+    return trackId
+}
