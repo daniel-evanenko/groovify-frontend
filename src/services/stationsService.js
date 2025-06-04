@@ -76,6 +76,7 @@ export async function remove(stationId, user) {
 
 
 
+
         return stationId
     } catch (err) {
         console.error(`Cannot remove station ${stationId}`, err)

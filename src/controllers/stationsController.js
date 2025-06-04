@@ -1,5 +1,5 @@
 import { createNewStation, getNewStationDefaultName, getStations, getById, remove, update } from "../services/stationsService.js";
-import { attachNewStationToUser, getMockUser } from "../services/user.service.js";
+import { attachNewStationToUser, getMockUser, getUserStations } from "../services/user.service.js";
 import { DEFAULT_IMAGE_URL } from "../utils/constants.js";
 
 

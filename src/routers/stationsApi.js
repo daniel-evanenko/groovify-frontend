@@ -6,9 +6,9 @@ const stationsRouter = Router();
 
 stationsRouter.get('/stations', queryStations);
 stationsRouter.get('/station/:id', getStation);
-stationsRouter.delete('/station/:id', removeStation)
 stationsRouter.put('/station/:id', updateStation)
 stationsRouter.post('/stations/create', createNewUserStation)
+stationsRouter.delete('/station/:id', removeStation)
 stationsRouter.get('/stations/:stationId/:trackId/prev', getPreviousTrackContoller)
 stationsRouter.get('/stations/:stationId/:trackId/next', getNextTrackContoller)
 

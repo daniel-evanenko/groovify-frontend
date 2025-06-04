@@ -3,7 +3,7 @@ import { createNewLikedStation } from "../../services/station/station.service.js
 import defaultUser from "../../services/user/defaultUser.js"
 import { userService } from "../../services/user/user.service.js"
 import { getUser } from "../../services/user/users-api.service.js"
-import { SET_STATIONS } from "../reducers/library.reducer.js"
+import { SET_STATIONS, UPDATE_LIKED_STATION } from "../reducers/library.reducer.js"
 import { SET_IS_GUEST_USER, SET_USER } from "../reducers/user.reducer.js"
 import { store } from "../store.js"
 
@@ -83,13 +83,9 @@ export async function toggleLikedTrack(trackId) {
     const loggedinUser = userService.getLoggedinUser()
     try {
         const result = await userService.toggleLikedTrack(loggedinUser._id, trackId)
-        console.log("🚀 ~ toggleLikedTrack ~ result:", result)
-
-        // dispatch({
-        //     type: UPDATE_LIKED_TRACKS,
-        //     trackId,
-        //     action: result.action
-        // })
+        store.dispatch({
+            type: UPDATE_LIKED_STATION, trackId, toggleAction: result.action
+        })
     } catch (err) {
         console.error('Redux: Failed to toggle track like', err)
     }

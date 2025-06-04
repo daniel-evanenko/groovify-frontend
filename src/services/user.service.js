@@ -22,6 +22,7 @@ export const getUserStations = async () => {
         
 
         return userStations;
+        return userStations;
     } catch (err) {
         console.error("Failed to get user stations list.")
         throw err;
@@ -33,6 +34,7 @@ export const attachNewStationToUser = async (newStation, userToUpdate) => {
         const { _id: newStationId } = newStation;
         const { savedStations } = userToUpdate;
 
+
         savedStations.push(newStationId);
 
         await updateColectionItem(COLLECTION_NAMES.USERS, userToUpdate);
@@ -40,7 +42,6 @@ export const attachNewStationToUser = async (newStation, userToUpdate) => {
         console.error("Failed to update new station to user.")
     }
 }
-
 export async function getById(userId) {
     try {
         const criteria = { _id: ObjectId.createFromHexString(userId) }
@@ -52,6 +53,8 @@ export async function getById(userId) {
         throw err
     }
 }
+
+
 
 export async function updateSavedStations(userId, stationId, isRemoving) {
     const userCollection = await getCollection(COLLECTION_NAMES.USERS, false)

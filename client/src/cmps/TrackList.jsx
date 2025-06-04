@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { useSelector } from "react-redux"
 import { ReactSVG } from "react-svg"
 import { formatDate, formatTime } from "../services/util.service"
 import { StationDropdownOptions } from "./StationDropdownOptions"
 import { useClickOutside } from "../hooks/useClickOutside"
-import { removeTrackFromStation, toggleLikeTrack } from "../store/actions/station.actions"
+import { removeTrackFromStation } from "../store/actions/station.actions"
 import defaultImg from "/img/default-playlist-img.png"
-import { stationService } from "../services/station/station.service"
 import { setActiveStation, setTrackId } from "../store/actions/system.actions"
 import { setPlaying } from "../store/actions/player.actions"
 import { LikeButton } from "./LikeButton"
@@ -19,23 +18,15 @@ export function TrackList({ station, isAllowed }) {
     const [selectedRowIndex, setSelectedRowIndex] = useState(null)
     const [hoveredRow, setHoveredRow] = useState(null)
     const activeRow = useClickOutside(() => setSelectedRowIndex(null))
-    const [userLikedTracks, setUserLikedTracks] = useState([])
-    async function fetchLikedTracks() {
-        try {
-            // const likedTracks = await stationService.getLikedStationTracks()
-            setUserLikedTracks([])
-        } catch (err) {
-            console.error("Failed to fetch liked tracks", err)
-        }
-    }
-    useEffect(() => {
-        fetchLikedTracks()
-    }, [])
+    const stations = useSelector(state => state.libraryModule.stations)
 
+    const likedStationTracks = useMemo(() => {
+        const likedTracksStation = stations.find(station => station.isLikedTracks)
+        return likedTracksStation.tracks
+    }, [stations])
 
     function isTrackLiked(trackObj) {
-        const res = userLikedTracks.some(_trackObj => _trackObj.track?.id === trackObj.track?.id)
-        return res
+        return likedStationTracks?.includes?.(trackObj.spotifyId)
     }
 
     const moreOptions = [
@@ -110,8 +101,7 @@ export function TrackList({ station, isAllowed }) {
     }
 
     async function onToggleTrack(track) {
-        await toggleLikedTrack(track._id)
-        // fetchLikedTracks()
+        await toggleLikedTrack(track.spotifyId)
     }
 
     return (
