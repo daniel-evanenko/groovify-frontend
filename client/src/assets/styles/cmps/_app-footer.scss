@@ -1,4 +1,5 @@
-@use "../mixins" as mixins;
+@use "../setup/mixins" as mixins;
+@use "../setup/variables" as *;
 
 .app-footer {
     display: grid;

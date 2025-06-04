@@ -1,3 +1,5 @@
+@use "../setup/variables" as *;
+
 .left-side-bar {
     grid-area: left;
     min-width: fit-content;
