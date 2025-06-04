@@ -2,6 +2,7 @@ export const ADD_STATION = 'ADD_STATION'
 export const REMOVE_STATION = 'REMOVE_STATION'
 export const SET_STATIONS = 'SET_STATIONS'
 export const UPDATE_LIBRARY_STATION = 'UPDATE_LIBRARY_STATION'
+export const UPDATE_LIKED_STATION = 'UPDATE_LIKED_STATION'
 
 const initialState = {
     stations: []
@@ -27,6 +28,26 @@ export function libraryReducer(state = initialState, action) {
                     station._id === action.updatedStation._id ? action.updatedStation : station
                 )
             }
+        case UPDATE_LIKED_STATION: {
+            const { trackId, toggleAction } = action
+            return {
+                ...state,
+                stations: state.stations.map(station => {
+                    if (!station.isLikedTracks) return station
+
+                    const updatedTracks =
+                        toggleAction === 'liked'
+                            ? [...station.tracks, trackId]
+                            : station.tracks.filter(id => id !== trackId)
+                    return {
+                        ...station,
+                        tracks: updatedTracks
+                    }
+                })
+            }
+        }
+
+
         case REMOVE_STATION:
             const { stations } = state
             const filteredStations = stations.filter(station => station._id !== action.stationId)

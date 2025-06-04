@@ -9,7 +9,7 @@ const StationsLibraryList = ({ isMinimized }) => {
         const likedTracksStation = stations.find(station => station.isLikedTracks)
         const allOtherTracks = stations.filter(station => !station.isLikedTracks)
 
-        return likedTracksStation?.stations?.length
+        return likedTracksStation?.tracks?.length
             ? [likedTracksStation, ...allOtherTracks]
             : allOtherTracks
     }, [stations])
