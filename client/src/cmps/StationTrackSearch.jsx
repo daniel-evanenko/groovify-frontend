@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { debounce } from '../services/util.service'
 import { SearchTrackList } from './SearchTrackList'
 import { addTrackToStation } from '../store/actions/station.actions'
-import { searchTracks } from '../services/spotify/spotify-api.service'
 import { SearchBar } from './SearchBar'
+import { searchTracks } from '../services/station/station.service'
 
 export function StationTrackSearch({ station }) {
     const [query, setQuery] = useState('')
@@ -16,9 +16,9 @@ export function StationTrackSearch({ station }) {
 
 
 
-    async function loadTracks(currentFilter) {
+    async function loadTracks(query) {
         try {
-            const fetchedTracks = await searchTracks(currentFilter)
+            const fetchedTracks = await searchTracks(query, 20)
             setTracks(fetchedTracks)
         } catch (error) {
             console.error('Error loading tracks:', error)

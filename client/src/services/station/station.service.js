@@ -231,6 +231,17 @@ export async function getTrackById(stationId, trackId) {
     }
 }
 
+export async function searchStations(query, limit) {
+    try {
+        const { data: stations } = await Api.get(`/stations?searchQuery=${query}&limit=${limit}`)
+        return stations
+
+    } catch (err) {
+        console.error(`failed to search stations with query: ${query}`, err)
+        throw err
+    }
+}
+
 export async function getStationFirstTrack(stationId) {
     try {
         const station = await getById(stationId)
@@ -238,6 +249,17 @@ export async function getStationFirstTrack(stationId) {
         return tracks && tracks.length > 0 && tracks[0]
     } catch (err) {
         console.error("couldnt get first track: ", err)
+        throw err
+    }
+}
+
+export async function searchTracks(query, limit) {
+    try {
+        const { data: tracks } = await Api.get(`/tracks/search?searchQuery=${query}&limit=${limit}`)
+        return tracks
+
+    } catch (err) {
+        console.error(`failed to search tracks with query: ${query}`, err)
         throw err
     }
 }

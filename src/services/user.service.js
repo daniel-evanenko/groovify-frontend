@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { COLLECTION_NAMES, getCollection, updateColectionItem } from "./db.service.js"
+import { COLLECTION_NAMES, getCollection, queryCollection, updateColectionItem } from "./db.service.js"
 
 export const getMockUser = async () => {
     try {
@@ -18,7 +18,8 @@ export const getUserStations = async () => {
 
         const setIdsCriteria = savedStations.map(savedStationId => typeof savedStationId === 'string' ? ObjectId.createFromHexString(savedStationId) : savedStationId);
         const criteria = { "_id": { "$in": [...setIdsCriteria] } };
-        const userStations = await getCollection(COLLECTION_NAMES.STATIONS, criteria);
+        const userStations = await queryCollection(COLLECTION_NAMES.STATIONS, criteria);
+        
 
         return userStations;
     } catch (err) {
@@ -39,10 +40,11 @@ export const attachNewStationToUser = async (newStation, userToUpdate) => {
         console.error("Failed to update new station to user.")
     }
 }
+
 export async function getById(userId) {
     try {
         const criteria = { _id: ObjectId.createFromHexString(userId) }
-        const collection = await getCollection(COLLECTION_NAMES.USERS, {}, false)
+        const collection = await getCollection(COLLECTION_NAMES.USERS, false)
         const user = await collection.findOne(criteria)
         return user
     } catch (err) {
@@ -51,10 +53,8 @@ export async function getById(userId) {
     }
 }
 
-
-
 export async function updateSavedStations(userId, stationId, isRemoving) {
-    const userCollection = await getCollection(COLLECTION_NAMES.USERS, {}, false)
+    const userCollection = await getCollection(COLLECTION_NAMES.USERS, false)
     const updateOp = isRemoving
         ? { $pull: { savedStations: stationId } }
         : { $addToSet: { savedStations: stationId } }
@@ -65,8 +65,8 @@ export async function updateSavedStations(userId, stationId, isRemoving) {
 }
 
 export async function toggleLikedTrack(userId, trackId) {
-    const userCollection = await getCollection(COLLECTION_NAMES.USERS, {}, false)
-    const stationCollection = await getCollection(COLLECTION_NAMES.STATIONS, {}, false)
+    const userCollection = await getCollection(COLLECTION_NAMES.USERS, false)
+    const stationCollection = await getCollection(COLLECTION_NAMES.STATIONS, false)
 
     const userObjectId = ObjectId.createFromHexString(userId)
     const user = await userCollection.findOne({ _id: userObjectId })
