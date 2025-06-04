@@ -55,7 +55,7 @@ export function AppHeader() {
     function onBrowseClicked() {
         setFillBrowse(true)
         setFillHome(false)
-        navigate("/search")
+        // navigate("/search")
     }
 
     function onIndexMount() {

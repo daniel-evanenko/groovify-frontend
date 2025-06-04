@@ -172,7 +172,7 @@ export function StationDetails() {
         return () => {
             clearStation()
         }
-    }, [])
+    }, [params.stationId])
 
     useEffect(() => {
         if (! station.current || !imgUrl) return
