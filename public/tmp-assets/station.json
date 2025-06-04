@@ -1,0 +1,2486 @@
+[{
+  "_id": {
+    "$oid": "65579e3e7e7b526c7c2c8b6c"
+  },
+  "spotifyId": "37i9dQZF1DX2kUCiHidQRK",
+  "name": "להיטים ויראליים",
+  "imgUrl": "https://i.scdn.co/image/ab67706f00000002fe613ad6444200638c1a034e",
+  "description": "כל מה שרותח בישראל 🔥קאבר: קניה גרייס",
+  "owner": {
+    "fullname": "Tuneify"
+  },
+  "tracks": [
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "5mjYQaktjmjcMKcUIcqz4s",
+      "title": "Strangers",
+      "artists": [
+        {
+          "name": "Kenya Grace",
+          "spotifyId": "7uMDnSZyUYNBPLhPMNuaM2"
+        }
+      ],
+      "artistId": "7uMDnSZyUYNBPLhPMNuaM2",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2734756c2e9ae436437cd75e9f3",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e024756c2e9ae436437cd75e9f3",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048514756c2e9ae436437cd75e9f3",
+          "width": 64
+        }
+      ],
+      "formalDuration": 172964,
+      "album": "Strangers",
+      "albumId": "18ogtNq9F7DmMkNYO6Xb4k",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "1FV2FWTYn30eml9q5nVB8J",
+      "title": "כולם מזיזים",
+      "artists": [
+        {
+          "name": "Anna Zak",
+          "spotifyId": "3lVXtKsFTJM8ecY8gqdoCo"
+        }
+      ],
+      "artistId": "3lVXtKsFTJM8ecY8gqdoCo",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273955de3e6765fdfc8d4ff8f6d",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02955de3e6765fdfc8d4ff8f6d",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851955de3e6765fdfc8d4ff8f6d",
+          "width": 64
+        }
+      ],
+      "formalDuration": 171541,
+      "album": "כולם מזיזים",
+      "albumId": "6dXTpMHYNB9fnVTwiz9NtQ",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "0hlBI8n1v5F2mj0tDIM5ai",
+      "title": "שלוק מהבלו",
+      "artists": [
+        {
+          "name": "ליעד מאיר",
+          "spotifyId": "0pv7p5CElqhjhzyPD4eXpe"
+        }
+      ],
+      "artistId": "0pv7p5CElqhjhzyPD4eXpe",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27325cacacff8c41a522c7b7fe0",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0225cacacff8c41a522c7b7fe0",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485125cacacff8c41a522c7b7fe0",
+          "width": 64
+        }
+      ],
+      "formalDuration": 177869,
+      "album": "שלוק מהבלו",
+      "albumId": "4FztRyqOcHbLHqrsoqYF8n",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "2IGMVunIBsBLtEQyoI1Mu7",
+      "title": "Paint The Town Red",
+      "artists": [
+        {
+          "name": "Doja Cat",
+          "spotifyId": "5cj0lLjcoR7YOSnhnX0Po5"
+        }
+      ],
+      "artistId": "5cj0lLjcoR7YOSnhnX0Po5",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2737acee948ecac8380c1b6ce30",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e027acee948ecac8380c1b6ce30",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048517acee948ecac8380c1b6ce30",
+          "width": 64
+        }
+      ],
+      "formalDuration": 231750,
+      "album": "Paint The Town Red",
+      "albumId": "54dZypaXHAIDzBe9ujAZ63",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "4wEFTT1fmFfsLY1K7Y40Cy",
+      "title": "עזבת ת'בית",
+      "artists": [
+        {
+          "name": "Peled",
+          "spotifyId": "26lUUiDmS9zj1LOOCkZUiS"
+        },
+        {
+          "name": "Nastia Rod",
+          "spotifyId": "3yQQWvFCAI4upNGhuUIVSS"
+        }
+      ],
+      "artistId": "26lUUiDmS9zj1LOOCkZUiS",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2732ab6f137693d0fcf542ecbe2",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e022ab6f137693d0fcf542ecbe2",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048512ab6f137693d0fcf542ecbe2",
+          "width": 64
+        }
+      ],
+      "formalDuration": 228234,
+      "album": "TATE WE MADE IT",
+      "albumId": "4knIoipUdeG1OeNk07EKEn",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "12MLkjwb8FbUtPLhoUC2Nc",
+      "title": "שוטים",
+      "artists": [
+        {
+          "name": "דודא",
+          "spotifyId": "5L1ugF8Mi2varnr83WO9do"
+        },
+        {
+          "name": "ליעד מאיר",
+          "spotifyId": "0pv7p5CElqhjhzyPD4eXpe"
+        }
+      ],
+      "artistId": "5L1ugF8Mi2varnr83WO9do",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2739e88f30754fbe4b69471c4f8",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e029e88f30754fbe4b69471c4f8",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048519e88f30754fbe4b69471c4f8",
+          "width": 64
+        }
+      ],
+      "formalDuration": 148551,
+      "album": "שוטים",
+      "albumId": "7zjSdhDl8OCNBF0VSDxdau",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "4C7cg72gU51s1IT4wh7Vp9",
+      "title": "קומה 58",
+      "artists": [
+        {
+          "name": "Omer Adam",
+          "spotifyId": "1IAEef07H0fd9aA8aUHUlL"
+        }
+      ],
+      "artistId": "1IAEef07H0fd9aA8aUHUlL",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2735afed1d629cca6f5fbe58bb2",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e025afed1d629cca6f5fbe58bb2",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048515afed1d629cca6f5fbe58bb2",
+          "width": 64
+        }
+      ],
+      "formalDuration": 176117,
+      "album": "סוף העולם",
+      "albumId": "1wkBFAYxB3n1hriR7rAZlT",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "5aIVCx5tnk0ntmdiinnYvw",
+      "title": "Water",
+      "artists": [
+        {
+          "name": "Tyla",
+          "spotifyId": "3SozjO3Lat463tQICI9LcE"
+        }
+      ],
+      "artistId": "3SozjO3Lat463tQICI9LcE",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273d20231861e86a6f74ef2393e",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02d20231861e86a6f74ef2393e",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851d20231861e86a6f74ef2393e",
+          "width": 64
+        }
+      ],
+      "formalDuration": 200255,
+      "album": "Water",
+      "albumId": "22sXXkKgjEuawIFL1e1tRw",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "5JdLUE9D743ob2RtgmVpVx",
+      "title": "Makeba",
+      "artists": [
+        {
+          "name": "Jain",
+          "spotifyId": "2HHmvvSQ44ePDH7IKVzgK0"
+        }
+      ],
+      "artistId": "2HHmvvSQ44ePDH7IKVzgK0",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2739d3ad3a9fa90bf0dee0ae5be",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e029d3ad3a9fa90bf0dee0ae5be",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048519d3ad3a9fa90bf0dee0ae5be",
+          "width": 64
+        }
+      ],
+      "formalDuration": 249533,
+      "album": "Zanaka",
+      "albumId": "2S12TNfqdnUFdTfYlE96tb",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "3rUGC1vUpkDG9CZFHMur1t",
+      "title": "greedy",
+      "artists": [
+        {
+          "name": "Tate McRae",
+          "spotifyId": "45dkTj5sMRSjrmBSBeiHym"
+        }
+      ],
+      "artistId": "45dkTj5sMRSjrmBSBeiHym",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27322fd802bc61db666c7c81aa8",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0222fd802bc61db666c7c81aa8",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485122fd802bc61db666c7c81aa8",
+          "width": 64
+        }
+      ],
+      "formalDuration": 131872,
+      "album": "greedy",
+      "albumId": "3UOV8XvCwMKaATRNXrYCjN",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "2Otm3KEdvaoS1svZOLVGwc",
+      "title": "ואן גוך",
+      "artists": [
+        {
+          "name": "שגב",
+          "spotifyId": "7mCLcLNpZqIX9z7Tyt0vjC"
+        },
+        {
+          "name": "ערן יוסף",
+          "spotifyId": "1FMTbixqfYNircymRohUZR"
+        },
+        {
+          "name": "עידו בי",
+          "spotifyId": "1obWO7PfWL5n6oyqB984OQ"
+        }
+      ],
+      "artistId": "7mCLcLNpZqIX9z7Tyt0vjC",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273b8252e0db951efbe61f70ead",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02b8252e0db951efbe61f70ead",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851b8252e0db951efbe61f70ead",
+          "width": 64
+        }
+      ],
+      "formalDuration": 151507,
+      "album": "ואן גוך",
+      "albumId": "4Lb2LnUvrXST33oXYF9K1W",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "5aBfiBLoIznSLQoPZMoPUJ",
+      "title": "If We Ever Broke Up - Sped Up",
+      "artists": [
+        {
+          "name": "Mae Stephens",
+          "spotifyId": "311uEW9rt5g2NmzjGEKS2E"
+        },
+        {
+          "name": "Speed Radio",
+          "spotifyId": "1YzaVDzA3EdEipDSUeNQER"
+        },
+        {
+          "name": "xxtristanxo",
+          "spotifyId": "4kBCXTJBl1aY9pDHONsjfr"
+        }
+      ],
+      "artistId": "311uEW9rt5g2NmzjGEKS2E",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27358d56b4cf6f47cd856e112f7",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0258d56b4cf6f47cd856e112f7",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485158d56b4cf6f47cd856e112f7",
+          "width": 64
+        }
+      ],
+      "formalDuration": 124556,
+      "album": "If We Ever Broke Up (Sped Up)",
+      "albumId": "4cEguU8mbgtWH22YeUMYKw",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "1vYXt7VSjH9JIM5oRRo7vA",
+      "title": "Dance The Night - From Barbie The Album",
+      "artists": [
+        {
+          "name": "Dua Lipa",
+          "spotifyId": "6M2wZ9GZgrQXHCFfjv46we"
+        }
+      ],
+      "artistId": "6M2wZ9GZgrQXHCFfjv46we",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2737dd3ba455ee3390cb55b0192",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e027dd3ba455ee3390cb55b0192",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048517dd3ba455ee3390cb55b0192",
+          "width": 64
+        }
+      ],
+      "formalDuration": 176579,
+      "album": "Dance The Night (From Barbie The Album)",
+      "albumId": "5cH7FqB7JD5q1tJXJ7FHYu",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "4ZGe1hugAeejCOd7TWGiz0",
+      "title": "אף פעם לא לבד",
+      "artists": [
+        {
+          "name": "Inbal Bibi",
+          "spotifyId": "3ycYrLmJipiOEbtNdpfvhc"
+        }
+      ],
+      "artistId": "3ycYrLmJipiOEbtNdpfvhc",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2730d9199079e60f8fe8fa1c913",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e020d9199079e60f8fe8fa1c913",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048510d9199079e60f8fe8fa1c913",
+          "width": 64
+        }
+      ],
+      "formalDuration": 168705,
+      "album": "אף פעם לא לבד",
+      "albumId": "7vnTXeAqPJARapvbC3tSCW",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "6usohdchdzW9oML7VC4Uhk",
+      "title": "Lose Control",
+      "artists": [
+        {
+          "name": "Teddy Swims",
+          "spotifyId": "33qOK5uJ8AR2xuQQAhHump"
+        }
+      ],
+      "artistId": "33qOK5uJ8AR2xuQQAhHump",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2731d856e66d33e22746c21a09c",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e021d856e66d33e22746c21a09c",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048511d856e66d33e22746c21a09c",
+          "width": 64
+        }
+      ],
+      "formalDuration": 210688,
+      "album": "Lose Control",
+      "albumId": "5QMiub2LonMqxB7dhtbPlX",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "4E5fqKktoOAT3shxlolPBm",
+      "title": "אינטלקטוערסית",
+      "artists": [
+        {
+          "name": "אודיה",
+          "spotifyId": "28jEBK1RysfSUBHFofFflA"
+        }
+      ],
+      "artistId": "28jEBK1RysfSUBHFofFflA",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273adc328a60ca324d33183e4b7",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02adc328a60ca324d33183e4b7",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851adc328a60ca324d33183e4b7",
+          "width": 64
+        }
+      ],
+      "formalDuration": 128000,
+      "album": "אינטלקטוערסית",
+      "albumId": "5i0yY5QdEqzdok088Yp4af",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "4FYykRMNRlMaa0whnALLaj",
+      "title": "בואי לקיבוץ",
+      "artists": [
+        {
+          "name": "אדמ",
+          "spotifyId": "0WtqxqVx12AdtOSfKnErdd"
+        },
+        {
+          "name": "ILANZE",
+          "spotifyId": "0oIjlNr5Hi2hNPeAjhEDTc"
+        }
+      ],
+      "artistId": "0WtqxqVx12AdtOSfKnErdd",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273dcd000b6155a09b62ee8d524",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02dcd000b6155a09b62ee8d524",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851dcd000b6155a09b62ee8d524",
+          "width": 64
+        }
+      ],
+      "formalDuration": 258254,
+      "album": "בואי לקיבוץ",
+      "albumId": "5U9KiIKsteUERd8Xk1q5gd",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "6s7LQ3bgiQRORpqbxK2N5X",
+      "title": "אחשילי",
+      "artists": [
+        {
+          "name": "Yishay Swissa",
+          "spotifyId": "5nFs4FcGSYufpaoEVpNbEW"
+        },
+        {
+          "name": "Michael Swissa",
+          "spotifyId": "2oTKVerbNO0kejs87fV4jA"
+        },
+        {
+          "name": "Shahar Hason",
+          "spotifyId": "6wkSzWDqFFqkGlQbnEJ4R1"
+        }
+      ],
+      "artistId": "5nFs4FcGSYufpaoEVpNbEW",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27378b6064fa06255d9abdb0c95",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0278b6064fa06255d9abdb0c95",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485178b6064fa06255d9abdb0c95",
+          "width": 64
+        }
+      ],
+      "formalDuration": 182837,
+      "album": "מיטת קומותיים",
+      "albumId": "6esGfkDnqQ5wRkzkwGf9tG",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "55Q180Og5mkW2XeGPjB7yn",
+      "title": "Se Grita",
+      "artists": [
+        {
+          "name": "Morad",
+          "spotifyId": "4az97MtWmBQ5Db3GfDh9j9"
+        },
+        {
+          "name": "Jul",
+          "spotifyId": "3IW7ScrzXmPvZhB27hmfgy"
+        }
+      ],
+      "artistId": "4az97MtWmBQ5Db3GfDh9j9",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273937ce99b134e3586d0bfdb19",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02937ce99b134e3586d0bfdb19",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851937ce99b134e3586d0bfdb19",
+          "width": 64
+        }
+      ],
+      "formalDuration": 259627,
+      "album": "Reinsertado",
+      "albumId": "6h5tdNdOnnFL6zbeMeeqdk",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "44GSjYhBxuuKx0ikN5Dmag",
+      "title": "יהיה טוב & מים שקופים",
+      "artists": [
+        {
+          "name": "Omer Adam",
+          "spotifyId": "1IAEef07H0fd9aA8aUHUlL"
+        },
+        {
+          "name": "Jasmin Moallem",
+          "spotifyId": "3cDi1D2FHMVgljfdB1QVgr"
+        }
+      ],
+      "artistId": "1IAEef07H0fd9aA8aUHUlL",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27309075e22ebc8f287efc0c17a",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0209075e22ebc8f287efc0c17a",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485109075e22ebc8f287efc0c17a",
+          "width": 64
+        }
+      ],
+      "formalDuration": 287141,
+      "album": "יהיה טוב & מים שקופים",
+      "albumId": "2EXKJU0fNDfuFSTCea3xCl",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "23RoR84KodL5HWvUTneQ1w",
+      "title": "(It Goes Like) Nanana - Edit",
+      "artists": [
+        {
+          "name": "Peggy Gou",
+          "spotifyId": "2mLA48B366zkELXYx7hcDN"
+        }
+      ],
+      "artistId": "2mLA48B366zkELXYx7hcDN",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27388d71aadd009fe1a83df88f2",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0288d71aadd009fe1a83df88f2",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485188d71aadd009fe1a83df88f2",
+          "width": 64
+        }
+      ],
+      "formalDuration": 231545,
+      "album": "(It Goes Like) Nanana [Edit]",
+      "albumId": "2LVDNOUUy2g8517ZEtQIcK",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "3vkCueOmm7xQDoJ17W1Pm3",
+      "title": "My Love Mine All Mine",
+      "artists": [
+        {
+          "name": "Mitski",
+          "spotifyId": "2uYWxilOVlUdk4oV9DvwqK"
+        }
+      ],
+      "artistId": "2uYWxilOVlUdk4oV9DvwqK",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27334f21d3047d85440dfa37f10",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0234f21d3047d85440dfa37f10",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485134f21d3047d85440dfa37f10",
+          "width": 64
+        }
+      ],
+      "formalDuration": 137773,
+      "album": "The Land Is Inhospitable and So Are We",
+      "albumId": "2Cn1d2KgbkAqbZCJ1RzdkA",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "3Xx0F02m0QhGZuaKMZodap",
+      "title": "ליל סמוטריץ' - בצלאל",
+      "artists": [
+        {
+          "name": "מלכים א ומלכים ב",
+          "spotifyId": "5t8BfAzkFZBRNeKMlqc9DR"
+        }
+      ],
+      "artistId": "5t8BfAzkFZBRNeKMlqc9DR",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273211ce53a4bc5189c22de9650",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02211ce53a4bc5189c22de9650",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851211ce53a4bc5189c22de9650",
+          "width": 64
+        }
+      ],
+      "formalDuration": 80163,
+      "album": "ליל סמוטריץ' - בצלאל",
+      "albumId": "2Klt47ACykmm5KG2rtuAGe",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "04SSxcKDNjAkTvPeT0UUMN",
+      "title": "Give It To Me",
+      "artists": [
+        {
+          "name": "Henrik",
+          "spotifyId": "5h726j6J9LwwSoINEX4dLx"
+        }
+      ],
+      "artistId": "5h726j6J9LwwSoINEX4dLx",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273139948c1ea59f04bce5ee397",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02139948c1ea59f04bce5ee397",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851139948c1ea59f04bce5ee397",
+          "width": 64
+        }
+      ],
+      "formalDuration": 176286,
+      "album": "Give It To Me",
+      "albumId": "73DfRZAOvXTeJKyd0pWs3v",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "06RR5ewHedBUC9GRgWLwkK",
+      "title": "מוזיקה טובה",
+      "artists": [
+        {
+          "name": "Ravid Plotnik",
+          "spotifyId": "2JQK9mzxqKz16lSgICHDTx"
+        }
+      ],
+      "artistId": "2JQK9mzxqKz16lSgICHDTx",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27376bc15b81b4a75accd8d6a06",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0276bc15b81b4a75accd8d6a06",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485176bc15b81b4a75accd8d6a06",
+          "width": 64
+        }
+      ],
+      "formalDuration": 201173,
+      "album": "בור ועם הארץ",
+      "albumId": "0cW5vsg1yTW2DJIqEGwDpS",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "4py8ddBPFRTYqL3vbh2FXq",
+      "title": "טרנטולה",
+      "artists": [
+        {
+          "name": "Static",
+          "spotifyId": "5Ea0d3mUECVaMf8h2DTehE"
+        },
+        {
+          "name": "Agam Buhbut",
+          "spotifyId": "3JPKPnzWJGjccn8SnjwA5i"
+        }
+      ],
+      "artistId": "5Ea0d3mUECVaMf8h2DTehE",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2731e01c7a923e7d264998ce020",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e021e01c7a923e7d264998ce020",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048511e01c7a923e7d264998ce020",
+          "width": 64
+        }
+      ],
+      "formalDuration": 130692,
+      "album": "לירז",
+      "albumId": "6yYi9EdNhdOZGXIWKVVK7G",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "5YqltLsjdqFtvqE7Nrysvs",
+      "title": "We Are Never Ever Getting Back Together (Taylor's Version)",
+      "artists": [
+        {
+          "name": "Taylor Swift",
+          "spotifyId": "06HL4z0CvFAxyc27GXpf02"
+        }
+      ],
+      "artistId": "06HL4z0CvFAxyc27GXpf02",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273318443aab3531a0558e79a4d",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02318443aab3531a0558e79a4d",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851318443aab3531a0558e79a4d",
+          "width": 64
+        }
+      ],
+      "formalDuration": 193146,
+      "album": "Red (Taylor's Version)",
+      "albumId": "6kZ42qRrzov54LcAk4onW9",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "4uUG5RXrOk84mYEfFvj3cK",
+      "title": "I'm Good (Blue)",
+      "artists": [
+        {
+          "name": "David Guetta",
+          "spotifyId": "1Cs0zKBU1kc0i8ypK3B9ai"
+        },
+        {
+          "name": "Bebe Rexha",
+          "spotifyId": "64M6ah0SkkRsnPGtGiRAbb"
+        }
+      ],
+      "artistId": "1Cs0zKBU1kc0i8ypK3B9ai",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273933c036cd61cd40d3f17a9c4",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02933c036cd61cd40d3f17a9c4",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851933c036cd61cd40d3f17a9c4",
+          "width": 64
+        }
+      ],
+      "formalDuration": 175238,
+      "album": "I'm Good (Blue)",
+      "albumId": "7M842DMhYVALrXsw3ty7B3",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "741UUVE2kuITl0c6zuqqbO",
+      "title": "Barbie World (with Aqua) [From Barbie The Album]",
+      "artists": [
+        {
+          "name": "Nicki Minaj",
+          "spotifyId": "0hCNtLu0JehylgoiP8L4Gh"
+        },
+        {
+          "name": "Ice Spice",
+          "spotifyId": "3LZZPxNDGDFVSIPqf4JuEf"
+        },
+        {
+          "name": "Aqua",
+          "spotifyId": "6kBjAFKyd0he7LiA5GQ3Gz"
+        }
+      ],
+      "artistId": "0hCNtLu0JehylgoiP8L4Gh",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2737e8f938c02fac3b564931116",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e027e8f938c02fac3b564931116",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048517e8f938c02fac3b564931116",
+          "width": 64
+        }
+      ],
+      "formalDuration": 109750,
+      "album": "Barbie World (with Aqua) [From Barbie The Album]",
+      "albumId": "5CM66hwjlbZ06LhONWXOAs",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "58aaJDv9IN676epyzir2jq",
+      "title": "טיל נפץ",
+      "artists": [
+        {
+          "name": "Eyal Levi",
+          "spotifyId": "1jsjCWnOybmOLWb2R0PhMa"
+        }
+      ],
+      "artistId": "1jsjCWnOybmOLWb2R0PhMa",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27328da4ebd2e06eca9ae3f29b7",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0228da4ebd2e06eca9ae3f29b7",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485128da4ebd2e06eca9ae3f29b7",
+          "width": 64
+        }
+      ],
+      "formalDuration": 161000,
+      "album": "טיל נפץ",
+      "albumId": "72eCzSey2EayzH2tcpsOe8",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "6UN73IYd0hZxLi8wFPMQij",
+      "title": "Players",
+      "artists": [
+        {
+          "name": "Coi Leray",
+          "spotifyId": "6AMd49uBDJfhf30Ak2QR5s"
+        }
+      ],
+      "artistId": "6AMd49uBDJfhf30Ak2QR5s",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2735626453d29a0124dea22fb1b",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e025626453d29a0124dea22fb1b",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048515626453d29a0124dea22fb1b",
+          "width": 64
+        }
+      ],
+      "formalDuration": 139560,
+      "album": "Players",
+      "albumId": "4cAAsw7mPkGt15GXQzWlrM",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "6kIxhXb3FSuOQS0gMd8s0D",
+      "title": "חמסה",
+      "artists": [
+        {
+          "name": "Eden Ben Zaken",
+          "spotifyId": "2eUKkTNZsIuZzV95DM0cbt"
+        }
+      ],
+      "artistId": "2eUKkTNZsIuZzV95DM0cbt",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273f5a3e288983ed2f0c21e6288",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02f5a3e288983ed2f0c21e6288",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851f5a3e288983ed2f0c21e6288",
+          "width": 64
+        }
+      ],
+      "formalDuration": 136516,
+      "album": "7",
+      "albumId": "3wsPEqxnCIgV19BYMtYKYm",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "4h9wh7iOZ0GGn8QVp4RAOB",
+      "title": "I Ain't Worried",
+      "artists": [
+        {
+          "name": "OneRepublic",
+          "spotifyId": "5Pwc4xIPtQLFEnJriah9YJ"
+        }
+      ],
+      "artistId": "5Pwc4xIPtQLFEnJriah9YJ",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273ec96e006b8bdfc582610ec13",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02ec96e006b8bdfc582610ec13",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851ec96e006b8bdfc582610ec13",
+          "width": 64
+        }
+      ],
+      "formalDuration": 148485,
+      "album": "I Ain’t Worried (Music From The Motion Picture \"Top Gun: Maverick\")",
+      "albumId": "04PEOM6kIEeq9lRp1asNP2",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "2J2Z1SkXYghSajLibnQHOa",
+      "title": "Unstoppable",
+      "artists": [
+        {
+          "name": "Sia",
+          "spotifyId": "5WUlDfRSoLAfcVSX1WnrxN"
+        }
+      ],
+      "artistId": "5WUlDfRSoLAfcVSX1WnrxN",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27349e0134c686547c28b7c999f",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0249e0134c686547c28b7c999f",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485149e0134c686547c28b7c999f",
+          "width": 64
+        }
+      ],
+      "formalDuration": 217746,
+      "album": "This Is Acting",
+      "albumId": "77jAfTh3KH9K2reMOmTgOh",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "3xxjYOFR1y7By2wNDS51XV",
+      "title": "Solo",
+      "artists": [
+        {
+          "name": "BLANKA",
+          "spotifyId": "0ML3y0iBY1nq7HWAWP0EFm"
+        }
+      ],
+      "artistId": "0ML3y0iBY1nq7HWAWP0EFm",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273a4c8ee95bf586a33b8865b28",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02a4c8ee95bf586a33b8865b28",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851a4c8ee95bf586a33b8865b28",
+          "width": 64
+        }
+      ],
+      "formalDuration": 154710,
+      "album": "Solo",
+      "albumId": "4zX2oy6k4NLIThxb2Qp6LZ",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "1pgfOvuVAZY8Cza0FvKcZ5",
+      "title": "Bounce When She Walk - Radio Edit",
+      "artists": [
+        {
+          "name": "Ohboyprince",
+          "spotifyId": "7Ck9ZyYvzMnaBQ76ZrSJFI"
+        },
+        {
+          "name": "Mykfresh",
+          "spotifyId": "0QDU0rLqKIoMNQhBT2gtUI"
+        },
+        {
+          "name": "GwallaGangSpec",
+          "spotifyId": "2t84S2g3Q80dhKAHi9ekOA"
+        }
+      ],
+      "artistId": "7Ck9ZyYvzMnaBQ76ZrSJFI",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273ca40bfef95c0ee3ceca22dbe",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02ca40bfef95c0ee3ceca22dbe",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851ca40bfef95c0ee3ceca22dbe",
+          "width": 64
+        }
+      ],
+      "formalDuration": 208979,
+      "album": "Bounce When She Walk (Radio Edit)",
+      "albumId": "4ARGxPa4o0TBtgIIIaeIQI",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "7FbrGaHYVDmfr7KoLIZnQ7",
+      "title": "Cupid - Twin Ver.",
+      "artists": [
+        {
+          "name": "FIFTY FIFTY",
+          "spotifyId": "4GJ6xDCF5jaUqD6avOuQT6"
+        }
+      ],
+      "artistId": "4GJ6xDCF5jaUqD6avOuQT6",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27337c0b3670236c067c8e8bbcb",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0237c0b3670236c067c8e8bbcb",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485137c0b3670236c067c8e8bbcb",
+          "width": 64
+        }
+      ],
+      "formalDuration": 174253,
+      "album": "The Beginning: Cupid",
+      "albumId": "5letLUZIFsQikJYShfGNs4",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "5RX8T3EoTuXcybAxe6oPAw",
+      "title": "Cha Cha Cha",
+      "artists": [
+        {
+          "name": "Käärijä",
+          "spotifyId": "6LkMGN0t3HDNL8hIvma70r"
+        }
+      ],
+      "artistId": "6LkMGN0t3HDNL8hIvma70r",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273e9973a2290bd5d88c6aad387",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02e9973a2290bd5d88c6aad387",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851e9973a2290bd5d88c6aad387",
+          "width": 64
+        }
+      ],
+      "formalDuration": 175161,
+      "album": "Cha Cha Cha",
+      "albumId": "5rBqeRlrrzR77MAkbgAmS6",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "2FDTHlrBguDzQkp7PVj16Q",
+      "title": "Sprinter",
+      "artists": [
+        {
+          "name": "Dave",
+          "spotifyId": "6Ip8FS7vWT1uKkJSweANQK"
+        },
+        {
+          "name": "Central Cee",
+          "spotifyId": "5H4yInM5zmHqpKIoMNAx4r"
+        }
+      ],
+      "artistId": "6Ip8FS7vWT1uKkJSweANQK",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273e3a09a9ae3f1fa102c110e60",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02e3a09a9ae3f1fa102c110e60",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851e3a09a9ae3f1fa102c110e60",
+          "width": 64
+        }
+      ],
+      "formalDuration": 229133,
+      "album": "Sprinter",
+      "albumId": "5l0QlaI3wdZpE7ggoO5Rwg",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "5CQ0tp4ZdSrzj2ev9yieVV",
+      "title": "Wassup Gwayy",
+      "artists": [
+        {
+          "name": "Famous Sally & YB",
+          "spotifyId": "58r9bevVFGCcTpNRT5Ha85"
+        }
+      ],
+      "artistId": "58r9bevVFGCcTpNRT5Ha85",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273c8a0e9b4f3e27d4bc7d56b35",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02c8a0e9b4f3e27d4bc7d56b35",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851c8a0e9b4f3e27d4bc7d56b35",
+          "width": 64
+        }
+      ],
+      "formalDuration": 144383,
+      "album": "Wassup Gwayy",
+      "albumId": "1RlJJaItCwvPI1qkIfsJax",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "0E9S1H3TktlpHmGyuKEfkL",
+      "title": "לצאת מדיכאון",
+      "artists": [
+        {
+          "name": "יגל אושרי",
+          "spotifyId": "6Kn2CjfEButrWXszsA0E6Q"
+        }
+      ],
+      "artistId": "6Kn2CjfEButrWXszsA0E6Q",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2732475a9d898ea16b3e51a5297",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e022475a9d898ea16b3e51a5297",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048512475a9d898ea16b3e51a5297",
+          "width": 64
+        }
+      ],
+      "formalDuration": 190039,
+      "album": "לצאת מדיכאון",
+      "albumId": "3yKhRbzXdiublxlbHo69JF",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "16cJrPZsK40Ath0EnChE7E",
+      "title": "Barbie Girl",
+      "artists": [
+        {
+          "name": "Lady Aqua",
+          "spotifyId": "4O8sJqNaLIO1bYybBEX9K4"
+        }
+      ],
+      "artistId": "4O8sJqNaLIO1bYybBEX9K4",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273625434bf0036f8ab8b37055d",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02625434bf0036f8ab8b37055d",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851625434bf0036f8ab8b37055d",
+          "width": 64
+        }
+      ],
+      "formalDuration": 209893,
+      "album": "Barbie Girl",
+      "albumId": "1JI4iMv12RLtUx90DllcWB",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "0prHRcmwD2Kk6no5sMovDD",
+      "title": "Calm Down",
+      "artists": [
+        {
+          "name": "Rema",
+          "spotifyId": "46pWGuE3dSwY3bMMXGBvVS"
+        }
+      ],
+      "artistId": "46pWGuE3dSwY3bMMXGBvVS",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2731794bbd95849cbb4a47e6bb2",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e021794bbd95849cbb4a47e6bb2",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048511794bbd95849cbb4a47e6bb2",
+          "width": 64
+        }
+      ],
+      "formalDuration": 219813,
+      "album": "Calm Down",
+      "albumId": "6uKDUDB0xUmI7hOJHMHULk",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "14LdhxElpZS0rKVV4nxtdA",
+      "title": "Queen of Kings",
+      "artists": [
+        {
+          "name": "Alessandra",
+          "spotifyId": "35HMF6Y8dSzNfeJs3X65fw"
+        }
+      ],
+      "artistId": "35HMF6Y8dSzNfeJs3X65fw",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27389a8d6b547ec327bef9d395d",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0289a8d6b547ec327bef9d395d",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485189a8d6b547ec327bef9d395d",
+          "width": 64
+        }
+      ],
+      "formalDuration": 147979,
+      "album": "Queen of Kings",
+      "albumId": "6Fkp68IAnNvIRJ8rm1MxhB",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "5Zlb01Jcn0Ld49zazzZJSB",
+      "title": "WORTH NOTHING - Fast & Furious: Drift Tape/Phonk Vol 1",
+      "artists": [
+        {
+          "name": "TWISTED",
+          "spotifyId": "1rPf3UFQ9PzH7MafzfHTnG"
+        },
+        {
+          "name": "Oliver Tree",
+          "spotifyId": "6TLwD7HPWuiOzvXEa3oCNe"
+        }
+      ],
+      "artistId": "1rPf3UFQ9PzH7MafzfHTnG",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273a6fb54b3fe850150c61e5980",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02a6fb54b3fe850150c61e5980",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851a6fb54b3fe850150c61e5980",
+          "width": 64
+        }
+      ],
+      "formalDuration": 164629,
+      "album": "WORTH NOTHING (Fast & Furious: Drift Tape/Phonk Vol 1)",
+      "albumId": "0oozY5vsoDRBVnAaStpBGI",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "4QtiVmuA88tPQiCOHZuQ5b",
+      "title": "1, 2, 3 (feat. Jason Derulo & De La Ghetto)",
+      "artists": [
+        {
+          "name": "Sofía Reyes",
+          "spotifyId": "0haZhu4fFKt0Ag94kZDiz2"
+        },
+        {
+          "name": "Jason Derulo",
+          "spotifyId": "07YZf4WDAMNwqr4jfgOZ8y"
+        },
+        {
+          "name": "De La Ghetto",
+          "spotifyId": "3EiLUeyEcA6fbRPSHkG5kb"
+        }
+      ],
+      "artistId": "0haZhu4fFKt0Ag94kZDiz2",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273775d1e288c04237d896e8357",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02775d1e288c04237d896e8357",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851775d1e288c04237d896e8357",
+          "width": 64
+        }
+      ],
+      "formalDuration": 201526,
+      "album": "1, 2, 3 (feat. Jason Derulo & De La Ghetto)",
+      "albumId": "1jHSAfCHKUFx5imuezI7HE",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "1odExI7RdWc4BT515LTAwj",
+      "title": "Daylight",
+      "artists": [
+        {
+          "name": "David Kushner",
+          "spotifyId": "33NVpKoXjItPwUJTMZIOiY"
+        }
+      ],
+      "artistId": "33NVpKoXjItPwUJTMZIOiY",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27395ca6a9b4083a86c149934ae",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0295ca6a9b4083a86c149934ae",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485195ca6a9b4083a86c149934ae",
+          "width": 64
+        }
+      ],
+      "formalDuration": 212953,
+      "album": "Daylight",
+      "albumId": "6NcI39WPu4kY6Tul11nhSv",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "2b9TjqgLxE6zOZc4DSmYYx",
+      "title": "פרובוקטיבית",
+      "artists": [
+        {
+          "name": "Noa Kirel",
+          "spotifyId": "1wak0ZG1LUrZPYx8RDTQoD"
+        },
+        {
+          "name": "Forever Tel Aviv",
+          "spotifyId": "4j52sdXcMG3iMbXzTbQQ0q"
+        },
+        {
+          "name": "Sagi Kariv",
+          "spotifyId": "1Ki10qeE3KkXcpu9gsyq5a"
+        }
+      ],
+      "artistId": "1wak0ZG1LUrZPYx8RDTQoD",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273e31f0dbe1b2339f504495d6e",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02e31f0dbe1b2339f504495d6e",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851e31f0dbe1b2339f504495d6e",
+          "width": 64
+        }
+      ],
+      "formalDuration": 154921,
+      "album": "פרובוקטיבית",
+      "albumId": "0p6jsDXnFQ1nJqOZ5buGSx",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "3htwhiORrRIXx4LxZRa7S5",
+      "title": "בעולם הזה",
+      "artists": [
+        {
+          "name": "Gil Vain",
+          "spotifyId": "7LYtqxi8Le9d8KvQhzpcjj"
+        },
+        {
+          "name": "Nathan Goshen",
+          "spotifyId": "5CXvT1JutlWVLJN8YEOf1h"
+        }
+      ],
+      "artistId": "7LYtqxi8Le9d8KvQhzpcjj",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273f554d76da2cc0077023a4c00",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02f554d76da2cc0077023a4c00",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851f554d76da2cc0077023a4c00",
+          "width": 64
+        }
+      ],
+      "formalDuration": 188717,
+      "album": "בעולם הזה",
+      "albumId": "5aSe8YD2EVpaBt3hGBPZRA",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "3k79jB4aGmMDUQzEwa46Rz",
+      "title": "vampire",
+      "artists": [
+        {
+          "name": "Olivia Rodrigo",
+          "spotifyId": "1McMsnEElThX1knmY4oliG"
+        }
+      ],
+      "artistId": "1McMsnEElThX1knmY4oliG",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2731e5e75dc1d878a0007cb6525",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e021e5e75dc1d878a0007cb6525",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048511e5e75dc1d878a0007cb6525",
+          "width": 64
+        }
+      ],
+      "formalDuration": 219724,
+      "album": "vampire",
+      "albumId": "5kqfR7EuGbyp8x27Pr1kY9",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "6OmKbLCskNWi1IcfpZbeJc",
+      "title": "Car's Outside - Sped Up Version",
+      "artists": [
+        {
+          "name": "James Arthur",
+          "spotifyId": "4IWBUUAFIplrNtaOHcJPRM"
+        }
+      ],
+      "artistId": "4IWBUUAFIplrNtaOHcJPRM",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273bde319f49b9079c727c46410",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02bde319f49b9079c727c46410",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851bde319f49b9079c727c46410",
+          "width": 64
+        }
+      ],
+      "formalDuration": 206966,
+      "album": "Car's Outside",
+      "albumId": "0BbIbUGBYjryhlMrbM7ki2",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "6wf7Yu7cxBSPrRlWeSeK0Q",
+      "title": "What Was I Made For? [From The Motion Picture \"Barbie\"]",
+      "artists": [
+        {
+          "name": "Billie Eilish",
+          "spotifyId": "6qqNVTkY8uBg9cP3Jd7DAH"
+        }
+      ],
+      "artistId": "6qqNVTkY8uBg9cP3Jd7DAH",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273ed317ec13d3de9e01fb99c9e",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02ed317ec13d3de9e01fb99c9e",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851ed317ec13d3de9e01fb99c9e",
+          "width": 64
+        }
+      ],
+      "formalDuration": 222369,
+      "album": "What Was I Made For? [From The Motion Picture \"Barbie\"]",
+      "albumId": "3AafSrFIbJPH6BJHiJm1Cd",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "7twsd0lwXyy0ARdsTyzHoJ",
+      "title": "Tukoh Taka - Official FIFA Fan Festival™ Anthem",
+      "artists": [
+        {
+          "name": "Nicki Minaj",
+          "spotifyId": "0hCNtLu0JehylgoiP8L4Gh"
+        },
+        {
+          "name": "Maluma",
+          "spotifyId": "1r4hJ1h58CWwUQe3MxPuau"
+        },
+        {
+          "name": "Myriam Fares",
+          "spotifyId": "1YnW3KicGQq3zD9LcdGJSh"
+        },
+        {
+          "name": "FIFA Sound",
+          "spotifyId": "5C01hDqpEmrmDfUhX9YWsH"
+        }
+      ],
+      "artistId": "0hCNtLu0JehylgoiP8L4Gh",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273da375de40d4f83c371d5280f",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02da375de40d4f83c371d5280f",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851da375de40d4f83c371d5280f",
+          "width": 64
+        }
+      ],
+      "formalDuration": 178529,
+      "album": "Tukoh Taka (Official FIFA Fan Festival™Anthem)",
+      "albumId": "2Coh1rdkbDRHPI5WLkpNpO",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "3UYiU57SMiAS5LqolhHJw1",
+      "title": "Shameless",
+      "artists": [
+        {
+          "name": "Camila Cabello",
+          "spotifyId": "4nDoRrQiYLoBzwC5BhVJzF"
+        }
+      ],
+      "artistId": "4nDoRrQiYLoBzwC5BhVJzF",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273cad95e5a82b9df98e97cb68f",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02cad95e5a82b9df98e97cb68f",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851cad95e5a82b9df98e97cb68f",
+          "width": 64
+        }
+      ],
+      "formalDuration": 219742,
+      "album": "Shameless",
+      "albumId": "2h1p1JzjT9rLJFAFrIkyrm",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "6AQbmUe0Qwf5PZnt4HmTXv",
+      "title": "Boy's a liar Pt. 2",
+      "artists": [
+        {
+          "name": "PinkPantheress",
+          "spotifyId": "78rUTD7y6Cy67W1RVzYs7t"
+        },
+        {
+          "name": "Ice Spice",
+          "spotifyId": "3LZZPxNDGDFVSIPqf4JuEf"
+        }
+      ],
+      "artistId": "78rUTD7y6Cy67W1RVzYs7t",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2739567e1aa41657425d046733b",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e029567e1aa41657425d046733b",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048519567e1aa41657425d046733b",
+          "width": 64
+        }
+      ],
+      "formalDuration": 131013,
+      "album": "Boy's a liar Pt. 2",
+      "albumId": "6cVfHBcp3AdpYY0bBglkLN",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "1DmW5Ep6ywYwxc2HMT5BG6",
+      "title": "Tattoo",
+      "artists": [
+        {
+          "name": "Loreen",
+          "spotifyId": "49aaHxvAJ0tCh0F15OnwIl"
+        }
+      ],
+      "artistId": "49aaHxvAJ0tCh0F15OnwIl",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2732b0ba87db609976eee193bd6",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e022b0ba87db609976eee193bd6",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048512b0ba87db609976eee193bd6",
+          "width": 64
+        }
+      ],
+      "formalDuration": 183374,
+      "album": "Tattoo",
+      "albumId": "0LRTS7FyYLppkDLOZT02Xp",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "0iknUKhR2y8KnpFLILBRrF",
+      "title": "הכל סבבה",
+      "artists": [
+        {
+          "name": "Itay Levi",
+          "spotifyId": "6VdxGMRiiFQhI8F0FkuQZg"
+        }
+      ],
+      "artistId": "6VdxGMRiiFQhI8F0FkuQZg",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273f9e7acad876128f85cfa5327",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02f9e7acad876128f85cfa5327",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851f9e7acad876128f85cfa5327",
+          "width": 64
+        }
+      ],
+      "formalDuration": 176000,
+      "album": "אחת לדקה",
+      "albumId": "181sLndMFFYq8asGz0uLK8",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "75sIATEdqHxN7jfNsRCwGl",
+      "title": "ברולטה",
+      "artists": [
+        {
+          "name": "עידו בי",
+          "spotifyId": "1obWO7PfWL5n6oyqB984OQ"
+        },
+        {
+          "name": "ערן יוסף",
+          "spotifyId": "1FMTbixqfYNircymRohUZR"
+        },
+        {
+          "name": "שגב",
+          "spotifyId": "7mCLcLNpZqIX9z7Tyt0vjC"
+        }
+      ],
+      "artistId": "1obWO7PfWL5n6oyqB984OQ",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273368256829a73dfb29ab4e332",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02368256829a73dfb29ab4e332",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851368256829a73dfb29ab4e332",
+          "width": 64
+        }
+      ],
+      "formalDuration": 184761,
+      "album": "ברולטה",
+      "albumId": "5KOoBIg1wdNsM0t9UUGzt0",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "4tpT9xacu03ADQI7utG24C",
+      "title": "אולסטאר וגופיות",
+      "artists": [
+        {
+          "name": "Anna Zak",
+          "spotifyId": "3lVXtKsFTJM8ecY8gqdoCo"
+        },
+        {
+          "name": "Itay Galo",
+          "spotifyId": "2aHFYxHwk45ask1ipRya1d"
+        }
+      ],
+      "artistId": "3lVXtKsFTJM8ecY8gqdoCo",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273d937fbc25d3edca6d164702f",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02d937fbc25d3edca6d164702f",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851d937fbc25d3edca6d164702f",
+          "width": 64
+        }
+      ],
+      "formalDuration": 167619,
+      "album": "אולסטאר וגופיות",
+      "albumId": "31rjo1YiUreiP3Wg7yjFpe",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "3mCCFs2hdDM2mObzARzxOg",
+      "title": "תיק קטן",
+      "artists": [
+        {
+          "name": "סטילה",
+          "spotifyId": "7lwdlhwSxbB36wqnOwo5Kd"
+        },
+        {
+          "name": "Ness",
+          "spotifyId": "2ygecp3YQJwBHL7LNzDgwe"
+        }
+      ],
+      "artistId": "7lwdlhwSxbB36wqnOwo5Kd",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273c20125f3b7526d2c40568e77",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02c20125f3b7526d2c40568e77",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851c20125f3b7526d2c40568e77",
+          "width": 64
+        }
+      ],
+      "formalDuration": 173913,
+      "album": "תיק קטן",
+      "albumId": "2eKft1fH1UqbnKrhWyuk4f",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "0QDGzInNYjTlYI28Xq7slK",
+      "title": "לאהוב אותך כל יום",
+      "artists": [
+        {
+          "name": "Doli & Penn",
+          "spotifyId": "7hzAtM9sug5TCxGUIR7by3"
+        },
+        {
+          "name": "Eden Hason",
+          "spotifyId": "6uQl3gu1AIXyvqCAxnc2q4"
+        }
+      ],
+      "artistId": "7hzAtM9sug5TCxGUIR7by3",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273eb8ec116a25766796e0a45f3",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02eb8ec116a25766796e0a45f3",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851eb8ec116a25766796e0a45f3",
+          "width": 64
+        }
+      ],
+      "formalDuration": 212451,
+      "album": "לאהוב אותך כל יום",
+      "albumId": "0QNl8z4VM5lUUI5nDDIsHA",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "3O6KNNOyhOoO7lbPo8xXhE",
+      "title": "תהמר עליי",
+      "artists": [
+        {
+          "name": "שירת נשים",
+          "spotifyId": "2KPrxKFRMdGK0beGbffQdI"
+        },
+        {
+          "name": "Eden Ben Zaken",
+          "spotifyId": "2eUKkTNZsIuZzV95DM0cbt"
+        },
+        {
+          "name": "Nasrin Kadri",
+          "spotifyId": "6kKweapGufuHSv5CXVURim"
+        },
+        {
+          "name": "אודיה",
+          "spotifyId": "28jEBK1RysfSUBHFofFflA"
+        },
+        {
+          "name": "Narkis",
+          "spotifyId": "0z60F8toAJCUuhnUdbtFD6"
+        }
+      ],
+      "artistId": "2KPrxKFRMdGK0beGbffQdI",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2733f3c4f97ad8fadd164ba1821",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e023f3c4f97ad8fadd164ba1821",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048513f3c4f97ad8fadd164ba1821",
+          "width": 64
+        }
+      ],
+      "formalDuration": 216817,
+      "album": "תהמר עליי",
+      "albumId": "7khtuE47s65b5EABpbUuX1",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "3ZwB9kmYorPV7zBTvWn28P",
+      "title": "חנה'לה",
+      "artists": [
+        {
+          "name": "Agam Buhbut",
+          "spotifyId": "3JPKPnzWJGjccn8SnjwA5i"
+        },
+        {
+          "name": "Stephane Legar",
+          "spotifyId": "2ZRiDEplNEZDgPBziiFEmk"
+        }
+      ],
+      "artistId": "3JPKPnzWJGjccn8SnjwA5i",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27332968dce0231039d020888f6",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0232968dce0231039d020888f6",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485132968dce0231039d020888f6",
+          "width": 64
+        }
+      ],
+      "formalDuration": 185624,
+      "album": "חנה'לה",
+      "albumId": "4rQnpoEDW9ai28qBVaVBmY",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "29ZGOiRf0t8zjvz5JwwdM4",
+      "title": "ילד מטריה",
+      "artists": [
+        {
+          "name": "עטרה אוריה",
+          "spotifyId": "2B5CIVuJLzMYbtw6ViL85R"
+        }
+      ],
+      "artistId": "2B5CIVuJLzMYbtw6ViL85R",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27304cf5bb93ccad1b36c03834b",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0204cf5bb93ccad1b36c03834b",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485104cf5bb93ccad1b36c03834b",
+          "width": 64
+        }
+      ],
+      "formalDuration": 190173,
+      "album": "ילד מטריה",
+      "albumId": "0RMHBV15CrRX9qvub7MjwN",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "2KBtuxA73fMKyj37wr1XKM",
+      "title": "סטלות",
+      "artists": [
+        {
+          "name": "Omer Adam",
+          "spotifyId": "1IAEef07H0fd9aA8aUHUlL"
+        }
+      ],
+      "artistId": "1IAEef07H0fd9aA8aUHUlL",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2734da4632d8c1d4b5fee532d7f",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e024da4632d8c1d4b5fee532d7f",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048514da4632d8c1d4b5fee532d7f",
+          "width": 64
+        }
+      ],
+      "formalDuration": 237967,
+      "album": "סטלות",
+      "albumId": "3zSwmJLTtkEFvtbQP9zeCn",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "3FdO6cpjJxfBetb6Cl9fsy",
+      "title": "מי לימדה אותך?",
+      "artists": [
+        {
+          "name": "ענבל רז",
+          "spotifyId": "31h1Tt25QjurO3YixXtJ5Y"
+        }
+      ],
+      "artistId": "31h1Tt25QjurO3YixXtJ5Y",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273bfc2714e0278cea79a5c6ddd",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02bfc2714e0278cea79a5c6ddd",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851bfc2714e0278cea79a5c6ddd",
+          "width": 64
+        }
+      ],
+      "formalDuration": 162962,
+      "album": "מי לימדה אותך?",
+      "albumId": "5s3Win3YFXDj6olgUejGqe",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "0yLdNVWF3Srea0uzk55zFn",
+      "title": "Flowers",
+      "artists": [
+        {
+          "name": "Miley Cyrus",
+          "spotifyId": "5YGY8feqx7naU7z4HrwZM6"
+        }
+      ],
+      "artistId": "5YGY8feqx7naU7z4HrwZM6",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273f429549123dbe8552764ba1d",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02f429549123dbe8552764ba1d",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851f429549123dbe8552764ba1d",
+          "width": 64
+        }
+      ],
+      "formalDuration": 200454,
+      "album": "Flowers",
+      "albumId": "7I0tjwFtxUwBC1vgyeMAax",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "4JzG1XWdSjEKlRJMlVWJ3f",
+      "title": "ככה זה",
+      "artists": [
+        {
+          "name": "Ninet Tayeb",
+          "spotifyId": "4oEhVAb4wkpqQbOqVMroI4"
+        },
+        {
+          "name": "Tuna",
+          "spotifyId": "17pbOSPIn3lmY0vHhOlKGL"
+        }
+      ],
+      "artistId": "4oEhVAb4wkpqQbOqVMroI4",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273bdfbc6fe21f75fbf36c23a07",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02bdfbc6fe21f75fbf36c23a07",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851bdfbc6fe21f75fbf36c23a07",
+          "width": 64
+        }
+      ],
+      "formalDuration": 248146,
+      "album": "ככה זה",
+      "albumId": "0Q8Ok7CxprEMtjPKR6XA2e",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "4wUeFidlHm9N9BxwZNykBj",
+      "title": "Hoodie",
+      "artists": [
+        {
+          "name": "Anna Zak",
+          "spotifyId": "3lVXtKsFTJM8ecY8gqdoCo"
+        },
+        {
+          "name": "Mergui",
+          "spotifyId": "6grXi1oBW9ayoP4FTt4r2Z"
+        }
+      ],
+      "artistId": "3lVXtKsFTJM8ecY8gqdoCo",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b2736fba3e015ddf5dd2e7ec9484",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e026fba3e015ddf5dd2e7ec9484",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d000048516fba3e015ddf5dd2e7ec9484",
+          "width": 64
+        }
+      ],
+      "formalDuration": 196688,
+      "album": "Hoodie",
+      "albumId": "1x3pp8ixp71Jw3anQA0Y4w",
+      "youtubeId": ""
+    },
+    {
+      "addedAt": "2023-10-02T11:09:45Z",
+      "id": "4P7y9RBfnunq0BtGI5N8Ih",
+      "title": "אהובי",
+      "artists": [
+        {
+          "name": "Agam Buhbut",
+          "spotifyId": "3JPKPnzWJGjccn8SnjwA5i"
+        }
+      ],
+      "artistId": "3JPKPnzWJGjccn8SnjwA5i",
+      "imgUrl": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b27388580bbdaa4a6fd85a325eee",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e0288580bbdaa4a6fd85a325eee",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d0000485188580bbdaa4a6fd85a325eee",
+          "width": 64
+        }
+      ],
+      "formalDuration": 158521,
+      "album": "אהובי",
+      "albumId": "1J65MICcECiijM6QcwBm92",
+      "youtubeId": ""
+    }
+  ],
+  "snapshot_id": "ZR0oVAAAAAANvGxBF1z6mzbF9MFOj6eG",
+  "lastUpdate": 1730117642151
+}]
