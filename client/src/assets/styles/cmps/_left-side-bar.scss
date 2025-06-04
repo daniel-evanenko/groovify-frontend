@@ -227,6 +227,7 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+                margin-inline-start: 12px;
 
                 &.active {
                     color: $green-base;
@@ -238,6 +239,7 @@
                 margin-top: -3px;
                 color: $text-subdued;
                 font-size: remCalc(14px);
+                margin-inline-start: 12px;
             }
         }
     }
