@@ -10,6 +10,7 @@ import { stationService } from "../services/station/station.service"
 import { setActiveStation, setTrackId } from "../store/actions/system.actions"
 import { setPlaying } from "../store/actions/player.actions"
 import { LikeButton } from "./LikeButton"
+import { toggleLikedTrack } from "../store/actions/user.actions"
 
 export function TrackList({ station, isAllowed }) {
     const tracks = useSelector(state => state.stationModule.tracks)
@@ -109,8 +110,8 @@ export function TrackList({ station, isAllowed }) {
     }
 
     async function onToggleTrack(track) {
-        await toggleLikeTrack(track)
-        fetchLikedTracks()
+        await toggleLikedTrack(track._id)
+        // fetchLikedTracks()
     }
 
     return (

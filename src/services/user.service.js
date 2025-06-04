@@ -63,3 +63,34 @@ export async function updateSavedStations(userId, stationId, isRemoving) {
 
     return await getById(userId)
 }
+
+export async function toggleLikedTrack(userId, trackId) {
+    const userCollection = await getCollection(COLLECTION_NAMES.USERS, {}, false)
+    const stationCollection = await getCollection(COLLECTION_NAMES.STATIONS, {}, false)
+
+    const userObjectId = ObjectId.createFromHexString(userId)
+    const user = await userCollection.findOne({ _id: userObjectId })
+    if (!user?.likedTracksStationId) {
+        throw new Error("User or likedTracksStationId not found")
+    }
+
+    const stationId = user.likedTracksStationId
+    const station = await stationCollection.findOne({ _id: stationId })
+    if (!station) throw new Error("Liked station not found")
+
+    const isLiked = station.tracks.includes(trackId)
+
+    if (isLiked) {
+        await stationCollection.updateOne(
+            { _id: stationId },
+            { $pull: { tracks: trackId } }
+        )
+        return { action: 'unliked', trackId }
+    } else {
+        await stationCollection.updateOne(
+            { _id: stationId },
+            { $addToSet: { tracks: trackId } }
+        )
+        return { action: 'liked', trackId }
+    }
+}

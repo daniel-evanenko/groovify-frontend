@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-import { getById, getMockUser, getUserStations, updateSavedStations } from "../services/user.service.js";
+import { getById, getMockUser, getUserStations, toggleLikedTrack, updateSavedStations } from "../services/user.service.js";
 
 export const getUserController = async (req, res) => {
     try {
@@ -34,6 +34,17 @@ export async function toggleSavedStation(req, res) {
         res.status(200).json(updatedUser)
     } catch (err) {
         console.error('Failed to toggle saved station', err)
+        res.status(500).send('Internal server error')
+    }
+}
+
+export async function toggleLikedTrackController(req, res) {
+    const { userId, trackId } = req.params
+    try {
+        const result = await toggleLikedTrack(userId, trackId)
+        res.status(200).json(result)
+    } catch (err) {
+        console.error("Failed to toggle liked track", err)
         res.status(500).send('Internal server error')
     }
 }
