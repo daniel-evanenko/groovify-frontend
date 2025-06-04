@@ -185,7 +185,7 @@
 
         .station-item {
             display: grid;
-            grid-template: 1fr 1fr / 1.7fr 5fr;
+            grid-template: 1fr 1fr / 1fr 5fr;
             grid-template-areas:
                 "pic track-name"
                 "pic track-artist";
