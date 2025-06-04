@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom"
 import { StationList } from "./StationList"
 import { useEffect, useState } from "react"
-import { searchStations } from "../services/spotify/spotify-api.service"
+import { searchStations } from "../services/station/station.service"
 
 export function SearchIndex() {
     const params = useParams()
@@ -19,6 +19,8 @@ export function SearchIndex() {
     }, [params])
 
     return (
-        <StationList stations={stations} title="Playlists"/>
+        <div className="search-index">
+            <StationList stations={stations} title="Playlists" />
+        </div>
     )
 }

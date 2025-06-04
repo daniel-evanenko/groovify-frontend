@@ -3,12 +3,18 @@ import { attachNewStationToUser, getMockUser, getUserStations } from "../service
 import { DEFAULT_IMAGE_URL } from "../utils/constants.js";
 
 
-export const getStations = async (req, res) => {
+export const queryStations = async (req, res) => {
     try {
-        const stations = await getDbStations();
+        const { searchQuery, limit } = req.query
+        if (searchQuery) {
+            const searchResults = await getStations(searchQuery, limit)
+            return res.status(200).json(searchResults)
+        }
+
+        const stations = await getStations();
         res.status(200).json(stations);
     } catch (err) {
-        const errMessage = 'Could not load stations';
+        const errMessage = 'Could not search stations';
         console.log(errMessage, err);
         res.status(500).send(errMessage);
     }

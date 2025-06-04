@@ -3,8 +3,11 @@ import { getStations, createNewUserStation, getStation, removeStation, updateSta
 import { getNextTrackContoller, getPreviousTrackContoller } from '../controllers/tracksController.js';
 
 const stationsRouter = Router();
-stationsRouter.get('/stations', getStations);
+
+stationsRouter.get('/stations', queryStations);
 stationsRouter.get('/station/:id', getStation);
+stationsRouter.delete('/station/:id', removeStation)
+stationsRouter.put('/station/:id', updateStation)
 stationsRouter.post('/stations/create', createNewUserStation)
 stationsRouter.delete('/station/:id', removeStation)
 stationsRouter.put('/station/:id', updateStation)

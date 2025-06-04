@@ -1,4 +1,4 @@
-import { COLLECTION_NAMES, getCollection, getCollectionItem, updateColectionItem } from "./db.service.js"
+import { COLLECTION_NAMES, getCollection, getCollectionItem, queryCollection, updateColectionItem } from "./db.service.js"
 import { getUrl } from "./youtubeService.js"
 
 
@@ -17,14 +17,36 @@ export const getStationTracks = async (trackIds) => {
     }
 }
 
-export const getTracksforSearch = async () => {
-    try {
-        const tracks = await getCollection(COLLECTION_NAMES.TRACKS);
-        return tracks
-    } catch (err) {
-        console.error('Failed to get tracks from DB');
-        throw err;
+export const queryTracks = async (query = "", limit = null) => {
+    if (query) {
+        console.log("got query ", query)
+        const pipeline = [
+            {
+                $match: {
+                    "track.name": { $regex: `${query}`, $options: "i" }
+                }
+            },
+            {
+                $group: {
+                    _id: {
+                        name: "$track.name",
+                    },
+                    track: { $first: "$$ROOT" }
+                }
+            },
+            {
+                $replaceRoot: { newRoot: "$track" }
+            }
+        ]
+
+        if (limit) {
+            pipeline.push({ $limit: +limit })
+        }
+
+        return await queryCollection(COLLECTION_NAMES.TRACKS, pipeline, null, true)
     }
+
+    return []
 }
 
 export const getTrack = async (trackId) => {

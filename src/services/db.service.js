@@ -13,24 +13,44 @@ const config = {
 
 let dbConnection;
 
-export const getCollection = async (collectionName, criteria = {}, parsed = true) => {
+export const getCollection = async (collectionName, parsed = true) => {
     try {
         const db = await _connect();
-        const collection = await db.collection(collectionName);
-        const collectionParsed = collection.find(criteria).toArray();
+        const collection = db.collection(collectionName);
+        const collectionParsed = collection.find().toArray();
         return parsed ? collectionParsed : collection;
+
     } catch (err) {
         console.error('Failed to get DB collection', err);
         throw err;
     }
 }
 
-export const getCollectionItem = async (collectionName, criteria, parsed = true) => {
+export const queryCollection = async (collectionName, criteria = {}, limit = null, isAggregation = false) => {
+    try {
+        const collection = await getCollection(collectionName, false)
+        
+        let results
+        if (isAggregation) {
+            results = collection.aggregate(criteria)
+        } else {
+            results = collection.find(criteria)
+            if (limit) results = results.limit(limit)
+        }
+            
+        return results.toArray()
+        
+    } catch (err) {
+        console.error(err)
+        throw err
+    }
+}
+
+export const getCollectionItem = async (collectionName, criteria) => {
     try {
         const db = await _connect();
         const item = await db.collection(collectionName).findOne(criteria);
         return item
-        // return parsed ? item.toArray() : item;
     } catch (err) {
         console.error("failed to get collection item")
         throw err
