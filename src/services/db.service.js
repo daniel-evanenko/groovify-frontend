@@ -7,11 +7,12 @@ export const COLLECTION_NAMES = {
 }
 
 const config = {
-    dbURL: process.env.MONGODB_CONNECTION_STRING,
+    dbURL: process.env.NODE_ENV === 'production' ? process.env.MONGODB_CONNECTION_STRING : 'mongodb://localhost:27017',
     dbName: 'stations_db'
 }
 
 let dbConnection;
+
 export const getCollection = async (collectionName, parsed = true) => {
     try {
         const db = await _connect();
@@ -28,7 +29,7 @@ export const getCollection = async (collectionName, parsed = true) => {
 export const queryCollection = async (collectionName, criteria = {}, limit = null, isAggregation = false) => {
     try {
         const collection = await getCollection(collectionName, false)
-
+        
         let results
         if (isAggregation) {
             results = collection.aggregate(criteria)
@@ -36,9 +37,9 @@ export const queryCollection = async (collectionName, criteria = {}, limit = nul
             results = collection.find(criteria)
             if (limit) results = results.limit(limit)
         }
-
+            
         return results.toArray()
-
+        
     } catch (err) {
         console.error(err)
         throw err
@@ -70,9 +71,10 @@ export const updateColectionItem = async (collectionName, item) => {
 
 const _connect = async () => {
     if (dbConnection) return dbConnection;
+
     try {
         const client = await MongoClient.connect(config.dbURL);
-        return dbConnection = client.db(config.dbName);
+        return client.db(config.dbName);
     } catch (err) {
         console.error('Cannot connect to DB', err)
         throw err;
