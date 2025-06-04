@@ -67,3 +67,31 @@ export async function tempLogin() {
         throw err
     }
 }
+
+
+export const handleToggleStation = async (stationId) => {
+    const loggedinUser = userService.getLoggedinUser()
+    try {
+        const updatedUser = await userService.toggleSavedStation(loggedinUser._id, stationId)
+        await updateUser(updatedUser)
+    } catch (err) {
+        console.error('Error toggling saved station:', err)
+    }
+}
+
+export async function toggleLikedTrack(trackId) {
+    const loggedinUser = userService.getLoggedinUser()
+    try {
+        const result = await userService.toggleLikedTrack(loggedinUser._id, trackId)
+        console.log("🚀 ~ toggleLikedTrack ~ result:", result)
+
+        // dispatch({
+        //     type: UPDATE_LIKED_TRACKS,
+        //     trackId,
+        //     action: result.action
+        // })
+    } catch (err) {
+        console.error('Redux: Failed to toggle track like', err)
+    }
+
+}

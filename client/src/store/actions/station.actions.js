@@ -1,6 +1,6 @@
 import { getStationsTracks } from "../../services/spotify/spotify-api.service.js"
 import { stationService } from "../../services/station/station.service.js"
-import { SET_STATION, SET_INDEX_STATIONS, SET_TRACKS, UPDATE_STATION } from "../reducers/station.reducer.js"
+import { SET_STATION, SET_TRACKS } from "../reducers/station.reducer.js"
 import { store } from "../store.js"
 
 export async function addTrackToStation(track, stationId) {
@@ -35,17 +35,6 @@ export async function loadStation(stationId) {
 
     } catch (err) {
         console.log('Station actions -> Cannot load station', err)
-        throw err
-    }
-}
-
-export async function saveStation(station) {
-    try {
-        const savedStation = await stationService.save(station)
-        store.dispatch({ type: UPDATE_STATION, station: savedStation })
-
-    } catch (err) {
-        console.log('Station actions -> Cannot save station', err)
         throw err
     }
 }

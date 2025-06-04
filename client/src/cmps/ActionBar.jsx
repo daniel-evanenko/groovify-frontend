@@ -2,13 +2,14 @@ import { useNavigate } from "react-router-dom"
 import { useMemo, useState, useRef, useEffect } from "react"
 import { useSelector } from "react-redux"
 
-import { clearStation, saveStation } from "../store/actions/station.actions"
-import { removeStation, toggleLikeStation } from "../store/actions/library.actions"
+import { clearStation } from "../store/actions/station.actions"
+import { removeStation, updateStation } from "../store/actions/library.actions"
 
 import { PlayButton } from "./PlayButton"
 import { StationDropdownOptions } from "./StationDropdownOptions"
 import { StationEditModal } from "./StationEditModal"
 import { LikeButton } from "./LikeButton"
+import { handleToggleStation } from "../store/actions/user.actions"
 
 const ICONS = {
     edit: "/icons/Pencil.svg",
@@ -58,7 +59,7 @@ export function ActionBar({ station, isAllowed, onVisibilityChange }) {
 
     async function handleConfirm(updatedStation) {
         try {
-            await saveStation(updatedStation)
+            await updateStation(updatedStation)
         } catch (error) {
             console.error("Failed to save station:", error)
         } finally {
@@ -94,7 +95,7 @@ export function ActionBar({ station, isAllowed, onVisibilityChange }) {
 
             <LikeButton
                 isLiked={isLiked}
-                onToggle={() => toggleLikeStation(station)}
+                onToggle={() => handleToggleStation(station._id)}
                 size={31}
                 bigBtn={true}
             />

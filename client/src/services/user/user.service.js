@@ -1,5 +1,4 @@
 import { storageService } from '../async-storage.service.js'
-import defaultUser from './defaultUser.js'
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 import Api from "../api-service.js"
 
@@ -14,7 +13,8 @@ export const userService = {
     saveLoggedinUser,
     updateUser,
     signup,
-    getUserLibrary
+    toggleSavedStation,
+    toggleLikedTrack
 }
 
 // async function getUsers() {
@@ -76,14 +76,22 @@ async function signup(userCred) {
     }
 }
 
-
-async function getUserLibrary() {
+async function toggleSavedStation(userId, stationId) {
     try {
-        const { data } = await Api.get('/user/library');
-        return data
+        const { data: updatedUser } = await Api.put('users/savedStation', { userId, stationId })
+        return updatedUser
     } catch (err) {
-        console.error(err)
+        console.error('Failed to toggle saved station', err)
         throw err
     }
+}
 
+async function toggleLikedTrack(userId, trackId) {
+    try {
+        const res = await Api.put(`users/${userId}/toggle-track/${trackId}`)
+        return res.data
+    } catch (err) {
+        console.error('Failed to toggle liked track', err)
+        throw err
+    }
 }

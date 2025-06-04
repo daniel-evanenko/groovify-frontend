@@ -11,7 +11,7 @@ import { StationEditModal } from '../cmps/StationEditModal.jsx'
 import { setIsLoading } from '../store/actions/system.actions.js'
 import { StationTrackSearch } from '../cmps/StationTrackSearch.jsx'
 import { DEFAULT_IMAGE_URL } from '../services/station/station.service.js'
-import { saveLibraryStation } from '../store/actions/library.actions.js'
+import { updateStation } from '../store/actions/library.actions.js'
 import { PlayButton } from '../cmps/PlayButton.jsx'
 
 export function StationDetails() {
@@ -147,7 +147,7 @@ export function StationDetails() {
 
     async function handleConfirm(stationToSave) {
         try {
-            await saveLibraryStation(stationToSave)
+            await updateStation(stationToSave)
 
         } catch (error) {
             console.error('Error saving station:', error)

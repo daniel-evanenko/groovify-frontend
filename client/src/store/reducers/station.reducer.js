@@ -47,7 +47,7 @@ export function stationReducer(state = initialState, action) {
         case UPDATE_STATION:
             return {
                 ...state,
-                station: { ...state.station, ...action.station, lastUpdate: Date.now() }
+                station: { ...state.station, ...action.updatedStation, lastUpdate: Date.now() }
             }
 
         default:

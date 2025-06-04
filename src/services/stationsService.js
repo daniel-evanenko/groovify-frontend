@@ -55,8 +55,8 @@ export const getNextTrackId = async (curStationId, curTrackId) => {
 
 export async function remove(stationId, user) {
     try {
-        const stationCollection = await getCollection(COLLECTION_NAMES.STATIONS, false)
-        const userCollection = await getCollection(COLLECTION_NAMES.USERS, false)
+        const stationCollection = await getCollection(COLLECTION_NAMES.STATIONS, {}, false)
+        const userCollection = await getCollection(COLLECTION_NAMES.USERS, {}, false)
         const stationObjectId = ObjectId.createFromHexString(stationId)
 
         const res = await stationCollection.deleteOne({ _id: stationObjectId })
@@ -65,20 +65,32 @@ export async function remove(stationId, user) {
         }
 
         await userCollection.updateOne(
-            { _id: ObjectId.createFromHexString(user._id) },
+            { _id: user._id },
             { $pull: { savedStations: stationObjectId } }
         )
 
-        if (user.likedTracksStationId?.toString() === stationId) {
-            await userCollection.updateOne(
-                { _id: ObjectId.createFromHexString(user._id) },
-                { $unset: { likedTracksStationId: "" } }
-            )
-        }
+
 
         return stationId
     } catch (err) {
         console.error(`Cannot remove station ${stationId}`, err)
+        throw err
+    }
+}
+
+export async function update(station) {
+    try {
+        const stationId = ObjectId.createFromHexString(station._id)
+        const stationToUpdate = { ...station } // create a shallow copy
+        delete stationToUpdate._id // remove _id before updating Mongo
+
+        const collection = await getCollection(COLLECTION_NAMES.STATIONS, {}, false)
+        await collection.updateOne({ _id: stationId }, { $set: stationToUpdate })
+
+        // Return the updated station with _id re-attached
+        return { ...stationToUpdate, _id: stationId.toString() }
+    } catch (err) {
+        console.error(`cannot update station ${station._id}`, err)
         throw err
     }
 }
