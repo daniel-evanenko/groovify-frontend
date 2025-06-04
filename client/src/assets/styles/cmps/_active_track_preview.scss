@@ -35,6 +35,9 @@
 
             color: $text-subdued;
             font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
 
             &:hover {
                 cursor: pointer;
