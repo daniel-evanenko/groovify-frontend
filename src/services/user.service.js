@@ -45,7 +45,7 @@ export const attachNewStationToUser = async (newStation, userToUpdate) => {
 export async function getById(userId) {
     try {
         const criteria = { _id: ObjectId.createFromHexString(userId) }
-        const collection = await getCollection(COLLECTION_NAMES.USERS, {}, false)
+        const collection = await getCollection(COLLECTION_NAMES.USERS, false)
         const user = await collection.findOne(criteria)
         return user
     } catch (err) {
@@ -57,7 +57,7 @@ export async function getById(userId) {
 
 
 export async function updateSavedStations(userId, stationId, isRemoving) {
-    const userCollection = await getCollection(COLLECTION_NAMES.USERS, {}, false)
+    const userCollection = await getCollection(COLLECTION_NAMES.USERS, false)
     const updateOp = isRemoving
         ? { $pull: { savedStations: stationId } }
         : { $addToSet: { savedStations: stationId } }
@@ -68,8 +68,8 @@ export async function updateSavedStations(userId, stationId, isRemoving) {
 }
 
 export async function toggleLikedTrack(userId, trackId) {
-    const userCollection = await getCollection(COLLECTION_NAMES.USERS, {}, false)
-    const stationCollection = await getCollection(COLLECTION_NAMES.STATIONS, {}, false)
+    const userCollection = await getCollection(COLLECTION_NAMES.USERS, false)
+    const stationCollection = await getCollection(COLLECTION_NAMES.STATIONS, false)
 
     const userObjectId = ObjectId.createFromHexString(userId)
     const user = await userCollection.findOne({ _id: userObjectId })

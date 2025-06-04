@@ -60,8 +60,8 @@ export const getNextTrackId = async (curStationId, curTrackId) => {
 
 export async function remove(stationId, user) {
     try {
-        const stationCollection = await getCollection(COLLECTION_NAMES.STATIONS, {}, false)
-        const userCollection = await getCollection(COLLECTION_NAMES.USERS, {}, false)
+        const stationCollection = await getCollection(COLLECTION_NAMES.STATIONS, false)
+        const userCollection = await getCollection(COLLECTION_NAMES.USERS, false)
         const stationObjectId = ObjectId.createFromHexString(stationId)
 
         const res = await stationCollection.deleteOne({ _id: stationObjectId })
@@ -90,7 +90,7 @@ export async function update(station) {
         const stationToUpdate = { ...station } // create a shallow copy
         delete stationToUpdate._id // remove _id before updating Mongo
 
-        const collection = await getCollection(COLLECTION_NAMES.STATIONS, {}, false)
+        const collection = await getCollection(COLLECTION_NAMES.STATIONS, false)
         await collection.updateOne({ _id: stationId }, { $set: stationToUpdate })
 
         // Return the updated station with _id re-attached
