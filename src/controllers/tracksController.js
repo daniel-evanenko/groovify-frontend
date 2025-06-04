@@ -5,7 +5,6 @@ import { getStationTracks, getTrack, getTrackUrl, queryTracks } from "../service
 export const getTracksController = async (req, res) => {
     try {
         const { trackIds } = req.query;
-        console.log("ids: \n", trackIds)
         const tracks = await getStationTracks(trackIds);
         res.status(200).json(tracks);
         
