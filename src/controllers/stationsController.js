@@ -26,6 +26,18 @@ export const getStation = async (req, res) => {
     }
 }
 
+export const getStation = async (req, res) => {
+    const { id } = req.params
+    try {
+        const station = await getById(id)
+        res.status(200).json(station);
+    } catch (err) {
+        const errMessage = 'Could not get station';
+        console.log(errMessage, err);
+        res.status(500).send(errMessage);
+    }
+}
+
 export const createNewUserStation = async (req, res) => {
     try {
         const newStationName = await getNewStationDefaultName();
