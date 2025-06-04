@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Loader } from '../cmps/Loader.jsx'
 import { ActionBar } from '../cmps/ActionBar.jsx'
 import { TrackList } from '../cmps/TrackList.jsx'
@@ -15,27 +15,19 @@ import { updateStation } from '../store/actions/library.actions.js'
 import { PlayButton } from '../cmps/PlayButton.jsx'
 
 export function StationDetails() {
-    const station = useSelector(storeState => storeState.stationModule.station)
+    // const station = useSelector(storeState => storeState.stationModule.station)
+    const station = useRef({})
     const globalIsLoading = useSelector(storeState => storeState.systemModule.isLoading)
 
     const [isModalOpen, setIsModalOpen] = useState(false)
     const params = useParams()
     const navigate = useNavigate()
 
-    const imgUrl = station?.images?.length > 0 ? station.images[0].url : DEFAULT_IMAGE_URL
+    const imgUrl = station.current?.images?.length > 0 ?  station.current.images[0].url : DEFAULT_IMAGE_URL
 
     const user = useSelector(storeState => storeState.userModule.user)
     const tracks = useSelector(storeState => storeState.stationModule.tracks)
     const [isActionBarVisible, setIsActionBarVisible] = useState(true)
-
-    const indexStations = useSelector(state => state.stationModule.indexStations)
-    const [isInitialized, setIsInitialized] = useState(false)
-
-    useEffect(() => {
-        if (indexStations?.length) {
-            setIsInitialized(true)
-        }
-    }, [indexStations])
 
     useEffect(() => {
         setTopBarBg()
@@ -136,13 +128,13 @@ export function StationDetails() {
     }
 
     function isAllowed() {
-        if (!station || !user) return false
+        if (! station.current || !user) return false
         return (
-            (station.owner?.fullname || station.owner?.display_name) === user.fullname
+            ( station.current.owner?.fullname ||  station.current.owner?.display_name) === user.fullname
         )
     }
     function isLikedStation() {
-        return station._id == user?.likedTracksStationId
+        return  station.current._id == user?.likedTracksStationId
     }
 
     async function handleConfirm(stationToSave) {
@@ -159,7 +151,7 @@ export function StationDetails() {
     async function fetchStationData() {
         setIsLoading(true)
         try {
-            await loadStation(params.stationId)
+            station.current = await loadStation(params.stationId)
         } catch (error) {
             console.error('Error fetching station:', error)
             navigate('/')
@@ -174,20 +166,21 @@ export function StationDetails() {
             return
         }
 
-        if (isInitialized) fetchStationData()
+        fetchStationData()
+        
 
         return () => {
             clearStation()
         }
-    }, [params.stationId, navigate, isInitialized])
+    }, [])
 
     useEffect(() => {
-        if (!station || !imgUrl) return
+        if (! station.current || !imgUrl) return
 
         requestAnimationFrame(() => {
             setStationHeaderBg()
         })
-    }, [station, imgUrl])
+    }, [ station.current, imgUrl])
 
     async function setStationHeaderBg() {
         try {
@@ -212,15 +205,14 @@ export function StationDetails() {
         }
     }
 
-    if (!isInitialized) return <Loader />
     if (globalIsLoading) return <Loader />
 
-    if (!station) return <div>No playlist data available</div>
+    if (!station.current) return <div>No playlist data available</div>
 
     return (
         <section className="station-page">
             <div className='station-header-bg' />
-            <header className="top-bar"> {!isActionBarVisible && <div className='intersection-header'><PlayButton stationId={station?._id} /> <h1 className="station-name">{station.name}</h1>  </div>}</header>
+            <header className="top-bar"> {!isActionBarVisible && <div className='intersection-header'><PlayButton stationId={ station.current?._id} /> <h1 className="station-name">{ station.current.name}</h1>  </div>}</header>
             <div className="station-header" >
                 <div className="station-image">
                     <img src={imgUrl} alt="station cover" />
@@ -232,26 +224,26 @@ export function StationDetails() {
                 </div>
                 <div className="station-details">
                     <span className="station-type">Playlist</span>
-                    <h1 className="station-name">{station.name}</h1>
-                    {station.description && <div className="station-description">{station.description}</div>}
+                    <h1 className="station-name">{ station.current.name}</h1>
+                    { station.current.description && <div className=" station-description">{ station.current.description}</div>}
                     <div className="station-info">
-                        <a>{station.owner?.fullname || station.owner?.display_name || 'Unknown User'}</a>
+                        <a>{ station.current.owner?.fullname ||  station.current.owner?.display_name || 'Unknown User'}</a>
                         <span> • </span>
                         <span>{calculatePlaylistInfo()}</span>
                     </div>
                 </div>
             </div>
             <div className="content-spacing">
-                {<ActionBar isAllowed={isAllowed()} isLikedStation={isLikedStation()} station={station} onVisibilityChange={setIsActionBarVisible}
+                {<ActionBar isAllowed={isAllowed()} isLikedStation={isLikedStation()} station={ station.current} onVisibilityChange={setIsActionBarVisible}
                 ></ActionBar>}
-                <TrackList isAllowed={isAllowed()} station={station} tracks={tracks}></TrackList>
-                {isAllowed() && <StationTrackSearch isAllowed={isAllowed()} station={station}></StationTrackSearch>}
+                <TrackList isAllowed={isAllowed()} station={ station.current} tracks={tracks}></TrackList>
+                {isAllowed() && <StationTrackSearch isAllowed={isAllowed()} station={ station.current}></StationTrackSearch>}
             </div>
             {isModalOpen && (
                 <StationEditModal
                     onClose={() => setIsModalOpen(false)}
                     onConfirm={handleConfirm}
-                    station={station}
+                    station={ station.current}
                     openFileUpload={true}
                 />
             )}

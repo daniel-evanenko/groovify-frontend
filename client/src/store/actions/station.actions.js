@@ -32,7 +32,7 @@ export async function loadStation(stationId) {
         const tracks = await getStationsTracks(station)
         store.dispatch({ type: SET_STATION, station })
         store.dispatch({ type: SET_TRACKS, tracks })
-
+        return station
     } catch (err) {
         console.log('Station actions -> Cannot load station', err)
         throw err
