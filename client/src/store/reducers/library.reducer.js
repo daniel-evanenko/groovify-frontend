@@ -29,23 +29,26 @@ export function libraryReducer(state = initialState, action) {
                 )
             }
         case UPDATE_LIKED_STATION: {
-            const { trackId, toggleAction } = action
+            const { trackId } = action;
+
             return {
                 ...state,
                 stations: state.stations.map(station => {
-                    if (!station.isLikedTracks) return station
+                    if (!station.isLikedTracks) return station;
 
-                    const updatedTracks =
-                        toggleAction === 'liked'
-                            ? [...station.tracks, trackId]
-                            : station.tracks.filter(id => id !== trackId)
+                    const isTrackLiked = station.tracks.includes(trackId);
+                    const updatedTracks = isTrackLiked
+                        ? station.tracks.filter(id => id !== trackId)
+                        : [...station.tracks, trackId];
+
                     return {
                         ...station,
                         tracks: updatedTracks
-                    }
+                    };
                 })
-            }
+            };
         }
+
 
 
         case REMOVE_STATION:
