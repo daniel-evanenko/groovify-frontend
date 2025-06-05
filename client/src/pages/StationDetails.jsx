@@ -13,6 +13,7 @@ import { StationTrackSearch } from '../cmps/StationTrackSearch.jsx'
 import { DEFAULT_IMAGE_URL } from '../services/station/station.service.js'
 import { updateStation } from '../store/actions/library.actions.js'
 import { PlayButton } from '../cmps/PlayButton.jsx'
+import { LongTxt } from '../cmps/LongTxt.jsx'
 
 export function StationDetails() {
     const station = useSelector(storeState => storeState.stationModule.station)
@@ -168,6 +169,7 @@ export function StationDetails() {
         fetchStationData()
 
 
+
         return () => {
             clearStation()
         }
@@ -224,7 +226,7 @@ export function StationDetails() {
                 <div className="station-details">
                     <span className="station-type">Playlist</span>
                     <h1 className="station-name">{station.name}</h1>
-                    {station.description && <div className=" station-description">{station.description}</div>}
+                    {station.description && <LongTxt length={120}>{station.description}</LongTxt>}
                     <div className="station-info">
                         <a>{station.owner?.fullname || station.owner?.display_name || 'Unknown User'}</a>
                         <span> • </span>

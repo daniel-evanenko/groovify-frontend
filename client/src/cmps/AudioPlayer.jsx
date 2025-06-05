@@ -32,6 +32,7 @@ export function AudioPlayer() {
     useEffect(() => {
         async function fetchYtUrl() {
             if (!activeTrackId) return
+            
             try {
                 const ytUrl = await getTrackUrl(activeTrackId)
                 if (ytUrl) {
@@ -73,8 +74,6 @@ export function AudioPlayer() {
             playing={isPlaying}
             volume={volume}
             style={{ display: "none" }}
-            onPlay={() => setPlaying(true)}
-            onPause={() => setPlaying(false)}
             onReady={onPlayerReady}
             onProgress={onPlayerProgress}
             onError={handleError}

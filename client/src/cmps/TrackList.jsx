@@ -14,6 +14,7 @@ import { toggleLikedTrack, updateUser } from "../store/actions/user.actions"
 export function TrackList({ station, isAllowed }) {
     const tracks = useSelector(state => state.stationModule.tracks)
     const activeTrackId = useSelector(state => state.systemModule.activeTrackId)
+    const activeStationId = useSelector(state => state.systemModule.activeStationId)
     const playing = useSelector(state => state.playerModule.playing)
     const [selectedRowIndex, setSelectedRowIndex] = useState(null)
     const [hoveredRow, setHoveredRow] = useState(null)
@@ -51,12 +52,12 @@ export function TrackList({ station, isAllowed }) {
     async function onPlay(track) {
         setActiveStation(station._id)
         setTrackId(track.id)
-        setPlaying(true)
+        // setPlaying(true)
     }
 
-    function onPause() {
-        setPlaying(false)
-    }
+    // function onPause() {
+    //     setPlaying(false)
+    // }
 
     function getPlayIcon(track) {
         return <ReactSVG
@@ -72,7 +73,7 @@ export function TrackList({ station, isAllowed }) {
         return <ReactSVG
             onClick={e => {
                 e.stopPropagation()
-                onPause(track)
+                // onPause(track)
             }}
             src="/icons/pause.svg"
         />
@@ -136,7 +137,7 @@ export function TrackList({ station, isAllowed }) {
 
                 const isSelected = selectedRowIndex === index
                 const isHovered = hoveredRow === index
-                const isTrackActive = id === activeTrackId
+                const isTrackActive = id === activeTrackId && station._id === activeStationId
 
                 return (
                     <li
