@@ -32,6 +32,7 @@ export function AudioPlayer() {
     useEffect(() => {
         async function fetchYtUrl() {
             if (!activeTrackId) return
+            
             try {
                 const ytUrl = await getTrackUrl(activeTrackId)
                 if (ytUrl) {

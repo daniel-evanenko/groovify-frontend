@@ -14,6 +14,7 @@ import { toggleLikedTrack, updateUser } from "../store/actions/user.actions"
 export function TrackList({ station, isAllowed }) {
     const tracks = useSelector(state => state.stationModule.tracks)
     const activeTrackId = useSelector(state => state.systemModule.activeTrackId)
+    const activeStationId = useSelector(state => state.systemModule.activeStationId)
     const playing = useSelector(state => state.playerModule.playing)
     const [selectedRowIndex, setSelectedRowIndex] = useState(null)
     const [hoveredRow, setHoveredRow] = useState(null)
@@ -138,7 +139,7 @@ export function TrackList({ station, isAllowed }) {
 
                 const isSelected = selectedRowIndex === index
                 const isHovered = hoveredRow === index
-                const isTrackActive = id === activeTrackId
+                const isTrackActive = id === activeTrackId && station._id === activeStationId
 
                 return (
                     <li

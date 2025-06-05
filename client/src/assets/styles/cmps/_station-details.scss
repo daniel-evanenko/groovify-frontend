@@ -86,7 +86,7 @@
                 white-space: nowrap;
             }
 
-            .station-description {
+            .long-txt { //.station-description
                 font-size: 14px;
                 color: rgba(255, 255, 255, 0.7);
 
@@ -95,6 +95,10 @@
                 line-clamp: 1;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
+
+                a {
+                    color: $text-base;
+                }
             }
 
             .station-info {
