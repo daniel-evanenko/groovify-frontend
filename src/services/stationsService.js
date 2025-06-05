@@ -10,7 +10,7 @@ export const getStations = async (query = "", limit = null) => {
         return await queryCollection(COLLECTION_NAMES.STATIONS, criteria, _limit)
     }
 
-    return await getCollection(COLLECTION_NAMES.STATIONS)
+    return await queryCollection(COLLECTION_NAMES.STATIONS, {}, 150)
 }
 
 export const createNewStation = async (stationData) => {
