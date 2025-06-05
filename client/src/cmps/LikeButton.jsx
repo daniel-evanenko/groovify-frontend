@@ -6,6 +6,11 @@ const ICONS = {
 };
 
 export function LikeButton({ isLiked, onToggle, bigBtn = false }) {
+
+    // function delayedOnToggle() {
+    //     setTimeout(onToggle, )
+    // }
+
     return (
         <div
             className={`like-icon ${isLiked ? "liked" : "unliked"} ${bigBtn ? "bigBtn" : ""}`}

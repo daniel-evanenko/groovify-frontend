@@ -74,7 +74,7 @@ export const handleToggleStation = async (stationId) => {
     const loggedinUser = userService.getLoggedinUser()
     try {
         const updatedUser = await userService.toggleSavedStation(loggedinUser._id, stationId)
-        await updateUser(updatedUser)
+        updateUser(updatedUser)
     } catch (err) {
         console.error('Error toggling saved station:', err)
     }
