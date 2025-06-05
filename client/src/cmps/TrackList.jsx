@@ -20,13 +20,12 @@ export function TrackList({ station, isAllowed }) {
     const activeRow = useClickOutside(() => setSelectedRowIndex(null))
     const stations = useSelector(state => state.libraryModule.stations)
 
-    const likedStationTracks = useMemo(() => {
-        const likedTracksStation = stations.find(station => station.isLikedTracks)
-        return likedTracksStation?.tracks || []
+    const likedStation = useMemo(() => {
+        return stations.find(station => station.isLikedTracks)
     }, [stations])
 
     function isTrackLiked(trackObj) {
-        return likedStationTracks?.includes?.(trackObj.spotifyId)
+        return likedStation?.tracks?.includes?.(trackObj.spotifyId)
     }
 
     const moreOptions = [
@@ -101,8 +100,7 @@ export function TrackList({ station, isAllowed }) {
     }
 
     async function onToggleTrack(station, track) {
-        const likedTracksStation = stations.find(station => station.isLikedTracks)
-        const isLikedStation = likedTracksStation._id == station._id
+        const isLikedStation = likedStation._id == station._id
         await toggleLikedTrack(track.spotifyId, isLikedStation)
 
     }

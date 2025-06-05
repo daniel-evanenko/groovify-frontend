@@ -81,18 +81,27 @@ export const handleToggleStation = async (stationId) => {
 }
 
 export async function toggleLikedTrack(trackId, isLikedStation = false) {
-    const loggedinUser = userService.getLoggedinUser()
-    try {
-        const result = await userService.toggleLikedTrack(loggedinUser._id, trackId)
-        if (isLikedStation && result.action == 'unliked') {
-            store.dispatch({ type: REMOVE_TRACK_FROM_STATION, trackId })
-
-        }
-        store.dispatch({
-            type: UPDATE_LIKED_STATION, trackId, toggleAction: result.action
-        })
-    } catch (err) {
-        console.error('Redux: Failed to toggle track like', err)
+    const loggedinUser = userService.getLoggedinUser();
+    if (!loggedinUser?._id) {
+        console.error('No logged-in user found');
+        return;
     }
+    store.dispatch({ type: UPDATE_LIKED_STATION, trackId });
+
+    if (isLikedStation) {
+        store.dispatch({ type: REMOVE_TRACK_FROM_STATION, trackId });
+    }
+
+    try {
+        const result = await userService.toggleLikedTrack(loggedinUser._id, trackId);
+
+        if (result.action === 'unliked' && !isLikedStation) {
+            store.dispatch({ type: REMOVE_TRACK_FROM_STATION, trackId });
+        }
+    } catch (err) {
+        console.error('Failed to sync toggle with backend:', err);
+        store.dispatch({ type: UPDATE_LIKED_STATION, trackId });
+    }
+
 
 }
