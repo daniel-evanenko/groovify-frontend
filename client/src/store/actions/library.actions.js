@@ -12,6 +12,7 @@ export async function loadStations() {
     try {
         const stations = await getStations(queries)
         store.dispatch({ type: SET_INDEX_STATIONS, stations })
+        console.log(stations.length)
 
     } catch (err) {
         console.error('library actions -> Cannot load stations', err)

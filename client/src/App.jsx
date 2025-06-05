@@ -11,8 +11,10 @@ import { CategoriesPage } from "./pages/CategoriesPage"
 import { loadStations } from "./store/actions/library.actions"
 import { tempLogin } from "./store/actions/user.actions"
 import { SearchIndex } from "./cmps/SearchIndex"
+import { useSelector } from "react-redux"
 
 function App() {
+    const stations = useSelector(state => state.stationModule.indexStations)
     useEffect(() => {
         init()
     }, [])
