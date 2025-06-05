@@ -52,12 +52,12 @@ export function TrackList({ station, isAllowed }) {
     async function onPlay(track) {
         setActiveStation(station._id)
         setTrackId(track.id)
-        setPlaying(true)
+        // setPlaying(true)
     }
 
-    function onPause() {
-        setPlaying(false)
-    }
+    // function onPause() {
+    //     setPlaying(false)
+    // }
 
     function getPlayIcon(track) {
         return <ReactSVG
@@ -73,7 +73,7 @@ export function TrackList({ station, isAllowed }) {
         return <ReactSVG
             onClick={e => {
                 e.stopPropagation()
-                onPause(track)
+                // onPause(track)
             }}
             src="/icons/pause.svg"
         />

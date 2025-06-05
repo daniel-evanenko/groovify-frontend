@@ -73,8 +73,6 @@ export function AudioPlayer() {
             playing={isPlaying}
             volume={volume}
             style={{ display: "none" }}
-            onPlay={() => setPlaying(true)}
-            onPause={() => setPlaying(false)}
             onReady={onPlayerReady}
             onProgress={onPlayerProgress}
             onError={handleError}
