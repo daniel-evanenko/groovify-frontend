@@ -7,7 +7,7 @@ export const getStationTracks = async (trackIds) => {
         if (!Array.isArray(trackIds) || !trackIds.length) return [];
 
         const criteria = { spotifyId: { $in: trackIds } };
-        const tracks = await queryCollection(COLLECTION_NAMES.TRACKS, criteria, 20);
+        const tracks = await queryCollection(COLLECTION_NAMES.TRACKS, criteria, 10);
 
         return tracks;
     } catch (err) {
@@ -21,7 +21,14 @@ export const queryTracks = async (query = "", limit = null) => {
         const pipeline = [
             {
                 $match: {
-                    "track.name": { $regex: `${query}`, $options: "i" }
+                    $or: [
+                        { "track.name": { $regex: `${query}`, $options: "i" } },
+                        { "track.artists": { 
+                            $elemMatch: { 
+                                "name": { $regex: `${query}`, $options: "i" } 
+                            }
+                        }}
+                    ]
                 }
             },
             {
