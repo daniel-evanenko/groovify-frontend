@@ -15,15 +15,14 @@ import { updateStation } from '../store/actions/library.actions.js'
 import { PlayButton } from '../cmps/PlayButton.jsx'
 
 export function StationDetails() {
-    // const station = useSelector(storeState => storeState.stationModule.station)
-    const station = useRef({})
+    const station = useSelector(storeState => storeState.stationModule.station)
     const globalIsLoading = useSelector(storeState => storeState.systemModule.isLoading)
 
     const [isModalOpen, setIsModalOpen] = useState(false)
     const params = useParams()
     const navigate = useNavigate()
 
-    const imgUrl = station.current?.images?.length > 0 ?  station.current.images[0].url : DEFAULT_IMAGE_URL
+    const imgUrl = station?.images?.length > 0 ? station.images[0].url : DEFAULT_IMAGE_URL
 
     const user = useSelector(storeState => storeState.userModule.user)
     const tracks = useSelector(storeState => storeState.stationModule.tracks)
@@ -128,13 +127,13 @@ export function StationDetails() {
     }
 
     function isAllowed() {
-        if (! station.current || !user) return false
+        if (!station || !user) return false
         return (
-            ( station.current.owner?.fullname ||  station.current.owner?.display_name) === user.fullname
+            (station.owner?.fullname || station.owner?.display_name) === user.fullname
         )
     }
     function isLikedStation() {
-        return  station.current._id == user?.likedTracksStationId
+        return station._id == user?.likedTracksStationId
     }
 
     async function handleConfirm(stationToSave) {
@@ -151,7 +150,7 @@ export function StationDetails() {
     async function fetchStationData() {
         setIsLoading(true)
         try {
-            station.current = await loadStation(params.stationId)
+            await loadStation(params.stationId)
         } catch (error) {
             console.error('Error fetching station:', error)
             navigate('/')
@@ -167,7 +166,7 @@ export function StationDetails() {
         }
 
         fetchStationData()
-        
+
 
         return () => {
             clearStation()
@@ -175,12 +174,12 @@ export function StationDetails() {
     }, [params.stationId])
 
     useEffect(() => {
-        if (! station.current || !imgUrl) return
+        if (!station || !imgUrl) return
 
         requestAnimationFrame(() => {
             setStationHeaderBg()
         })
-    }, [ station.current, imgUrl])
+    }, [station, imgUrl])
 
     async function setStationHeaderBg() {
         try {
@@ -207,12 +206,12 @@ export function StationDetails() {
 
     if (globalIsLoading) return <Loader />
 
-    if (!station.current) return <div>No playlist data available</div>
+    if (!station) return <div>No playlist data available</div>
 
     return (
         <section className="station-page">
             <div className='station-header-bg' />
-            <header className="top-bar"> {!isActionBarVisible && <div className='intersection-header'><PlayButton stationId={ station.current?._id} /> <h1 className="station-name">{ station.current.name}</h1>  </div>}</header>
+            <header className="top-bar"> {!isActionBarVisible && <div className='intersection-header'><PlayButton stationId={station?._id} /> <h1 className="station-name">{station.name}</h1>  </div>}</header>
             <div className="station-header" >
                 <div className="station-image">
                     <img src={imgUrl} alt="station cover" />
@@ -224,26 +223,26 @@ export function StationDetails() {
                 </div>
                 <div className="station-details">
                     <span className="station-type">Playlist</span>
-                    <h1 className="station-name">{ station.current.name}</h1>
-                    { station.current.description && <div className=" station-description">{ station.current.description}</div>}
+                    <h1 className="station-name">{station.name}</h1>
+                    {station.description && <div className=" station-description">{station.description}</div>}
                     <div className="station-info">
-                        <a>{ station.current.owner?.fullname ||  station.current.owner?.display_name || 'Unknown User'}</a>
+                        <a>{station.owner?.fullname || station.owner?.display_name || 'Unknown User'}</a>
                         <span> • </span>
                         <span>{calculatePlaylistInfo()}</span>
                     </div>
                 </div>
             </div>
             <div className="content-spacing">
-                {<ActionBar isAllowed={isAllowed()} isLikedStation={isLikedStation()} station={ station.current} onVisibilityChange={setIsActionBarVisible}
+                {<ActionBar isAllowed={isAllowed()} isLikedStation={isLikedStation()} station={station} onVisibilityChange={setIsActionBarVisible}
                 ></ActionBar>}
-                <TrackList isAllowed={isAllowed()} station={ station.current} tracks={tracks}></TrackList>
-                {isAllowed() && <StationTrackSearch isAllowed={isAllowed()} station={ station.current}></StationTrackSearch>}
+                <TrackList isAllowed={isAllowed()} station={station} tracks={tracks}></TrackList>
+                {isAllowed() && <StationTrackSearch isAllowed={isAllowed()} station={station}></StationTrackSearch>}
             </div>
             {isModalOpen && (
                 <StationEditModal
                     onClose={() => setIsModalOpen(false)}
                     onConfirm={handleConfirm}
-                    station={ station.current}
+                    station={station}
                     openFileUpload={true}
                 />
             )}
